@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       La app esta funcionando con el store incluido.
+      <Footer />
     </div>
   );
 }

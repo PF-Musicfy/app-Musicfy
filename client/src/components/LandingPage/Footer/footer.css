@@ -3,17 +3,16 @@
   color: #999;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 50px 10px;
+  padding: 50px;
+  flex-direction: column;
 }
 
 .footer-lista {
   background: #000;
   color: #999;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
-  padding: 50px 10px;
 }
 
 .footer a {
@@ -25,8 +24,25 @@
   color: #0f0;
 }
 
-.footer div {
+.footer-lista div {
   display: flex;
   flex-direction: column;
   text-align: start;
+}
+
+.footer-licencia {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-licencia a {
+  text-decoration: none;
+  color: #999;
+}
+
+.footer-licencia-enlaces {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
 }
