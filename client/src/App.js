@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      hola mundo
+      La app esta funcionando con el store incluido.
     </div>
   );
 }
