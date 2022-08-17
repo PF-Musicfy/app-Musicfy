@@ -1,0 +1,32 @@
+.footer {
+  background: #000;
+  color: #999;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 10px;
+}
+
+.footer-lista {
+  background: #000;
+  color: #999;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 10px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer a:hover {
+  color: #0f0;
+}
+
+.footer div {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}

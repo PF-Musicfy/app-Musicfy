@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import {BrowserRouter} from 'react-router-dom';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -12,7 +13,9 @@ const root = createRoot(container);
 //<Provider store={store}>
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
       <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
