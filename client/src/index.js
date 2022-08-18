@@ -1,12 +1,11 @@
 import './index.css';
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
-import { Provider } from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { BrowserRouter } from 'react-router-dom';
+import App from "./App";
+import store from "./store/index";
 import { Auth0Provider } from '@auth0/auth0-react'
-
-import App from './App';
-import store from './store/index';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

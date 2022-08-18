@@ -1,4 +1,5 @@
-import Footer from './Footer';
+import Footer from "./Footer";
+import BodyLanding from "./Body";
 //import Player from '../Reproductor';
       //<Player />
 import Login from '../Login';
@@ -18,7 +19,8 @@ export default function LandingPage(){
         </>
         : <Login />
       }
+      <BodyLanding />
       <Footer />
     </div>
-  )                                                               
-}  
+  );
+}
