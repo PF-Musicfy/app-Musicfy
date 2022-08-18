@@ -1,7 +1,8 @@
 import './player.css';
-import {useRef, useState, useEffect} from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause } from "react-icons/fa"
 import toMinutes from '../../utils/toMinutes.js';
+import { IconContext } from "react-icons";
 
 //const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
@@ -15,7 +16,8 @@ export default function Player(){
 
   useEffect(() => {
     if(isPlaying){
-      audioElem.current.play()
+      audioElem.current.play();
+      audioElem.current.volume = 0.1;
     }else{
       audioElem.current.pause()
     }
@@ -42,8 +44,6 @@ export default function Player(){
     <div className="player">
       <audio
         src={url}
-        controls
-        muted
         ref={audioElem}
         onTimeUpdate={onPlaying}
       >
@@ -54,8 +54,10 @@ export default function Player(){
         ref={progressBar}
         onChange={changeRange}
       />
-      <div>
+      <IconContext.Provider value={{className: 'react-icons'}}>
+      <div className="player-tools">
         <button
+          className="player-button"
           onClick={() => setIsPlaying(!isPlaying)}
         >
           {isPlaying ? <FaPause /> : <FaPlay />}
@@ -64,6 +66,7 @@ export default function Player(){
           {toMinutes(dataSong.current)}/{toMinutes(dataSong.length)}
         </span>
       </div>
+      </IconContext.Provider>
     </div>
   )
 }
