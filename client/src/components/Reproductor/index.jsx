@@ -25,17 +25,6 @@ export default function Player(){
     })
   }
 
-  const formatTime = (seconds) => {
-    if(isNaN(seconds)) return '0:00';
-
-    const minute = Math.floor((seconds / 60) % 60);
-
-    let second = seconds % 60;
-    second = (second < 10)? '0' + second : second;
-
-    return minute + ':' + second;
-  }
-
   return (
     <div className="player">
       <audio
@@ -57,4 +46,15 @@ export default function Player(){
       <p>tiempo: {formatTime(dataSong.length)}</p>
     </div>
   )
+}
+
+const formatTime = (seconds) => {
+  if(isNaN(seconds)) return '0:00';
+
+  const minute = Math.floor((seconds / 60) % 60);
+
+  let second = seconds % 60;
+  second = (second < 10)? '0' + second : second;
+
+  return minute + ':' + second;
 }
