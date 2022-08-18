@@ -7,6 +7,8 @@ import LandingPage from './components/LandingPage'
 function App() {
   return (
     <div className="App">
+      La app esta funcionando con el store incluido.
+      <NavBarLanding />
       <Routes>
         <Route
           exact path='/'
@@ -16,5 +18,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
