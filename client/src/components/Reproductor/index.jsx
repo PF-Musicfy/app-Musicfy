@@ -1,10 +1,17 @@
 import './player.css';
 import {useRef, useState, useEffect} from 'react';
+import { FaPlay, FaPause } from "react-icons/fa"
+import toMinutes from '../../utils/toMinutes.js';
+
+//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
+const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
 export default function Player(){
-  const audioElem = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   const [dataSong, setDataSong] = useState({});
+  
+  const audioElem = useRef();
+  const progressBar = useRef();
 
   useEffect(() => {
     if(isPlaying){
@@ -15,46 +22,48 @@ export default function Player(){
   }, [isPlaying])
 
   const onPlaying = () => {
-    const duration = audioElem.current.duration;
-    const ct = audioElem.current.currentTime;
+    const duration = Math.floor(audioElem.current.duration);
+    const ct = Math.floor(audioElem.current.currentTime);
 
     setDataSong({
-      progress: Math.floor(ct / duration * 100),
-      current: Math.floor(ct),
-      length: Math.floor(duration)
+      current: ct,
+      length: duration
     })
+
+    progressBar.current.value = ct;
+    progressBar.current.max = duration;
+  }
+
+  const changeRange = () => {
+    audioElem.current.currentTime = progressBar.current.value;
   }
 
   return (
     <div className="player">
       <audio
-        src="https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
+        src={url}
         controls
         muted
         ref={audioElem}
         onTimeUpdate={onPlaying}
       >
       </audio>
-      <button
-        onClick={() => setIsPlaying(!isPlaying)}
-      >
-        {isPlaying ? 'pause' : 'play'}
-      </button>
-      <p>porcentaje (ranger): {dataSong.progress}%</p>
-      <input type='range' />
-      <p>actual: {formatTime(dataSong.current)}</p>
-      <p>tiempo: {formatTime(dataSong.length)}</p>
+      <input
+        type='range'
+        defaultValue="0"
+        ref={progressBar}
+        onChange={changeRange}
+      />
+      <div>
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+        >
+          {isPlaying ? <FaPause /> : <FaPlay />}
+        </button>
+        <span>
+          {toMinutes(dataSong.current)}/{toMinutes(dataSong.length)}
+        </span>
+      </div>
     </div>
   )
-}
-
-const formatTime = (seconds) => {
-  if(isNaN(seconds)) return '0:00';
-
-  const minute = Math.floor((seconds / 60) % 60);
-
-  let second = seconds % 60;
-  second = (second < 10)? '0' + second : second;
-
-  return minute + ':' + second;
 }

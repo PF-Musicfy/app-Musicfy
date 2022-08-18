@@ -1,3 +1,11 @@
-.player audio {
-  background: #000;
+.player{
+  background: #999;
+}
+
+.player p {
+  margin: 0;
+}
+
+.player input[type='range'] {
+  width: 90%;
 }
