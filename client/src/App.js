@@ -1,12 +1,15 @@
 import RegisterForm from './components/RegisterForm';
-import './App.css';
 import {Route, Routes} from 'react-router-dom';
 import LandingPage from './components/LandingPage'
+import NavBarLanding from './components/NavBarLanding';
 
 
 function App() {
   return (
-    <div className="App">    
+
+    <div className="App">
+      La app esta funcionando con el store incluido.
+      <NavBarLanding />
       <RegisterForm/>
       <Routes>
         <Route
@@ -18,5 +21,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
