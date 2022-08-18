@@ -23,9 +23,10 @@ export default function RegisterForm() {
     if(newUser.lastName.length === 0 || /[^a-zñáéíóú]/i.test(newUser.lastName) === true) {
         errorLastName = true
     }
-    if(newUser.eMail.length === 0 || /[^a-zñáéíóú]/i.test(newUser.eMail) === true) {
+    if(newUser.eMail.length === 0 || /[^&=_+,<>'-]+@gmail\.com$/i.test(newUser.eMail) === false) {
         errorEMail = true
     }
+
     if(newUser.password.length !== 8 || /[^a-z0-9ñ]/i.test(newUser.password) === true) {
         errorPassword = true
     }
@@ -52,7 +53,7 @@ export default function RegisterForm() {
         if (userNames.includes(newUser.name)) {
             alert('The name is in use. Insert a different one')}
             else {
-        axios.post('http://localhost:3001/api/users', newUser)
+        axios.post('http://localhost:3000/api/users', newUser)
         .then(() => {
             alert('User registered succesfully')
             // dispatch(fetchUsers())
