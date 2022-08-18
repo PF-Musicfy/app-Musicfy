@@ -8,8 +8,7 @@ import NavBarLanding from './components/NavBarLanding';
 function App() {
   return (
     <div className="App">
-      La app esta funcionando con el store incluido.
-      <NavBarLanding />
+      La app esta funcionando con el store incluido.      
       <Routes>
         <Route
           exact path='/'
