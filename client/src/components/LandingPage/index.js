@@ -9,6 +9,13 @@ import Logout from '../Logout';
 import Profile from '../Profile';
 import { useAuth0 } from '@auth0/auth0-react'
 
+      //{isAuthenticated ?
+      //  <>
+      //    <Profile />
+      //    <Logout />
+      //  </>
+      //  : <Login />
+      //}
 export default function LandingPage(){                            
   const { isAuthenticated } = useAuth0();
 
@@ -17,13 +24,6 @@ export default function LandingPage(){
       <NavBarLanding />
       <BodyLanding />
       <Footer />
-      {isAuthenticated ?
-        <>
-          <Profile />
-          <Logout />
-        </>
-        : <Login />
-      }
     </div>
   );
 }
