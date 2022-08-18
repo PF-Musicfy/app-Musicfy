@@ -14,6 +14,9 @@ export default function LandingPage(){
 
   return (                                                        
     <div className='landing'>
+      <NavBarLanding />
+      <BodyLanding />
+      <Footer />
       {isAuthenticated ?
         <>
           <Profile />
@@ -21,9 +24,6 @@ export default function LandingPage(){
         </>
         : <Login />
       }
-      <NavBarLanding />
-      <BodyLanding />
-      <Footer />
     </div>
   );
 }
