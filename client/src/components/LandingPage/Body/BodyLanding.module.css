@@ -1,0 +1,49 @@
+.BodyLanding {
+  background: linear-gradient(
+    87deg,
+    rgba(93, 139, 103, 1) 15%,
+    rgba(18, 50, 66, 1) 81%
+  );
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.Title {
+  color: azure;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 10%;
+}
+.Subtitle {
+  color: azure;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 2%;
+}
+
+.button {
+  position: absolute;
+  top: 60%;
+  border-radius: 20px;
+  border: 5px solid #123242;
+  padding-bottom: 5%;
+  padding: 20px 150px;
+  background-color: #123242;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  left: 36%;
+  margin: -25px 0 0 -25px;
+  color: #5d8b67;
+}
+.button:hover {
+  top: 58%;
+  left: 36%;
+  margin: -25px 0 0 -25px;
+  border-radius: 30px;
+  border: 5px solid #5d8b67;
+  padding: 20px 150px;
+  background-color: azure;
+  cursor: pointer;
+  color: #123242;
+  transition: 0.4s;
+}
