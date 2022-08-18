@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
+import {Route, Routes} from 'react-router-dom';
 
-import Footer from './components/LandingPage/Footer/index.jsx'
+import LandingPage from './components/LandingPage'
 
 function App() {
   return (
     <div className="App">
-      La app esta funcionando con el store incluido.
-      <Footer />
+      <Routes>
+        <Route
+          exact path='/'
+          element={<LandingPage />}
+        />
+      </Routes>
     </div>
   );
 }
