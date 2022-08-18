@@ -2,7 +2,6 @@ import React from 'react';
 import RegisterForm from './components/RegisterForm';
 import {Route, Routes} from 'react-router-dom';
 import LandingPage from './components/LandingPage'
-import NavBarLanding from './components/NavBarLanding';
 
 
 function App() {
