@@ -9,12 +9,15 @@ function App() {
 
     <div className="App">
       La app esta funcionando con el store incluido.
-      <NavBarLanding />
-      <RegisterForm/>
+      <NavBarLanding />      
       <Routes>
         <Route
           exact path='/'
           element={<LandingPage />}
+        />
+        <Route
+          exact path='/register'
+          element={<RegisterForm/>}
         />
       </Routes>
 

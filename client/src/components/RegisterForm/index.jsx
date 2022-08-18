@@ -1,15 +1,15 @@
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 // import { fetchUsers } from '../store/actions'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styles from './Index.module.css'
+import styles from './RegisterForm.module.css'
 import axios from 'axios'
 
 export default function RegisterForm() {
     const [newUser, setNewUser] = useState({name: '', lastName: '', eMail: '', password: ''})
     const users = useSelector((state) => state.users)
     let dispatch = useDispatch()
-    // let navigate = useNavigate()
+    let navigate = useNavigate()
     let error = true
     let errorName = false
     let errorLastName = false
@@ -36,7 +36,7 @@ export default function RegisterForm() {
 
     function onClick(e) {
         e.preventDefault()
-        // navigate.push('/')
+        navigate(-1)
     }
 
     function onInputChange(e) {
@@ -56,7 +56,7 @@ export default function RegisterForm() {
         .then(() => {
             alert('User registered succesfully')
             // dispatch(fetchUsers())
-                // history.push('/')
+                // navigate(-1)
         })
         .catch((error)=> {
             console.log(error)
