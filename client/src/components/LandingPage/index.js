@@ -1,7 +1,9 @@
 import Footer from "./Footer";
 import BodyLanding from "./Body";
+import NavBarLanding from "../NavBarLanding";
+import './landingpage.css';
 //import Player from '../Reproductor';
-      //<Player />
+//<Player />
 import Login from '../Login';
 import Logout from '../Logout';
 import Profile from '../Profile';
@@ -11,7 +13,7 @@ export default function LandingPage(){
   const { isAuthenticated } = useAuth0();
 
   return (                                                        
-    <div>
+    <div className='landing'>
       {isAuthenticated ?
         <>
           <Profile />
@@ -19,6 +21,7 @@ export default function LandingPage(){
         </>
         : <Login />
       }
+      <NavBarLanding />
       <BodyLanding />
       <Footer />
     </div>
