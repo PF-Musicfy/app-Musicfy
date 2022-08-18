@@ -2,7 +2,7 @@ import React from 'react';
 import RegisterForm from './components/RegisterForm';
 import {Route, Routes} from 'react-router-dom';
 import LandingPage from './components/LandingPage'
-
+import Login from './components/Login';
 
 function App() {
   return (
@@ -15,6 +15,10 @@ function App() {
         <Route
           exact path='/register'
           element={<RegisterForm/>}
+        />
+        <Route
+          exact path='/login'
+          element={<Login/>}
         />
       </Routes>
     </div>
