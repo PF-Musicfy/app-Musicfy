@@ -1,0 +1,58 @@
+.create {
+    background-image: url(https://media.istockphoto.com/vectors/music-background-vector-id1076840920?k=20&m=1076840920&s=612x612&w=0&h=7npgZI1DyLkiejEZM19R0XHWdgJGijuTK4cXZvIA72Q=);
+    background-repeat: no-repeat;    
+    background-size:100%;
+    background-position: center center;
+    /* width: 100%;
+    min-height: 1200px; */
+    padding: 200px;
+    margin-top: 100px;
+    /* padding-top: 430px; */
+    display: flex;    
+    justify-content: center;
+}
+.form {
+    position: relative;
+    /* bottom:200px;
+    left: 100px; */
+}
+.item {
+    background-color: rgba(240, 248, 255, 0.432);
+    padding-left: 3px;
+    padding-right: 5px;
+    margin: 5px;
+    font-weight: 500;
+    font-size: 20px;
+}
+.error {
+    color: red;
+}
+.submit {
+    /* position: absolute;
+    bottom: 25px;
+    right: 100px; */
+    position: relative;
+    top:100px;
+    left: 350px;
+    font-size: 30px;
+    background-color: rgb(125, 125, 195);
+}
+.submit:hover {
+    cursor:pointer;    
+}
+.back {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    padding: 6px;
+    font-size: 40px;
+    font-weight: 500;
+    background-color: rgb(170, 166, 116);    
+    /* border: 5px solid rgb(141, 71, 21);
+    color: rgb(141, 71, 21);     */
+}
+.back:hover {
+    background-color: darkkhaki;
+    transition: 0.3s;
+    cursor: pointer;
+}
