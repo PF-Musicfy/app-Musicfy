@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon -L",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "^4.18.1",
-    "nodemailer": "^6.7.8"
+    "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19"
   }
 }
