@@ -31,15 +31,19 @@ export default function Login(){
   return (
     <div className="login">
       <div className="login-logo">
-        <button
-          onClick={() => navigate(-1)}
-        >
-          volver a LandingPage
-        </button>
-        <p>Musicfy Logo</p>
+        <img
+          src=''
+          alt='Musicfy Logo'
+          onClick={() => navigate('/')}
+        />
       </div>
       <hr></hr>
       <div className="login-container">
+        <button
+          onClick={() => navigate(-1)}
+        >
+          volver atras
+        </button>
         <div className="login-options">
 
           {isAuthenticated ?
