@@ -1,17 +1,17 @@
 {
   "name": "api2",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "nodemon -L",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,9 +19,8 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.5.2"
-  },
-  "devDependencies": {
+    "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19"
   }
 }

@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import { tokenVerificationErrors } from "../utils/tokenManager.js";
+const jwt = require("jsonwebtoken");
+const { tokenVerificationErrors } = require("../utils/tokenManager.js");
 
-export const requireToken = (req, res, next) => {
+const requireToken = (req, res, next) => {
   try {
     let token = req.headers?.authorization;
 
@@ -21,3 +21,5 @@ export const requireToken = (req, res, next) => {
       .send({ error: tokenVerificationErrors[error.message] });
   }
 };
+
+module.exports = requireToken;

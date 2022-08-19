@@ -1,6 +1,6 @@
-import { body, validationResult } from "express-validator";
+const { body, validationResult } = require("express-validator");
 
-export const validationResultExpress = (req, res, next) => {
+const validationResultExpress = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -10,7 +10,7 @@ export const validationResultExpress = (req, res, next) => {
   next();
 };
 
-export const bodyRegisterValidator = [
+const bodyRegisterValidator = [
   body("username", "Invalid username, at least 3 characters")
     .trim()
     .isLength({ min: 3 }),
@@ -27,10 +27,15 @@ export const bodyRegisterValidator = [
   validationResultExpress,
 ];
 
-export const bodyLoginValidator = [
+const bodyLoginValidator = [
   body("email", "Invalid email").trim().isEmail().normalizeEmail(),
   body("password", "Invalid password, at least 7 characters")
     .trim()
     .isLength({ min: 7 }),
   validationResultExpress,
 ];
+
+module.exports = {
+  bodyRegisterValidator,
+  bodyLoginValidator,
+};

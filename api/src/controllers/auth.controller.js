@@ -1,8 +1,11 @@
-import { User } from "../models/User.js";
-import jwt from "jsonwebtoken";
-import { generateRefreshToken, generateToken } from "../utils/tokenManager.js";
+const User = require("../models/User.js");
+const jwt = require("jsonwebtoken");
+const {
+  generateRefreshToken,
+  generateToken,
+} = require("../utils/tokenManager.js");
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
@@ -22,7 +25,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -42,7 +45,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const infoUser = async (req, res) => {
+const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid);
     res.json({ email: user.email, uid: user.id });
@@ -51,7 +54,7 @@ export const infoUser = async (req, res) => {
   }
 };
 
-export const refreshToken = (req, res) => {
+const refreshToken = (req, res) => {
   try {
     const { token, expiresIn } = generateToken(req.uid);
 
@@ -61,7 +64,15 @@ export const refreshToken = (req, res) => {
   }
 };
 
-export const logout = (req, res) => {
+const logout = (req, res) => {
   res.clearCookie("refreshToken");
   res.json({ ok: true });
+};
+
+module.exports = {
+  register,
+  login,
+  infoUser,
+  refreshToken,
+  logout,
 };

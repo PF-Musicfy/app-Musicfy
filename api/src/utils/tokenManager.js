@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export const generateToken = (uid) => {
+const generateToken = (uid) => {
   const expiresIn = 60 * 15;
 
   try {
@@ -12,7 +12,7 @@ export const generateToken = (uid) => {
   }
 };
 
-export const generateRefreshToken = (uid, res) => {
+const generateRefreshToken = (uid, res) => {
   const expiresIn = 60 * 60 * 24 * 30;
 
   try {
@@ -30,10 +30,16 @@ export const generateRefreshToken = (uid, res) => {
   }
 };
 
-export const tokenVerificationErrors = {
+const tokenVerificationErrors = {
   "invalid signature": "The JWT signature is not valid",
   "jwt expired": "Expired JWT",
   "invalid token": "Invalid token",
   "No Bearer": "Use bearer format",
   "jwt malformed": "JWT invalid format",
+};
+
+module.exports = {
+  generateToken,
+  generateRefreshToken,
+  tokenVerificationErrors,
 };
