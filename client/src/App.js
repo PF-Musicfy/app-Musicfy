@@ -2,12 +2,11 @@ import React from 'react';
 import RegisterForm from './components/RegisterForm';
 import {Route, Routes} from 'react-router-dom';
 import LandingPage from './components/LandingPage'
-
+import Login from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      La app esta funcionando con el store incluido.      
       <Routes>
         <Route
           exact path='/'
@@ -16,6 +15,10 @@ function App() {
         <Route
           exact path='/register'
           element={<RegisterForm/>}
+        />
+        <Route
+          exact path='/login'
+          element={<Login/>}
         />
       </Routes>
     </div>
