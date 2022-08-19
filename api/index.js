@@ -1,7 +1,8 @@
 const express = require('express');
-const nodemailer = require('nodemailer')
 const app = express();
 const rutas = require("./src/routes/index")
+
+
 //require('./db.js');
 
 
@@ -15,7 +16,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 app.listen(3001, () => {
-  console.log('listen no nodemon')
+  console.log('%s listening in port 3001')
 })
 
 

@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const { Router } = require('express')
 const app = Router();
 const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
-
+const {generatePassword} = require('../controllers/generatePasswordController')
 
 app.get("/topalbums", async (req, res, next)=> {
   let album = await topAlbums()
@@ -74,34 +74,34 @@ app.get("/", async (req, res, next)=> {
 }
 })
 
-
 app.post("/send-email", (req, res, next) => {
-    // const {eMail} = req.body
-    let transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'anibal.hickle52@ethereal.email',
-        pass: 'szSFDjr4pppzECtx1E'
-      }
-    })
-    let mailOptions = {
-      from: "Remitente",
-      to: "JavierAvilaAsdf@gmail.com",
-      subject: "Register succesful",
-      text: "Hello! You've registered succesfuly in Musicfy. Your password is asdf. You can change it in your profile options, when logged in."
+  // const {eMail} = req.body
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'JavierAvilaasdf@gmail.com',
+      pass: 'yrrfmuxcfilbaxzl'
     }
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        res.status(500).send(error.message)
-      } else {
-        console.log('email enviado')
-        res.status(200).jsonp(req.body)
-      }
-    })
   })
-  
+  let password = generatePassword()
+  let mailOptions = {
+    from: "adminAPI",
+    to: "santiagojavierlevy@gmail.com",
+    subject: "Register succesful",
+    text: `Hello! You've succesfuly registered in Musicfy. Your password is ${password}. You can change it in your profile options, when logged in.`
+  }
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.status(500).send(error.message)
+    } else {
+      console.log('email enviado')
+      res.status(200).jsonp(req.body)
+    }
+  })
+})
+
   app.get("/:id", async (req, res, next) => {
       const { id } = req.params;
   
