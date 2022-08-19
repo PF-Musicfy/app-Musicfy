@@ -2,9 +2,14 @@ import './login.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
 import validate from '../../utils/validate.js';
+import { useNavigate } from 'react-router-dom';
+
+import Logout from '../Logout';
+import Profile from '../Profile';
 
 export default function Login(){
-  const {loginWithRedirect} = useAuth0();
+  const { loginWithPopup, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const [input, setInput] = useState({
     user: '',
@@ -26,17 +31,40 @@ export default function Login(){
   return (
     <div className="login">
       <div className="login-logo">
-        Musicfy Logo
+        <img
+          src=''
+          alt='Musicfy Logo'
+          onClick={() => navigate('/')}
+        />
       </div>
       <hr></hr>
       <div className="login-container">
+        <button
+          onClick={() => navigate(-1)}
+        >
+          volver atras
+        </button>
         <div className="login-options">
-          <p>Para continuar, inicia sesión en Musicfy.</p>
-          <button
-            onClick={() => loginWithRedirect()}
-          >
-            CONTINUAR CON AUTH0
-          </button>
+
+          {isAuthenticated ?
+            <>
+              <Profile />
+              <Logout />
+            </>
+            : 
+            <>
+              <p>Para continuar, inicia sesión en Musicfy.</p>
+              <p>probar en Auth0 con:</p>
+              <span><b>email:</b> jaeden31z_d781g@cguf.site</span>
+              <p><b>password:</b> ASdf1234</p>
+              <button
+                onClick={loginWithPopup}
+              >
+                CONTINUAR CON AUTH0
+              </button>
+            </>
+          }
+
         </div>
         <hr></hr>
         <form
@@ -71,7 +99,9 @@ export default function Login(){
         </form>
         <hr></hr>
         <p>¿No tienes cuenta?</p>
-        <button>
+        <button
+          onClick={() => navigate('/register')}
+        >
           REGISTRATE EN MUSICFY
         </button>
       </div>
