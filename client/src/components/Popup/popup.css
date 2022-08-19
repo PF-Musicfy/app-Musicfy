@@ -1,0 +1,60 @@
+.popup {
+  background: #0008;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.popup-container {
+  padding: 20px;
+  background: linear-gradient(to bottom, #185, #111);
+  color: #fff;
+  width: 500px;
+}
+
+.popup-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.pp-logo {
+  height: 200px;
+  width: 200px;
+  background: #333;
+}
+
+.pp-info {
+  width: 250px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pp-login {
+  margin: 10px;
+  font-size: 14px;
+}
+
+.pp-login button {
+  border: none;
+  color: #fff;
+  background: none;
+  cursor: pointer;
+}
+
+.pp-info p {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.pp-visible {
+  display: none;
+}
