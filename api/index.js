@@ -1,6 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer')
 const app = express();
+const {generatePassword} = require('./src/controllers/generatePasswordController')
 //require('./db.js');
 
 app.get('/', (req,res) => {
@@ -18,11 +19,12 @@ app.post("/send-email", (req, res, next) => {
       pass: 'yrrfmuxcfilbaxzl'
     }
   })
+  let password = generatePassword()
   let mailOptions = {
     from: "adminAPI",
     to: "santiagojavierlevy@gmail.com",
     subject: "Register succesful",
-    text: `Hello! You've registered succesfuly in Musicfy. Your password is asdf. You can change it in your profile options, when logged in.`
+    text: `Hello! You've succesfuly registered in Musicfy. Your password is ${password}. You can change it in your profile options, when logged in.`
   }
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -35,5 +37,5 @@ app.post("/send-email", (req, res, next) => {
 })
 
 app.listen(3001, () => {
-  console.log('listen no nodemon')
+  console.log('%s listening in port 3001')
 })
