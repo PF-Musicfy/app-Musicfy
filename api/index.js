@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer')
 const app = express();
-const {generatePassword} = require('./src/controllers/generatePasswordController')
+const {generateToken} = require('./src/controllers/generateTokenController')
 //require('./db.js');
 
 app.get('/', (req,res) => {
@@ -19,12 +19,12 @@ app.post("/send-email", (req, res, next) => {
       pass: 'yrrfmuxcfilbaxzl'
     }
   })
-  let password = generatePassword()
+  let token = generateToken()
   let mailOptions = {
     from: "adminAPI",
     to: "santiagojavierlevy@gmail.com",
     subject: "Register succesful",
-    text: `Hello! You've succesfuly registered in Musicfy. Your password is ${password}. You can change it in your profile options, when logged in.`
+    text: `Hello! Put this token in the token input in order to register: ${token}. Then, click on "Register" button.`
   }
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
