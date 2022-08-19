@@ -32,7 +32,7 @@ export default function Login(){
     <div className="login">
       <div className="login-logo">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(-1)}
         >
           volver a LandingPage
         </button>
