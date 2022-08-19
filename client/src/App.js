@@ -1,8 +1,8 @@
-import React from 'react';
+import RegisterForm from './components/RegisterForm';
 import {Route, Routes} from 'react-router-dom';
 import Home from './components/Home';
-
 import LandingPage from './components/LandingPage'
+import Login from './components/Login';
 
 function App() {
   return (
@@ -11,6 +11,14 @@ function App() {
         <Route
           exact path='/'
           element={<LandingPage />}
+        />
+        <Route
+          exact path='/register'
+          element={<RegisterForm/>}
+        />
+        <Route
+          exact path='/login'
+          element={<Login/>}
         />
         <Route
           exact path='/home'
