@@ -10,19 +10,19 @@ app.get('/', (req,res) => {
 app.post("/send-email", (req, res, next) => {
   // const {eMail} = req.body
   let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-      user: 'anibal.hickle52@ethereal.email',
-      pass: 'szSFDjr4pppzECtx1E'
+      user: 'JavierAvilaasdf@gmail.com',
+      pass: 'yrrfmuxcfilbaxzl'
     }
   })
   let mailOptions = {
-    from: "Remitente",
-    to: "JavierAvilaAsdf@gmail.com",
+    from: "adminAPI",
+    to: "santiagojavierlevy@gmail.com",
     subject: "Register succesful",
-    text: "Hello! You've registered succesfuly in Musicfy. Your password is asdf. You can change it in your profile options, when logged in."
+    text: `Hello! You've registered succesfuly in Musicfy. Your password is asdf. You can change it in your profile options, when logged in.`
   }
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
