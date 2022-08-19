@@ -11,7 +11,7 @@ export default function RegisterForm() {
     let navigate = useNavigate()
     let error = true
     let errorName = false
-    let errorLastName = false
+    let errorToken = false
     let errorEMail = false
     let errorPassword = false
     let userNames = []
@@ -20,7 +20,7 @@ export default function RegisterForm() {
         errorName = true
     }
     if(newUser.lastName.length === 0 || /[^a-zñáéíóú]/i.test(newUser.lastName) === true) {
-        errorLastName = true
+        errorToken = true
     }
     if(newUser.eMail.length === 0 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(newUser.eMail) === false) {
         errorEMail = true
@@ -30,7 +30,7 @@ export default function RegisterForm() {
         errorPassword = true
     }
 
-    if (errorName === false && errorLastName === false && errorEMail === false && errorPassword === false) {
+    if (errorName === false && errorToken === false && errorEMail === false && errorPassword === false) {
         error = false
     }
 
