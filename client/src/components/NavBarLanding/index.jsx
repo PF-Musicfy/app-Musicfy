@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NavBarLanding.module.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 function NavBarLanding() {
   return (
