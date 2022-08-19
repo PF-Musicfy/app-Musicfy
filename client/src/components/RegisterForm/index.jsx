@@ -6,7 +6,7 @@ import styles from './RegisterForm.module.css'
 import axios from 'axios'
 
 export default function RegisterForm() {
-    const [newUser, setNewUser] = useState({name: '', lastName: '', eMail: '', password: ''})
+    const [newUser, setNewUser] = useState({name: '', eMail: '', password: '', token: ''})
     const users = useSelector((state) => state.users)
     let navigate = useNavigate()
     let error = true
@@ -22,7 +22,7 @@ export default function RegisterForm() {
     if(newUser.lastName.length === 0 || /[^a-zñáéíóú]/i.test(newUser.lastName) === true) {
         errorLastName = true
     }
-    if(newUser.eMail.length === 0 || /[^&=_+,<>'-]+@gmail\.com$/i.test(newUser.eMail) === false) {
+    if(newUser.eMail.length === 0 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(newUser.eMail) === false) {
         errorEMail = true
     }
 
@@ -68,7 +68,7 @@ export default function RegisterForm() {
         <form onSubmit={(e)=> onSubmit(e)} >
             <div className={styles.form}>
             <div className={styles.item}>
-            <label htmlFor=''>*NAME</label>
+            <label htmlFor=''>*USERNAME</label>
             <input type='text' name='name' onChange={onInputChange} value={newUser.name} placeholder = 'Insert name'/>
             {errorName === true? <span className={styles.error}>{' Insert a name without special characters or numbers.'}</span>: <span> Name correct!</span>}
             </div>
