@@ -31,7 +31,12 @@ export default function Login(){
   return (
     <div className="login">
       <div className="login-logo">
-        Musicfy Logo
+        <button
+          onClick={() => navigate('/')}
+        >
+          volver a LandingPage
+        </button>
+        <p>Musicfy Logo</p>
       </div>
       <hr></hr>
       <div className="login-container">
