@@ -3,6 +3,7 @@ import RegisterForm from './components/RegisterForm';
 import {Route, Routes} from 'react-router-dom';
 import LandingPage from './components/LandingPage'
 import Login from './components/Login';
+import Page404 from './components/Page404';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Route
           exact path='/login'
           element={<Login/>}
+        />
+        <Route
+          path='*'
+          element={<Page404 />}
         />
       </Routes>
     </div>
