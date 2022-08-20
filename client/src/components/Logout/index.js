@@ -5,7 +5,7 @@ export default function Logout(){
 
   return (
     <button
-      onClick={() => logout({returnTo: window.location.origin})}
+      onClick={() => logout({returnTo: window.origin.location})}
     >
       Logout
     </button>
