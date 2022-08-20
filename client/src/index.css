@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --main-bg: rgb(22, 22, 22);
+  --btn: #cf355c;
+  --boton-hover: #ff5874;
+  --main-font: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -9,6 +16,7 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
 }
 
 code {
