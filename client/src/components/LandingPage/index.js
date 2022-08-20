@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import BodyLanding from "./Body";
-import NavBarLanding from "../NavBarLanding";
+import NavBarLanding from "../LandingPage/NavBarLanding";
 import "./landingpage.css";
 
 export default function LandingPage() {
