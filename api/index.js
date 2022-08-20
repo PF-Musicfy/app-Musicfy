@@ -1,39 +1,34 @@
-const express = require('express');
-const nodemailer = require('nodemailer')
+require("dotenv").config();
+require("./src/database/connectdb.js");
+const express = require("express");
+const authRouter = require("./src/routes/auth.route.js");
+const cookieParser = require("cookie-parser");
+const rutas = require("./src/routes/index");
+
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/api/v1/auth", authRouter);
+
+// ejemplo del login/token
+app.use(express.static("public"));
+
+app.listen(PORT, () => {
+  console.log("🔥🔥🔥 http://localhost:" + PORT);
+});
 //require('./db.js');
 
-app.get('/', (req,res) => {
-  res.send('Index')
-})
+app.use("/", rutas);
 
-app.post("/send-email", (req, res, next) => {
-  // const {eMail} = req.body
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false,
-    auth: {
-      user: 'anibal.hickle52@ethereal.email',
-      pass: 'szSFDjr4pppzECtx1E'
-    }
-  })
-  let mailOptions = {
-    from: "Remitente",
-    to: "JavierAvilaAsdf@gmail.com",
-    subject: "Register succesful",
-    text: "Hello! You've registered succesfuly in Musicfy. Your password is asdf. You can change it in your profile options, when logged in."
-  }
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      res.status(500).send(error.message)
-    } else {
-      console.log('email enviado')
-      res.status(200).jsonp(req.body)
-    }
-  })
-})
+app.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
+  const status = err.status || 500;
+  const message = err.message || err;
+  console.error(err);
+  res.status(status).send(message);
+});
 
-app.listen(3001, () => {
-  console.log('listen no nodemon')
-})
+module.exports = app;

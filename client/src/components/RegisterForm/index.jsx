@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 // import { fetchUsers } from '../store/actions'
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import styles from './RegisterForm.module.css'
 import axios from 'axios'
 
 export default function RegisterForm() {
     const [newUser, setNewUser] = useState({name: '', lastName: '', eMail: '', password: ''})
     const users = useSelector((state) => state.users)
-    let dispatch = useDispatch()
     let navigate = useNavigate()
     let error = true
     let errorName = false

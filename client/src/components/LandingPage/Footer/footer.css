@@ -3,15 +3,44 @@
   color: #999;
   display: flex;
   justify-content: center;
-  padding: 50px;
   flex-direction: column;
+  padding: 50px;
 }
 
-.footer-lista {
-  background: #000;
+.footer-social {
+  gap: 20px;
+  display: flex;
+  padding: 25px 0px;
+}
+
+.footer-content {
   color: #999;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.footer-icons {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.footer-listas {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 25px 0px;
+}
+
+.footer-logo {
+  padding: 25px 0px;
+}
+
+.footer-listas div {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer a {
@@ -21,12 +50,6 @@
 
 .footer a:hover {
   color: var(--boton-hover);
-}
-
-.footer-lista div {
-  display: flex;
-  flex-direction: column;
-  text-align: start;
 }
 
 .footer-licencia {

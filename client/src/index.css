@@ -22,3 +22,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  border-radius: 30px;
+  color: white !important;
+}
