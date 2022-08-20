@@ -1,8 +1,11 @@
 const nodemailer = require('nodemailer')
 const { Router } = require('express')
 const app = Router();
-const { topAlbums, topTracks, topArtists, topPlaylists, topStations, getByName, getTrackId } = require("../controllers/index")
-const {generatePassword} = require('../controllers/generatePasswordController')
+const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
+const {generateToken} = require('../controllers/generateTokenController')
+const cors = require('cors')
+
+app.use(cors())
 
 app.get("/topalbums", async (req, res, next)=> {
   let album = await topAlbums()
@@ -75,7 +78,7 @@ app.get("/name", async (req, res, next)=> {
 })
 
 app.post("/send-email", (req, res, next) => {
-  // const {eMail} = req.body
+  const {eMail} = req.body
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -85,19 +88,19 @@ app.post("/send-email", (req, res, next) => {
       pass: 'yrrfmuxcfilbaxzl'
     }
   })
-  let password = generatePassword()
+  let token = generateToken()
   let mailOptions = {
     from: "adminAPI",
-    to: "santiagojavierlevy@gmail.com",
+    to: eMail,
     subject: "Register succesful",
-    text: `Hello! You've succesfuly registered in Musicfy. Your password is ${password}. You can change it in your profile options, when logged in.`
+    text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
   }
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       res.status(500).send(error.message)
     } else {
       console.log('email enviado')
-      res.status(200).jsonp(req.body)
+      res.status(200).jsonp(token)
     }
   })
 })
