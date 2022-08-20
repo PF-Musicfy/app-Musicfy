@@ -3,6 +3,9 @@ const { Router } = require('express')
 const app = Router();
 const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
 const {generateToken} = require('../controllers/generateTokenController')
+const cors = require('cors')
+
+app.use(cors())
 
 app.get("/topalbums", async (req, res, next)=> {
   let album = await topAlbums()
@@ -74,7 +77,7 @@ app.get("/", async (req, res, next)=> {
 }
 })
 
-app.get("/send-email", (req, res, next) => {
+app.post("/send-email", (req, res, next) => {
   const {eMail} = req.body
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -90,7 +93,7 @@ app.get("/send-email", (req, res, next) => {
     from: "adminAPI",
     to: eMail,
     subject: "Register succesful",
-    text: `Hello! Put this key into key input in order to confirm registration: ${token}.`
+    text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
   }
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
