@@ -19,9 +19,9 @@ export default function RegisterForm() {
     if(newUser.name.length === 0 || /[^a-zñáéíóú]/i.test(newUser.name) === true) {
         errorName = true
     }
-    if(newUser.lastName.length === 0 || /[^a-zñáéíóú]/i.test(newUser.lastName) === true) {
-        errorToken = true
-    }
+    // if(newUser.lastName.length === 0 || /[^a-zñáéíóú]/i.test(newUser.lastName) === true) {
+    //     errorToken = true
+    // }
     if(newUser.eMail.length === 0 || /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(newUser.eMail) === false) {
         errorEMail = true
     }
@@ -72,11 +72,11 @@ export default function RegisterForm() {
             <input type='text' name='name' onChange={onInputChange} value={newUser.name} placeholder = 'Insert name'/>
             {errorName === true? <span className={styles.error}>{' Insert a name without special characters or numbers.'}</span>: <span> Name correct!</span>}
             </div>
-            <div className={styles.item}>
+            {/* <div className={styles.item}>
             <label htmlFor=''>*LASTNAME</label>
             <input type='text' name='lastName' onChange={onInputChange} value={newUser.lastName} placeholder = 'Insert lastname'/>
             {errorLastName === true? <span className={styles.error}>{' Insert a name without special characters or numbers.'}</span>: <span> Lastname correct!</span>}
-            </div>
+            </div> */}
             <div className={styles.item}>
             <label htmlFor=''>*EMAIL</label>
             <input type='text' name='eMail' onChange={onInputChange} value={newUser.eMail} placeholder = 'Insert a valid e-mail'/>
