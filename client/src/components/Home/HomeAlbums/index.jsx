@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { albumData, albumData2 } from './dataTest';
 import styles from './indexHome.module.css'
 import 'swiper/css/navigation';
-import axios from 'axios';
+//import axios from 'axios';
 
 
 // Import Swiper styles
