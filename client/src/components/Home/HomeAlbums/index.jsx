@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './indexHome.module.css'
 import 'swiper/css/navigation';
+
 import axios from 'axios';
 import { getTopAlbums } from '../../../store/slice/index'
-
 
 // Import Swiper styles
 import 'swiper/css';
