@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const { Router } = require('express')
 const app = Router();
-const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
+const { topAlbums, topTracks, topArtists, topPlaylists, topStations, getByName, getTrackId } = require("../controllers/index")
 const {generatePassword} = require('../controllers/generatePasswordController')
 
 app.get("/topalbums", async (req, res, next)=> {
@@ -54,7 +54,7 @@ app.get("/topstations", async (req, res, next)=> {
   }
 })
 
-app.get("/", async (req, res, next)=> {
+app.get("/name", async (req, res, next)=> {
   const { name } = req.query
 
   let getName = await getByName(name)

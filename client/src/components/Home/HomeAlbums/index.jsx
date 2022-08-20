@@ -2,9 +2,12 @@
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { albumData, albumData2 } from './dataTest';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './indexHome.module.css'
 import 'swiper/css/navigation';
 import axios from 'axios';
+import { getTopAlbums } from '../../../store/slice/index'
 
 
 // Import Swiper styles
@@ -28,6 +31,13 @@ import 'swiper/css';
 
 
 export default function HomeAlbum() {
+    
+    const dispatch = useDispatch()
+
+useEffect(()=> {
+ dispatch(getTopAlbums())  
+},[dispatch])
+
 
     return (
         <div className={styles.albumSuperiorContainer}>
