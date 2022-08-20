@@ -39,7 +39,7 @@ const topArtists = async () => {
   const artist = await axios.get(
     "https://api.napster.com/v2.2/artists/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await artist.data.artist.map((e) => {
+  const apiInfo = await artist.data.artists.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -54,7 +54,7 @@ const topPlaylists = async () => {
   const playlist = await axios.get(
     "https://api.napster.com/v2.2/playlists/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await playlist.data.playlist.map((e) => {
+  const apiInfo = await playlist.data.playlists.map((e) => {
     return {
       id: e.id,
       name: e.name,

@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const { Router } = require('express')
 const app = Router();
-const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
+const { topAlbums, topTracks, topArtists, topPlaylists, topStations, getByName, getTrackId } = require("../controllers/index")
 const {generatePassword} = require('../controllers/generatePasswordController')
 
 app.get("/topalbums", async (req, res, next)=> {
@@ -54,7 +54,7 @@ app.get("/topstations", async (req, res, next)=> {
   }
 })
 
-app.get("/", async (req, res, next)=> {
+app.get("/name", async (req, res, next)=> {
   const { name } = req.query
 
   let getName = await getByName(name)
@@ -67,7 +67,7 @@ app.get("/", async (req, res, next)=> {
   }
 }else{
   try {
-    res.status(400).send("no se encuentra")
+    res.status(400).send("not found")
   } catch (error) {
     next
   }
@@ -115,7 +115,7 @@ app.post("/send-email", (req, res, next) => {
         }
       }
       else{
-        res.status(400).send("no tiene id")
+        res.status(400).send("not have id")
       }
   
   })
