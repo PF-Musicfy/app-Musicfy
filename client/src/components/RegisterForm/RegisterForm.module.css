@@ -1,11 +1,6 @@
-.page {
-    background-color: black;
-    padding-top: 2%;
-    padding-bottom: 6%;
-}
 .create {
     background-image: url(https://media.istockphoto.com/vectors/music-background-vector-id1076840920?k=20&m=1076840920&s=612x612&w=0&h=7npgZI1DyLkiejEZM19R0XHWdgJGijuTK4cXZvIA72Q=);
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
     background-size:140%;
     position: relative;
     left: 26%;
