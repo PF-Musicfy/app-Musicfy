@@ -1,6 +1,6 @@
 import './player.css';
 import { useRef, useState, useEffect } from 'react';
-import { FaPlay, FaPause } from "react-icons/fa"
+import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
 import toMinutes from '../../utils/toMinutes.js';
 import { IconContext } from "react-icons";
 
@@ -31,6 +31,7 @@ export default function Player(){
  
   const audioElem = useRef();
   const progressBar = useRef();
+  const volumeBar = useRef();
 
   const { isPlaying, changeState } = usePlayerRef(audioElem);
 
@@ -45,6 +46,8 @@ export default function Player(){
 
     progressBar.current.value = ct;
     progressBar.current.max = duration;
+
+    volumeBar.current.value = audioElem.current.volume * 10;
   }
 
   return (
@@ -63,17 +66,32 @@ export default function Player(){
           audioElem.current.currentTime = progressBar.current.value;
         }}
       />
-      <IconContext.Provider value={{className: 'react-icons'}}>
-      <div className="player-tools">
-        <button
-          className="player-button"
-          onClick={changeState}
-        >
-          {isPlaying ? <FaPause /> : <FaPlay />}
-        </button>
-        <span>
-          {dataSong.current}/{dataSong.length}
-        </span>
+      <IconContext.Provider value={{className: 'player-icons'}}>
+      <div className="player-controls">
+        <div className="player-tools">
+          <button
+            className="player-button"
+            onClick={changeState}
+          >
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </button>
+          <span>
+            {dataSong.current || '0:00'}/{dataSong.length || '0:00'}
+          </span>
+        </div>
+        <div>
+          <input
+            className='player-volume'
+            type='range'
+            defaultValue="0"
+            max='10'
+            ref={volumeBar}
+            onChange={() => {
+              audioElem.current.volume = volumeBar.current.value/10;
+            }}
+          />
+          <FaVolumeDown />
+        </div>
       </div>
       </IconContext.Provider>
     </div>
