@@ -1,0 +1,95 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: #999;
+  padding: 80px;
+  /* border-top: 2px solid var(--btn); */
+}
+
+.footerContent {
+  color: #999;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  /* min-width: 900px; */
+}
+
+.footerSocial {
+  gap: 20px;
+  display: flex;
+  padding: 25px 0px;
+}
+
+.footerListas {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 25px 0px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer a:hover {
+  color: var(--boton-hover);
+}
+
+.footerLinkContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  width: 120px;
+}
+.footerSubtitle {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.footerSubtitleTxt {
+  margin-bottom: 12px;
+}
+.gitHubIcon,
+.faceIcon,
+.twitterIcon,
+.instaIcon {
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.gitHubIcon:hover,
+.faceIcon:hover,
+.instaIcon:hover,
+.twitterIcon:hover {
+  color: var(--mainColor);
+  cursor: pointer;
+}
+
+.logoImg {
+  width: 90px;
+  height: 90px;
+  /* margin: 0 20px 0 20px; */
+}
+.logoTxt {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+.logoTxt:hover {
+  color: var(--mainColor);
+}
+
+.conterImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+}

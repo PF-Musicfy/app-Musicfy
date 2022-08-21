@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&display=swap");
 
 :root {
   --main-bg: rgb(22, 22, 22);
+  --mainColor: #cf355c;
   --btn: #cf355c;
-  --boton-hover: #ff5874;
+  --boton-hover: #cf355c;
   --main-font: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 

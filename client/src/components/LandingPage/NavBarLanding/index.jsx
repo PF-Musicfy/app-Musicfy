@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function NavBarLanding() {
   return (
     <>
-      <div className="bg-black w-full text-white flex justify-between p-4 item-center">
+      <div className="w-full text-white flex justify-between p-4 item-center bg-black">
         <div className={styles.conterImg}>
-          <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="logo" />
+          <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
           <span className={styles.logoTxt}>MusicFy</span>
         </div>
         <nav>
