@@ -6,9 +6,8 @@ const {
 } = require("../utils/tokenManager.js");
 
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
-
   try {
+    const { username, email, password } = req.body;
     let user = await User.findOne({ email });
 
     if (user) throw new Error("Email already exists");
