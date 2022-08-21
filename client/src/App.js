@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
-import Page404 from "./components/Page404";
-import Detail from "./components/Detail";
+//import Page404 from "./components/Page404";
+//import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
 
 function App() {
