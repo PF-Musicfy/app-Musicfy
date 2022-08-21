@@ -12,14 +12,14 @@ const {
   bodyLoginValidator,
   bodyRegisterValidator,
 } = require("../middlewares/validatorManager.js");
-const router = express.Router();
+const app = express.Router();
 
-router.post("/register", bodyRegisterValidator, register);
+app.post("/register", bodyRegisterValidator, register);
 
-router.post("/login", bodyLoginValidator, login);
+app.post("/login", bodyLoginValidator, login);
 
-router.get("/protected", requireToken, infoUser);
-router.get("/refresh", requireRefreshToken, refreshToken);
-router.get("/logout", logout);
+app.get("/protected", requireToken, infoUser);
+app.get("/refresh", requireRefreshToken, refreshToken);
+app.get("/logout", logout);
 
-module.exports = router;
+module.exports = app;
