@@ -1,35 +1,36 @@
-.imgSwiper{
-    border-radius: 3px;
-    width: 180px;
-    height: 180px;
-    /* border: 1px solid greenyellow; */
+.imgSwiper {
+  border-radius: 3px;
+  width: 180px;
+  height: 180px;
+  /* border: 1px solid greenyellow; */
 }
 
-.h3Colors{
-    display: flex;
-    justify-content: center;
-    width: 180px;
-    color: white;
-    margin-top: 3px;
-    /* border: 1px solid purple; */
+.h3Colors {
+  display: flex;
+  justify-content: center;
+  width: 180px;
+  color: white;
+  margin-top: 3px;
+  /* border: 1px solid purple; */
 }
 
-.containerSwiper{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 220px;
-    height: 250px;
-    margin-bottom: 30px;
-    /* border: 1px solid yellow; */
+.containerSwiper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 220px;
+  height: 250px;
+  margin-bottom: 30px;
+  /* border: 1px solid yellow; */
 }
 
-.albumSuperiorContainer{
-    width: 100%;
-    /* margin: 0px -10px 0px -10px; */
-    /* border: 1px solid red; */
+.albumSuperiorContainer {
+  width: 100%;
+  z-index: -10;
+  /* margin: 0px -10px 0px -10px; */
+  /* border: 1px solid red; */
 }
 
-.titleGenre{
-    color: white;
+.titleGenre {
+  color: white;
 }

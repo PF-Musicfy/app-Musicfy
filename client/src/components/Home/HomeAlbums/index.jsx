@@ -332,4 +332,6 @@ export default function HomeAlbum() {
       </Swiper>
     </div>
   );
+
 }
+
