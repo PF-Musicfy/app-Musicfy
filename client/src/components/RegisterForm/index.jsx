@@ -49,7 +49,6 @@ export default function RegisterForm() {
 
     function keyClick(e) {
         e.preventDefault() 
-        console.log(newUser)
         axios.post('http://localhost:5000/send-email', newUser)
         .then((token) => {            
             setNewUser({...newUser, token: newUser.eMail+token.data})
@@ -66,6 +65,7 @@ export default function RegisterForm() {
         e.preventDefault()      
         axios.post('http://localhost:5000/api/v1/auth/register', {username: newUser.name, email: newUser.eMail, password: newUser.password, repassword: newUser.rePassword})
         .then(() => {
+            axios.post('http://localhost:5000/send-email-registered', newUser)
             alert('User registered succesfully')
             setNewUser({name: '', eMail: '', password: '', token: '', key: ''})
                 navigate(-1)
