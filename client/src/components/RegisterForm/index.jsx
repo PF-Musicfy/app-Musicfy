@@ -67,7 +67,7 @@ export default function RegisterForm() {
         .then(() => {
             axios.post('http://localhost:5000/send-email-registered', newUser)
             alert('User registered succesfully')
-            setNewUser({name: '', eMail: '', password: '', token: '', key: ''})
+            // setNewUser({name: '', eMail: '', password: '', token: '', key: ''})
                 navigate(-1)
         })
         .catch((error)=> {
