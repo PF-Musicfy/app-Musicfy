@@ -106,6 +106,7 @@ app.post("/send-email", (req, res, next) => {
 })
 
   app.get("/:id", async (req, res, next) => {
+    try{
       const { id } = req.params;
   
       const idTrack = await getTrackId(id)
@@ -120,7 +121,9 @@ app.post("/send-email", (req, res, next) => {
       else{
         res.status(400).send("not have id")
       }
-  
+    }catch(e){
+      console.log('break', e)
+    }
   })
 
   module.exports = app
