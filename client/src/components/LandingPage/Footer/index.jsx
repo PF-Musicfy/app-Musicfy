@@ -39,7 +39,7 @@ export default function Footer() {
         <div className={styles.footerLinkContainer}>
           <span className={styles.footerSubtitle}>LICENCES</span>
           <Link to="/license">Copyright</Link>
-          <Link to="/ads">About Ads</Link>
+          <Link to="/ads">Advertising</Link>
         </div>
 
         <div className={styles.footerSocial}>
