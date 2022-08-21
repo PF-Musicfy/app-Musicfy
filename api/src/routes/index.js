@@ -3,9 +3,9 @@ const { Router } = require('express')
 const app = Router();
 const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
 const {generateToken} = require('../controllers/generateTokenController')
-const cors = require('cors')
+const authRouter = require("./auth.route.js");
 
-app.use(cors())
+app.use("/api/v1/auth", authRouter);
 
 app.get("/topalbums", async (req, res, next)=> {
   let album = await topAlbums()

@@ -1,25 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 // import { fetchUsers } from '../store/actions'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import styles from './RegisterForm.module.css'
 import axios from 'axios'
 
 export default function RegisterForm() {
-    const [newUser, setNewUser] = useState({name: '', eMail: '', password: '', token: '', key: ''})
-    // const users = useSelector((state) => state.users)
+    const [newUser, setNewUser] = useState({name: '', eMail: '', password: '', rePassword: '', token: '', key: ''})    
     let navigate = useNavigate()
     let error = true
     let errorName = false
     let errorToken = false
     let errorEMail = false
-    let errorPassword = false
-    let userNames = []
+    let errorPassword = false   
+    let errorRePassword = false
 
     if(newUser.name.length === 0 || /[^a-zñáéíóú]/i.test(newUser.name) === true) {
         errorName = true
     }
-    if(newUser.key !== newUser.token) {
+    if(newUser.eMail+newUser.key !== newUser.token) {
         errorToken = true
     }
     if(newUser.eMail.length === 0 || /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/.test(newUser.eMail) === false) {
@@ -30,7 +28,11 @@ export default function RegisterForm() {
         errorPassword = true
     }
 
-    if (errorName === false && errorToken === false && errorEMail === false && errorPassword === false) {
+    if(newUser.rePassword !== newUser.password || newUser.rePassword.length === 0) {
+        errorRePassword = true
+    }
+
+    if (errorName === false && errorToken === false && errorEMail === false && errorPassword === false && errorRePassword === false) {
         error = false
     }
 
@@ -50,7 +52,7 @@ export default function RegisterForm() {
         console.log(newUser)
         axios.post('http://localhost:5000/send-email', newUser)
         .then((token) => {            
-            setNewUser({...newUser, token: token.data})
+            setNewUser({...newUser, token: newUser.eMail+token.data})
             console.log(token.data)
             alert('Key generated and sent to your email')
         })
@@ -62,7 +64,7 @@ export default function RegisterForm() {
 
     function onSubmit(e) {
         e.preventDefault()      
-        axios.post('http://localhost:5000/register', {username: newUser.name, email: newUser.eMail, password: newUser.password})
+        axios.post('http://localhost:5000/api/v1/auth/register', {username: newUser.name, email: newUser.eMail, password: newUser.password, repassword: newUser.rePassword})
         .then(() => {
             alert('User registered succesfully')
             setNewUser({name: '', eMail: '', password: '', token: '', key: ''})
@@ -72,7 +74,8 @@ export default function RegisterForm() {
             console.log(error)
         })
     }
-    return <div className={styles.create}>
+    return <div className={styles.page}>
+        <div className={styles.create}>
         <button className={styles.back} onClick={onClick}>Back</button>        
         <form onSubmit={(e)=> onSubmit(e)} >
             <div className={styles.form}>
@@ -91,6 +94,11 @@ export default function RegisterForm() {
             <input type='text' name='password' onChange={onInputChange} value={newUser.password} placeholder = 'Insert a password'/>
             {errorPassword === true? <span className={styles.error}>{' Must be of 8 characters and can contain letters and/or numbers.'}</span>: <span> Password correct!</span>}
             </div>
+            <div className={styles.item}>
+            <label htmlFor=''>*REPEAT PASSWORD </label>
+            <input type='text' name='rePassword' onChange={onInputChange} value={newUser.rePassword} placeholder = 'Repeat the password'/>
+            {errorRePassword === true? <span className={styles.error}>{' Passwords must match.'}</span>: <span> Passwords match!</span>}
+            </div>
             {newUser.token.length > 0?<div className={styles.item}>
             <label htmlFor=''>*KEY </label>
             <input type='text' name='key' onChange={onInputChange} value={newUser.key} placeholder = 'Insert key'/>
@@ -100,5 +108,5 @@ export default function RegisterForm() {
             <input className={styles.submit} type='submit' value=' Register ' disabled={ error? true : false}/>
         </form>
         </div>
-
+        </div>
 }
