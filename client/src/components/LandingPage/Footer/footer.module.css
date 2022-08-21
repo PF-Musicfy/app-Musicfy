@@ -45,10 +45,11 @@
   flex-direction: column;
   font-size: 14px;
   width: 120px;
+  font-family: "Poppins", sans-serif;
 }
 .footerSubtitle {
   color: #999;
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 20px;
 }
 
