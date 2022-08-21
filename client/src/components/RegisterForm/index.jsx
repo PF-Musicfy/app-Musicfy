@@ -74,8 +74,7 @@ export default function RegisterForm() {
             console.log(error)
         })
     }
-    return <div className={styles.page}>
-        <div className={styles.create}>
+    return <div className={styles.create}>
         <button className={styles.back} onClick={onClick}>Back</button>        
         <form onSubmit={(e)=> onSubmit(e)} >
             <div className={styles.form}>
@@ -107,6 +106,5 @@ export default function RegisterForm() {
             </div>
             <input className={styles.submit} type='submit' value=' Register ' disabled={ error? true : false}/>
         </form>
-        </div>
-        </div>
+        </div>        
 }
