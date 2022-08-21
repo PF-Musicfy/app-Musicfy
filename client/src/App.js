@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
 import Detail  from "./components/Detail";
+import PageDev from "./components/PageInDev";
 
 function App() {
   return (
@@ -15,7 +16,10 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/:id" element={<Detail/>} />
-        <Route exact path="*" element={<Page404/>} />
+        <Route path="*" element={<Page404 />} />
+        <Route exact path="/favorites" element={<PageDev />} />
+        <Route exact path="/library" element={<PageDev />} />
+        <Route exact path="/premium" element={<PageDev />} />
       </Routes>
     </div>
   );

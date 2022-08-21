@@ -1,0 +1,24 @@
+.container {
+  color: white;
+}
+
+.imagen {
+  height: 400px;
+  border-radius: 10px;
+  position: absolute;
+  margin-left: 50%;
+  margin-top: 100px;
+}
+
+.title {
+  position: absolute;
+  margin-left: 300px;
+  margin-top: 220px;
+  font-size: 50px;
+}
+.subtitle {
+  position: absolute;
+  margin-left: 330px;
+  margin-top: 320px;
+  font-size: 25px;
+}
