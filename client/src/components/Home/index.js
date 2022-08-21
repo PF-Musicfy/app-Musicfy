@@ -1,13 +1,13 @@
-import React from 'react'
-import HomeAlbum from './HomeAlbums/index'
-import styles from './indexMain.module.css'
-
-
+import React from "react";
+import NavBarHome from "../NavBarHome";
+import HomeAlbum from "./HomeAlbums/index";
+import styles from "./indexMain.module.css";
 
 export default function Home() {
   return (
     <div className={styles.indexMainHome}>
-        <HomeAlbum />
+      <NavBarHome />
+      <HomeAlbum />
     </div>
-  )
+  );
 }

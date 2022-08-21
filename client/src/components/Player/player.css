@@ -36,5 +36,22 @@
   width: 0px;
   height: 0px;
   background: #ccc;
-  box-shadow: -1000px 0 0 1000px #0f0;
+  box-shadow: -2000px 0 0 2000px #0f0;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player-volume {
+  width: 100px !important;
+  position: static !important;
+}
+
+.player-icons {
+  display: inline;
+  width: 20px;
+  height: 20px;
 }
