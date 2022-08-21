@@ -2,61 +2,20 @@ const nodemailer = require('nodemailer')
 const {mailTransport} = require('../controllers/mailController')
 const { Router } = require('express')
 const app = Router();
-const { topAlbums, topTracks, topArtists, topPlaylists, getByName, getTrackId } = require("../controllers/index")
 const {generateToken} = require('../controllers/generateTokenController')
+const { getByName, getTrackId, topMusic } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
-
 app.use("/api/v1/auth", authRouter);
 
-app.get("/topalbums", async (req, res, next)=> {
-  let album = await topAlbums()
-
+app.get("/topmusic", async (req, res, next)=> {
+  let music = await topMusic()
   try {
-    res.status(200).send(album)
+    res.status(200).send(music)
   } catch (error) {
     next(error)
   }
 })
 
-app.get("/toptracks", async (req, res, next)=> {
-  let tracks = await topTracks()
-
-  try {
-    res.status(200).send(tracks)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get("/topartists", async (req, res, next)=> {
-  let artists = await topArtists()
-
-  try {
-    res.status(200).send(artists)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get("/topplaylists", async (req, res, next)=> {
-  let playlists = await topPlaylists()
-
-  try {
-    res.status(200).send(playlists)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get("/topstations", async (req, res, next)=> {
-  let stations = await topStations()
-
-  try {
-    res.status(200).send(stations)
-  } catch (error) {
-    next(error)
-  }
-})
 
 app.get("/name", async (req, res, next)=> {
   const { name } = req.query
