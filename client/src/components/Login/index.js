@@ -1,8 +1,9 @@
 import './login.css';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import validate from '../../utils/validate.js';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import Logout from '../Logout';
 import Profile from '../Profile';
@@ -10,6 +11,7 @@ import Profile from '../Profile';
 export default function Login(){
   const { loginWithPopup, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
+  const inputPass = useRef();
 
   const [input, setInput] = useState({
     user: '',
@@ -25,7 +27,22 @@ export default function Login(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('mandar form al backend');
+    axios.post('http://localhost:5000/api/v1/auth/login', {
+      email: input.user,
+      password: input.pass,
+    })
+    .then(() => {
+      alert('logeado');
+      navigate('/home');
+    })
+    .catch((e) => {
+      console.log(e);
+      alert('posibles errores:\n'+
+        '- el back no se ha iniciado\n'+
+        '- alguno de los campos falta o es incorrecto\n'+
+        '- el usuario no existe en la base de datos'
+      );
+    })
   }
 
   return (
@@ -83,6 +100,7 @@ export default function Login(){
           <p className='msg-err'>{errors.user || ''}</p>
           <label>Contraseña</label>
           <input
+            ref={inputPass}
             type='password'
             name="pass"
             placeholder="Contraseña"
@@ -90,6 +108,18 @@ export default function Login(){
             value={input.pass}
             className={errors.pass ? 'input-err' : ''}
           />
+          <button
+            type='button'
+            onClick={() => {
+              if(inputPass.current.type === 'password'){
+                inputPass.current.type = 'text'
+              }else{
+                inputPass.current.type = 'password'
+              }
+            }}
+          >
+            mostrar contraseña
+          </button>
           <p className='msg-err'>{errors.pass || ''}</p>
           <div>
             <button>
