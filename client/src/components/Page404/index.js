@@ -1,14 +1,11 @@
-import { useLocation } from 'react-router-dom';
-import Player from '../Player';
+import { useLocation } from "react-router-dom";
 
-export default function Page404(){
+export default function Page404() {
   const location = useLocation();
 
   return (
     <div>
-      <p>La ruta {location.pathname}</p>
-      <p>No existe o esta en desarrollo</p>
-      <Player />
+      <p>La ruta {location.pathname} no existe</p>
     </div>
   );
 }

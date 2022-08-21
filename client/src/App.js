@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Page404 from "./components/Page404";
+import PageDev from "./components/PageInDev";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
         <Route path="*" element={<Page404 />} />
+        <Route exact path="/favorites" element={<PageDev />} />
+        <Route exact path="/library" element={<PageDev />} />
+        <Route exact path="/premium" element={<PageDev />} />
       </Routes>
     </div>
   );
