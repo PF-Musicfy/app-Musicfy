@@ -7,8 +7,11 @@ import axios from 'axios';
 
 import Logout from '../Logout';
 import Profile from '../Profile';
+import setTitle from '../../utils/setTitle.js';
 
 export default function Login(){
+  setTitle('Login - Musicfy')
+  
   const { loginWithPopup, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const inputPass = useRef();
