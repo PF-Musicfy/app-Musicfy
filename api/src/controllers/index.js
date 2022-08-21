@@ -1,29 +1,26 @@
 const axios = require("axios");
 
-// playlist: https://api.napster.com/v2.0/playlists?apikey=ZTk2YjY4MjMtMDAzYy00MTg4LWE2MjYtZDIzNjJmMmM0YTdm
 
-const topTracks = async () => {
+  const topMusic = async () => {
+
   const tracks = await axios.get(
     "https://api.napster.com/v2.2/tracks/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await tracks.data.tracks.map((e) => {
+  const apiTracks = await tracks.data.tracks.map((e) => {
     return {
       id: e.id,
       name: e.name,
       artistName: e.artistName,
       previewURL: e.previewURL,
       albumName: e.albumName,
-      image: `https://api.napster.com/imageserver/v2/artists/${e.artistId}/images/356x237.jpg`,
+      images: `https://api.napster.com/imageserver/v2/artists/${e.artistId}/images/356x237.jpg`,
     };
   });
-  return apiInfo;
-};
 
-const topAlbums = async () => {
   const albums = await axios.get(
     "http://api.napster.com/v2.2/albums/new?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await albums.data.albums.map((e) => {
+  const apiAlbums = await albums.data.albums.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -32,14 +29,11 @@ const topAlbums = async () => {
       images: `https://api.napster.com/imageserver/v2/albums/${e.id}/images/356x237.jpg`,
     };
   });
-  return apiInfo;
-};
 
-const topArtists = async () => {
-  const artist = await axios.get(
+  const artists = await axios.get(
     "https://api.napster.com/v2.2/artists/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await artist.data.artists.map((e) => {
+  const apiArtists = await artists.data.artists.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -47,14 +41,11 @@ const topArtists = async () => {
       images: `https://api.napster.com/imageserver/v2/artists/${e.id}/images/356x237.jpg`,
     };
   });
-  return apiInfo;
-};
 
-const topPlaylists = async () => {
-  const playlist = await axios.get(
+  const playlists = await axios.get(
     "https://api.napster.com/v2.2/playlists/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await playlist.data.playlists.map((e) => {
+  const apiPlaylists = await playlists.data.playlists.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -62,14 +53,11 @@ const topPlaylists = async () => {
       images: `https://api.napster.com/imageserver/v2/playlists/${e.id}/artists/images/356x237.jpg`,
     };
   });
-  return apiInfo;
-};
 
-const topStations = async () => {
   const stations = await axios.get(
     "https://api.napster.com/v2.2/stations/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiInfo = await stations.data.stations.map((e) => {
+  const apiStations = await stations.data.stations.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -78,8 +66,13 @@ const topStations = async () => {
       images: `https://api.napster.com/imageserver/v2/stations/${e.id}/images/356x237.jpg`,
     };
   });
-  return apiInfo;
-};
+
+  const obj = { apiTracks, apiAlbums, apiArtists, apiPlaylists, apiStations }
+
+  return obj
+
+  }
+
 
 const getByName = async (name) => {
   const byName = await axios.get(
@@ -149,11 +142,7 @@ const getTrackId = async (id) => {
 };
 
 module.exports = {
-  topAlbums,
-  topPlaylists,
-  topTracks,
-  topArtists,
-  topStations,
+  topMusic,
   getByName,
   getTrackId,
 };

@@ -10,19 +10,7 @@ export const infoMusic = createSlice({
         musicSearch: []
     },
     reducers: {
-        setTopAlbum: (state, action) => {
-            state.topMusic = action.payload
-        },
-        setTopTracks: (state, action) => {
-            state.topMusic = action.payload
-        },
-        setTopArtists: (state, action) => {
-            state.topMusic = action.payload
-        },
-        setTopPlaylists: (state, action) => {
-            state.topMusic = action.payload
-        },
-        setTopStations: (state, action) => {
+        setTopMusic: (state, action) => {
             state.topMusic = action.payload
         },
         setMusicSearch: (state, action) => {
@@ -34,67 +22,22 @@ export const infoMusic = createSlice({
     },
 })
 
-export const { setTopAlbum, setTopTracks, setTopArtists, setTopPlaylists, setTopStations, setMusicSearch, setDetailTracks } = infoMusic.actions;
+export const { setTopMusic, setMusicSearch, setDetailTracks } = infoMusic.actions;
 
 export default infoMusic.reducer;
 
 
-export function getTopAlbums() {
+export function getTopMusic() {
     return async function (dispatch) {
       try {
-        const topAlbums = await axios.get("http://localhost:5000/topalbums");
-        return dispatch(setTopAlbum(topAlbums.data));
+        const topMusicApi = await axios.get("http://localhost:5000/topmusic");
+        return dispatch(setTopMusic(topMusicApi.data));
       } catch (error) {
         console.log(error);
       }
     };
   }
 
-  
-export function getTopTracks() {
-    return async function (dispatch) {
-      try {
-        const topTracks = await axios.get("http://localhost:5000/toptracks");
-        return dispatch(setTopTracks(topTracks.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
-  
-  export function getTopArtists() {
-    return async function (dispatch) {
-      try {
-        const topArtists = await axios.get("http://localhost:5000/topartists");
-        return dispatch(setTopArtists(topArtists.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
-  
-  export function getTopPlaylists() {
-    return async function (dispatch) {
-      try {
-        const topPlaylists = await axios.get("http://localhost:5000/topplaylists");
-        return dispatch(setTopPlaylists(topPlaylists.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
-  
-  export function getTopStations() {
-    return async function (dispatch) {
-      try {
-        const topStations = await axios.get("http://localhost:5000/topstations");
-        return dispatch(setTopStations(topStations.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
-  
   export function getName(name) {
     return async function (dispatch) {
         try {
