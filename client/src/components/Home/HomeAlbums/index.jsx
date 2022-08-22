@@ -27,6 +27,7 @@ export default function HomeAlbum() {
   // console.log(topMusic);
   // console.log(musicSearch);
 
+
   const changingState = (e) => {
     e.preventDefault();
     console.log('estoy funcionando')
@@ -48,6 +49,7 @@ export default function HomeAlbum() {
     })
   }
 
+
   useEffect(() => {
     dispatch(getTopMusic());
   }, []);
@@ -63,6 +65,7 @@ export default function HomeAlbum() {
 
   return (
     <div className={styles.albumSuperiorContainer}>
+
 
       <div className={styles.buttonsFilter}>
         {musicSearch.length === 0 ? false : <button className={state.tracks === true ? styles.buttonStyles : styles.buttonOff} name='tracks' onClick={(e) => changingState(e)}>Tracks</button>}
@@ -231,7 +234,6 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
-
       <div className={state.artist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
         <h1 className={styles.titleGenre}>Top Artists</h1>
         <Swiper
@@ -389,6 +391,5 @@ export default function HomeAlbum() {
       </div>
     </div>
   );
-
+  
 }
-

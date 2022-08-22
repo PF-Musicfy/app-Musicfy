@@ -15,9 +15,9 @@ const bodyRegisterValidator = [
     .trim()
     .isLength({ min: 3 }),
   body("email", "Invalid email").trim().isEmail().normalizeEmail(),
-  body("password", "Invalid password, at least 7 characters")
+  body("password", "Invalid password, at least 8 characters")
     .trim()
-    .isLength({ min: 7 })
+    .isLength({ min: 8 })
     .custom((value, { req }) => {
       if (value !== req.body.repassword) {
         throw new Error("Passwords do not match");
@@ -29,9 +29,9 @@ const bodyRegisterValidator = [
 
 const bodyLoginValidator = [
   body("email", "Invalid email").trim().isEmail().normalizeEmail(),
-  body("password", "Invalid password, at least 7 characters")
+  body("password", "Invalid password, at least 8 characters")
     .trim()
-    .isLength({ min: 7 }),
+    .isLength({ min: 8 }),
   validationResultExpress,
 ];
 
