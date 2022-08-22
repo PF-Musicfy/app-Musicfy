@@ -16,8 +16,6 @@ export default function Detail() {
     dispatch(getTrackId(id));
   }, [dispatch, id]);
 
-  console.log(detailTracks);
-
   return (
     <div>
       <Player music={evoker} />
@@ -46,7 +44,6 @@ export default function Detail() {
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
-                  {/* {e.previewURL} */}
                 </div>
               </li>
             </div>
@@ -73,13 +70,14 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                  <button>
+                <button
+                  onClick={() => setEvoker(e)}
+                >
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
-                  {/* {e.previewURL} */}
                 </div>
               </li>
             </div>
@@ -106,13 +104,14 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                  <button>
+                <button
+                  onClick={() => setEvoker(e)}
+                >
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
-                  {/* {e.previewURL} */}
                 </div>
               </li>
             </div>
@@ -139,13 +138,14 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                  <button>
+                <button
+                  onClick={() => setEvoker(e)}
+                >
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
-                  {/* {e.previewURL} */}
                 </div>
               </li>
             </div>
