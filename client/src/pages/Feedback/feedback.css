@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.feedback-container input {
+  color: #000;
+}
+
 .feedback-stars {
   display: flex;
   flex-direction: row;
