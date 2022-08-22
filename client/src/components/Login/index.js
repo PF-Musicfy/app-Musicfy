@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import validate from "../../utils/validate.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaEye, FaBackward } from "react-icons/fa";
 
 import Logout from "../Logout";
 import Profile from "../Profile";
@@ -52,12 +53,15 @@ export default function Login() {
 
   return (
     <div className="login">
-      <div className="login-logo">
-        <img src="" alt="Musicfy Logo" onClick={() => navigate("/")} />
+      <div className="login-logo" onClick={() => navigate("/")}>
+        <img src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
+        <span>Musicfy</span>
       </div>
       <hr></hr>
       <div className="login-container">
-        <button onClick={() => navigate(-1)}>volver atras</button>
+        <button className="btn-back" onClick={() => navigate(-1)}>
+          <FaBackward />
+        </button>
         <div className="login-options">
           {isAuthenticated ? (
             <>
@@ -66,36 +70,34 @@ export default function Login() {
             </>
           ) : (
             <>
-              <p>Para continuar, inicia sesión en Musicfy.</p>
-              <p>probar en Auth0 con:</p>
-              <span>
-                <b>email:</b> jaeden31z_d781g@cguf.site
-              </span>
-              <p>
-                <b>password:</b> ASdf1234
-              </p>
-              <button onClick={loginWithPopup}>CONTINUAR CON AUTH0</button>
+              <div className="container-auth0" onClick={loginWithPopup}>
+                <button className="auth0">SIGN IN WITH AUTH0</button>
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE_5Ua8TSSEwKZbpKvZDXZcVo4Ts40PLkAhg&usqp=CAU"
+                  alt="auth0"
+                />
+              </div>
             </>
           )}
         </div>
         <hr></hr>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label>Correo electrónico o nombre de usuario</label>
+          <label className="label">Email</label>
           <input
             type="text"
             name="user"
-            placeholder="Correo electronico o nombre de usuario"
+            placeholder="Email"
             onChange={inputChange}
             value={input.user}
             className={errors.user ? "input-err" : ""}
           />
           <p className="msg-err">{errors.user || ""}</p>
-          <label>Contraseña</label>
+          <label className="label">Password</label>
           <input
             ref={inputPass}
             type="password"
             name="pass"
-            placeholder="Contraseña"
+            placeholder="Password"
             onChange={inputChange}
             value={input.pass}
             className={errors.pass ? "input-err" : ""}
@@ -110,17 +112,19 @@ export default function Login() {
               }
             }}
           >
-            mostrar contraseña
+            <span className="icon-see-password">
+              <FaEye />
+            </span>
           </button>
           <p className="msg-err">{errors.pass || ""}</p>
-          <div>
-            <button>INICIAR SESION</button>
+          <div className="container-btn-send">
+            <button className="btn-send">Login</button>
           </div>
         </form>
         <hr></hr>
-        <p>¿No tienes cuenta?</p>
-        <button onClick={() => navigate("/register")}>
-          REGISTRATE EN MUSICFY
+        <span className="span-account">¿You do not have an account?</span>
+        <button className="btn-register" onClick={() => navigate("/register")}>
+          ¡ REGISTER IN MUSICFY !
         </button>
       </div>
     </div>
