@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import "./feedback.css";
+import s from "./feedback.module.css";
 
 const colors = {
   orange: "#FFBA5A",
@@ -26,17 +26,17 @@ export default function Feedback() {
 
   const submit = (e) => {
     e.preventDefault();
-    alert(`puntos: ${currentValue}\n`+
+    alert(`puntos: ${currentValue} stars\n`+
     `input 1: ${e.target[0].value}\n`+
     `input 2: ${e.target[1].value}\n`+
     `textarea: ${e.target[2].value}`);
   }
 
   return (
-    <div className="feedback-container">
+    <div className={s.feedbackContainer}>
       <h2>Feedback Musicfy</h2>
-      <form className="feedback-container" onSubmit={submit}>
-        <div className="feedback-stars">
+      <form className={s.feedbackContainer} onSubmit={submit}>
+        <div className={s.feedbackStars}>
           {stars.map((_, index) => (
             <FaStar
               key={index}
@@ -64,11 +64,11 @@ export default function Feedback() {
         />
         <textarea
           placeholder="What's your experience?"
-          className="feedback-textarea"
+          className={s.feedbackTextarea}
         />
 
         <button
-          className="feedback-button"
+          className={s.feedbackButton}
         >
           Submit
         </button>
