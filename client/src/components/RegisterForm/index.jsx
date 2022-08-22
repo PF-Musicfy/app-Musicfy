@@ -22,7 +22,7 @@ export default function RegisterForm() {
   let errorRePassword = false;
 
   if (
-    newUser.name.length === 0 ||
+    newUser.name.length < 3 ||
     /[^a-zñáéíóú]/i.test(newUser.name) === true
   ) {
     errorName = true;
@@ -40,7 +40,7 @@ export default function RegisterForm() {
   }
 
   if (
-    newUser.password.length !== 8 ||
+    newUser.password.length < 8 ||
     /[^a-z0-9ñ]/i.test(newUser.password) === true
   ) {
     errorPassword = true;
@@ -99,7 +99,7 @@ export default function RegisterForm() {
       })
       .then(() => {
         axios.post("http://localhost:5000/send-email-registered", newUser);
-        alert("User registered succesfully");
+        alert("User registered succesfully");       
         navigate(-1);
       })
       .catch((error) => {
@@ -124,7 +124,7 @@ export default function RegisterForm() {
             />
             {errorName === true ? (
               <span className={styles.error}>
-                {" Insert a name without special characters or numbers."}
+                {" Insert a name of at least 3 letters."}
               </span>
             ) : (
               <span> Name correct!</span>
@@ -158,7 +158,7 @@ export default function RegisterForm() {
             {errorPassword === true ? (
               <span className={styles.error}>
                 {
-                  " Must be of 8 characters and can contain letters and/or numbers."
+                  " Must be of more than 8 characters and can contain letters and/or numbers."
                 }
               </span>
             ) : (
