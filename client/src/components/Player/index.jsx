@@ -26,7 +26,7 @@ const usePlayerRef = (ref) => {
   return { isPlaying, changeState };
 }
 
-export default function Player(){
+export default function Player({ music }){
   const [dataSong, setDataSong] = useState({});
  
   const audioElem = useRef();
@@ -50,10 +50,11 @@ export default function Player(){
     volumeBar.current.value = audioElem.current.volume * 10;
   }
 
+  console.log('player',music);
   return (
     <div className="player">
       <audio
-        src={url}
+        src={music.previewURL || url}
         ref={audioElem}
         onTimeUpdate={onPlaying}
       >

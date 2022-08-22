@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrackId } from "../../store/slice";
 import { useParams } from "react-router-dom";
 import "./index.css";
+import Player from "../Player";
 
 export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
+  const [ evoker, setEvoker ] = useState({})
 
   const { id } = useParams();
 
@@ -18,6 +20,7 @@ export default function Detail() {
 
   return (
     <div>
+      <Player music={evoker}/>
       {detailTracks.track?.map((e, id) => {
         return (
           <div key={id} className="containerMusic">
@@ -37,7 +40,9 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button>
+                <button
+                  onClick={() => setEvoker(e)}
+                >
                     <div className="arrow-up"></div>
                 </button>
                   <p className="name">{e.name}</p>
