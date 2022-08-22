@@ -6,15 +6,15 @@ const axios = require("axios");
   const tracks = await axios.get(
     "https://api.napster.com/v2.2/tracks/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10"
   );
-  const apiTracks = await tracks.data.tracks.map((e) => {
-    return {
-      id: e.id,
-      name: e.name,
-      artistName: e.artistName,
-      previewURL: e.previewURL,
-      albumName: e.albumName,
-      images: `https://api.napster.com/imageserver/v2/artists/${e.artistId}/images/356x237.jpg`
-    };
+  const apiTracks = tracks.data.tracks.map((e) => {
+        return {
+          id: e.id,
+          name: e.name,
+          artistName: e.artistName,
+          previewURL: e.previewURL,
+          albumName: e.albumName,
+          images: `https://api.napster.com/imageserver/v2/artists/${e.artistId}/images/356x237.jpg`
+        };
   });
 
   const albums = await axios.get(
@@ -128,7 +128,7 @@ const getTrackId = async (id) => {
     `http://api.napster.com/v2.2/tracks/${id}?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4`
   );
   const track = trackId.data.tracks?.map((e) => {
-    return {
+      return {
       id: e.id,
       name: e.name,
       artistId: e.artistId,
@@ -137,8 +137,7 @@ const getTrackId = async (id) => {
       albumId: e.albumId,
       images: `https://api.napster.com/imageserver/v2/artists/${e.artistId}/images/356x237.jpg`,
       playbackSeconds: e.playbackSeconds,
-      previewURL: e.previewURL,
-      
+      previewURL: e.previewURL
     };
   });
   const trackAlbumId = trackId.data.tracks?.map(e => e.albumId)
@@ -229,11 +228,11 @@ const getPlaylistId = async (id)=>{
       name: e.name,
       artistName: e.artistName,
       albumName: e.albumName,
-      images: `https://api.napster.com/imageserver/v2/albums/${e.id}/images/356x237.jpg`,
+      images: `https://api.napster.com/imageserver/v2/playlists/${e.id}/artists/images/1200x400.jpg?montage=3x2`,
     };
   });
   const PlaylistId = playlistId.data.playlists.map(e => e.id)
-  const albumPlaylist = await axios.get(`https://api.napster.com/v2.2/playlists/${PlaylistId}/tracks?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=15`)
+  const albumPlaylist = await axios.get(`https://api.napster.com/v2.2/playlists/${PlaylistId}/tracks?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&limit=10`)
   const playlistMusic = albumPlaylist.data.tracks.map(e => {
     return{
       id: e.id,
