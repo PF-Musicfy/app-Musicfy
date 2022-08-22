@@ -6,8 +6,12 @@ function NavBarLanding() {
     <>
       <div className={styles.containerNavbar}>
         <div className={styles.conterImg}>
-          <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
-          <span className={styles.logoTxt}>MusicFy</span>
+          <Link to="/">
+            <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
+          </Link>
+          <Link to="/">
+            <span className={styles.logoTxt}>MusicFy</span>
+          </Link>
         </div>
         <nav>
           <ul className={styles.containerButtomNavbar}>

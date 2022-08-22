@@ -14,12 +14,14 @@
   align-items: center;
   justify-content: flex-end;
   height: 60px;
-  width: 660px;
+  width: 670px;
+  /* font-family: 'Poppins', sans-serif; */
 }
 
 .btnNavbar {
   font-size: 16px;
   cursor: pointer;
+  font-weight: 600;
 }
 .btnNavbar:hover {
   color: var(--btn);

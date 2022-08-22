@@ -1,9 +1,25 @@
 .login {
   text-align: center;
+  color: #fff;
 }
 
 .login-logo {
   padding: 10px;
+  cursor: pointer;
+  width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.login-logo span {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #cf355c;
+  transition: 300ms;
+}
+
+.login-logo span:hover {
+  color: #fff;
 }
 
 .login-options {
@@ -16,26 +32,127 @@
 
 .login-container {
   margin: auto;
-  width: 400px;
+  width: 40%;
+}
+
+.login-container .btn-back {
+  color: #cf355c;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 25px;
+  transition: 300ms;
+}
+
+.login-container .btn-back:hover {
+  color: #fff;
+}
+
+.login-container .container-auth0 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  color: rgb(235, 84, 36);
+  font-weight: 600;
+}
+
+.login-container .container-auth0 img {
+  width: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.login-form .label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+
+.login-form .container-btn-send {
+  width: 117px;
+  height: 51px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  margin: 25px 0 40px 0;
+}
+
+.login-form .btn-send {
+  padding: 8px 33px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 4px auto;
+  background-color: #cf355c;
+  border-radius: 15px;
+  margin-left: 5px;
+  transition: 300ms;
+}
+
+.login-form .btn-send:hover {
+  background-color: #fff;
+  color: #cf355c;
+  position: relative;
 }
 
 .login-form input {
-  width: 100%;
+  width: 70%;
   height: 20px;
-  padding: 5px;
+  padding: 15px;
+  color: #000;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.login-form .btn-see-password {
+  position: relative;
+}
+
+.login-form .icon-see-password {
+  position: absolute;
+  top: 170px;
+  right: 45px;
+  font-size: 20px;
+  transition: 300ms;
+}
+
+.login-form .icon-see-password:hover {
+  color: #cf355c;
 }
 
 .login-form {
   text-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .input-err {
-  outline-color: red;
+  outline-color: rgb(186, 8, 8);
   border: 1px solid red;
 }
 
 .msg-err {
-  margin-top: 0px;
+  margin-bottom: 0px;
   font-size: 14px;
-  color: #f00;
+  color: rgb(186, 8, 8);
+  font-weight: 600;
+}
+
+.span-account {
+  display: block;
+  margin: 7px 0;
+}
+
+.btn-register {
+  color: #cf355c;
+  border-bottom: 1px solid #fff;
+  font-weight: 500;
+  transition: 300ms;
+}
+
+.btn-register:hover {
+  color: #fff;
+  border-bottom: 1px solid #cf355c;
 }

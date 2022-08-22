@@ -1,0 +1,90 @@
+.subcontainer {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.subcontainer2 {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 50px auto;
+}
+
+.imagen {
+  width: 45%;
+  margin-top: 0px;
+}
+
+.title {
+  color: rgb(13, 151, 231);
+  width: 60%;
+  margin-left: 150px;
+  margin-top: 150px;
+  font-size: 60px;
+}
+@media only screen and (max-width: 990px) {
+  .subcontainer {
+    display: grid;
+  }
+}
+
+.card {
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(42, 50, 200, 1) 100%
+  );
+  margin-left: 10%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-start;
+  font-size: 30px;
+  justify-content: center;
+}
+.card p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.card h1 {
+  margin-left: auto;
+  margin-right: auto;
+}
+.card button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 120px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: rgb(216, 19, 134);
+  color: rgb(0, 0, 0);
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+.card:hover {
+  opacity: 0.9;
+}
+.card button:hover {
+  background-color: black;
+  color: rgb(216, 19, 134);
+}
+.cardwords {
+  margin-top: 50px;
+}
+.icons {
+  display: flex;
+  margin-top: 30px;
+}
+.iconito {
+  margin-left: 10px;
+}
+.cardwords p {
+  display: flex;
+}

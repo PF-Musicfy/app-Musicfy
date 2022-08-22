@@ -27,6 +27,7 @@ export default function HomeAlbum() {
   // console.log(topMusic);
   // console.log(musicSearch);
 
+
   const changingState = (e) => {
     e.preventDefault();
     console.log('estoy funcionando')
@@ -48,6 +49,7 @@ export default function HomeAlbum() {
     })
   }
 
+
   useEffect(() => {
     dispatch(getTopMusic());
   }, []);
@@ -63,6 +65,7 @@ export default function HomeAlbum() {
 
   return (
     <div className={styles.albumSuperiorContainer}>
+
 
       <div className={styles.buttonsFilter}>
         {musicSearch.length === 0 ? false : <button className={state.tracks === true ? styles.buttonStyles : styles.buttonOff} name='tracks' onClick={(e) => changingState(e)}>Tracks</button>}
@@ -152,6 +155,190 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
+         <h1 className={styles.titleGenre}>Top Tracks</h1>
+
+      <Swiper
+        // className={styles.swiper}
+        // spaceBetween={-70}
+        slidesPerView={5}
+        slidesPerGroup={3}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        // Responsive breakpoints
+        breakpoints={{
+          // when window width is >= 220px
+          220: {
+            slidesPerView: 1,
+            // spaceBetween: -20
+          },
+          // when window width is >= 320px
+          380: {
+            slidesPerView: 2,
+            // spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 3,
+            // spaceBetween: 15
+          },
+          // when window width is >= 640px
+          900: {
+            slidesPerView: 4,
+            // spaceBetween: 25
+          },
+          // when window width is >= 800px
+          1200: {
+            slidesPerView: 5,
+            // spaceBetween: -40
+          },
+        }}
+      >
+        <div>
+          {topMusic.apiTracks?.map((item) => {
+            return (
+              <SwiperSlide className={styles.containerSwiper} key={item.id}>
+                <Link to= {`/home/${item.id}`}>
+                <img
+                  className={styles.imgSwiper}
+                  src={item.images}
+                  alt={item.name}
+                />
+                <h3 className={styles.h3Colors}>{item.name}</h3>
+                <h3 className={styles.h3Colors}>{item.artistName}</h3>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
+
+      <h1 className={styles.titleGenre}>Top Albums</h1>
+      <Swiper
+        // className={styles.swiper}
+        // spaceBetween={-70}
+        slidesPerView={5}
+        slidesPerGroup={3}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        // Responsive breakpoints
+        breakpoints={{
+          // when window width is >= 220px
+          220: {
+            slidesPerView: 1,
+            // spaceBetween: -20
+          },
+          // when window width is >= 320px
+          380: {
+            slidesPerView: 2,
+            // spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 3,
+            // spaceBetween: 15
+          },
+          // when window width is >= 640px
+          900: {
+            slidesPerView: 4,
+            // spaceBetween: 25
+          },
+          // when window width is >= 800px
+          1200: {
+            slidesPerView: 5,
+            // spaceBetween: -40
+          },
+        }}
+      >
+        <div>
+          {topMusic.apiAlbums?.map((item) => {
+            return (
+              <SwiperSlide className={styles.containerSwiper} key={item.id}>
+                <Link to= {`/home/${item.id}`}>
+                <img
+                  className={styles.imgSwiper}
+                  src={item.images}
+                  alt={item.name}
+                />
+                <h3 className={styles.h3Colors}>{item.name}</h3>
+                <h3 className={styles.h3Colors}>{item.artistName}</h3>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
+
+      <h1 className={styles.titleGenre}>Top Artists</h1>
+      <Swiper
+        // className={styles.swiper}
+        // spaceBetween={-70}
+        slidesPerView={5}
+        slidesPerGroup={3}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        // Responsive breakpoints
+        breakpoints={{
+          // when window width is >= 220px
+          220: {
+            slidesPerView: 1,
+            // spaceBetween: -20
+          },
+          // when window width is >= 320px
+          380: {
+            slidesPerView: 2,
+            // spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 3,
+            // spaceBetween: 15
+          },
+          // when window width is >= 640px
+          900: {
+            slidesPerView: 4,
+            // spaceBetween: 25
+          },
+          // when window width is >= 800px
+          1200: {
+            slidesPerView: 5,
+            // spaceBetween: -40
+          },
+        }}
+      >
+        <div>
+          {topMusic.apiArtists?.map((item) => {
+            return (
+              <SwiperSlide className={styles.containerSwiper} key={item.id}>
+                <Link to= {`/home/${item.id}`}>
+                <img
+                  className={styles.imgSwiper}
+                  src={item.images}
+                  alt={item.name}
+                />
+                <h3 className={styles.h3Colors}>{item.name}</h3>
+                <h3 className={styles.h3Colors}>{item.shortcut}</h3>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
+
       <div className={state.albums === false ? styles.containerAlbumes : styles.containerAlbumes2}>
         <h1 className={styles.titleGenre}>Top Albums</h1>
         <Swiper
@@ -230,6 +417,65 @@ export default function HomeAlbum() {
           </div>
         </Swiper>
       </div>
+
+      <Swiper
+        // className={styles.swiper}
+        // spaceBetween={-70}
+        slidesPerView={5}
+        slidesPerGroup={3}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        // Responsive breakpoints
+        breakpoints={{
+          // when window width is >= 220px
+          220: {
+            slidesPerView: 1,
+            // spaceBetween: -20
+          },
+          // when window width is >= 320px
+          380: {
+            slidesPerView: 2,
+            // spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 3,
+            // spaceBetween: 15
+          },
+          // when window width is >= 640px
+          900: {
+            slidesPerView: 4,
+            // spaceBetween: 25
+          },
+          // when window width is >= 800px
+          1200: {
+            slidesPerView: 5,
+            // spaceBetween: -40
+          },
+        }}
+      >
+        <div>
+          {topMusic.apiPlaylists?.map((item) => {
+            return (
+              <SwiperSlide className={styles.containerSwiper} key={item.id}>
+                <Link to= {`/home/${item.id}`}>
+                <img
+                  className={styles.imgSwiper}
+                  src={item.images}
+                  alt={item.name}
+                />
+                <h3 className={styles.h3Colors}>{item.name}</h3>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
 
 
       <div className={state.artist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
@@ -387,6 +633,67 @@ export default function HomeAlbum() {
           </div>
         </Swiper>
       </div>
+
+      <Swiper
+        // className={styles.swiper}
+        // spaceBetween={-70}
+        slidesPerView={5}
+        slidesPerGroup={3}
+        loop={false}
+        loopFillGroupWithBlank={true}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        // Responsive breakpoints
+        breakpoints={{
+          // when window width is >= 220px
+          220: {
+            slidesPerView: 1,
+            // spaceBetween: -20
+          },
+          // when window width is >= 320px
+          380: {
+            slidesPerView: 2,
+            // spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 3,
+            // spaceBetween: 15
+          },
+          // when window width is >= 640px
+          900: {
+            slidesPerView: 4,
+            // spaceBetween: 25
+          },
+          // when window width is >= 800px
+          1200: {
+            slidesPerView: 5,
+            // spaceBetween: -40
+          },
+        }}
+      >
+        <div>
+          {topMusic.apiStations?.map((item) => {
+            return (
+              <SwiperSlide className={styles.containerSwiper} key={item.id}>
+                <Link to= {`/home/${item.id}`}>
+                <img
+                  className={styles.imgSwiper}
+                  src={item.images}
+                  alt={item.name}
+                />
+                <h3 className={styles.h3Colors}>{item.name}</h3>
+                <h3 className={styles.h3Colors}>{item.artists}</h3>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </div>
+      </Swiper>
+
     </div>
   );
 
