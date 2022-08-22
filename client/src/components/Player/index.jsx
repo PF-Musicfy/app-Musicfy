@@ -81,6 +81,10 @@ export default function Player({ music }){
           </span>
         </div>
         <div>
+          <p>Name: {music.name}</p>
+          <p>Artist Name: {music.artistName}</p>
+        </div>
+        <div>
           <input
             className='player-volume'
             type='range'

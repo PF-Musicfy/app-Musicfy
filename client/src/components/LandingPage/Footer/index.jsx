@@ -35,13 +35,11 @@ export default function Footer() {
           <Link to="/about">About</Link>
           <Link to="/premium">Premium</Link>
         </div>
-
         <div className={styles.footerLinkContainer}>
           <span className={styles.footerSubtitle}>LICENCES</span>
           <Link to="/license">Copyright</Link>
           <Link to="/ads">Advertising</Link>
         </div>
-
         <div className={styles.footerSocial}>
           <CgFacebook onClick={() => window.location.assign("http://facebook.com")} className={styles.faceIcon} />
           <CgInstagram onClick={() => window.location.assign("http://instagram.com")} className={styles.instaIcon} />
