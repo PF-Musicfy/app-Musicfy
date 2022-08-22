@@ -9,7 +9,7 @@ import PageDev from "./components/PageInDev";
 import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Detail from "./components/Detail";
-import Premium from "./components/Premium copy";
+import Premium from "./components/Premium";
 import About from "./components/About";
 
 function App() {
