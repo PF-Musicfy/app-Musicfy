@@ -8,7 +8,7 @@ import Player from "../Player";
 export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
-  const [ evoker, setEvoker ] = useState({})
+  const [evoker, setEvoker] = useState({});
 
   const { id } = useParams();
 
@@ -20,7 +20,7 @@ export default function Detail() {
 
   return (
     <div>
-      <Player music={evoker}/>
+      <Player music={evoker} />
       {detailTracks.track?.map((e, id) => {
         return (
           <div key={id} className="containerMusic">
@@ -40,11 +40,9 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button
-                  onClick={() => setEvoker(e)}
-                >
+                  <button className="btn-detail" onClick={() => setEvoker(e)}>
                     <div className="arrow-up"></div>
-                </button>
+                  </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
@@ -58,7 +56,7 @@ export default function Detail() {
 
       {detailTracks.album?.map((e, id) => {
         return (
-            <div key={id} className="containerMusic">
+          <div key={id} className="containerMusic">
             <img src={e.images} alt={e.name} className="containerImg" />
             <div className="containerInfo">
               <h1>{e.name}</h1>
@@ -71,13 +69,13 @@ export default function Detail() {
 
       {detailTracks.albumMusic?.map((e, id) => {
         return (
-            <div key={id}>
+          <div key={id}>
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button>
+                  <button>
                     <div className="arrow-up"></div>
-                </button>
+                  </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
@@ -91,7 +89,7 @@ export default function Detail() {
 
       {detailTracks.artist?.map((e, id) => {
         return (
-            <div key={id} className="containerMusic">
+          <div key={id} className="containerMusic">
             <img src={e.images} alt={e.name} className="containerImg" />
             <div className="containerInfo">
               <h1>{e.name}</h1>
@@ -104,13 +102,13 @@ export default function Detail() {
 
       {detailTracks.artistMusic?.map((e, id) => {
         return (
-            <div key={id}>
+          <div key={id}>
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button>
+                  <button>
                     <div className="arrow-up"></div>
-                </button>
+                  </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
@@ -124,7 +122,7 @@ export default function Detail() {
 
       {detailTracks.playlist?.map((e, id) => {
         return (
-            <div key={id} className="containerMusic">
+          <div key={id} className="containerMusic">
             <img src={e.images} alt={e.name} className="containerImg" />
             <div className="containerInfo">
               <h1>{e.name}</h1>
@@ -137,13 +135,13 @@ export default function Detail() {
 
       {detailTracks.playlistMusic?.map((e, id) => {
         return (
-            <div key={id}>
+          <div key={id}>
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button>
+                  <button>
                     <div className="arrow-up"></div>
-                </button>
+                  </button>
                   <p className="name">{e.name}</p>
                   <p className="artistName">{e.artistName}</p>
                   <p className="seconds">{e.playbackSeconds}</p>
