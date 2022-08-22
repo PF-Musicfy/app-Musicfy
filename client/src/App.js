@@ -7,8 +7,9 @@ import Login from "./components/Login";
 //import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
 import Feedback from "./pages/Feedback";
+import Dashboard from "./pages/Dashboard";
 import Detail from "./components/Detail";
-import Premium from "./components/Premium copy";
+import Premium from "./components/Premium";
 import About from "./components/About";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/library" element={<PageDev />} />
         <Route exact path="/premium" element={<Premium />} />
         <Route exact path="/feedback" element={<Feedback />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
         <Route path="*" element={<PageDev />} />
       </Routes>
