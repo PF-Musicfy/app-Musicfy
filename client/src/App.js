@@ -6,9 +6,13 @@ import Login from "./components/Login";
 //import Page404 from "./components/Page404";
 //import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
+import Feedback from "./pages/Feedback";
+import Detail from "./components/Detail";
+import Premium from "./components/Premium copy";
+import About from "./components/About";
 
 function App() {
-        //<Route exact path="/:id" element={<Detail/>} />
+  //<Route exact path="/:id" element={<Detail/>} />
   return (
     <div className="App">
       <Routes>
@@ -16,9 +20,12 @@ function App() {
         <Route exact path="/register" element={<RegisterForm />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/home/:id" element={<Detail />} />
         <Route exact path="/favorites" element={<PageDev />} />
         <Route exact path="/library" element={<PageDev />} />
-        <Route exact path="/premium" element={<PageDev />} />
+        <Route exact path="/premium" element={<Premium />} />
+        <Route exact path="/feedback" element={<Feedback />} />
+        <Route exact path="/about" element={<About />} />
         <Route path="*" element={<PageDev />} />
       </Routes>
     </div>
