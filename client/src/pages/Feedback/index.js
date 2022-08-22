@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import s from "./feedback.module.css";
+import axios from "axios";
 
 const colors = {
   orange: "#FFBA5A",
@@ -26,10 +27,20 @@ export default function Feedback() {
 
   const submit = (e) => {
     e.preventDefault();
-    alert(`puntos: ${currentValue} stars\n`+
-    `input 1: ${e.target[0].value}\n`+
-    `input 2: ${e.target[1].value}\n`+
-    `textarea: ${e.target[2].value}`);
+    axios.post("http://localhost:5000/feedback", {
+      title: e.target[0].value,
+      description: e.target[2].value,
+    })
+    .then(() => {
+      alert("post feedback");
+    })
+    .catch((error) => {
+      alert(`puntos: ${currentValue} stars\n`+
+      `input 1: ${e.target[0].value}\n`+
+      `input 2: ${e.target[1].value}\n`+
+      `textarea: ${e.target[2].value}`);
+      console.log(error);
+    });
   }
 
   return (
