@@ -1,5 +1,6 @@
 import React from "react";
 import NavBarHome from "../NavBarHome";
+// import SearchBar from "../SearchBar/SearchBar";
 import HomeAlbum from "./HomeAlbums/index";
 import styles from "./indexMain.module.css";
 

@@ -18,11 +18,15 @@ export const infoMusic = createSlice({
         },
         setDetailTracks: (state, action) => {
             state.detailTracks = action.payload
+        },
+        clearTopMusic: (state, action) => {
+          state.topMusic = action.payload
         }
+
     },
 })
 
-export const { setTopMusic, setMusicSearch, setDetailTracks } = infoMusic.actions;
+export const { setTopMusic, setMusicSearch, setDetailTracks, clearTopMusic } = infoMusic.actions;
 
 export default infoMusic.reducer;
 
@@ -60,4 +64,9 @@ export function getTopMusic() {
         }
       };
     }
-  
+
+  export function topMusicClear() {
+    return function (dispatch){
+      return dispatch(clearTopMusic({}))
+    }
+  }
