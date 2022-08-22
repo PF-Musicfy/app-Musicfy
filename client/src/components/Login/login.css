@@ -108,9 +108,6 @@
 }
 
 .login-form .icon-see-password {
-  position: absolute;
-  top: 170px;
-  right: 45px;
   font-size: 20px;
   transition: 300ms;
 }
