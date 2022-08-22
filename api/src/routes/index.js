@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const { Router } = require('express')
 const app = Router();
 const {generateToken} = require('../controllers/generateTokenController')
-const { getByName, getTrackId, topMusic } = require("../controllers/index")
+const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
 app.use("/api/v1/auth", authRouter);
 
@@ -64,7 +64,7 @@ app.post("/send-email", (req, res, next) => {
   })
 })
 
-  app.get("/:id", async (req, res, next) => {
+  app.get("/track/:id", async (req, res, next) => {
     try{
       const { id } = req.params;
   
@@ -84,5 +84,69 @@ app.post("/send-email", (req, res, next) => {
       console.log('break', e)
     }
   })
+
+  app.get("/album/:id", async (req, res, next) => {
+    try{
+      const { id } = req.params;
+  
+      const idAlbum = await getAlbumId(id)
+  
+      if(id){
+        try {
+          res.status(200).send(idAlbum)
+        } catch (error) {
+          next(error)
+        }
+      }
+      else{
+        res.status(400).send("not have id")
+      }
+    }catch(e){
+      console.log('break', e)
+    }
+  })
+
+  app.get("/artist/:id", async (req, res, next) => {
+    try{
+      const { id } = req.params;
+  
+      const idAlbum = await getArtistId(id)
+  
+      if(id){
+        try {
+          res.status(200).send(idAlbum)
+        } catch (error) {
+          next(error)
+        }
+      }
+      else{
+        res.status(400).send("not have id")
+      }
+    }catch(e){
+      console.log('break', e)
+    }
+  })
+
+  app.get("/playlist/:id", async (req, res, next) => {
+    try{
+      const { id } = req.params;
+  
+      const idPlaylist = await getPlaylistId(id)
+  
+      if(id){
+        try {
+          res.status(200).send(idPlaylist)
+        } catch (error) {
+          next(error)
+        }
+      }
+      else{
+        res.status(400).send("not have id")
+      }
+    }catch(e){
+      console.log('break', e)
+    }
+  })
+
 
   module.exports = app

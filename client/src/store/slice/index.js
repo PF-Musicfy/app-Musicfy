@@ -50,14 +50,49 @@ export function getTopMusic() {
     };
   }
   
-  export function getId(id) {
+  export function getTrackId(id) {
+    if(id.includes("tra")){
       return async function (dispatch) {
           try {
-            const musicId = await axios.get(`http://localhost:5000/${id}`);
-            return dispatch(setDetailTracks(musicId.data));
+            const trackId = await axios.get(`http://localhost:5000/track/${id}`);
+            return dispatch(setDetailTracks(trackId.data));
           } catch (error) {
             console.log(error)
         }
       };
+    }
+
+    if(id.includes("alb")){
+      return async function (dispatch) {
+            try {
+              const albumId = await axios.get(`http://localhost:5000/album/${id}`);
+              return dispatch(setDetailTracks(albumId.data));
+            } catch (error) {
+              console.log(error)
+          }
+        };
+    }  
+
+    if(id.includes("art")){
+      return async function (dispatch) {
+          try {
+            const artistId = await axios.get(`http://localhost:5000/artist/${id}`);
+            return dispatch(setDetailTracks(artistId.data));
+          } catch (error) {
+            console.log(error)
+        }
+      };
+    }
+
+      if(id.includes("pp")){
+        return async function (dispatch) {
+            try {
+              const artistId = await axios.get(`http://localhost:5000/playlist/${id}`);
+              return dispatch(setDetailTracks(artistId.data));
+            } catch (error) {
+              console.log(error)
+          }
+        };
+      }
     }
   

@@ -15,8 +15,6 @@ export default function HomeAlbum() {
   const dispatch = useDispatch();
   const { topMusic } = useSelector((state) => state.music);
 
-  console.log(topMusic);
-
   useEffect(() => {
     dispatch(getTopMusic());
   }, [dispatch]);
@@ -71,7 +69,7 @@ export default function HomeAlbum() {
           {topMusic.apiTracks?.map((item) => {
             return (
               <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                <Link to= {`/${item.id}`}>
+                <Link to= {`/home/${item.id}`}>
                 <img
                   className={styles.imgSwiper}
                   src={item.images}
@@ -132,7 +130,7 @@ export default function HomeAlbum() {
           {topMusic.apiAlbums?.map((item) => {
             return (
               <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                <Link to= {`/${item.id}`}>
+                <Link to= {`/home/${item.id}`}>
                 <img
                   className={styles.imgSwiper}
                   src={item.images}
@@ -193,7 +191,7 @@ export default function HomeAlbum() {
           {topMusic.apiArtists?.map((item) => {
             return (
               <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                <Link to= {`/${item.id}`}>
+                <Link to= {`/home/${item.id}`}>
                 <img
                   className={styles.imgSwiper}
                   src={item.images}
@@ -255,7 +253,7 @@ export default function HomeAlbum() {
           {topMusic.apiPlaylists?.map((item) => {
             return (
               <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                <Link to= {`/${item.id}`}>
+                <Link to= {`/home/${item.id}`}>
                 <img
                   className={styles.imgSwiper}
                   src={item.images}
@@ -316,7 +314,7 @@ export default function HomeAlbum() {
           {topMusic.apiStations?.map((item) => {
             return (
               <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                <Link to= {`/${item.id}`}>
+                <Link to= {`/home/${item.id}`}>
                 <img
                   className={styles.imgSwiper}
                   src={item.images}
