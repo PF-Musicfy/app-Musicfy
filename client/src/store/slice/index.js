@@ -58,7 +58,7 @@ export function getTopMusic() {
     if(id.includes("tra")){
       return async function (dispatch) {
           try {
-            const trackId = await axios.get(`http://localhost:5000/track/${id}`);
+            const trackId = await axios.get(`${axios.defaults.baseURL}/track/${id}`);
             return dispatch(setDetailTracks(trackId.data));
           } catch (error) {
             console.log(error)
@@ -76,7 +76,7 @@ export function getTopMusic() {
     if(id.includes("alb")){
       return async function (dispatch) {
             try {
-              const albumId = await axios.get(`http://localhost:5000/album/${id}`);
+              const albumId = await axios.get(`${axios.defaults.baseURL}/album/${id}`);
               return dispatch(setDetailTracks(albumId.data));
             } catch (error) {
               console.log(error)
@@ -87,7 +87,7 @@ export function getTopMusic() {
     if(id.includes("art")){
       return async function (dispatch) {
           try {
-            const artistId = await axios.get(`http://localhost:5000/artist/${id}`);
+            const artistId = await axios.get(`${axios.defaults.baseURL}/artist/${id}`);
             return dispatch(setDetailTracks(artistId.data));
           } catch (error) {
             console.log(error)
@@ -98,7 +98,7 @@ export function getTopMusic() {
       if(id.includes("pp")){
         return async function (dispatch) {
             try {
-              const artistId = await axios.get(`http://localhost:5000/playlist/${id}`);
+              const artistId = await axios.get(`${axios.defaults.baseURL}/playlist/${id}`);
               return dispatch(setDetailTracks(artistId.data));
             } catch (error) {
               console.log(error)

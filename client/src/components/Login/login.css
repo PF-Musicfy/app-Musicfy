@@ -55,6 +55,11 @@
   margin: 15px 0;
   color: rgb(235, 84, 36);
   font-weight: 600;
+  transition: 300ms;
+}
+
+.login-container .container-auth0:hover {
+  color: #fff;
 }
 
 .login-container .container-auth0 img {
@@ -108,9 +113,6 @@
 }
 
 .login-form .icon-see-password {
-  position: absolute;
-  top: 170px;
-  right: 45px;
   font-size: 20px;
   transition: 300ms;
 }

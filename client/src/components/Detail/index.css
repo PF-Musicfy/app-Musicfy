@@ -72,11 +72,11 @@
   transition: 0.5s;
 }
 
-button:hover {
+.btn-detail:hover {
   transform: scale(1.1);
 }
 
-button:active {
+.btn-detail:active {
   background-color: #020cd1;
 }
 
