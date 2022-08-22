@@ -30,19 +30,19 @@ export default infoMusic.reducer;
 export function getTopMusic() {
     return async function (dispatch) {
       try {
-        const topMusicApi = await axios.get("http://localhost:5000/topmusic");
+        const topMusicApi = await axios.get(`${axios.defaults.baseURL}/topmusic`);
         return dispatch(setTopMusic(topMusicApi.data));
       } catch (error) {
         console.log(error);
       }
     };
   }
-
+  
   export function getName(name) {
     return async function (dispatch) {
         try {
           if(name.length === 0) return alert("need to write a music")
-          const musicName = await axios.get(`http://localhost:5000/name?name=${name}`);
+          const musicName = await axios.get(`${axios.defaults.baseURL}/name?name=${name}`);
           return dispatch(setMusicSearch(musicName.data));
         } catch (error) {
           console.log(error)
@@ -53,7 +53,7 @@ export function getTopMusic() {
   export function getId(id) {
       return async function (dispatch) {
           try {
-            const musicId = await axios.get(`http://localhost:5000/${id}`);
+            const musicId = await axios.get(`${axios.defaults.baseURL}/${id}`);
             return dispatch(setDetailTracks(musicId.data));
           } catch (error) {
             console.log(error)

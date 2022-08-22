@@ -5,7 +5,12 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
 import App from "./App";
 import store from "./store/index";
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Auth0Provider } from '@auth0/auth0-react';
+// import dotenv from "dotenv";
+import axios from "axios";
+
+// dotenv.config()
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:5000';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
