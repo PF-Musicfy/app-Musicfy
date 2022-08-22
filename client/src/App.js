@@ -6,6 +6,7 @@ import Login from "./components/Login";
 //import Page404 from "./components/Page404";
 //import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
+import Feedback from "./pages/Feedback";
 
 function App() {
         //<Route exact path="/:id" element={<Detail/>} />
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/favorites" element={<PageDev />} />
         <Route exact path="/library" element={<PageDev />} />
         <Route exact path="/premium" element={<PageDev />} />
+        <Route exact path="/feedback" element={<Feedback />} />
         <Route path="*" element={<PageDev />} />
       </Routes>
     </div>

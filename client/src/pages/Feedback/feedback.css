@@ -1,0 +1,26 @@
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feedback-stars {
+  display: flex;
+  flex-direction: row;
+}
+
+.feedback-textarea {
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0px;
+  min-height: 100px;
+  width: 300px;
+  color: #000;
+}
+.feedback-button {
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  width: 300px;
+  padding: 10px;
+}
