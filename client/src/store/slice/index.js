@@ -30,19 +30,19 @@ export default infoMusic.reducer;
 export function getTopMusic() {
     return async function (dispatch) {
       try {
-        const topMusicApi = await axios.get("http://localhost:5000/topmusic");
+        const topMusicApi = await axios.get(`${axios.defaults.baseURL}/topmusic`);
         return dispatch(setTopMusic(topMusicApi.data));
       } catch (error) {
         console.log(error);
       }
     };
   }
-
+  
   export function getName(name) {
     return async function (dispatch) {
         try {
           if(name.length === 0) return alert("need to write a music")
-          const musicName = await axios.get(`http://localhost:5000/name?name=${name}`);
+          const musicName = await axios.get(`${axios.defaults.baseURL}/name?name=${name}`);
           return dispatch(setMusicSearch(musicName.data));
         } catch (error) {
           console.log(error)
@@ -50,14 +50,51 @@ export function getTopMusic() {
     };
   }
   
-  export function getId(id) {
+  export function getTrackId(id) {
+    if(id.includes("tra")){
       return async function (dispatch) {
           try {
-            const musicId = await axios.get(`http://localhost:5000/${id}`);
-            return dispatch(setDetailTracks(musicId.data));
+            const trackId = await axios.get(`http://localhost:5000/track/${id}`);
+            return dispatch(setDetailTracks(trackId.data));
           } catch (error) {
             console.log(error)
         }
       };
     }
+
+    if(id.includes("alb")){
+      return async function (dispatch) {
+            try {
+              const albumId = await axios.get(`http://localhost:5000/album/${id}`);
+              return dispatch(setDetailTracks(albumId.data));
+            } catch (error) {
+              console.log(error)
+          }
+        };
+    }  
+
+    if(id.includes("art")){
+      return async function (dispatch) {
+          try {
+            const artistId = await axios.get(`http://localhost:5000/artist/${id}`);
+            return dispatch(setDetailTracks(artistId.data));
+          } catch (error) {
+            console.log(error)
+        }
+      };
+    }
+
+      if(id.includes("pp")){
+        return async function (dispatch) {
+            try {
+              const artistId = await axios.get(`http://localhost:5000/playlist/${id}`);
+              return dispatch(setDetailTracks(artistId.data));
+            } catch (error) {
+              console.log(error)
+          }
+        };
+      }
+    }
+
+
   
