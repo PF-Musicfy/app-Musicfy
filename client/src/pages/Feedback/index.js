@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import s from "./feedback.module.css";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getFeedback } from "../../store/slice";
 
 const colors = {
   orange: "#FFBA5A",
@@ -9,9 +11,16 @@ const colors = {
 };
 
 export default function Feedback() {
+  const dispatch = useDispatch();
+  const postsFeedback = useSelector((state) => state.music.feedback);
+
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0) // === [0,0,0,0,0]
+
+  useEffect(() => {
+    dispatch(getFeedback())
+  },[dispatch])
 
   const click = (value) => {
     setCurrentValue(value)
@@ -32,6 +41,7 @@ export default function Feedback() {
       description: e.target[2].value,
     })
     .then(() => {
+      dispatch(getFeedback())
       alert("post feedback");
     })
     .catch((error) => {
@@ -84,6 +94,15 @@ export default function Feedback() {
           Submit
         </button>
       </form>
+      <div>
+        {postsFeedback.map((e) => (
+          <div key={e._id}>
+            <p>id: {e._id}</p>
+            <p>title: {e.title}</p>
+            <p>description: {e.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
