@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const Post = require("../models/Post.js");
 const {mailTransport} = require('../controllers/mailController')
 const { Router } = require('express')
 const app = Router();
@@ -160,5 +161,26 @@ app.post("/send-email-registered", (req, res, next) => {
     }
   })
 
+app.post("/feedback", async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const newPost = new Post({title, description});
+    await newPost.save()
+    console.log(newPost)
+    res.send('newPost saved');
+  }catch(e){
+    res.status(500).send('newPost failed');
+  }
+})
+
+app.get("/feedback", async (req, res) => {
+  try{
+    const posts = await Post.find();
+    console.log(posts);
+    res.send(posts);
+  }catch(e){
+    res.status(500).send('not get Post');
+  }
+})
 
   module.exports = app
