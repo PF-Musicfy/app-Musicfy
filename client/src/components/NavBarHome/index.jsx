@@ -3,6 +3,8 @@ import "./NavBarHome.css";
 import imagen from "./img_avatar.png";
 import { useRef, useState } from "react";
 import imagen2 from "./WJT6FaB.png";
+import SearchBar from "../SearchBar/Index";
+import { Link } from "react-router-dom";
 
 export default function NavBarHome() {
   const [profile, setProfile] = useState(false);
@@ -24,25 +26,36 @@ export default function NavBarHome() {
       {logged ? (
         <div>
           <header>
+            <div className='searchStyle'>
+              <SearchBar />
+            </div>
             <div className="logo-div">
               <a href="./">
-                <img src={imagen2} className="logo" alt="imagen" />
+                <img src={imagen2} className="logo" alt="loguito" />
               </a>
               <span>Musicfy</span>
             </div>
             <nav ref={navRef}>
-              <a href="/home">Home</a>
-              <a href="/favorites">Favorites</a>
-              <a href="/favorites">+Playlist</a>
-              <a href="/library">Library</a>
-              <a>Search</a>
-              <a href="/profile" className="perfil">
-                Profile
-              </a>
+              <Link to='/home'>
+                <span>Home</span>
+              </Link>
+              <Link to='/favorites'>
+                <span>Favorites</span>
+              </Link>
+              <Link to='/favorites'>
+                <span>+Playlist</span>
+              </Link>
+              <Link to='/library'>
+                <span>Library</span>
+              </Link>
+
+              <Link to='/profile'>
+                <span className="perfil">Profile</span>
+              </Link>
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={imagen} className="avatar" onClick={handleClick} />
+              <img src={imagen} className="avatar" onClick={handleClick} alt='avatarsito'/>
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -51,9 +64,13 @@ export default function NavBarHome() {
           {profile && (
             <div className="container">
               <div className="select-perfil">
-                <a href="/profile">Profile</a>
-                <a href="/premium">Premium</a>
-                <a onClick={handleLog}>Log out</a>
+              <Link to='/profile'>
+                <span>Profile</span>
+              </Link>
+              <Link to='/premium'>
+                <span>Premium</span>
+              </Link>
+                <span onClick={handleLog} className='logOut'>Log out</span>
               </div>{" "}
             </div>
           )}
@@ -61,13 +78,15 @@ export default function NavBarHome() {
       ) : (
         <header>
           <div className="logo-div">
-            <img src={imagen2} className="logo" alt="imagen" />
+            <img src={imagen2} className="logo" alt="loguito2" />
             <span>Musicfy</span>
           </div>
           <nav ref={navRef}>
             <div className="no-logged">
-              <a href="/register">Register</a>
-              <a onClick={handleLog}>Log in</a>
+              <Link to='/register'>
+                <span>Register</span>
+              </Link>
+              <span onClick={handleLog}>Log in</span>
             </div>
 
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
