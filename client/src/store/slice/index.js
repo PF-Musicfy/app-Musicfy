@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
 export const infoMusic = createSlice({
   name: 'music',
   initialState: {
     topMusic: [],
     detailTracks: {},
     musicSearch: [],
-    feedback: []
   },
   reducers: {
     setTopMusic: (state, action) => {
@@ -23,9 +21,6 @@ export const infoMusic = createSlice({
     clearTopMusic: (state, action) => {
       state.topMusic = action.payload
     },
-    setFeedback: (state, action) => {
-      state.feedback = action.payload
-    },
   },
 })
 
@@ -34,21 +29,9 @@ export const {
   setMusicSearch,
   setDetailTracks,
   clearTopMusic,
-  setFeedback
 } = infoMusic.actions;
 
 export default infoMusic.reducer;
-
-export function getFeedback() {
-  return async function (dispatch) {
-    try {
-      const posts = await axios.get(`${axios.defaults.baseURL}/feedback`);
-      return dispatch(setFeedback(posts.data));
-    } catch (error) {
-      console.log('error getFeedback');
-    }
-  };
-}
 
 export function getTopMusic() {
   return async function (dispatch) {

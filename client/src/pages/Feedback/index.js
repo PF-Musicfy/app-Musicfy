@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import s from "./feedback.module.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getFeedback } from "../../store/slice";
+import { getFeedback } from "../../store/slice/user.js";
 
 const colors = {
   orange: "#FFBA5A",
@@ -12,7 +12,7 @@ const colors = {
 
 export default function Feedback() {
   const dispatch = useDispatch();
-  const postsFeedback = useSelector((state) => state.music.feedback);
+  const postsFeedback = useSelector((state) => state.user.feedback);
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
