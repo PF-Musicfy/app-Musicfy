@@ -1,6 +1,6 @@
 .popup {
   background: #0008;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   display: flex;
@@ -8,18 +8,31 @@
   flex-direction: column;
   align-items: center;
   color: #fff;
+  animation: identifier .2s ease-out;
+}
+
+@keyframes identifier {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.popup button {
+  background: #667;
+  padding: 10px 20px;
+  border-radius: 50px;
 }
 
 .popup-container {
-  padding: 20px;
-  background: linear-gradient(to bottom, #185, #111);
+  padding: 60px;
+  background: linear-gradient(#667, #000);
   color: #fff;
-  width: 500px;
+  border-radius: 10px;
 }
 
 .popup-content {
   display: flex;
   justify-content: space-evenly;
+  gap: 40px;
 }
 
 .pp-logo {
@@ -47,6 +60,8 @@
   color: #fff;
   background: none;
   cursor: pointer;
+  padding: 0px 15px;
+  font-weight: bold;
 }
 
 .pp-info p {
