@@ -2,6 +2,7 @@ import NavBarLanding from "../LandingPage/NavBarLanding";
 import Footer from "../LandingPage/Footer";
 import CardAbout from "./CardAbout";
 import styles from "./about.module.css";
+import { MdLocationOn } from "react-icons/md";
 
 function About() {
   const staff = [
