@@ -77,7 +77,7 @@ export default function RegisterForm() {
   function keyClick(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/send-email", newUser)
+      .post(`${axios.defaults.baseURL}/send-email`, newUser)
       .then((token) => {
         setNewUser({ ...newUser, token: newUser.eMail + token.data });
         console.log(token.data);
@@ -91,14 +91,14 @@ export default function RegisterForm() {
   function onSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/v1/auth/register", {
+      .post(`${axios.defaults.baseURL}/api/v1/auth/register`, {
         username: newUser.name,
         email: newUser.eMail,
         password: newUser.password,
         repassword: newUser.rePassword,
       })
       .then(() => {
-        axios.post("http://localhost:5000/send-email-registered", newUser);
+        axios.post(`${axios.defaults.baseURL}/send-email-registered`, newUser);
         alert("User registered succesfully");       
         navigate(-1);
       })
@@ -200,7 +200,7 @@ export default function RegisterForm() {
             </div>
           ) : (
             <button
-              className={styles.register}
+              className={errorEMail? styles.registerDisabled: styles.register}
               onClick={keyClick}
               value="ObtainKey"
               disabled={errorEMail ? true : false}
@@ -211,7 +211,7 @@ export default function RegisterForm() {
           )}
         </div>
         <input
-          className={styles.submit}
+          className={error ? styles.registerDisabled:styles.submit}
           type="submit"
           value=" Register "
           disabled={error ? true : false}
