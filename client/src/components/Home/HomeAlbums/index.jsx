@@ -11,7 +11,6 @@ import { Link } from "react-router-dom"
 // Import Swiper styles
 import "swiper/css";
 
-
 export default function HomeAlbum() {
   const dispatch = useDispatch();
   const { topMusic } = useSelector((state) => state.music);
@@ -123,7 +122,7 @@ export default function HomeAlbum() {
             {musicSearch.length === 0 ? topMusic.apiTracks?.map((item) => {
               return (
                 <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                  <Link to={`/${item.id}`}>
+                  <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
                       src={item.images}
@@ -138,7 +137,7 @@ export default function HomeAlbum() {
               : musicSearch.tracks?.map((item) => {
                 return (
                   <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                    <Link to={`/${item.id}`}>
+                    <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
                         src={item.image}
@@ -203,7 +202,7 @@ export default function HomeAlbum() {
             {musicSearch.length === 0 ? topMusic.apiAlbums?.map((item) => {
               return (
                 <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                  <Link to={`/${item.id}`}>
+                  <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
                       src={item.images}
@@ -218,7 +217,7 @@ export default function HomeAlbum() {
               : musicSearch.albums?.map((item) => {
                 return (
                   <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                    <Link to={`/${item.id}`}>
+                    <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
                         src={item.images}
@@ -282,7 +281,7 @@ export default function HomeAlbum() {
             {musicSearch.length === 0 ? topMusic.apiArtists?.map((item) => {
               return (
                 <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                  <Link to={`/${item.id}`}>
+                  <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
                       src={item.images}
@@ -297,7 +296,7 @@ export default function HomeAlbum() {
               : musicSearch.artists?.map((item) => {
                 return (
                   <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                    <Link to={`/${item.id}`}>
+                    <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
                         src={item.images}
@@ -362,7 +361,7 @@ export default function HomeAlbum() {
             {musicSearch.length === 0 ? topMusic.apiPlaylists?.map((item) => {
               return (
                 <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                  <Link to={`/${item.id}`}>
+                  <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
                       src={item.images}
@@ -376,7 +375,7 @@ export default function HomeAlbum() {
               : musicSearch.playlists?.map((item) => {
                 return (
                   <SwiperSlide className={styles.containerSwiper} key={item.id}>
-                    <Link to={`/${item.id}`}>
+                    <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
                         src={item.images}
@@ -393,5 +392,4 @@ export default function HomeAlbum() {
       </div>
     </div>
   );
-
 }
