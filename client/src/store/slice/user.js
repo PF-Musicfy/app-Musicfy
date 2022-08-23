@@ -8,7 +8,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     setFeedback: (state, action) => {
-      state.feedback = action.payload
+      state.feedback = action.payload.reverse();
     },
   },
 })
