@@ -1,19 +1,19 @@
-.feedback-container {
+.feedbackContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.feedback-container input {
+.feedbackContainer input {
   color: #000;
 }
 
-.feedback-stars {
+.feedbackStars {
   display: flex;
   flex-direction: row;
 }
 
-.feedback-textarea {
+.feedbackTextarea {
   border: 1px solid #a9a9a9;
   border-radius: 5px;
   padding: 10px;
@@ -22,7 +22,7 @@
   width: 300px;
   color: #000;
 }
-.feedback-button {
+.feedbackButton {
   border: 1px solid #a9a9a9;
   border-radius: 5px;
   width: 300px;

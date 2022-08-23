@@ -4,7 +4,7 @@
     background-size:140%;
     position: relative;
     left: 26%;
-    color: black;
+    color: black;    
     /* background-position: center center;  */
     width: fit-content;
     padding-top: 11%;
@@ -37,7 +37,7 @@
     color: red;
 }
 .register {
-    background-color: #cf355c;
+    background-color: #cf355c;    
     font-size: 30px;
     font-weight: 600;
     margin-left: 5px;
@@ -53,6 +53,11 @@
     background-color: #dc7f96;
     transition: 0.3s;
     /* border-radius: 15px; */
+}
+
+.registerDisabled {
+    background-color: #eae5e6;
+    color: #ccc9ca;
 }
 
 .submit {    
