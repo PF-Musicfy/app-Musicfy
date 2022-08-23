@@ -1,87 +1,168 @@
-.create {
-    background-image: url(https://media.istockphoto.com/vectors/music-background-vector-id1076840920?k=20&m=1076840920&s=612x612&w=0&h=7npgZI1DyLkiejEZM19R0XHWdgJGijuTK4cXZvIA72Q=);
-    background-repeat: no-repeat;
-    background-size:140%;
-    position: relative;
-    left: 26%;
-    color: black;
-    /* background-position: center center;  */
-    width: fit-content;
-    padding-top: 11%;
-    padding-bottom: 9%;
-    margin-top: 5%;    
-    display: flex;    
-    /* justify-content: center; */
-    border-top: 1px solid rgb(50, 50, 50);
-    border-right: 1px solid rgb(25, 25, 25);
-    border-radius: 7px;
-    border-bottom: 5px solid rgb(25, 25, 25);
-    border-left: 7px solid rgb(50, 50, 50);
+.register_nabvar {
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
 
+.register_logo {
+  padding: 10px;
+  cursor: pointer;
+  width: 60px;
+  display: flex;
+  align-items: center;
 }
-.form {
-    position: relative;
-    /* bottom:200px;
-    left: 100px; */
+
+.register_logo span {
+  font-size: 20px;
+  margin-left: 10px;
+  color: #cf355c;
+  transition: 300ms;
 }
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: rgb(235, 84, 36);
+}
+
+.register_logo span:hover {
+  color: #fff;
+}
+
+.space {
+  width: 100%;
+  height: 1px;
+  border: 1px solid #fff;
+  margin-bottom: 30px;
+}
+
+.form_register {
+  width: 50%;
+  margin: auto;
+  padding: 40px 0;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.form_register label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form_register input {
+  width: 70%;
+  height: 20px;
+  padding: 15px;
+  color: #000;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+  margin-bottom: 35px;
+}
+
 .item {
-    background-color: rgba(240, 248, 255, 0.578);
-    padding-left: 3px;
-    min-width: 915px;
-    padding-right: 5px;
-    margin: 5px;
-    font-weight: 500;
-    font-size: 19px;
-}
-.error {
-    color: red;
-}
-.register {
-    background-color: #cf355c;
-    font-size: 30px;
-    font-weight: 600;
-    margin-left: 5px;
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-bottom: 4px;
-    border-radius: 4px;
-    margin-top: 10px;
-
-}
-.register:hover {
-    cursor:pointer;
-    background-color: #dc7f96;
-    transition: 0.3s;
-    /* border-radius: 15px; */
+  position: relative;
 }
 
-.submit {    
-    position: relative;
-    top:100px;
-    left: 350px;
-    padding-bottom: 7px;
-    font-size: 50px;
-    background-color: rgb(125, 125, 195);
-    border-radius: 4px;
-    font-weight: 600;
+.error_span {
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  font-weight: 500;
+  color: rgb(186, 8, 8);
 }
-.submit:hover {
-    cursor:pointer;    
-}
+
 .back {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    padding: 6px;
-    font-size: 40px;
-    font-weight: 500;
-    background-color: #cf355c;
-    border-radius: 5px;
-    border: 1px solid rgb(25, 25, 25);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  color: #cf355c;
+  transition: 300ms;
 }
+
 .back:hover {
-    background-color: #dc7f96;
-    transition: 0.3s;
-    border-radius: 15px;
-    cursor: pointer;
+  color: #fff;
+}
+
+.btn_token_container {
+  width: 231px;
+  height: 51px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  margin: 40px auto -25px auto;
+}
+
+.btn_token {
+  padding: 8px 33px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 4px auto;
+  background-color: #cf355c;
+  border-radius: 15px;
+  margin-left: 5px;
+  transition: 300ms;
+}
+
+/* ********************************** */
+
+.register {
+  background-color: #cf355c;
+  font-size: 17px;
+  border-radius: 15px;
+  padding: 5px 10px;
+  transition: 300ms;
+  display: block;
+  margin: auto;
+}
+
+.register:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #cf355c;
+}
+
+.registerDisabled {
+  background-color: #eae5e6;
+  color: #ccc9ca;
+  border-radius: 15px;
+  padding: 5px 10px;
+  display: block;
+  margin: 20px auto 5px auto;
+}
+
+.submit_border {
+  position: relative;
+}
+
+.submit {
+  position: absolute;
+  left: 45%;
+  color: #fff;
+  background-color: #cf355c;
+  width: 100px;
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 18px;
+  transition: 300ms;
+}
+
+.submit:hover {
+  background-color: #fff;
+  color: #cf355c;
+}
+
+@media screen and (max-width: 900px) {
+  .error_span {
+    left: 34%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .error_span {
+    left: 30%;
+  }
 }
