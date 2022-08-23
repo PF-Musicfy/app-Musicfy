@@ -49,7 +49,7 @@ function About() {
       name: "Alejandro Maturrano",
       title: "Full Stack Developer",
       location: "Lima, Peru",
-      images: "https://www.w3schools.com/howto/img_avatar.png"
+      images: "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661186886/alejandro_pciivb.jpg"
     }
   ];
   return (
