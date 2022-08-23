@@ -74,7 +74,7 @@ export default function RegisterForm() {
   function keyClick(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/send-email", newUser)
+      .post("${axios.defaults.baseURL}/send-email", newUser)
       .then((token) => {
         setNewUser({ ...newUser, token: newUser.eMail + token.data });
         console.log(token.data);
@@ -88,14 +88,14 @@ export default function RegisterForm() {
   function onSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/v1/auth/register", {
+      .post("${axios.defaults.baseURL}/api/v1/auth/register", {
         username: newUser.name,
         email: newUser.eMail,
         password: newUser.password,
         repassword: newUser.rePassword,
       })
       .then(() => {
-        axios.post("http://localhost:5000/send-email-registered", newUser);
+        axios.post("${axios.defaults.baseURL}/send-email-registered", newUser);
         alert("User registered succesfully");
         navigate(-1);
       })
