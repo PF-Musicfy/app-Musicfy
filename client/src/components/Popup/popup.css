@@ -8,12 +8,41 @@
   flex-direction: column;
   align-items: center;
   color: #fff;
-  animation: identifier .2s ease-out;
+  animation: show .3s ease-out;
 }
 
-@keyframes identifier {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+.pp-visible {
+  display: none;
+}
+
+@keyframes show {
+  0% {
+    transform: scale(0.7);
+  }
+
+  45% {
+    transform: scale(1.05);
+  }
+
+  80% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes hide {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
 }
 
 .popup button {
@@ -68,8 +97,4 @@
   margin-bottom: 10px;
   font-size: 25px;
   font-weight: bold;
-}
-
-.pp-visible {
-  display: none;
 }
