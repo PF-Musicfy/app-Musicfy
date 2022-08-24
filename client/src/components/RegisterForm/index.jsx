@@ -199,10 +199,9 @@ export default function RegisterForm() {
           type="submit"
           disabled={error ? true : false}
         >
-          Register
+          <span>Register</span>
         </button>
       </form>
     </div>
   );
 }
-
