@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
 import toMinutes from '../../utils/toMinutes.js';
 import { IconContext } from "react-icons";
+import PopupLogin from "../Popup/PopupLogin.jsx";
 
 //const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
@@ -53,6 +54,7 @@ export default function Player({ music }){
   console.log('player',music);
   return (
     <div className="player">
+      {isPlaying ? '' : <PopupLogin image={''}/>}
       <audio
         src={music.previewURL || url}
         ref={audioElem}

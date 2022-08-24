@@ -3,7 +3,9 @@ import { FaStar } from "react-icons/fa";
 import s from "./feedback.module.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getFeedback } from "../../store/slice";
+import { getFeedback } from "../../store/slice/user.js";
+import NavBarLanding from "../../components/LandingPage/NavBarLanding";
+import Footer from "../../components/LandingPage/Footer";
 
 const colors = {
   orange: "#FFBA5A",
@@ -12,7 +14,7 @@ const colors = {
 
 export default function Feedback() {
   const dispatch = useDispatch();
-  const postsFeedback = useSelector((state) => state.music.feedback);
+  const postsFeedback = useSelector((state) => state.user.feedback);
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
@@ -36,73 +38,96 @@ export default function Feedback() {
 
   const submit = (e) => {
     e.preventDefault();
+    if(!e.target[0].value || !e.target[1].value){
+      alert(`puntos: ${currentValue} stars\n`+
+      `campos no pueden estar vacios`);
+      return;
+    }
     axios.post("http://localhost:5000/feedback", {
       title: e.target[0].value,
-      description: e.target[2].value,
+      description: e.target[1].value,
     })
     .then(() => {
       dispatch(getFeedback())
       alert("post feedback");
+      e.target[0].value = '';
+      e.target[1].value = '';
     })
     .catch((error) => {
       alert(`puntos: ${currentValue} stars\n`+
       `input 1: ${e.target[0].value}\n`+
-      `input 2: ${e.target[1].value}\n`+
-      `textarea: ${e.target[2].value}`);
+      `textarea: ${e.target[1].value}`);
       console.log(error);
     });
   }
 
   return (
-    <div className={s.feedbackContainer}>
-      <h2>Feedback Musicfy</h2>
-      <form className={s.feedbackContainer} onSubmit={submit}>
-        <div className={s.feedbackStars}>
-          {stars.map((_, index) => (
-            <FaStar
-              key={index}
-              size={24}
-              color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-              style={{
-                marginRight: 10,
-                cursor: "pointer"
-              }}
-              onClick={() => click(index + 1)}
-              onMouseOver={() => mouseOver(index + 1)}
-              onMouseLeave={mouseLeave}
-            />
-          ))}
-        </div>
-        <p>Pregunta 1</p>
+    <div>
+      <NavBarLanding />
+      <div className={s.feedbackContainer}>
+      <p
+        className={s.feedbackTitle}
+      >
+        Feedback Musicfy
+      </p>
+      <form className={s.feedbackForm} onSubmit={submit}>
+        <p>Post a new comment</p>
         <input
           type="text"
-          placeholder="What's your experience?"
-        />
-        <p>Pregunta 2</p>
-        <input
-          type="text"
-          placeholder="What's your experience?"
+          placeholder="Title"
         />
         <textarea
-          placeholder="What's your experience?"
+          placeholder="Description"
           className={s.feedbackTextarea}
         />
-
-        <button
-          className={s.feedbackButton}
-        >
-          Submit
-        </button>
+        <div className={s.feedbackSubmit}>
+          <div className={s.feedbackStars}>
+            {stars.map((_, index) => (
+              <FaStar
+                key={index}
+                size={24}
+                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                style={{
+                  marginRight: 10,
+                  cursor: "pointer"
+                }}
+                onClick={() => click(index + 1)}
+                onMouseOver={() => mouseOver(index + 1)}
+                onMouseLeave={mouseLeave}
+              />
+            ))}
+          </div>
+          <button
+            className={s.feedbackButton}
+          >
+            Submit
+          </button>
+        </div>
       </form>
-      <div>
+      <div className={s.feedbackComments}>
         {postsFeedback.map((e) => (
-          <div key={e._id}>
-            <p>id: {e._id}</p>
+          <div
+            key={e._id}
+            className={s.feedbackComment}
+          >
+            <div
+              className={s.feedbackAvatar}
+            >
+              <img src={e.avatar} alt='' />
+              <div>
+                <p>id: {e._id}</p>
+                <p>date: {e.date}</p>
+              </div>
+            </div>
+            <p>plan: {e.plan}</p>
             <p>title: {e.title}</p>
             <p>description: {e.description}</p>
           </div>
         ))}
       </div>
+      </div>
+      <Footer />
     </div>
   )
 }
+// july 31, 2022 06:56
