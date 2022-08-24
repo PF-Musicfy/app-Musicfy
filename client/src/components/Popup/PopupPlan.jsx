@@ -4,12 +4,12 @@ import { BsTabletLandscape } from "react-icons/bs";
 import { HiOutlineDeviceTablet } from "react-icons/hi";
 import { FiCheck } from "react-icons/fi";
 
-import 'styles/popup.css';
-import styles from "styles/premium.module.css";
+import '../../styles/popup.css';
+import styles from "../../styles/premium.module.css";
 
 import Popup from './index.js';
 
-export default function PopupExample({plan}){
+export default function PopupPlan({plan}){
   return (
     <Popup>
       <div>

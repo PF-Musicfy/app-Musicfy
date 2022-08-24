@@ -1,5 +1,5 @@
 import Popup from './index.js';
-import 'styles/popup.css';
+import '../../styles/popup.css';
 import { useNavigate } from "react-router-dom";
 
 export default function PopupLogin(){

@@ -1,5 +1,5 @@
 import Popup from './index.js';
-import 'styles/popup.css';
+import '../../styles/popup.css';
 
 export default function PopupExample(){
   return (
