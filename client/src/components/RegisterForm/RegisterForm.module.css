@@ -139,7 +139,15 @@
 
 .submit {
   position: absolute;
-  left: 45%;
+  left: 44%;
+  bottom: 180px;
+  border: 2px solid #fff;
+  width: 95px;
+  height: 45px;
+  border-radius: 20px;
+}
+
+.submit span {
   color: #fff;
   background-color: #cf355c;
   width: 100px;
@@ -150,7 +158,7 @@
   transition: 300ms;
 }
 
-.submit:hover {
+.submit span:hover {
   background-color: #fff;
   color: #cf355c;
 }
