@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import RegisterForm from "./components/RegisterForm";
@@ -14,7 +15,6 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 
 function App() {
-  //<Route exact path="/:id" element={<Detail/>} />
   return (
     <div className="App">
       <Routes>

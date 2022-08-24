@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaBackward } from "react-icons/fa";
-import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 import s from "./login.module.css";
 import validate from "../../utils/validate.js";
@@ -11,15 +11,41 @@ import setTitle from "../../utils/setTitle.js";
 setTitle("Login - Musicfy");
 
 export default function Login() {
-  const { loginWithPopup } = useAuth0();
   const navigate = useNavigate();
   const inputPass = useRef();
+  const [user, setUser] = useState({});
 
   const [input, setInput] = useState({
     user: "",
     pass: "",
   });
   const [errors, setErrors] = useState({});
+
+  const responseGoogle = (response) => {
+    const userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
+  }
+  const signOut = (e) => {
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com",
+      callback: responseGoogle
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large"}
+    );
+
+    google.accounts.id.prompt();
+  },[])
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +88,16 @@ export default function Login() {
       </div>
       <div className={s.container}>
         <div className={s.options}>
-          <button onClick={loginWithPopup}>SIGN IN WITH ...</button>
+          <div id="signInDiv"></div>
+          {
+            Object.keys(user).length !== 0 &&
+            <button onClick={(e) => signOut(e)}>SignOut</button>
+          }
+          { user &&
+            <div>
+              <p>{user.name}</p>
+            </div>
+          }
         </div>
         <form className={s.form} onSubmit={handleSubmit}>
           <p>Email</p>
