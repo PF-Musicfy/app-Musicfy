@@ -1,64 +1,77 @@
 const axios = require("axios");
-  const apiKey = 'apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4';
-  const urlNapster = 'https://api.napster.com/imageserver/v2';
-  const mainUrl = 'https://api.napster.com/v2.2'
 
-  const topMusic = async () => {
-    const {data: {tracks}} = await axios.get(`${mainUrl}/tracks/top?${apiKey}&limit=10`);
-    const apiTracks = await tracks.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        artistName: e.artistName,
-        previewURL: e.previewURL,
-        albumName: e.albumName,
-        images: `${urlNapster}/artists/${e.artistId}/images/356x237.jpg`
-      };
-    });
+const apiKey = 'apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4';
+const urlNapster = 'https://api.napster.com/imageserver/v2';
+const mainUrl = 'https://api.napster.com/v2.2'
 
-    const {data: {albums}} = await axios.get(`${mainUrl}/albums/new?${apiKey}&limit=10`);
-    const apiAlbums = await albums.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        artistName: e.artistName,
-        trackCount: e.trackCount,
-        images: `${urlNapster}/albums/${e.id}/images/356x237.jpg`,
-      };
-    });
+function noRepetidos(arr){
+  let hash = {}
+  let result = arr.filter((e) => {
+    const exist = !hash[e.id];
+    hash[e.id] = true;
+    return exist;
+  })
+  return result;
+}
 
-    const {data: {artists}} = await axios.get(`${mainUrl}/artists/top?${apiKey}&limit=10`);
-    const apiArtists = await artists.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        shortcut: e.shortcut,
-        images: `${urlNapster}/artists/${e.id}/images/356x237.jpg`,
-      };
-    });
+const topMusic = async () => {
+  const {data: {tracks}} = await axios.get(`${mainUrl}/tracks/top?${apiKey}&limit=10`);
+  const apiTrack = await tracks.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      artistName: e.artistName,
+      previewURL: e.previewURL,
+      albumName: e.albumName,
+      images: `${urlNapster}/artists/${e.artistId}/images/356x237.jpg`
+    };
+  });
 
-    const {data: {playlists}} = await axios.get(`${mainUrl}/playlists/top?${apiKey}&limit=10`);
-    const apiPlaylists = await playlists.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        trackCount: e.trackCount,
-        images: `${urlNapster}/playlists/${e.id}/artists/images/356x237.jpg`,
-      };
-    });
+  const apiTracks = noRepetidos(apiTrack);
 
-    const {data: {stations}} = await axios.get(`${mainUrl}/stations/top?${apiKey}&limit=10`);
-    const apiStations = await stations.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        artists: e.artists,
-        summary: e.summary,
-        images: `${urlNapster}/stations/${e.id}/images/356x237.jpg`,
-      };
-    });
+  const {data: {albums}} = await axios.get(`${mainUrl}/albums/new?${apiKey}&limit=10`);
+  const apiAlbums = await albums.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      artistName: e.artistName,
+      trackCount: e.trackCount,
+      images: `${urlNapster}/albums/${e.id}/images/356x237.jpg`,
+    };
+  });
 
-    return { apiTracks, apiAlbums, apiArtists, apiPlaylists, apiStations }
+  const {data: {artists}} = await axios.get(`${mainUrl}/artists/top?${apiKey}&limit=10`);
+  const apiArtists = await artists.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      shortcut: e.shortcut,
+      images: `${urlNapster}/artists/${e.id}/images/356x237.jpg`,
+    };
+  });
+
+  const {data: {playlists}} = await axios.get(`${mainUrl}/playlists/top?${apiKey}&limit=10`);
+  const apiPlaylists = await playlists.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      trackCount: e.trackCount,
+      images: `${urlNapster}/playlists/${e.id}/artists/images/356x237.jpg`,
+    };
+  });
+
+  const {data: {stations}} = await axios.get(`${mainUrl}/stations/top?${apiKey}&limit=10`);
+  const apiStations = await stations.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      artists: e.artists,
+      summary: e.summary,
+      images: `${urlNapster}/stations/${e.id}/images/356x237.jpg`,
+    };
+  });
+
+  return { apiTracks, apiAlbums, apiArtists, apiPlaylists, apiStations }
 }
 
 const getByName = async (name) => {
