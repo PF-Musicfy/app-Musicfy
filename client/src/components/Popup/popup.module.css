@@ -11,26 +11,15 @@
   animation: show .3s ease-out;
 }
 
-.pp-visible {
+.visible {
   display: none;
 }
 
 @keyframes show {
-  0% {
-    transform: scale(0.7);
-  }
-
-  45% {
-    transform: scale(1.05);
-  }
-
-  80% {
-    transform: scale(0.95);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+  0% {transform: scale(0.7);}
+  45% {transform: scale(1.05);}
+  80% {transform: scale(0.95);}
+  100% {transform: scale(1);}
 }
 
 @keyframes hide {
@@ -38,7 +27,6 @@
     transform: scale(1);
     opacity: 1;
   }
-
   100% {
     transform: scale(0.5);
     opacity: 0;
@@ -51,26 +39,26 @@
   border-radius: 50px;
 }
 
-.popup-container {
+.container {
   padding: 60px;
   background: linear-gradient(#667, #000);
   color: #fff;
   border-radius: 10px;
 }
 
-.popup-content {
+.content {
   display: flex;
   justify-content: space-evenly;
   gap: 40px;
 }
 
-.pp-logo {
+.logo {
   height: 200px;
   width: 200px;
   background: #333;
 }
 
-.pp-info {
+.info {
   width: 250px;
   text-align: center;
   display: flex;
@@ -79,12 +67,12 @@
   align-items: center;
 }
 
-.pp-login {
+.login {
   margin: 10px;
   font-size: 14px;
 }
 
-.pp-login button {
+.login button {
   border: none;
   color: #fff;
   background: none;
@@ -93,7 +81,7 @@
   font-weight: bold;
 }
 
-.pp-info p {
+.info p {
   margin-bottom: 10px;
   font-size: 25px;
   font-weight: bold;

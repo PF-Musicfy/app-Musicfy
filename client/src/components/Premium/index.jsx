@@ -1,7 +1,7 @@
 import NavBarLanding from "../LandingPage/NavBarLanding";
-import styles from "./premium.module.css";
 import Footer from "../LandingPage/Footer";
 import CardPlan from "../CardPlan";
+import styles from "./premium.module.css";
 
 export default function Premium() {
   return (
