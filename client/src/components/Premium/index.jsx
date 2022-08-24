@@ -5,6 +5,7 @@ import { RiComputerLine } from "react-icons/ri";
 import { BsTabletLandscape } from "react-icons/bs";
 import { HiOutlineDeviceTablet } from "react-icons/hi";
 import { FiCheck } from "react-icons/fi";
+import Footer from "../LandingPage/Footer";
 export default function Premium() {
   return (
     <div>
@@ -91,6 +92,7 @@ export default function Premium() {
           <button>Choose plan</button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
