@@ -24,8 +24,14 @@ const postSchema = new mongoose.Schema(
       default: "free",
     },
     date: {
-      type: Date,
-      default: Date.now,
+      type: String,
+      default: new Date().toLocaleDateString('en-us', {
+        year:"numeric",
+        month:"short",
+        day:"2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }),
     },
   },
   {

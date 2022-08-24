@@ -29,11 +29,11 @@ export default function Popup({children}){
           {children}
         </div>
       </div>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        cerrar
-      </button>
     </div>
   )
 }
+      //<button
+      //  onClick={() => setIsOpen(!isOpen)}
+      //>
+      //  cerrar
+      //</button>
