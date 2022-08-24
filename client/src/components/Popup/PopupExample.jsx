@@ -1,26 +1,20 @@
 import Popup from './index.js';
-import './popup.css';
+import 'styles/popup.css';
 
-export default function PopupLogin(){
+export default function PopupExample(){
   return (
     <Popup>
       <div className='pp-logo'>
         <img src='' alt='Musicfy Logo' />
       </div>
       <div className='pp-info'>
-        <p>
-        Empieza a escuchar musica con Musicfy
-        </p>
+        <p>Empieza a escuchar musica con Musicfy</p>
         <div>
-          <button>
-            Registrate Gratis
-          </button>
+          <button>Registrate Gratis</button>
         </div>
         <div className='pp-login'>
           <span>¿Ya tienes cuenta?</span>
-          <button>
-            Inicia sesion
-          </button>
+          <button>Inicia sesion</button>
         </div>
       </div>
     </Popup>

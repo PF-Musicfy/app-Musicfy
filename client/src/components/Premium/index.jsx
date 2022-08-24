@@ -1,5 +1,5 @@
 import NavBarLanding from "../LandingPage/NavBarLanding";
-import styles from "./premium.module.css";
+import styles from "styles/premium.module.css";
 import Footer from "../LandingPage/Footer";
 import CardPlan from "../CardPlan";
 
