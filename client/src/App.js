@@ -1,16 +1,17 @@
-import RegisterForm from "./components/RegisterForm";
 import { Route, Routes } from "react-router-dom";
+
+import RegisterForm from "./components/RegisterForm";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
-import Login from "./components/Login";
 //import Page404 from "./components/Page404";
 //import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
-import Feedback from "./pages/Feedback";
-import Dashboard from "./pages/Dashboard";
 import Detail from "./components/Detail";
 import Premium from "./components/Premium";
 import About from "./components/About";
+import Feedback from "./pages/Feedback";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 
 function App() {
   //<Route exact path="/:id" element={<Detail/>} />
