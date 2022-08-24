@@ -90,7 +90,7 @@ if (id.includes("art")) {
   };
 }
 
-if (id.includes("pp")) {
+if (id.includes("pp") || id.includes("mp")) {
   return async function (dispatch) {
     try {
       const artistId = await axios.get(`${axios.defaults.baseURL}/playlist/${id}`);
