@@ -4,7 +4,7 @@ import { BsTabletLandscape } from "react-icons/bs";
 import { HiOutlineDeviceTablet } from "react-icons/hi";
 import { FiCheck } from "react-icons/fi";
 
-import styles from "styles/premium.module.css";
+import styles from "../Premium/premium.module.css";
 
 export default function CardPlan({ plan }) {
   return (
