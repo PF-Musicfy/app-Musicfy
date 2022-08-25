@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import RegisterForm from "./components/RegisterForm";
@@ -13,6 +13,7 @@ import About from "./components/About";
 import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import PageAdmin from "./components/PageAdmin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/feedback" element={<Feedback />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
+        <Route exact path="/admin" element={<PageAdmin />} />
         <Route path="*" element={<PageDev />} />
       </Routes>
     </div>
