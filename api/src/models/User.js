@@ -27,6 +27,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "free",
     },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
+    isblocked: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,
