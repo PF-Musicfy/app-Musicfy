@@ -1,5 +1,4 @@
 const User = require("../models/User.js");
-const jwt = require("jsonwebtoken");
 const {
   generateRefreshToken,
   generateToken,
@@ -10,21 +9,17 @@ const register = async (req, res) => {
     const { username, email, password } = req.body;
     let user = await User.findOne({ email });
 
-
     // if (user) alert("Email already exists");
     if (user) {
-      return res
-          .status(404)
-          .send(
-              `${email} already exists`,
-          );
-  }
+      return res.status(404).send(`${email} already exists`);
+    }
 
     user = new User({ username, email, password });
     await user.save();
 
     // genrerar jwt
-    const token = jwt.sign({ uid: user.id }, process.env.JWT_SECRET);
+    const { token, expiresIn } = generateToken(user.id);
+    generateRefreshToken(user.id, res);
 
     return res.status(201).json({ token });
   } catch (error) {
