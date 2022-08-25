@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import axios from "axios";
 import { FaBackward } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 export default function RegisterForm() {
   const [newUser, setNewUser] = useState({
@@ -71,6 +72,18 @@ export default function RegisterForm() {
     console.log(newUser);
   }
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
   function keyClick(e) {
     e.preventDefault();
     axios
@@ -78,7 +91,12 @@ export default function RegisterForm() {
       .then((token) => {
         setNewUser({ ...newUser, token: newUser.eMail + token.data });
         console.log(token.data);
-        alert("Key generated and sent to your email");
+
+        // alert sweet when key is sended to email
+        Toast.fire({
+          icon: 'success',
+          title: 'Key generated and sent to your email'
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -96,11 +114,25 @@ export default function RegisterForm() {
       })
       .then(() => {
         axios.post(`${axios.defaults.baseURL}/send-email-registered`, newUser);
-        alert("User registered succesfully");
-        navigate(-1);
+
+        // alert sweet when registered succesfully
+        Toast.fire({
+          icon: 'success',
+          title: 'User registered succesfully'
+        })
+        
+        setTimeout(() => {
+          navigate(-1);
+        }, 2000);
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops try again!',
+            text: 'Email already exist',
+          })
+        }
       });
   }
   return (

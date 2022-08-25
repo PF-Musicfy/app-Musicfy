@@ -17,10 +17,7 @@ export const infoMusic = createSlice({
     },
     setDetailTracks: (state, action) => {
       state.detailTracks = action.payload
-    },
-    clearTopMusic: (state, action) => {
-      state.topMusic = action.payload
-    },
+    }
   },
 })
 
@@ -104,6 +101,6 @@ if (id.includes("pp") || id.includes("mp")) {
 }
 export function topMusicClear() {
   return function (dispatch) {
-    return dispatch(clearTopMusic({}))
+    return dispatch(setTopMusic([]))
   }
 }

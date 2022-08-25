@@ -4,12 +4,13 @@ import imagen from "./img_avatar.png";
 import { useRef, useState } from "react";
 import imagen2 from "./WJT6FaB.png";
 import SearchBar from "../SearchBar/Index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavBarHome() {
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);
   const navRef = useRef();
+  let navigate = useNavigate();
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
@@ -19,6 +20,10 @@ export default function NavBarHome() {
   }
   function handleLog() {
     setLogged(!logged);
+  }
+  function onClickHome(e) {    
+    e.preventDefault()
+    navigate(0)
   }
 
   return (
@@ -36,9 +41,9 @@ export default function NavBarHome() {
               <span>Musicfy</span>
             </div>
             <nav ref={navRef}>
-              <Link to='/home'>
-                <span>Home</span>
-              </Link>
+              {/* <Link to='/home'> */}
+                <span onClick={(e) => {onClickHome(e)}}>Home</span>
+              {/* </Link> */}
               <Link to='/favorites'>
                 <span>Favorites</span>
               </Link>
