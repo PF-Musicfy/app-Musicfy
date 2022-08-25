@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./indexHome.module.css";
 import "swiper/css/navigation";
-import { getTopMusic, topMusicClear } from "../../../store/slice/index";
+import { getTopMusic, topMusicClear, getTopsByGenre } from "../../../store/slice/index";
 import { Link } from "react-router-dom"
 
 // Import Swiper styles
@@ -30,6 +30,7 @@ export default function HomeAlbum() {
   const changingState = (e) => {
     e.preventDefault();
     console.log('estoy funcionando')
+    console.log(musicSearch)
     setState({
       tracks: e.target.name === 'tracks' ? true : false,
       albums: e.target.name === 'albums' ? true : false,
@@ -38,6 +39,36 @@ export default function HomeAlbum() {
     })
     // setState({...state, [e.target.name]: state[e.target.name] === true ? false : true})
   }
+  
+                                        // Kosovomba
+
+  const [combFilter, setCombFilter] = useState({genre: ['Choose genre', ''], tops: 'Choose option'})
+  const genreOptions = [['Choose genre', ''], ["Pop", "g.115"], ["Rock", "g.5"], ["Alternative", "g.33"], ["Hip-Hop/Rap", "g.146"], 
+  ["R&B/Soul", "g.194"], ["Country", "g.407"], ["Jazz", "g.299"], ["Dance/Electronica", "g.71"], ["Latin", "g.510"], 
+  ["World", "g.488"], ["Reggae", "g.383"], ["Classical", "g.21"], ["Oldies", "g.4"], ["New Age", "g.453"], 
+  ["Christian/Gospel", "g.75"], ["Blues", "g.438"], ["Folk", "g.446"], ["Easy Listening", "g.69"], 
+  ["Soundtracks", "g.246"], ["Children", "g.470"], ["Comedy/Spoken Word", "g.156"], ["Metal", "g.394"]]
+  let genreOption = []
+
+  function handleChangeGenre(e) {
+    e.preventDefault()
+    genreOption = genreOptions.filter( (g) => g[0] === e.target.value)
+    setCombFilter({...combFilter, genre: genreOption[0]}) 
+    console.log(combFilter)
+  } 
+
+  function handleChangeTops(e) {
+    e.preventDefault()
+    setCombFilter({...combFilter, tops: e.target.value.toLowerCase()})
+  }  
+
+  const handleCombFilter = (e) => {
+    e.preventDefault();
+    dispatch(getTopsByGenre(combFilter));
+    // setCombFilter({genre: ['Choose genre', ''], tops: 'Choose option'})
+  }
+
+                                        // Kosovomba
 
   const onClickResetFilters = () => {
     setState({
@@ -67,13 +98,34 @@ export default function HomeAlbum() {
 
 
       <div className={styles.buttonsFilter}>
-        {musicSearch.length === 0 ? false : <button className={state.tracks === true ? styles.buttonStyles : styles.buttonOff} name='tracks' onClick={(e) => changingState(e)}>Tracks</button>}
-        {musicSearch.length === 0 ? false : <button className={state.albums === true ? styles.buttonStyles : styles.buttonOff} name='albums' onClick={(e) => changingState(e)}>Albums</button>}
-        {musicSearch.length === 0 ? false : <button className={state.playlist === true ? styles.buttonStyles : styles.buttonOff} name='playlist' onClick={(e) => changingState(e)}>Playlist</button>}
-        {musicSearch.length === 0 ? false : <button className={state.artist === true ? styles.buttonStyles : styles.buttonOff} name='artist' onClick={(e) => changingState(e)}>Artist</button>}
-        {musicSearch.length === 0 ? false : <button className={styles.buttonStyles} name='reset' onClick={() => onClickResetFilters()}>Reset filters</button>}
+        {<button className={state.tracks === true ? styles.buttonStyles : styles.buttonOff} name='tracks' onClick={(e) => changingState(e)}>Tracks</button>}
+        {<button className={state.albums === true ? styles.buttonStyles : styles.buttonOff} name='albums' onClick={(e) => changingState(e)}>Albums</button>}
+        {<button className={state.playlist === true ? styles.buttonStyles : styles.buttonOff} name='playlist' onClick={(e) => changingState(e)}>Playlist</button>}
+        {<button className={state.artist === true ? styles.buttonStyles : styles.buttonOff} name='artist' onClick={(e) => changingState(e)}>Artist</button>}
+        {<button className={styles.buttonStyles} name='reset' onClick={() => onClickResetFilters()}>Reset filters</button>}
       </div>
 
+                                     {/* Kosovomba */}
+
+      <div className={styles.buttonsFilter}>
+        <span>Tops by genre: </span>
+        <select name='genre' onChange={handleChangeGenre} value={combFilter.genre[0]}>
+            {/* <option>Choose genre</option> */}
+            {genreOptions.map((g) => {
+                    return <option key={g[0]} value={g[0]}>{g[0]}</option>
+                })}
+        </select>
+        <select name='tops' onChange={handleChangeTops} value={combFilter.tops}>
+            <option>Choose option</option>
+            <option>Tracks</option>
+            <option>Albums</option>
+            <option>Artists</option>
+            <option>Playlists</option>
+        </select>
+        <button onClick={(e) => handleCombFilter(e)}>Search</button>
+      </div>
+
+                                    {/* Kosovomba */}
 
       <div className={state.tracks === false ? styles.containerAlbumes : styles.containerAlbumes2} >
         {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Tracks</h1> : <h1 className={styles.titleGenre}>Tracks</h1>}
