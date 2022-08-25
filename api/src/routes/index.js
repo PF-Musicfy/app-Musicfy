@@ -15,7 +15,6 @@ const PaymentInstance = new PaymentController(new PaymentService());
 app.use("/api/v1/auth", authRouter);
 app.use("/user", userRouter);
 
-                                              // Kosovomba
 
 app.get("/genres/:genre/:tops", async (req, res, next)=> {
   let {genre} = req.params
@@ -30,9 +29,6 @@ app.get("/genres/:genre/:tops", async (req, res, next)=> {
     next(error)
   }
 })
-
-                                              // Kosovomba
-
 
 
 app.get("/payment", async function (req, res, next) {
@@ -51,6 +47,7 @@ app.get("/subscription", async function (req, res, next) {
     res.status(400).send({msg: "need a email"})
   }
 });
+
 
 app.get("/topmusic", async (req, res, next)=> {
   let music = await topMusic()
