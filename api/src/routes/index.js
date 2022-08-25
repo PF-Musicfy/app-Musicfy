@@ -6,7 +6,10 @@ const app = Router();
 const {generateToken} = require('../controllers/generateTokenController')
 const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
+const userRouter = require("./user.route.js");
+
 app.use("/api/v1/auth", authRouter);
+app.use("/user", userRouter);
 
 app.get("/topmusic", async (req, res, next)=> {
   let music = await topMusic()
