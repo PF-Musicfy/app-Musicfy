@@ -6,7 +6,10 @@ const app = Router();
 const {generateToken} = require('../controllers/generateTokenController')
 const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId, combinedFilters } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
+const userRouter = require("./user.route.js");
+
 app.use("/api/v1/auth", authRouter);
+app.use("/user", userRouter);
 
                                               // Kosovomba
 
