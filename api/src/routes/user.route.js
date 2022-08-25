@@ -30,4 +30,17 @@ router.get('/admin',async (req,res)=>{
   console.log(users);
   res.send(users);
 })
+router.post('/online',async (req,res) => {
+  try{
+    const { id } = req.body;
+
+    let user = await User.findById(id);
+    user.online = !user.online;
+    await user.save()
+    console.log(`user: ${id} | ${user.online}`);
+    res.send(user);
+  }catch(e){
+    res.status(500).send('error /online');
+  }
+})
 module.exports = router;   
