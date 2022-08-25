@@ -47,10 +47,6 @@
   font-size: 30px;
   justify-content: center;
 }
-.card p {
-  margin-top: 10px;
-  font-size: 20px;
-}
 .card h1 {
   margin-left: auto;
   margin-right: auto;
@@ -58,7 +54,7 @@
 .card:hover {
   opacity: 0.9;
 }
-button {
+.button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 120px;
@@ -75,10 +71,10 @@ button {
   position: relative;
   transition: color 1s;
 }
-button:hover {
+.button:hover {
   color: rgb(255, 255, 255);
 }
-button::before {
+.button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -90,7 +86,7 @@ button::before {
   z-index: -1;
   transition: width 1s;
 }
-button:hover:before {
+.button:hover:before {
   width: 150%;
 }
 .cardwords {
@@ -105,4 +101,6 @@ button:hover:before {
 }
 .cardwords p {
   display: flex;
+  margin-top: 10px;
+  font-size: 20px;
 }

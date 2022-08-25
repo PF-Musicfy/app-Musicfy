@@ -30,7 +30,7 @@ export default function CardPlan({ plan }) {
           Music without Ads
         </p>
       </div>
-      <button>Choose plan</button>
+      <button className={styles.button}>Choose plan</button>
     </div>
   );
 }
