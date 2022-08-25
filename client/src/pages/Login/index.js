@@ -21,17 +21,6 @@ export default function Login() {
   });
   const [errors, setErrors] = useState({});
 
-  const responseGoogle = (response) => {
-    const userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  }
-  const signOut = (e) => {
-    setUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
-
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
@@ -46,6 +35,18 @@ export default function Login() {
 
     google.accounts.id.prompt();
   },[])
+
+  const responseGoogle = (response) => {
+    const userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
+  }
+
+  const signOut = (e) => {
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+  }
 
   const inputChange = (e) => {
     const { name, value } = e.target;
