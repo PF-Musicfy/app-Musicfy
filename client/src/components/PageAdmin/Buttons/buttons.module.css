@@ -1,0 +1,16 @@
+.buttonOff {
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 0px 6px 0px 6px;
+  color: white;
+  margin: 0px 10px 0px 10px;
+  background: gray;
+}
+.buttonStyles {
+  border: 2px solid var(--mainColor);
+  border-radius: 8px;
+  padding: 0px 6px 0px 6px;
+  color: white;
+  margin: 0px 10px 0px 10px;
+  background: var(--mainColor);
+}
