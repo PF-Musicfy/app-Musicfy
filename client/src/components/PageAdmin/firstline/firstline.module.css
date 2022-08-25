@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+  background-color: rgb(255, 5, 142);
+  border-radius: 2px;
+  color: black;
+}
+.plan {
+  margin-left: 130px;
+}
+.button {
+  margin-left: 40px;
+}
