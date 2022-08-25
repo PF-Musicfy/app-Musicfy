@@ -16,9 +16,9 @@ export default function Premium() {
         <h1 className={styles.title}>Listen trend music any time, anywhere</h1>
       </div>
       <div className={styles.subcontainer2}>
-        <CardPlan plan={'5$ / 1 month'}/>
-        <CardPlan plan={'25$ / 3 month'}/>
-        <CardPlan plan={'55$ / 12 month'}/>
+        <CardPlan plan={"$2,99 / 1 month"} />
+        <CardPlan plan={"$5,99 / 3 months"} />
+        <CardPlan plan={"$20,99 / 12 months"} />
       </div>
       <Footer />
     </div>

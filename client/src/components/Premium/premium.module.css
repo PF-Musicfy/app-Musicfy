@@ -55,25 +55,43 @@
   margin-left: auto;
   margin-right: auto;
 }
-.card button {
+.card:hover {
+  opacity: 0.9;
+}
+button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 120px;
   margin-bottom: 10px;
-  border-radius: 10px;
-  background-color: rgb(216, 19, 134);
   color: rgb(0, 0, 0);
   padding-left: 10px;
   padding-right: 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+  letter-spacing: 2px;
+  outline: 1px solid rgb(0, 0, 0);
+  padding: 5px 15px;
+  overflow: hidden;
+  position: relative;
+  transition: color 1s;
 }
-.card:hover {
-  opacity: 0.9;
+button:hover {
+  color: rgb(255, 255, 255);
 }
-.card button:hover {
-  background-color: black;
-  color: rgb(216, 19, 134);
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50px;
+  width: 0;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  transform: skewX(35deg);
+  z-index: -1;
+  transition: width 1s;
+}
+button:hover:before {
+  width: 150%;
 }
 .cardwords {
   margin-top: 50px;

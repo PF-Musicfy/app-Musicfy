@@ -27,10 +27,10 @@ export default function CardPlan({ plan }) {
         </p>
         <p>
           <FiCheck />
-          Music without publicity
+          Music without Ads
         </p>
       </div>
       <button>Choose plan</button>
     </div>
-  )
+  );
 }
