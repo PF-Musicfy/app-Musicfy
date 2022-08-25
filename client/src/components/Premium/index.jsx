@@ -4,6 +4,8 @@ import CardPlan from "../CardPlan";
 import styles from "./premium.module.css";
 
 export default function Premium() {
+
+
   return (
     <div>
       <NavBarLanding />
