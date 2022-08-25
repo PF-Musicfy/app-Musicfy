@@ -59,7 +59,7 @@ export default function HomeAlbum() {
 
   function handleChangeTops(e) {
     e.preventDefault()
-    setCombFilter({...combFilter, tops: e.target.value.toLowerCase()})
+    setCombFilter({...combFilter, tops: e.target.value})
   }  
 
   const handleCombFilter = (e) => {
@@ -109,20 +109,20 @@ export default function HomeAlbum() {
 
       <div className={styles.buttonsFilter}>
         <span>Tops by genre: </span>
-        <select name='genre' onChange={handleChangeGenre} value={combFilter.genre[0]}>
+        <select name='genre' className={styles.selectorFilter} onChange={handleChangeGenre} value={combFilter.genre[0]}>
             {/* <option>Choose genre</option> */}
             {genreOptions.map((g) => {
                     return <option key={g[0]} value={g[0]}>{g[0]}</option>
                 })}
         </select>
-        <select name='tops' onChange={handleChangeTops} value={combFilter.tops}>
+        <select className={styles.selectorFilter} name='tops' onChange={handleChangeTops} value={combFilter.tops}>
             <option>Choose option</option>
             <option>Tracks</option>
             <option>Albums</option>
             <option>Artists</option>
             <option>Playlists</option>
         </select>
-        <button onClick={(e) => handleCombFilter(e)}>Search</button>
+        <button onClick={(e) => handleCombFilter(e)} disabled={ combFilter.genre[0] === 'Choose genre'? true : (combFilter.tops === 'Choose option'? true : false) }>Search</button>
       </div>
 
                                     {/* Kosovomba */}

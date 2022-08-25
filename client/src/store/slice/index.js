@@ -35,9 +35,9 @@ export function getTopsByGenre(combFilter) {
   return async function(dispatch) {
     try {
       console.log(combFilter)
-      const topsByGenre = await axios.get(`${axios.defaults.baseURL}/genres/${combFilter.genre[1]}/${combFilter.tops}`) 
+      const topsByGenre = await axios.get(`${axios.defaults.baseURL}/genres/${combFilter.genre[1]}/${combFilter.tops.toLowerCase()}`) 
       console.log(topsByGenre.data)     
-      return dispatch(setMusicSearch({[combFilter.tops]: topsByGenre.data}))
+      return dispatch(setMusicSearch({[combFilter.tops.toLowerCase()]: topsByGenre.data}))
     } catch (error) {
       console.log(error);
     }
