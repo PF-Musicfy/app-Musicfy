@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    online: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,
