@@ -6,7 +6,6 @@ const router = Router();
 
 router.get('/',async (req,res)=>{
   const users = await User.find();
-  console.log(users);
   res.send(users);
 })
 router.get('/free',async (req,res)=>{
@@ -14,7 +13,6 @@ router.get('/free',async (req,res)=>{
     console.log('free');
     //const users = await User.find({$or:[ {'premium':"false"}, {'premium':false} ]});
     const users = await User.find({ premium: false });
-    console.log(users);
     res.send(users);
   }catch (e){
     res.status(500).send('error');
@@ -22,25 +20,31 @@ router.get('/free',async (req,res)=>{
 })
 router.get('/premium',async (req,res)=>{
   const users = await User.find({ premium: true });
-  console.log(users);
   res.send(users);
 })
 router.get('/admin',async (req,res)=>{
   const users = await User.find({ admin: true });
-  console.log(users);
   res.send(users);
 })
 router.post('/online',async (req,res) => {
   try{
     const { id } = req.body;
-
     let user = await User.findById(id);
     user.online = !user.online;
     await user.save()
     console.log(`user: ${id} | ${user.online}`);
-    res.send(user);
+    res.send(user.online);
   }catch(e){
-    res.status(500).send('error /online');
+    res.status(500).send('error post/online');
   }
 })
-module.exports = router;   
+router.get('/online/:id',async (req,res) => {
+  try{
+    const { id } = req.params;
+    let user = await User.findById(id);
+    res.send(user.online);
+  }catch(e){
+    res.status(500).send('error get/online');
+  }
+})
+module.exports = router;
