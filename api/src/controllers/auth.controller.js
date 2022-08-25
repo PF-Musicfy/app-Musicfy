@@ -21,7 +21,7 @@ const register = async (req, res) => {
     const { token, expiresIn } = generateToken(user.id);
     generateRefreshToken(user.id, res);
 
-    return res.status(201).json({ token });
+    return res.status(201).json({ token, expiresIn });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
