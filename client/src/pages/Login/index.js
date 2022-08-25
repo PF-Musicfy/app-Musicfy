@@ -8,9 +8,9 @@ import s from "./login.module.css";
 import validate from "../../utils/validate.js";
 import setTitle from "../../utils/setTitle.js";
 
-setTitle("Login - Musicfy");
-
 export default function Login() {
+  setTitle("Login - Musicfy");
+
   const navigate = useNavigate();
   const inputPass = useRef();
   const [user, setUser] = useState({});
@@ -20,17 +20,6 @@ export default function Login() {
     pass: "",
   });
   const [errors, setErrors] = useState({});
-
-  const responseGoogle = (response) => {
-    const userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  }
-  const signOut = (e) => {
-    setUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
 
   useEffect(() => {
     /* global google */
@@ -46,6 +35,18 @@ export default function Login() {
 
     google.accounts.id.prompt();
   },[])
+
+  const responseGoogle = (response) => {
+    const userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
+  }
+
+  const signOut = (e) => {
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+  }
 
   const inputChange = (e) => {
     const { name, value } = e.target;
