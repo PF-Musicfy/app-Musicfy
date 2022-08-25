@@ -7,9 +7,30 @@ const {generateToken} = require('../controllers/generateTokenController')
 const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
 const userRouter = require("./user.route.js");
+const PaymentController = require("../controllers/PaymentController");
+const PaymentService = require("../controllers/PaymentService");
+const PaymentInstance = new PaymentController(new PaymentService());
+
 
 app.use("/api/v1/auth", authRouter);
 app.use("/user", userRouter);
+
+app.get("/payment", async function (req, res, next) {
+  PaymentInstance.getPaymentLink(req, res);
+});
+
+app.get("/subscription", async function (req, res, next) {
+  const { email } = req.body
+  if(email){
+    try{
+      PaymentInstance.getSubscriptionLink(req, res, email);
+    }catch(error){
+      next(error)
+    }
+  }else{
+    res.status(400).send({msg: "need a email"})
+  }
+});
 
 app.get("/topmusic", async (req, res, next)=> {
   let music = await topMusic()
@@ -19,7 +40,6 @@ app.get("/topmusic", async (req, res, next)=> {
     next(error)
   }
 })
-
 
 app.get("/name", async (req, res, next)=> {
   const { name } = req.query
