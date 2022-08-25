@@ -10,7 +10,15 @@ const register = async (req, res) => {
     const { username, email, password } = req.body;
     let user = await User.findOne({ email });
 
-    if (user) throw new Error("Email already exists");
+
+    // if (user) alert("Email already exists");
+    if (user) {
+      return res
+          .status(404)
+          .send(
+              `${email} already exists`,
+          );
+  }
 
     user = new User({ username, email, password });
     await user.save();
