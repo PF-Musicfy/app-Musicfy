@@ -1,9 +1,13 @@
+import Buttons from "./Buttons";
 import CardUser from "./CardUser";
-import FirstLine from "./firstline";
+import FirstLine from "./Firstline";
+import SearchBar from "./SearchBar";
 
 export default function PageAdmin() {
   return (
     <div>
+      <SearchBar />
+      <Buttons />
       <FirstLine />
       <CardUser
         name="Elam"
