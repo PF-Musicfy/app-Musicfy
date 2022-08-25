@@ -4,12 +4,32 @@ const {mailTransport} = require('../controllers/mailController')
 const { Router } = require('express')
 const app = Router();
 const {generateToken} = require('../controllers/generateTokenController')
-const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId } = require("../controllers/index")
+const { getByName, getTrackId, topMusic, getAlbumId, getArtistId, getPlaylistId, combinedFilters } = require("../controllers/index")
 const authRouter = require("./auth.route.js");
 const userRouter = require("./user.route.js");
 
 app.use("/api/v1/auth", authRouter);
 app.use("/user", userRouter);
+
+                                              // Kosovomba
+
+app.get("/genres/:genre/:tops", async (req, res, next)=> {
+  let {genre} = req.params
+  let {tops} = req.params
+  console.log(genre)
+  console.log(tops)
+  let music = await combinedFilters(genre, tops)
+  console.log(music)
+  try {
+    res.status(200).send(music)
+  } catch (error) {
+    next(error)
+  }
+})
+
+                                              // Kosovomba
+
+
 
 app.get("/topmusic", async (req, res, next)=> {
   let music = await topMusic()

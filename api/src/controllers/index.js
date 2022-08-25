@@ -4,6 +4,55 @@ const apiKey = 'apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4';
 const urlNapster = 'https://api.napster.com/imageserver/v2';
 const mainUrl = 'https://api.napster.com/v2.2'
 
+                                  // Kosovomba
+
+const combinedFilters = async (genre, top) => {
+  let info = await axios.get(`${mainUrl}/genres/${genre}/${top}/top?${apiKey}&limit=10`);
+  info = info.data[top]
+  const apiInfo = await info.map((e) => {
+    if (top === 'tracks') {
+      return {
+        id: e.id,
+        name: e.name,
+        artistName: e.artistName,
+        previewURL: e.previewURL,
+        albumName: e.albumName,
+        images: `${urlNapster}/artists/${e.artistId}/images/356x237.jpg`
+      };
+    }
+    if (top === 'artists') {
+      return {
+        id: e.id,
+        name: e.name,
+        shortcut: e.shortcut,
+        images: `${urlNapster}/artists/${e.id}/images/356x237.jpg`,
+      };
+    }
+    if (top === 'albums') {
+      return {
+        id: e.id,
+        name: e.name,
+        artistName: e.artistName,
+        trackCount: e.trackCount,
+        images: `${urlNapster}/albums/${e.id}/images/356x237.jpg`,
+      };
+    }
+    if (top === 'playlists') {
+      return {
+        id: e.id,
+        name: e.name,
+        trackCount: e.trackCount,
+        images: `${urlNapster}/playlists/${e.id}/artists/images/356x237.jpg`,
+      };
+    }
+  })
+  return apiInfo
+}
+
+                                  // Kosovomba
+
+
+
 function noRepetidos(arr){
   let hash = {}
   let result = arr.filter((e) => {
@@ -256,5 +305,6 @@ module.exports = {
   getTrackId,
   getAlbumId,
   getArtistId,
-  getPlaylistId
+  getPlaylistId,
+  combinedFilters
 };
