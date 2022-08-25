@@ -8,9 +8,9 @@ import s from "./login.module.css";
 import validate from "../../utils/validate.js";
 import setTitle from "../../utils/setTitle.js";
 
-setTitle("Login - Musicfy");
-
 export default function Login() {
+  setTitle("Login - Musicfy");
+
   const navigate = useNavigate();
   const inputPass = useRef();
   const [user, setUser] = useState({});
