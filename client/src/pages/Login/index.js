@@ -18,8 +18,6 @@ export default function Login() {
   const navigate = useNavigate();
   const inputPass = useRef();
 
-  //const [userLog, setUserLog] = useState({});
-
   const [input, setInput] = useState({
     user: "",
     pass: "",
@@ -33,13 +31,13 @@ export default function Login() {
       console.log('localeffect',user)
       dispatch(setUser(user));
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if(Object.keys(user).length){
       navigate('/home')
     }
-  }, [user])
+  }, [user,navigate])
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +58,7 @@ export default function Login() {
       dispatch(setUser(e.data.user))
 
       window.localStorage.setItem(
-        'loggedAppUser', JSON.stringify(input)
+        'loggedAppUser', JSON.stringify(e.data.user)
       )
 
       navigate("/home");
@@ -88,7 +86,7 @@ export default function Login() {
       </div>
       <div className={s.container}>
         <div className={s.options}>
-          {/*<LoginWithGoogle />*/}
+          <LoginWithGoogle />
         </div>
         <form className={s.form} onSubmit={handleSubmit}>
           <p>Email</p>
