@@ -4,7 +4,6 @@ import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
 
 import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
-import { PopupLogin } from "../Popup";
 
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
@@ -64,7 +63,6 @@ export default function Player({ detail, music }){
 
   return (
     <div className="player">
-      {isPlaying ? '' : <PopupLogin image={''}/>}
       <audio
         src={(listSong.length
               ? listSong[0].previewURL

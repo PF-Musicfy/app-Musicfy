@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import PageAdmin from "./components/PageAdmin";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
+import CheckUp from "./pages/CheckUp";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/admin" element={<PageAdmin />} />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
+        <Route exact path="/checkup" element={<CheckUp />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
