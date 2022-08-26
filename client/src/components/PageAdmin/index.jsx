@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Buttons from "./Buttons";
 import CardUser from "./CardUser";
-import FirstLine from "./Firstline";
+import FirstLine from "./firstline";
 import SearchBar from "./SearchBar";
 import Cards from "./Cards";
 import { useEffect } from "react";
