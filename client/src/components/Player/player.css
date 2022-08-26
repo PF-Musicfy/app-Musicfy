@@ -3,6 +3,15 @@
   color: #fff;
 }
 
+.player-info {
+  display: flex;
+  gap: 20px;
+}
+
+.player-info img {
+  width: 100px;
+}
+
 .player-tools {
   display: flex;
   justify-content: center;
