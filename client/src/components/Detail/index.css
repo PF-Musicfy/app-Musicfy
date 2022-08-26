@@ -1,3 +1,6 @@
+.allcontainer {
+  z-index: -10;
+}
 .containerMusic {
   display: flex;
   flex-direction: row;

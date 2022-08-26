@@ -2,24 +2,25 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./searchbar.module.css";
 import { BiSearchAlt } from "react-icons/bi";
-import { getUsers } from "../../../store/slice/user";
-
+import { getUserByName } from "../../../store/slice/user";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [infoName, setInfoName] = useState("");
 
-  const handleInputChange = (e) => {
-    setInfoName(e.target.value);
-  };
-  const handleOnSubmit = (e) => {
+  function handleInputChange(e) {
     e.preventDefault();
-    dispatch(getUsers(infoName));
+    setInfoName(e.target.value);
+    dispatch(getUserByName(infoName));
+  }
+  function handleOnSubmit(e) {
+    e.preventDefault();
+    dispatch(getUserByName(infoName));
     setInfoName("");
-  };
+  }
 
   return (
     <div className={styles.box}>
-      <form name="search" onSubmit={(e) => handleOnSubmit(e)}>
+      <form name="search" onSubmit={handleOnSubmit}>
         <div className={styles.lupitaEstilo}>
           <BiSearchAlt />
         </div>
@@ -27,9 +28,7 @@ const SearchBar = () => {
           className={styles.input}
           type="text"
           value={infoName}
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+          onChange={handleInputChange}
         />
       </form>
     </div>

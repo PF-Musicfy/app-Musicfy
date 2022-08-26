@@ -5,7 +5,7 @@ export default function FirstLine() {
       <h2>Name</h2>
       <p>Email</p>
       <p className={styles.plan}>Plan</p>
-      <button className={styles.button}>Status</button>
+      <p className={styles.button}>Status</p>
       <p>Msg</p>
     </div>
   );
