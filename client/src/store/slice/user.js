@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState: {
     feedback: [],
     users: [],
@@ -19,28 +19,28 @@ export const userSlice = createSlice({
       state.user = action.payload;
     },
   },
-})
+});
 
-export const {
-  setFeedback,
-  setUsers,
-  setUser,
-} = userSlice.actions;
+export const { setFeedback, setUsers, setUser } = userSlice.actions;
 
 export default userSlice.reducer;
 
-function elCreador(url = '',cb1,cb2){
-  return async function(dispatch){
-    if(typeof cb2 === 'function') dispatch(cb2())
-    try{
+function elCreador(url = "", cb1, cb2) {
+  return async function (dispatch) {
+    if (typeof cb2 === "function") dispatch(cb2());
+    try {
       const { data } = await axios.get(axios.defaults.baseURL + url);
       dispatch(cb1(data));
-    }catch(e){
-      console.log('error: action ',cb1.name);
+    } catch (e) {
+      console.log("error: action ", cb1.name);
     }
-  }
+  };
 }
-export const getFeedback = () => elCreador('/feedback', setFeedback)
-export const getUsers = () => elCreador('/user', setUsers)
-
-export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers)
+export const getFeedback = () => elCreador("/feedback", setFeedback);
+export const getUsers = () => elCreador("/user", setUsers);
+export const getUsersFree = () => elCreador("/user/free", setUsers);
+export const getUsersPremium = () => elCreador("/user/premium", setUsers);
+export const getUsersAdmin = () => elCreador("/user/admin", setUsers);
+export const getUserByName = (user) =>
+  elCreador(`/user?username=${user}`, setUsers);
+export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);

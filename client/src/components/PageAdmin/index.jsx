@@ -1,20 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
 import Buttons from "./Buttons";
 import CardUser from "./CardUser";
-import FirstLine from "./firstline";
+import FirstLine from "./Firstline";
 import SearchBar from "./SearchBar";
-
+import Cards from "./Cards";
+import { useEffect } from "react";
+import { getUsers } from "../../store/slice/user";
 export default function PageAdmin() {
+  const { users } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   return (
     <div>
       <SearchBar />
       <Buttons />
       <FirstLine />
-      <CardUser
-        name="Elam"
-        email="elamcano@gmail.com"
-        plan="Premium"
-        status="false"
-      />
+      <Cards users={users} />
     </div>
   );
 }

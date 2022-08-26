@@ -17,8 +17,7 @@ export default function Detail() {
   }, [dispatch, id]);
 
   return (
-    <div>
-      <Player music={evoker} />
+    <div className="allcontainer">
       {detailTracks.track?.map((e, id) => {
         return (
           <div key={id} className="containerMusic">
@@ -70,9 +69,7 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button
-                  onClick={() => setEvoker(e)}
-                >
+                  <button onClick={() => setEvoker(e)}>
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
@@ -104,9 +101,7 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button
-                  onClick={() => setEvoker(e)}
-                >
+                  <button onClick={() => setEvoker(e)}>
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
@@ -138,9 +133,7 @@ export default function Detail() {
             <div className="divTracks">
               <li className="liTracks">
                 <div className="containerLi">
-                <button
-                  onClick={() => setEvoker(e)}
-                >
+                  <button onClick={() => setEvoker(e)}>
                     <div className="arrow-up"></div>
                   </button>
                   <p className="name">{e.name}</p>
@@ -152,6 +145,7 @@ export default function Detail() {
           </div>
         );
       })}
+      <Player music={evoker} />
     </div>
   );
 }
