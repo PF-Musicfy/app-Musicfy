@@ -6,7 +6,6 @@ import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
 import { PopupLogin } from "../Popup";
 
-//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
 const usePlayerRef = (ref) => {

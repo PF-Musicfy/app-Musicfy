@@ -32,11 +32,14 @@ export default function Login() {
       const user = JSON.parse(logged)
       console.log('localeffect',user)
       dispatch(setUser(user));
-      //setUserLog(user)
     }
   }, [])
 
-  if(Object.keys(user).length) navigate('/home');
+  useEffect(() => {
+    if(Object.keys(user).length){
+      navigate('/home')
+    }
+  }, [user])
 
   const inputChange = (e) => {
     const { name, value } = e.target;
