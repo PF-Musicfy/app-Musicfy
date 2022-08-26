@@ -36,6 +36,11 @@ export default function Player({ music }){
 
   const { isPlaying, changeState } = usePlayerRef(audioElem);
 
+  useEffect(() => {
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+  }, [music])
+
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
     const ct = Math.floor(audioElem.current.currentTime);
@@ -51,7 +56,6 @@ export default function Player({ music }){
     volumeBar.current.value = audioElem.current.volume * 10;
   }
 
-  console.log('player',music);
   return (
     <div className="player">
       {isPlaying ? '' : <PopupLogin image={''}/>}
