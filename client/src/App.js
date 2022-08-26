@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
-//import Page404 from "./components/Page404";
+import Page404 from "./components/Page404";
 //import Detail from "./components/Detail";
 import PageDev from "./components/PageInDev";
 import Detail from "./components/Detail";
@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/admin" element={<PageAdmin />} />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
-        <Route path="*" element={<PageDev />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );

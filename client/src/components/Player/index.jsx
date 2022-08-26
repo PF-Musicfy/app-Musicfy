@@ -6,7 +6,6 @@ import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
 import { PopupLogin } from "../Popup";
 
-//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
 const usePlayerRef = (ref) => {
@@ -37,6 +36,11 @@ export default function Player({ music }){
 
   const { isPlaying, changeState } = usePlayerRef(audioElem);
 
+  useEffect(() => {
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+  }, [music])
+
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
     const ct = Math.floor(audioElem.current.currentTime);
@@ -52,7 +56,6 @@ export default function Player({ music }){
     volumeBar.current.value = audioElem.current.volume * 10;
   }
 
-  console.log('player',music);
   return (
     <div className="player">
       {isPlaying ? '' : <PopupLogin image={''}/>}
