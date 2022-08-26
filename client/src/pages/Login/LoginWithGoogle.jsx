@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { setUser } from "../../store/slice/user.js";
 
 export default function LoginWithGoogle() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     /* global google */
@@ -21,6 +20,7 @@ export default function LoginWithGoogle() {
       { theme: "outline", size: "large"}
     );
     //google.accounts.id.prompt();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const responseGoogle = (response) => {
