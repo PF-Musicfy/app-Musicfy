@@ -7,7 +7,7 @@ const mainUrl = 'https://api.napster.com/v2.2'
                                   // Kosovomba
 
 const combinedFilters = async (genre, top) => {
-  let info = await axios.get(`${mainUrl}/genres/${genre}/${top}/top?${apiKey}&limit=10`);
+  let info = await axios.get(`${mainUrl}/genres/${genre}/${top}/top?${apiKey}&limit=15`);
   info = info.data[top]
   const apiInfo = await info.map((e) => {
     if (top === 'tracks') {
@@ -46,7 +46,11 @@ const combinedFilters = async (genre, top) => {
       };
     }
   })
-  return apiInfo
+
+  const apiInfos = noRepetidos(apiInfo);
+  apiInfos.length > 10 && apiInfos.splice(10)
+
+  return apiInfos
 }
 
                                   // Kosovomba
@@ -64,7 +68,7 @@ function noRepetidos(arr){
 }
 
 const topMusic = async () => {
-  const {data: {tracks}} = await axios.get(`${mainUrl}/tracks/top?${apiKey}&limit=10`);
+  const {data: {tracks}} = await axios.get(`${mainUrl}/tracks/top?${apiKey}&limit=15`);
   const apiTrack = await tracks.map((e) => {
     return {
       id: e.id,
@@ -77,9 +81,10 @@ const topMusic = async () => {
   });
 
   const apiTracks = noRepetidos(apiTrack);
+  apiTracks.length > 10 && apiTracks.splice(10)
 
-  const {data: {albums}} = await axios.get(`${mainUrl}/albums/new?${apiKey}&limit=10`);
-  const apiAlbums = await albums.map((e) => {
+  const {data: {albums}} = await axios.get(`${mainUrl}/albums/new?${apiKey}&limit=15`);
+  const apiAlbum = await albums.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -89,8 +94,11 @@ const topMusic = async () => {
     };
   });
 
-  const {data: {artists}} = await axios.get(`${mainUrl}/artists/top?${apiKey}&limit=10`);
-  const apiArtists = await artists.map((e) => {
+  const apiAlbums = noRepetidos(apiAlbum);
+  apiAlbums.length > 10 && apiAlbums.splice(10)
+
+  const {data: {artists}} = await axios.get(`${mainUrl}/artists/top?${apiKey}&limit=15`);
+  const apiArtist = await artists.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -99,8 +107,11 @@ const topMusic = async () => {
     };
   });
 
-  const {data: {playlists}} = await axios.get(`${mainUrl}/playlists/top?${apiKey}&limit=10`);
-  const apiPlaylists = await playlists.map((e) => {
+  const apiArtists = noRepetidos(apiArtist);
+  apiArtists.length > 10 && apiArtists.splice(10)
+
+  const {data: {playlists}} = await axios.get(`${mainUrl}/playlists/top?${apiKey}&limit=15`);
+  const apiPlaylist = await playlists.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -109,8 +120,11 @@ const topMusic = async () => {
     };
   });
 
-  const {data: {stations}} = await axios.get(`${mainUrl}/stations/top?${apiKey}&limit=10`);
-  const apiStations = await stations.map((e) => {
+  const apiPlaylists = noRepetidos(apiPlaylist);
+  apiPlaylists.length > 10 && apiPlaylists.splice(10)
+
+  const {data: {stations}} = await axios.get(`${mainUrl}/stations/top?${apiKey}&limit=15`);
+  const apiStation = await stations.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -119,6 +133,9 @@ const topMusic = async () => {
       images: `${urlNapster}/stations/${e.id}/images/356x237.jpg`,
     };
   });
+
+  const apiStations = noRepetidos(apiStation);
+  apiStations.length > 10 && apiStations.splice(10)
 
   return { apiTracks, apiAlbums, apiArtists, apiPlaylists, apiStations }
 }
