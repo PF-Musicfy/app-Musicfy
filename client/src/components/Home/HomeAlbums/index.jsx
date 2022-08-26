@@ -192,7 +192,7 @@ export default function HomeAlbum() {
                     <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
-                        src={item.image}
+                        src={item.images}
                         alt={item.name}
                         onError={onImgError}
                       />

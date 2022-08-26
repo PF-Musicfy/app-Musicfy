@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
+import { setUser } from "../../store/slice/user.js";
 
 export default function LoginWithGoogle() {
-  //const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     /* global google */
@@ -17,46 +19,24 @@ export default function LoginWithGoogle() {
       document.getElementById("signInDiv"),
       { theme: "outline", size: "large"}
     );
-
-    google.accounts.id.prompt();
+    //google.accounts.id.prompt();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   const responseGoogle = (response) => {
     const userObject = jwt_decode(response.credential);
     console.log(userObject);
-   // verifyUser({
-   //   email: userObject.email,
-   // })
-   // .then(() => {
-   //   navigate("/home");
-   // })
-   // .catch((e) => {
-   //   console.log(e);
-   //   alert("posibles errores:\n" +
-   //     "- el back no se ha iniciado\n" +
-   //     "- alguno de los campos falta o es incorrecto\n" +
-   //     "- el usuario no existe en la base de datos"
-   //   );
-   // });
-    //setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-    //navigate("/home");
+
+    alert("logeado");
+    dispatch(setUser(userObject))
+
+    window.localStorage.setItem(
+      'loggedAppUser', JSON.stringify(userObject)
+    )
+
+    navigate("/home");
   }
 
-  const signOut = (e) => {
-    //setUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
-
-    //{
-    //  Object.keys(user).length !== 0 &&
-    //  <button onClick={(e) => signOut(e)}>SignOut</button>
-    //}
-    //{ user &&
-    //  <div>
-    //    <p>{user.name}</p>
-    //  </div>
-    //}
   return (
     <div id="signInDiv"></div>
   )

@@ -6,36 +6,39 @@ import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
 import { PopupLogin } from "../Popup";
 
-//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
-const usePlayerRef = (ref) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    if(isPlaying){
-      ref.current.play();
-      ref.current.volume = 0.1;
-    }else{
-      ref.current.pause()
-    }
-  }, [isPlaying, ref])
-
-  const changeState = () => {
-    setIsPlaying(!isPlaying)
-  }
-
-  return { isPlaying, changeState };
-}
-
-export default function Player({ music }){
+export default function Player({ detail, music }){
   const [dataSong, setDataSong] = useState({});
+  const [listSong, setListSong] = useState([]);
  
   const audioElem = useRef();
   const progressBar = useRef();
   const volumeBar = useRef();
 
-  const { isPlaying, changeState } = usePlayerRef(audioElem);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+    setListSong([music])
+  }, [music])
+
+  useEffect(() => {
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+  }, [listSong])
+
+  useEffect(() => {
+    if(isPlaying){
+      audioElem.current.play();
+      audioElem.current.volume = 0.1;
+    }else{
+      audioElem.current.pause()
+    }
+    console.log('detail',detail);
+    console.log('list',listSong);
+  }, [isPlaying])
 
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
@@ -51,13 +54,21 @@ export default function Player({ music }){
 
     volumeBar.current.value = audioElem.current.volume * 10;
   }
+  const adelantar = () => {
+    const index = detail.tracksMusic.indexOf(listSong[0]);
+    setListSong([detail.tracksMusic[index + 1]])
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+    console.log('index',listSong);
+  }
 
-  console.log('player',music);
   return (
     <div className="player">
       {isPlaying ? '' : <PopupLogin image={''}/>}
       <audio
-        src={music.previewURL || url}
+        src={(listSong.length
+              ? listSong[0].previewURL
+              :  music.previewURL) || url}
         ref={audioElem}
         onTimeUpdate={onPlaying}
       >
@@ -75,7 +86,13 @@ export default function Player({ music }){
         <div className="player-tools">
           <button
             className="player-button"
-            onClick={changeState}
+            onClick={adelantar}
+          >
+            +1
+          </button>
+          <button
+            className="player-button"
+            onClick={() => setIsPlaying(!isPlaying)}
           >
             {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
@@ -83,9 +100,16 @@ export default function Player({ music }){
             {dataSong.current || '0:00'}/{dataSong.length || '0:00'}
           </span>
         </div>
-        <div>
-          <p>Name: {music.name}</p>
-          <p>Artist Name: {music.artistName}</p>
+        <div className="player-info">
+          <img src={Object.keys(detail).length ? detail.track[0].images : ''} alt='' />
+          <div>
+          <p>Name: {(listSong.length
+              ? listSong[0].name
+              :  music.name)}</p>
+          <p>Artist Name: {(listSong.length
+              ? listSong[0].artistName
+              :  music.artistName)}</p>
+          </div>
         </div>
         <div>
           <input

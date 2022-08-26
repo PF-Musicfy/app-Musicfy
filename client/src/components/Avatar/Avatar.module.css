@@ -1,0 +1,50 @@
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  margin-top: 80px;
+  font-family: "Cabin", sans-serif;
+  text-align: center;
+}
+
+.titleAvatar {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.buttonAvatar {
+  border-radius: 16px;
+  background-color: var(--btn);
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Cabin";
+  margin-top: 80px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  outline: 2px solid rgba(255, 255, 255, 0.671);
+  outline-offset: 3px;
+}
+
+.buttonAvatar:hover {
+  background-color: #fff;
+  color: var(--btn);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  outline: 2px solid var(--btn);
+}
+
+.inputAvatar {
+  background-color: var(--mainColor);
+}
+
+.imgAvatarContainer {
+  width: 300px;
+  height: 300px;
+}
+
+.imgAvatar {
+  border-radius: 50%;
+}

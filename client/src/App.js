@@ -13,6 +13,8 @@ import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PageAdmin from "./components/PageAdmin";
+import Avatar from "./components/Avatar";
+import UserMP3 from "./components/UserMP3";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route exact path="/dashboard/*" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/admin" element={<PageAdmin />} />
+        <Route exact path="/avatar" element={<Avatar />} />
+        <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
