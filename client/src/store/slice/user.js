@@ -6,6 +6,7 @@ export const userSlice = createSlice({
   initialState: {
     feedback: [],
     users: [],
+    user: {},
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -14,12 +15,16 @@ export const userSlice = createSlice({
     setUsers: (state, action) => {
       state.users = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 })
 
 export const {
   setFeedback,
   setUsers,
+  setUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -37,3 +42,5 @@ function elCreador(url = '',cb1,cb2){
 }
 export const getFeedback = () => elCreador('/feedback', setFeedback)
 export const getUsers = () => elCreador('/user', setUsers)
+
+export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers)

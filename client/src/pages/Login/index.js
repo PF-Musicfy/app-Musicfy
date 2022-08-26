@@ -1,19 +1,24 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaBackward } from "react-icons/fa";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 
 import s from "./login.module.css";
 import validate from "../../utils/validate.js";
 import setTitle from "../../utils/setTitle.js";
+import { setUser } from "../../store/slice/user.js";
+import LoginWithGoogle from "./LoginWithGoogle.jsx";
 
 export default function Login() {
   setTitle("Login - Musicfy");
 
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const inputPass = useRef();
-  const [user, setUser] = useState({});
+
+  //const [userLog, setUserLog] = useState({});
 
   const [input, setInput] = useState({
     user: "",
@@ -22,31 +27,16 @@ export default function Login() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com",
-      callback: responseGoogle
-    })
+    const logged = window.localStorage.getItem('loggedAppUser')
+    if(logged){
+      const user = JSON.parse(logged)
+      console.log('localeffect',user)
+      dispatch(setUser(user));
+      //setUserLog(user)
+    }
+  }, [])
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large"}
-    );
-
-    google.accounts.id.prompt();
-  },[])
-
-  const responseGoogle = (response) => {
-    const userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  }
-
-  const signOut = (e) => {
-    setUser({});
-    document.getElementById("signInDiv").hidden = false;
-  }
+  if(Object.keys(user).length) navigate('/home');
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -56,24 +46,30 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/v1/auth/login", {
-        email: input.user,
-        password: input.pass,
-      })
-      .then(() => {
-        alert("logeado");
-        navigate("/home");
-      })
-      .catch((e) => {
-        console.log(e);
-        alert(
-          "posibles errores:\n" +
-            "- el back no se ha iniciado\n" +
-            "- alguno de los campos falta o es incorrecto\n" +
-            "- el usuario no existe en la base de datos"
-        );
-      });
+
+    axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`, {
+      email: input.user,
+      password: input.pass,
+    })
+    .then((e) => {
+      console.log(e.data);
+      alert("logeado");
+      dispatch(setUser(e.data.user))
+
+      window.localStorage.setItem(
+        'loggedAppUser', JSON.stringify(input)
+      )
+
+      navigate("/home");
+    })
+    .catch((e) => {
+      console.log(e);
+      alert("posibles errores:\n" +
+          "- el back no se ha iniciado\n" +
+          "- alguno de los campos falta o es incorrecto\n" +
+          "- el usuario no existe en la base de datos"
+      );
+    });
   };
 
   return (
@@ -89,16 +85,7 @@ export default function Login() {
       </div>
       <div className={s.container}>
         <div className={s.options}>
-          <div id="signInDiv"></div>
-          {
-            Object.keys(user).length !== 0 &&
-            <button onClick={(e) => signOut(e)}>SignOut</button>
-          }
-          { user &&
-            <div>
-              <p>{user.name}</p>
-            </div>
-          }
+          {/*<LoginWithGoogle />*/}
         </div>
         <form className={s.form} onSubmit={handleSubmit}>
           <p>Email</p>

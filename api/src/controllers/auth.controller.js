@@ -41,7 +41,10 @@ const login = async (req, res) => {
     const { token, expiresIn } = generateToken(user.id);
     generateRefreshToken(user.id, res);
 
-    return res.json({ token, expiresIn });
+    user.online = true;
+    await user.save()
+
+    return res.json({ token, expiresIn, user });
   } catch (error) {
     return res.status(403).json({ error: error.message });
   }
