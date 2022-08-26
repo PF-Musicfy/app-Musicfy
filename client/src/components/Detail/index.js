@@ -62,7 +62,7 @@ export default function Detail() {
 
   return (
     <div>
-      <Player music={evoker} />
+      <Player detail={detailTracks} music={evoker} />
       <DetailAll a={detailTracks} setEvoker={setEvoker}/>
     </div>
   );
