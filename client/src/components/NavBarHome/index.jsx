@@ -5,8 +5,12 @@ import { useRef, useState } from "react";
 import imagen2 from "./WJT6FaB.png";
 import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
+import { userTokenInfo } from "../../store/slice/user";
+import { useDispatch } from "react-redux";
 
 export default function NavBarHome() {
+  const dispatch = useDispatch();
+
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);
   const navRef = useRef();
@@ -15,15 +19,15 @@ export default function NavBarHome() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  function handleClick() {
-    setProfile(!profile);
+  async function handleClick() {
+    dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
     setLogged(!logged);
   }
-  function onClickHome(e) {    
-    e.preventDefault()
-    navigate(0)
+  function onClickHome(e) {
+    e.preventDefault();
+    navigate(0);
   }
 
   return (
@@ -31,7 +35,7 @@ export default function NavBarHome() {
       {logged ? (
         <div>
           <header>
-            <div className='searchStyle'>
+            <div className="searchStyle">
               <SearchBar />
             </div>
             <div className="logo-div">
@@ -42,25 +46,39 @@ export default function NavBarHome() {
             </div>
             <nav ref={navRef}>
               {/* <Link to='/home'> */}
-                <span onClick={(e) => {onClickHome(e)}}>Home</span>
+              <span
+                onClick={(e) => {
+                  onClickHome(e);
+                }}
+              >
+                Home
+              </span>
               {/* </Link> */}
-              <Link to='/favorites'>
+              <Link to="/favorites">
                 <span>Favorites</span>
               </Link>
-              <Link to='/favorites'>
+              <Link to="/favorites">
                 <span>+Playlist</span>
               </Link>
-              <Link to='/library'>
+              <Link to="/library">
                 <span>Library</span>
               </Link>
+              <Link onClick={handleClick} to="/miperfil">
+                <span>Perfil</span>
+              </Link>
 
-              <Link to='/profile'>
+              <Link to="/profile">
                 <span className="perfil">Profile</span>
               </Link>
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={imagen} className="avatar" onClick={handleClick} alt='avatarsito'/>
+              <img
+                src={imagen}
+                className="avatar"
+                onClick={handleClick}
+                alt="avatarsito"
+              />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -69,13 +87,15 @@ export default function NavBarHome() {
           {profile && (
             <div className="container">
               <div className="select-perfil">
-              <Link to='/profile'>
-                <span>Profile</span>
-              </Link>
-              <Link to='/premium'>
-                <span>Premium</span>
-              </Link>
-                <span onClick={handleLog} className='logOut'>Log out</span>
+                <Link to="/profile">
+                  <span>Profile</span>
+                </Link>
+                <Link to="/premium">
+                  <span>Premium</span>
+                </Link>
+                <span onClick={handleLog} className="logOut">
+                  Log out
+                </span>
               </div>{" "}
             </div>
           )}
@@ -88,7 +108,7 @@ export default function NavBarHome() {
           </div>
           <nav ref={navRef}>
             <div className="no-logged">
-              <Link to='/register'>
+              <Link to="/register">
                 <span>Register</span>
               </Link>
               <span onClick={handleLog}>Log in</span>

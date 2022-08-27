@@ -1,3 +1,4 @@
+const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
 const {
   generateRefreshToken,
@@ -7,6 +8,7 @@ const {
 const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log(req.body);
     let user = await User.findOne({ email });
 
     // if (user) alert("Email already exists");
@@ -42,9 +44,9 @@ const login = async (req, res) => {
     generateRefreshToken(user.id, res);
 
     user.online = true;
-    await user.save()
+    await user.save();
 
-    return res.json({ token, expiresIn, user });
+    return res.json({ token, expiresIn });
   } catch (error) {
     return res.status(403).json({ error: error.message });
   }
@@ -53,7 +55,7 @@ const login = async (req, res) => {
 const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid);
-    res.json({ email: user.email, uid: user.id });
+    res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "server error" });
   }
@@ -74,10 +76,24 @@ const logout = (req, res) => {
   res.json({ ok: true });
 };
 
+const premium = async (req, res) => {
+  const { premium } = req.body;
+  console.log(req.body);
+
+  const user = await User.findByIdAndUpdate(req.uid, {
+    premium,
+  });
+  // if (!user) return res.json({ message: "El usuario no existe" });
+  await user.save();
+
+  return res.json({ message: "Usuario pasado a premium" });
+};
+
 module.exports = {
   register,
   login,
   infoUser,
   refreshToken,
   logout,
+  premium,
 };
