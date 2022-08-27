@@ -50,8 +50,8 @@ app.get("/subscription", async function (req, res, next) {
 
 
 app.get("/topmusic", async (req, res, next)=> {
-  let music = await topMusic()
   try {
+    let music = await topMusic()
     res.status(200).send(music)
   } catch (error) {
     next(error)

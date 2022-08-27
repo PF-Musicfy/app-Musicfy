@@ -4,6 +4,7 @@ import { getTrackId } from "../../store/slice";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
+import { PopupLogin } from "../Popup";
 
 function DetailFront({ e }) {
   return (
@@ -62,8 +63,9 @@ export default function Detail() {
 
   return (
     <div className="allcontainer">
+      {localStorage.getItem('loggedAppUser') ? '' : <PopupLogin />}
       <DetailAll a={detailTracks} setEvoker={setEvoker} />
-      <Player detail={detailTracks} music={evoker} />
+      <Player music={evoker} />
     </div>
   );
 }
