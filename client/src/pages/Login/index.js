@@ -39,35 +39,6 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //axios.post(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-    //  withCredentials: true
-    //})
-    //.then((e) => {
-    //  console.log(e.data);
-    //  alert("refresh");
-    //})
-    //.catch((e) => {
-    //  console.log('refresh',e);
-    //  alert("posibles errores");
-    //});
-
-    //fetch(`http://localhost:5000/api/v1/auth/login`,{
-    //  credentials: 'include',
-    //  method: 'post',
-    //})
-    //.then((e) => {
-    //  console.log(e.data);
-    //  alert("logeado");
-    //})
-    //.catch((e) => {
-    //  console.log(e);
-    //  alert("posibles errores:\n" +
-    //      "- el back no se ha iniciado\n" +
-    //      "- alguno de los campos falta o es incorrecto\n" +
-    //      "- el usuario no existe en la base de datos"
-    //  );
-    //});
-
     axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`, {
       email: input.user,
       password: input.pass,
@@ -138,7 +109,7 @@ export default function Login() {
               }
             }}
           >
-            <FaEye className={s.eye}/>
+            <FaEye className={s.eye} />
           </button>
           <p className={s.msgError}>{errors.pass || ""}</p>
           <div className={s.containerSend}>
