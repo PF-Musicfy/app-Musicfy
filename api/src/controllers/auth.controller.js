@@ -5,7 +5,7 @@ const {
   generateToken,
 } = require("../utils/tokenManager.js");
 
-const register = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     console.log(req.body);
@@ -29,7 +29,7 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -54,14 +54,17 @@ const login = async (req, res) => {
 
 const infoUser = async (req, res) => {
   try {
-    const user = await User.findById(req.uid);
+    const user = await User.findById(req.uid, {
+      password: 0,
+      _id: 0
+    });
     res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "server error" });
   }
 };
 
-const refreshToken = (req, res) => {
+const refreshTokenUser = (req, res) => {
   try {
     const { token, expiresIn } = generateToken(req.uid);
 
@@ -71,12 +74,12 @@ const refreshToken = (req, res) => {
   }
 };
 
-const logout = (req, res) => {
+const logoutUser = (req, res) => {
   res.clearCookie("refreshToken");
   res.json({ ok: true });
 };
 
-const premium = async (req, res) => {
+const premiumUser = async (req, res) => {
   const { premium } = req.body;
   console.log(req.body);
 
@@ -90,10 +93,10 @@ const premium = async (req, res) => {
 };
 
 module.exports = {
-  register,
-  login,
+  registerUser,
+  loginUser,
   infoUser,
-  refreshToken,
-  logout,
-  premium,
+  refreshTokenUser,
+  logoutUser,
+  premiumUser,
 };

@@ -3,18 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaBackward } from "react-icons/fa";
 import axios from "axios";
-
 import s from "./login.module.css";
 import validate from "../../utils/validate.js";
 import setTitle from "../../utils/setTitle.js";
-import { setUser } from "../../store/slice/user.js";
+// import { setUser } from "../../store/slice/user.js";
 import LoginWithGoogle from "./LoginWithGoogle.jsx";
+import { userTokenInfo } from "../../store/slice/user";
 
 export default function Login() {
   setTitle("Login - Musicfy");
 
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  // const { setUserToken } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const inputPass = useRef();
 
@@ -48,9 +48,11 @@ export default function Login() {
     .then((e) => {
       console.log(e.data);
       alert("logeado");
-      //dispatch(setUser(e.data.user))
 
-      //navigate("/home");
+      dispatch(userTokenInfo())
+
+      navigate("/home");
+      
     })
     .catch((e) => {
       console.log(e);

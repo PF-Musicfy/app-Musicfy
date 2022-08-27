@@ -4,12 +4,15 @@ import { BsTabletLandscape } from "react-icons/bs";
 import { HiOutlineDeviceTablet } from "react-icons/hi";
 import { FiCheck } from "react-icons/fi";
 import { useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+
 
 
 import styles from "../Premium/premium.module.css";
 
 export default function CardPlan({ plan }) {
-  const [ verifybtn, setVerifybtn ] = useState({})
+  const [ verifyBtn, setVerifyBtn ] = useState({})
+
 
 
   return (

@@ -50,7 +50,7 @@ export const getUserByName = (user) =>
   elCreador(`/user?username=${user}`, setUsers);
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
-export const userTokenInfo = (url) => {
+export const userTokenInfo = () => {
   return async function (dispatch) {
     try {
       const resToken = await fetch(
@@ -62,9 +62,9 @@ export const userTokenInfo = (url) => {
       );
 
       const { token } = await resToken.json();
-      console.log(token);
+      // console.log(token);
 
-      const res = await fetch(url, {
+      const res = await fetch("http://localhost:5000/api/v1/auth/perfil", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export const userTokenInfo = (url) => {
   };
 };
 
-export const userTokenPremium = (url, premium) => {
+export const userTokenPremium = (premium) => {
   return async function (dispatch) {
     console.log(premium);
     try {
@@ -95,7 +95,7 @@ export const userTokenPremium = (url, premium) => {
       const { token } = await resToken.json();
       console.log(token);
 
-      const res = await fetch(url, {
+      const res = await fetch("http://localhost:5000/api/v1/auth/premium", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
