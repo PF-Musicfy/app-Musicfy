@@ -14,7 +14,7 @@ export default function Login() {
   setTitle("Login - Musicfy");
 
   const dispatch = useDispatch();
-  // const { setUserToken } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user)
   const navigate = useNavigate();
   const inputPass = useRef();
 
@@ -24,11 +24,11 @@ export default function Login() {
   });
   const [errors, setErrors] = useState({});
 
-  //useEffect(() => {
-  //  if(Object.keys(user).length){
-  //    navigate('/home')
-  //  }
-  //}, [user,navigate])
+  useEffect(() => {
+    if(Object.keys(user).length){
+      navigate('/home')
+    }
+  }, [user,navigate])
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +50,6 @@ export default function Login() {
       alert("logeado");
 
       dispatch(userTokenInfo())
-
       navigate("/home");
       
     })

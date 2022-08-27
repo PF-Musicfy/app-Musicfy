@@ -7,7 +7,6 @@ export const userSlice = createSlice({
     feedback: [],
     users: [],
     user: {},
-    userToken: {},
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -19,14 +18,10 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
-    setUserToken: (state, action) => {
-      state.userToken = action.payload;
-    },
   },
 });
 
-export const { setFeedback, setUsers, setUser, setUserToken } =
-  userSlice.actions;
+export const { setFeedback, setUsers, setUser } = userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -46,34 +41,25 @@ export const getUsers = () => elCreador("/user", setUsers);
 export const getUsersFree = () => elCreador("/user/free", setUsers);
 export const getUsersPremium = () => elCreador("/user/premium", setUsers);
 export const getUsersAdmin = () => elCreador("/user/admin", setUsers);
-export const getUserByName = (user) =>
-  elCreador(`/user?username=${user}`, setUsers);
+export const getUserByName = (user) => elCreador(`/user?username=${user}`, setUsers);
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(
-        "http://localhost:5000/api/v1/auth/refresh",
-        {
-          method: "GET",
-          credentials: "include",
+      const { data: { token } } = await axios.get(
+        `${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+          withCredentials: true
         }
       );
 
-      const { token } = await resToken.json();
-      // console.log(token);
-
-      const res = await fetch("http://localhost:5000/api/v1/auth/perfil", {
-        method: "GET",
+      const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await res.json();
-      return dispatch(setUserToken(data));
+      dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
     }
@@ -105,7 +91,7 @@ export const userTokenPremium = (premium) => {
       });
 
       const data = await res.json();
-      return dispatch(setUserToken(data));
+      return dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
     }
