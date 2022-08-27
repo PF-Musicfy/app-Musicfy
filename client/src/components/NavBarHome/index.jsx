@@ -5,15 +5,16 @@ import { useRef, useState } from "react";
 import imagen2 from "./WJT6FaB.png";
 import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
-import { userTokenInfo } from "../../store/slice/user";
+import { userTokenInfo, logoutInfo  } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
+
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
   // const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   const [profile, setProfile] = useState(false);
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(true); 
   const navRef = useRef();
   let navigate = useNavigate();
   const showNavBar = () => {
@@ -21,9 +22,10 @@ export default function NavBarHome() {
   };
 
   async function handleClick() {
-    dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
+    dispatch(userTokenInfo());
   }
   function handleLog() {
+    logoutInfo()
     setLogged(!logged);
   }
   function onClickHome(e) {

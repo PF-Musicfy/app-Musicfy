@@ -171,7 +171,7 @@ const getByName = async (name) => {
       artistName: e.artistName,
       previewURL: e.previewURL,
       albumName: e.albumName,
-      image: `${urlNapster}/artists/${e.artistId}/images/356x237.jpg`,
+      images: `${urlNapster}/artists/${e.artistId}/images/356x237.jpg`,
     };
   });
 

@@ -111,3 +111,14 @@ export const userTokenPremium = (premium) => {
     }
   };
 };
+
+export const logoutInfo = () =>{
+  return async function(){
+    try{
+       await axios("http://localhost:5000/api/v1/auth/logout")
+      // return dispatch(logout.data)
+    }catch(error){
+      console.log(error)
+    }
+  }
+}
