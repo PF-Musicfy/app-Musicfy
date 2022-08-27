@@ -64,10 +64,10 @@ export default function Player({ detail, music }){
   return (
     <div className="player">
       <audio
+        ref={audioElem}
         src={(listSong.length
               ? listSong[0].previewURL
               :  music.previewURL) || url}
-        ref={audioElem}
         onTimeUpdate={onPlaying}
       >
       </audio>
@@ -99,7 +99,14 @@ export default function Player({ detail, music }){
           </span>
         </div>
         <div className="player-info">
-          <img src={Object.keys(detail).length ? detail.track[0].images : ''} alt='' />
+          {/*<img
+            src={
+              Object.keys(detail).length
+              ? detail.track[0]?.images || detail.album[0].images
+              : ''
+            }
+            alt='' 
+          />*/}
           <div>
           <p>Name: {(listSong.length
               ? listSong[0].name
