@@ -1,6 +1,5 @@
 import styles from "./Avatar.module.css";
 import { useState } from "react";
-// import { Image } from "cloudinary-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAvatar } from "../../store/slice";
 
@@ -8,19 +7,12 @@ export default function Avatar() {
   const [imageSelected, setImageSelected] = useState("");
   const dispatch = useDispatch();
   const { avatar } = useSelector((state) => state.music);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div className={styles.avatarContainer}>
       <div className={styles.imgAvatarContainer}>
-        <img
-          className={styles.imgAvatar}
-          src={
-            avatar
-              ? avatar
-              : "https://res.cloudinary.com/hugok2k/image/upload/v1661476477/businessman-character-avatar-isolated_24877-60111_hw0d56.webp"
-          }
-          alt="avatar"
-        />
+        <img className={styles.imgAvatar} src={avatar ? avatar : user.avatar} alt="avatar" />
       </div>
       <p className={styles.titleAvatar}>Upload your Avatar</p>
       <input className={styles.inputAvatar} onChange={(e) => setImageSelected(e.target.files[0])} type="file" />
