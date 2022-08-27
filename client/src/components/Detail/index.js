@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
 
-function DetailFront({e}) {
+function DetailFront({ e }) {
   return (
     <div className="containerMusic">
       <img src={e.images} alt={e.name} className="containerImg" />
@@ -15,9 +15,9 @@ function DetailFront({e}) {
         <h2>{e.artistName}</h2>
       </div>
     </div>
-  )
+  );
 }
-function DetailList({e, setEvoker}) {
+function DetailList({ e, setEvoker }) {
   return (
     <div>
       <div className="divTracks">
@@ -33,20 +33,20 @@ function DetailList({e, setEvoker}) {
         </li>
       </div>
     </div>
-  )
+  );
 }
-function DetailAll({a,setEvoker}) {
+function DetailAll({ a, setEvoker }) {
   const arr = Object.values(a);
   return (
     <>
-    {arr[0]?.map((e, id) => (
-      <DetailFront key={id} e={e} />
-    ))}
-    {arr[1]?.map((e, id) => (
-      <DetailList key={id} e={e} setEvoker={setEvoker}/>
-    ))}
+      {arr[0]?.map((e, id) => (
+        <DetailFront key={id} e={e} />
+      ))}
+      {arr[1]?.map((e, id) => (
+        <DetailList key={id} e={e} setEvoker={setEvoker} />
+      ))}
     </>
-  )
+  );
 }
 
 export default function Detail() {
@@ -61,9 +61,9 @@ export default function Detail() {
   }, [dispatch, id]);
 
   return (
-    <div>
+    <div className="allcontainer">
+      <DetailAll a={detailTracks} setEvoker={setEvoker} />
       <Player detail={detailTracks} music={evoker} />
-      <DetailAll a={detailTracks} setEvoker={setEvoker}/>
     </div>
   );
 }
