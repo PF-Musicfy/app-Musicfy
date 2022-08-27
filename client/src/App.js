@@ -12,11 +12,13 @@ import About from "./components/About";
 import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import ProfileInfo from './components/Profile';
 import PageAdmin from "./components/PageAdmin";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
 import CheckUp from "./pages/CheckUp";
 import Perfil from "./Perfil"
+
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route exact path="/feedback" element={<Feedback />} />
         <Route exact path="/dashboard/*" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
+        <Route exact path="/profile" element={<ProfileInfo />} />
+        <Route path="*" element={<PageDev />} />
         <Route exact path="/admin" element={<PageAdmin />} />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
