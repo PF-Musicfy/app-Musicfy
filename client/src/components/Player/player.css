@@ -1,6 +1,21 @@
-.player{
-  background: #000;
+.player {
+  background: rgb(32, 32, 32);
   color: #fff;
+  overflow: hidden;
+  background-color: rgb(32, 32, 32);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.player-info {
+  display: flex;
+  gap: 20px;
+}
+
+.player-info img {
+  width: 100px;
 }
 
 .player-tools {
@@ -19,9 +34,9 @@
   margin: 0;
 }
 
-.player input[type='range'] {
+.player input[type="range"] {
   appearance: none;
-  background:#333;
+  background: #333;
   height: 5px;
   width: 100%;
   cursor: pointer;
@@ -31,7 +46,7 @@
   top: -10px;
 }
 
-.player input[type='range']::-webkit-slider-thumb {
+.player input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 0px;
   height: 0px;

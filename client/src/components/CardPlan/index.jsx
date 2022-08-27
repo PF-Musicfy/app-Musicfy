@@ -3,10 +3,15 @@ import { RiComputerLine } from "react-icons/ri";
 import { BsTabletLandscape } from "react-icons/bs";
 import { HiOutlineDeviceTablet } from "react-icons/hi";
 import { FiCheck } from "react-icons/fi";
+import { useState } from "react"
+
 
 import styles from "../Premium/premium.module.css";
 
 export default function CardPlan({ plan }) {
+  const [ verifybtn, setVerifybtn ] = useState({})
+
+
   return (
     <div className={styles.card}>
       <h1>{plan}</h1>
@@ -27,10 +32,10 @@ export default function CardPlan({ plan }) {
         </p>
         <p>
           <FiCheck />
-          Music without publicity
+          Music without Ads
         </p>
       </div>
-      <button>Choose plan</button>
+      <button className={styles.button}>Choose plan</button>
     </div>
-  )
+  );
 }

@@ -9,6 +9,7 @@
   align-items: center;
   color: #fff;
   animation: show .3s ease-out;
+  z-index: 1000;
 }
 
 .visible {

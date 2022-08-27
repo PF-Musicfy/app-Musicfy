@@ -23,9 +23,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "http://cdn.onlinewebfonts.com/svg/img_569204.png",
     },
-    plan: {
-      type: String,
-      default: "free",
+    admin: {
+      type: Boolean,
+      default: false,
+    },
+    premium: {
+      type: Boolean,
+      default: false,
+    },
+    isblocked: {
+      type: Boolean,
+      default: false,
+    },
+    online: {
+      type: Boolean,
+      default: false,
     },
   },
   {

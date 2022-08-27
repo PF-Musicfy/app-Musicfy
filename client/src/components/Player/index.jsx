@@ -1,41 +1,31 @@
 import { useRef, useState, useEffect } from 'react';
 import { IconContext } from "react-icons";
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
+import { useSelector } from "react-redux";
 
 import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
-import { PopupLogin } from "../Popup";
 
-//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
-const usePlayerRef = (ref) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function Player({ detail, music }){
+  const { detailTracks } = useSelector((state) => state.music);
 
-  useEffect(() => {
-    if(isPlaying){
-      ref.current.play();
-      ref.current.volume = 0.1;
-    }else{
-      ref.current.pause()
-    }
-  }, [isPlaying, ref])
-
-  const changeState = () => {
-    setIsPlaying(!isPlaying)
-  }
-
-  return { isPlaying, changeState };
-}
-
-export default function Player({ music }){
   const [dataSong, setDataSong] = useState({});
+  const [allSongs, setAllSongs] = useState([]);
  
   const audioElem = useRef();
   const progressBar = useRef();
   const volumeBar = useRef();
 
-  const { isPlaying, changeState } = usePlayerRef(audioElem);
+  useEffect(() => {
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+  }, [music])
+
+  useEffect(() => {
+    setAllSongs(Object.values(detailTracks));
+  }, [detailTracks])
 
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
@@ -52,14 +42,14 @@ export default function Player({ music }){
     volumeBar.current.value = audioElem.current.volume * 10;
   }
 
-  console.log('player',music);
   return (
     <div className="player">
-      {isPlaying ? '' : <PopupLogin image={''}/>}
       <audio
-        src={music.previewURL || url}
         ref={audioElem}
+        src={music.previewURL || url}
         onTimeUpdate={onPlaying}
+        onPlay={() => {console.log('play')}}
+        onPause={() => {console.log('pause')}}
       >
       </audio>
       <input
@@ -73,19 +63,29 @@ export default function Player({ music }){
       <IconContext.Provider value={{className: 'player-icons'}}>
       <div className="player-controls">
         <div className="player-tools">
-          <button
-            className="player-button"
-            onClick={changeState}
-          >
-            {isPlaying ? <FaPause /> : <FaPlay />}
+          <button className="player-button"
+            onClick={() => {
+              if(audioElem.current){
+                if(audioElem.current.paused){
+                  audioElem.current.play()
+                }else{
+                  audioElem.current.pause()
+                }
+              }
+            }} >
+            {audioElem.current
+              ? (audioElem.current.paused ? <FaPause /> : <FaPlay />) 
+              : ''
+            }
           </button>
-          <span>
-            {dataSong.current || '0:00'}/{dataSong.length || '0:00'}
-          </span>
+          <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
         </div>
-        <div>
-          <p>Name: {music.name}</p>
-          <p>Artist Name: {music.artistName}</p>
+        <div className="player-info">
+          <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
+          <div>
+          <p>Name: {music.name || ''}</p>
+          <p>Artist: {music.artistName || ''}</p>
+          </div>
         </div>
         <div>
           <input

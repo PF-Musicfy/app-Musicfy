@@ -1,13 +1,27 @@
 .login {
   text-align: center;
   color: #fff;
-  background: #111;
+  background: #000;
   height: 100vh;
 }
 
+.login .navbar span {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #cf355c;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.login .navbar span:hover {
+  color: #fff;
+}
+
 .form {
-  text-align: start;
   border-bottom: 1px solid;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .inputError {
@@ -15,13 +29,13 @@
   border: 1px solid red;
 }
 
-.navbar{
+.navbar {
   display: flex;
   height: 60px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 100px;
+  padding: 0 20px;
   border-bottom: 1px solid;
 }
 
@@ -61,11 +75,15 @@
   height: 51px;
   border: 2px solid #fff;
   border-radius: 20px;
+  margin: auto;
+  margin-top: 20px;
 }
 .btnRegister {
   color: #cf355c;
   font-weight: 500;
   transition: 300ms;
+  margin-top: 10px;
+  border-bottom: 1px solid #fff;
 }
 
 .btnRegister:hover {
@@ -79,7 +97,6 @@
   margin: 4px auto;
   background-color: #cf355c;
   border-radius: 15px;
-  margin-left: 5px;
   transition: 300ms;
 }
 
@@ -90,9 +107,24 @@
 }
 
 .form input {
-  width: 70%;
+  width: 95%;
   height: 20px;
   padding: 15px;
   color: #000;
   border-radius: 10px;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.login .navbar button {
+  font-size: 25px;
+  color: #cf355c;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.login .navbar button:hover {
+  color: #fff;
 }
