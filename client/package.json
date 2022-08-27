@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "flowbite": "^1.5.2",
     "flowbite-react": "^0.1.8",
     "jwt-decode": "^3.1.2",

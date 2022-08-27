@@ -6,10 +6,11 @@ import imagen2 from "./WJT6FaB.png";
 import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
 import { userTokenInfo } from "../../store/slice/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
+  // const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);

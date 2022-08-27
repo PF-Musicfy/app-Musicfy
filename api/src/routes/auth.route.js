@@ -1,11 +1,11 @@
 const express = require("express");
 const {
   infoUser,
-  login,
-  register,
-  refreshToken,
-  logout,
-  premium,
+  loginUser,
+  registerUser,
+  refreshTokenUser,
+  logoutUser,
+  premiumUser,
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
@@ -15,13 +15,13 @@ const {
 } = require("../middlewares/validatorManager.js");
 const app = express.Router();
 
-app.post("/register", bodyRegisterValidator, register);
+app.post("/register", bodyRegisterValidator, registerUser);
 
-app.post("/login", bodyLoginValidator, login);
+app.post("/login", bodyLoginValidator, loginUser);
 
 app.get("/perfil", requireToken, infoUser);
-app.get("/refresh", requireRefreshToken, refreshToken);
-app.get("/logout", logout);
-app.post("/premium", requireToken, premium);
+app.get("/refresh", requireRefreshToken, refreshTokenUser);
+app.get("/logout", logoutUser);
+app.post("/premium", requireToken, premiumUser);
 
 module.exports = app;
