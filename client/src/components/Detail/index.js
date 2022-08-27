@@ -4,7 +4,7 @@ import { getTrackId } from "../../store/slice";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
-import { PopupLogin } from "../Popup";
+import { PopupLogin, PopupPremium } from "../Popup";
 
 function DetailFront({ e }) {
   return (
@@ -53,7 +53,10 @@ function DetailAll({ a, setEvoker }) {
 export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
+  const { user } = useSelector(state => state.user)
   const [evoker, setEvoker] = useState({});
+
+  const [allSongs, setAllSongs] = useState([]);
 
   const { id } = useParams();
 
@@ -61,9 +64,21 @@ export default function Detail() {
     dispatch(getTrackId(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    setAllSongs(Object.values(detailTracks));
+  }, [detailTracks])
+
   return (
     <div className="allcontainer">
-      {localStorage.getItem('loggedAppUser') ? '' : <PopupLogin />}
+      {Object.keys(user).length
+        ? <PopupPremium
+            imagen={allSongs[0] ? allSongs[0][0].images : ''}
+            user={user}
+          />
+        : <PopupLogin
+            imagen={allSongs[0] ? allSongs[0][0].images : ''}
+          />
+      }
       <DetailAll a={detailTracks} setEvoker={setEvoker} />
       <Player music={evoker} />
     </div>
