@@ -25,19 +25,19 @@ export default function Login() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const logged = window.localStorage.getItem('loggedAppUser')
-    if(logged){
-      const user = JSON.parse(logged)
-      console.log('localeffect',user)
+    const logged = window.localStorage.getItem("loggedAppUser");
+    if (logged) {
+      const user = JSON.parse(logged);
+      console.log("localeffect", user);
       dispatch(setUser(user));
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
-    if(Object.keys(user).length){
-      navigate('/home')
+    if (Object.keys(user).length) {
+      navigate("/home");
     }
-  }, [user,navigate])
+  }, [user, navigate]);
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -48,29 +48,58 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`, {
-      email: input.user,
-      password: input.pass,
-    })
-    .then((e) => {
-      console.log(e.data);
-      alert("logeado");
-      dispatch(setUser(e.data.user))
+    // axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`, {
+    //   email: input.user,
+    //   password: input.pass,
+    // })
+    // .then((e) => {
+    //   console.log(e.data);
+    //   alert("logeado");
+    //   dispatch(setUser(e.data.user))
 
-      window.localStorage.setItem(
-        'loggedAppUser', JSON.stringify(e.data.user)
+    //   window.localStorage.setItem(
+    //     'loggedAppUser', JSON.stringify(e.data.user)
+    //   )
+
+    //   navigate("/home");
+    // })
+    // .catch((e) => {
+    //   console.log(e);
+    //   alert("posibles errores:\n" +
+    //       "- el back no se ha iniciado\n" +
+    //       "- alguno de los campos falta o es incorrecto\n" +
+    //       "- el usuario no existe en la base de datos"
+    //   );
+    // });
+
+    axios
+      .post(
+        `${axios.defaults.baseURL}/api/v1/auth/login`,
+        {
+          email: input.user,
+          password: input.pass,
+        },
+        {
+          withCredentials: true,
+        }
       )
+      .then((e) => {
+        console.log(e.data);
+        alert("logeado");
+        navigate("/home");
+        //dispatch(setUser(e.data.user))
 
-      navigate("/home");
-    })
-    .catch((e) => {
-      console.log(e);
-      alert("posibles errores:\n" +
-          "- el back no se ha iniciado\n" +
-          "- alguno de los campos falta o es incorrecto\n" +
-          "- el usuario no existe en la base de datos"
-      );
-    });
+        //navigate("/home");
+      })
+      .catch((e) => {
+        console.log(e);
+        alert(
+          "posibles errores:\n" +
+            "- el back no se ha iniciado\n" +
+            "- alguno de los campos falta o es incorrecto\n" +
+            "- el usuario no existe en la base de datos"
+        );
+      });
   };
 
   return (
@@ -120,7 +149,7 @@ export default function Login() {
               }
             }}
           >
-            <FaEye className={s.eye}/>
+            <FaEye className={s.eye} />
           </button>
           <p className={s.msgError}>{errors.pass || ""}</p>
           <div className={s.containerSend}>
