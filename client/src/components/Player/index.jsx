@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { IconContext } from "react-icons";
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
+import { useSelector } from "react-redux";
 
 import './player.css';
 import toMinutes from '../../utils/toMinutes.js';
@@ -8,36 +9,23 @@ import toMinutes from '../../utils/toMinutes.js';
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
 export default function Player({ detail, music }){
+  const { detailTracks } = useSelector((state) => state.music);
+
   const [dataSong, setDataSong] = useState({});
-  const [listSong, setListSong] = useState([]);
+  const [allSongs, setAllSongs] = useState([]);
  
   const audioElem = useRef();
   const progressBar = useRef();
   const volumeBar = useRef();
 
-  const [isPlaying, setIsPlaying] = useState(false);
-
   useEffect(() => {
     audioElem.current.play();
     audioElem.current.volume = 0.1;
-    setListSong([music])
   }, [music])
 
   useEffect(() => {
-    audioElem.current.play();
-    audioElem.current.volume = 0.1;
-  }, [listSong])
-
-  useEffect(() => {
-    if(isPlaying){
-      audioElem.current.play();
-      audioElem.current.volume = 0.1;
-    }else{
-      audioElem.current.pause()
-    }
-    console.log('detail',detail);
-    console.log('list',listSong);
-  }, [isPlaying])
+    setAllSongs(Object.values(detailTracks));
+  }, [detailTracks])
 
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
@@ -53,22 +41,15 @@ export default function Player({ detail, music }){
 
     volumeBar.current.value = audioElem.current.volume * 10;
   }
-  const adelantar = () => {
-    const index = detail.tracksMusic.indexOf(listSong[0]);
-    setListSong([detail.tracksMusic[index + 1]])
-    audioElem.current.play();
-    audioElem.current.volume = 0.1;
-    console.log('index',listSong);
-  }
 
   return (
     <div className="player">
       <audio
         ref={audioElem}
-        src={(listSong.length
-              ? listSong[0].previewURL
-              :  music.previewURL) || url}
+        src={music.previewURL || url}
         onTimeUpdate={onPlaying}
+        onPlay={() => {console.log('play')}}
+        onPause={() => {console.log('pause')}}
       >
       </audio>
       <input
@@ -82,38 +63,28 @@ export default function Player({ detail, music }){
       <IconContext.Provider value={{className: 'player-icons'}}>
       <div className="player-controls">
         <div className="player-tools">
-          <button
-            className="player-button"
-            onClick={adelantar}
-          >
-            +1
-          </button>
-          <button
-            className="player-button"
-            onClick={() => setIsPlaying(!isPlaying)}
-          >
-            {isPlaying ? <FaPause /> : <FaPlay />}
-          </button>
-          <span>
-            {dataSong.current || '0:00'}/{dataSong.length || '0:00'}
-          </span>
-        </div>
-        <div className="player-info">
-          {/*<img
-            src={
-              Object.keys(detail).length
-              ? detail.track[0]?.images || detail.album[0].images
+          <button className="player-button"
+            onClick={() => {
+              if(audioElem.current){
+                if(audioElem.current.paused){
+                  audioElem.current.play()
+                }else{
+                  audioElem.current.pause()
+                }
+              }
+            }} >
+            {audioElem.current
+              ? (audioElem.current.paused ? <FaPause /> : <FaPlay />) 
               : ''
             }
-            alt='' 
-          />*/}
+          </button>
+          <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
+        </div>
+        <div className="player-info">
+          <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
           <div>
-          <p>Name: {(listSong.length
-              ? listSong[0].name
-              :  music.name)}</p>
-          <p>Artist Name: {(listSong.length
-              ? listSong[0].artistName
-              :  music.artistName)}</p>
+          <p>Name: {music.name || ''}</p>
+          <p>Artist: {music.artistName || ''}</p>
           </div>
         </div>
         <div>

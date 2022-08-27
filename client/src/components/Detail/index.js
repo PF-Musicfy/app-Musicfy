@@ -65,7 +65,7 @@ export default function Detail() {
     <div className="allcontainer">
       {localStorage.getItem('loggedAppUser') ? '' : <PopupLogin />}
       <DetailAll a={detailTracks} setEvoker={setEvoker} />
-      <Player detail={detailTracks} music={evoker} />
+      <Player music={evoker} />
     </div>
   );
 }
