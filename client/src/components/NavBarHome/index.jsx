@@ -22,7 +22,7 @@ export default function NavBarHome() {
 
   async function handleClick() {
     setProfile(!profile);
-    dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
+    // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
     setLogged(!logged);
