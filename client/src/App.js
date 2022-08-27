@@ -13,6 +13,8 @@ import About from "./components/About";
 import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import ProfileInfo from './components/Profile';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route exact path="/feedback" element={<Feedback />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
+        {/* <Route exact path="/profile" element={<><Sidebar /><MainView /></>} /> */}
+        <Route exact path="/profile" element={<ProfileInfo />} />
         <Route path="*" element={<PageDev />} />
       </Routes>
     </div>
