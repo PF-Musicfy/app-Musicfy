@@ -1,5 +1,8 @@
 import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import { userTokenInfo } from "./store/slice/user";
 import RegisterForm from "./components/RegisterForm";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
@@ -19,8 +22,13 @@ import UserMP3 from "./components/UserMP3";
 import CheckUp from "./pages/CheckUp";
 import Perfil from "./Perfil"
 
-
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userTokenInfo())
+  }, [])
+
   return (
     <div className="App">
       <Routes>
