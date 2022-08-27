@@ -7,6 +7,7 @@ export const userSlice = createSlice({
     feedback: [],
     users: [],
     user: {},
+    userToken: {},
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -18,10 +19,14 @@ export const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setUserToken: (state, action) => {
+      state.userToken = action.payload;
+    },
   },
 });
 
-export const { setFeedback, setUsers, setUser } = userSlice.actions;
+export const { setFeedback, setUsers, setUser, setUserToken } =
+  userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -44,3 +49,65 @@ export const getUsersAdmin = () => elCreador("/user/admin", setUsers);
 export const getUserByName = (user) =>
   elCreador(`/user?username=${user}`, setUsers);
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
+
+export const userTokenInfo = (url) => {
+  return async function (dispatch) {
+    try {
+      const resToken = await fetch(
+        "http://localhost:5000/api/v1/auth/refresh",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      const { token } = await resToken.json();
+      console.log(token);
+
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      return dispatch(setUserToken(data));
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+};
+
+export const userTokenPremium = (url, premium) => {
+  return async function (dispatch) {
+    console.log(premium);
+    try {
+      const resToken = await fetch(
+        "http://localhost:5000/api/v1/auth/refresh",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      const { token } = await resToken.json();
+      console.log(token);
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ premium }),
+      });
+
+      const data = await res.json();
+      return dispatch(setUserToken(data));
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+};
