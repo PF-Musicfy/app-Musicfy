@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 75vh;
+}
+.element {
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+}
+.icon {
+  width: 90px;
+  height: fit-content;
+  color: var(--mainColor);
+}
+.title {
+  position: absolute;
+  display: flex;
+  bottom: -290px;
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+}
+.phrase {
+  position: absolute;
+  bottom: -315px;
+  font-size: 15px;
+  color: rgb(129, 129, 129);
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+}
+.imagenback {
+  border-radius: 10px;
+}
+.titulo2 {
+  position: absolute;
+  bottom: -800px;
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+  padding-left: 40px;
+  font-size: 120px;
+  font-weight: 500;
+}
+.subtitulo2 {
+  position: absolute;
+  bottom: -900px;
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+  padding-left: 40px;
+  font-size: 40px;
+  font-weight: 500;
+}
+.button {
+  position: absolute;
+  bottom: -1000px;
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: rgb(95, 22, 95);
+  padding: 10px;
+  border-radius: 15px;
+  margin-left: 70px;
+}
+.button:hover {
+  background-color: #fff;
+  color: rgb(95, 22, 95);
+}
