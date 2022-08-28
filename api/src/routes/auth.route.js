@@ -2,6 +2,7 @@ const express = require("express");
 const {
   infoUser,
   loginUser,
+  validate,
   registerUser,
   refreshTokenUser,
   logoutUser,
@@ -16,12 +17,12 @@ const {
 const app = express.Router();
 
 // Kosovomba
-// app.post("/validate", bodyRegisterValidator, validate); ====== importar validate
-// app.post("/register", registerUser); ======= borrar la otra /register y usar ésta
+app.post("/validate", bodyRegisterValidator, validate);
+app.post("/register", registerUser);
 
 // Kosovomba
 
-app.post("/register", bodyRegisterValidator, registerUser);
+// app.post("/register", bodyRegisterValidator, registerUser);
 
 app.post("/login", bodyLoginValidator, loginUser);
 

@@ -8,7 +8,6 @@ const {
 // Kosovomba
 const bcrypt = require("bcryptjs");
 const {mailTransport} = require('../controllers/mailController')
-// exportar
 const validate = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -16,7 +15,6 @@ const validate = async (req, res) => {
     if (user) {
       return res.status(404).send(`${email} already exists`);
     }
-    // borrar el hash en la creación de usuario
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);    
     let validationLink = `http://localhost:3000/validate/${email}/${username}/${hashPassword}`
@@ -133,6 +131,7 @@ const premiumUser = async (req, res) => {
 };
 
 module.exports = {
+  validate,
   registerUser,
   loginUser,
   infoUser,

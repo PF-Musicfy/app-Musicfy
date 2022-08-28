@@ -78,25 +78,25 @@ app.get("/name", async (req, res, next)=> {
 }
 })
 
-app.post("/send-email", (req, res, next) => {
-  const {eMail} = req.body
-  let token = generateToken()
-  let transporter = mailTransport()
-  let mailOptions = {
-    from: "adminAPI",
-    to: eMail,
-    subject: "Key obtained",
-    text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
-  }
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      res.status(500).send(error.message)
-    } else {
-      console.log('email enviado')
-      res.status(200).jsonp(token)
-    }
-  })
-})
+// app.post("/send-email", (req, res, next) => {
+//   const {eMail} = req.body
+//   let token = generateToken()
+//   let transporter = mailTransport()
+//   let mailOptions = {
+//     from: "adminAPI",
+//     to: eMail,
+//     subject: "Key obtained",
+//     text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
+//   }
+//   transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       res.status(500).send(error.message)
+//     } else {
+//       console.log('email enviado')
+//       res.status(200).jsonp(token)
+//     }
+//   })
+// })
 
 app.post("/send-email-registered", (req, res, next) => {
   const {eMail} = req.body  
