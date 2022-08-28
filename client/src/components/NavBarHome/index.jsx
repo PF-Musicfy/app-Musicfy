@@ -7,12 +7,12 @@ import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
 import { userTokenInfo, logoutInfo  } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios'
+
 
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
-  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
+  const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true); 
@@ -22,30 +22,27 @@ export default function NavBarHome() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  async function handleClick() {
+   function handleClick() {
     setProfile(!profile);
     dispatch(userTokenInfo());
    }
   function handleLog () {
-    logoutInfo()
     setLogged(!logged);
+    logoutInfo()
+    window.localStorage.clear()
+    window.location.reload()
   }
   function onClickHome(e) {
     e.preventDefault();
     navigate(0);
   }
 
-  console.log(userToken.online)
-
-  const logOut = ()=>{
-   
-
-  }
+  console.log(user.online)
 
   return (
     <div>
       {
-        userToken.online === true ? console.log("logead"): console.log("no logeado")
+        user.online === true ? console.log("logead"): console.log("no logeado")
       }
       {logged ? (
         <div>

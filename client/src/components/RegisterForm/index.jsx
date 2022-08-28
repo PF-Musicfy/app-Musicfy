@@ -11,22 +11,16 @@ export default function RegisterForm() {
     eMail: "",
     password: "",
     rePassword: "",
-    token: "",
-    key: "",
   });
   let navigate = useNavigate();
   let error = true;
   let errorName = false;
-  let errorToken = false;
   let errorEMail = false;
   let errorPassword = false;
   let errorRePassword = false;
 
   if (newUser.name.length < 3 || /[^a-zñáéíóú]/i.test(newUser.name) === true) {
     errorName = true;
-  }
-  if (newUser.eMail + newUser.key !== newUser.token) {
-    errorToken = true;
   }
   if (
     newUser.eMail.length === 0 ||
@@ -53,7 +47,6 @@ export default function RegisterForm() {
 
   if (
     errorName === false &&
-    errorToken === false &&
     errorEMail === false &&
     errorPassword === false &&
     errorRePassword === false
@@ -84,56 +77,57 @@ export default function RegisterForm() {
     }
   })
 
-  function keyClick(e) {
-    e.preventDefault();
-    axios
-      .post(`${axios.defaults.baseURL}/send-email`, newUser)
-      .then((token) => {
-        setNewUser({ ...newUser, token: newUser.eMail + token.data });
-        console.log(token.data);
+  // function keyClick(e) {
+  //   e.preventDefault();
+  //   axios
+  //     .post(`${axios.defaults.baseURL}/send-email`, newUser)
+  //     .then((token) => {
+  //       setNewUser({ ...newUser, token: newUser.eMail + token.data });
+  //       console.log(token.data);
 
-        // alert sweet when key is sended to email
-        Toast.fire({
-          icon: 'success',
-          title: 'Key generated and sent to your email'
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //       // alert sweet when key is sended to email
+  //       Toast.fire({
+  //         icon: 'success',
+  //         title: 'Key generated and sent to your email'
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   function onSubmit(e) {
     e.preventDefault();
-    axios
-      .post(`${axios.defaults.baseURL}/api/v1/auth/register`, {
+    axios     
+      .post(`${axios.defaults.baseURL}/api/v1/auth/validate`, {
         username: newUser.name,
         email: newUser.eMail,
         password: newUser.password,
         repassword: newUser.rePassword,
       })
-      .then(() => {
-        axios.post(`${axios.defaults.baseURL}/send-email-registered`, newUser);
+      // .then(() => {
+      //   axios.post(`${axios.defaults.baseURL}/send-email-registered`, newUser);
 
-        // alert sweet when registered succesfully
-        Toast.fire({
-          icon: 'success',
-          title: 'User registered succesfully'
-        })
+        // ====>alert sweet when registered succesfully
+
+        // Toast.fire({
+        //   icon: 'success',
+        //   title: 'User registered succesfully'
+        // })
         
         setTimeout(() => {
           navigate(-1);
         }, 2000);
-      })
-      .catch((error) => {
-        if (error.response) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops try again!',
-            text: 'Email already exist',
-          })
-        }
-      });
+      // })
+      // .catch((error) => {
+      //   if (error.response) {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Oops try again!',
+      //       text: 'Email already exist',
+      //     })
+      //   }
+      // });
   }
   return (
     <div className={styles.create}>
@@ -201,7 +195,7 @@ export default function RegisterForm() {
               <span className={styles.error_span}>Passwords do not match</span>
             )}
           </div>
-          {newUser.token.length > 0 ? (
+          {/* {newUser.token.length > 0 ? (
             <div className={styles.item}>
               <label htmlFor="">* Key</label>
               <input
@@ -224,7 +218,7 @@ export default function RegisterForm() {
             >
               ! Obtain key to register !
             </button>
-          )}
+          )} */}
         </div>
         <button
           className={error ? styles.registerDisabled : styles.submit}

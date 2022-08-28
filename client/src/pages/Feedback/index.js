@@ -14,7 +14,7 @@ const colors = {
 
 export default function Feedback() {
   const dispatch = useDispatch();
-  const postsFeedback = useSelector((state) => state.user.feedback);
+  const { feedback, user } = useSelector((state) => state.user);
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
@@ -24,18 +24,6 @@ export default function Feedback() {
     dispatch(getFeedback())
   },[dispatch])
 
-  const click = (value) => {
-    setCurrentValue(value)
-  }
-
-  const mouseOver = (value) => {
-    setHoverValue(value)
-  };
-
-  const mouseLeave = () => {
-    setHoverValue(undefined)
-  }
-
   const submit = (e) => {
     e.preventDefault();
     if(!e.target[0].value || !e.target[1].value){
@@ -44,12 +32,13 @@ export default function Feedback() {
       return;
     }
     axios.post("http://localhost:5000/feedback", {
+      username: user.username,
       title: e.target[0].value,
       description: e.target[1].value,
     })
     .then(() => {
       dispatch(getFeedback())
-      alert("post feedback");
+      alert("post feedback "+user.username);
       e.target[0].value = '';
       e.target[1].value = '';
     })
@@ -70,6 +59,7 @@ export default function Feedback() {
       >
         Feedback Musicfy
       </p>
+      {Object.keys(user).length ?
       <form className={s.feedbackForm} onSubmit={submit}>
         <p>Post a new comment</p>
         <input
@@ -91,9 +81,9 @@ export default function Feedback() {
                   marginRight: 10,
                   cursor: "pointer"
                 }}
-                onClick={() => click(index + 1)}
-                onMouseOver={() => mouseOver(index + 1)}
-                onMouseLeave={mouseLeave}
+                onClick={() => setCurrentValue(index + 1)}
+                onMouseOver={() => setHoverValue(index + 1)}
+                onMouseLeave={() => setHoverValue(undefined)}
               />
             ))}
           </div>
@@ -104,8 +94,9 @@ export default function Feedback() {
           </button>
         </div>
       </form>
+      : 'logeate'}
       <div className={s.feedbackComments}>
-        {postsFeedback.map((e) => (
+        {feedback.map((e) => (
           <div
             key={e._id}
             className={s.feedbackComment}
@@ -115,10 +106,10 @@ export default function Feedback() {
             >
               <img src={e.avatar} alt='' />
               <div>
-                <p>id: {e._id}</p>
-                <p>date: {e.date}</p>
+                <p>username: {e.username}</p>
               </div>
             </div>
+            <p>date: {e.date}</p>
             <p>plan: {e.plan}</p>
             <p>title: {e.title}</p>
             <p>description: {e.description}</p>

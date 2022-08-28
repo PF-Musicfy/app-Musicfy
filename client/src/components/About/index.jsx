@@ -4,9 +4,8 @@ import CardAbout from "./CardAbout";
 import styles from "./about.module.css";
 import { MdLocationOn } from "react-icons/md";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { userTokenInfo } from "../../store/slice/user";
+import { useSelector } from 'react-redux'
+
 
 function About() {
   const staff = [
@@ -58,19 +57,13 @@ function About() {
     }
   ];
 
-  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    dispatch(userTokenInfo())
-  },[dispatch])
+  const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   return (
     <>
      {
-        userToken.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
+        user.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
       }
-      {/* <NavBarLandingOff /> */}
       <div className={styles.containerAbout}>
         {staff.map((e) => (
           <div className="container-about" key={e.name}>

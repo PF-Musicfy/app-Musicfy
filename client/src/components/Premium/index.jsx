@@ -7,12 +7,12 @@ import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 
 export default function Premium() {
 
-  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
+  const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   return (
     <div>
       {
-        userToken.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
+        user.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
       }
       {/* <NavBarLandingOff /> */}
       <div className={styles.subcontainer}>
