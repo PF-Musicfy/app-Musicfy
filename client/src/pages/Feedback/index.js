@@ -4,8 +4,9 @@ import s from "./feedback.module.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeedback } from "../../store/slice/user.js";
-import NavBarLanding from "../../components/LandingPage/NavBarLanding";
+import NavBarLandingOn from "../../components/LandingPage/NavBarLandingOn";
 import Footer from "../../components/LandingPage/Footer";
+import NavBarLandingOff from "../../components/LandingPage/NavBarLandingOff";
 
 const colors = {
   orange: "#FFBA5A",
@@ -52,7 +53,10 @@ export default function Feedback() {
 
   return (
     <div>
-      <NavBarLanding />
+      {
+        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+
       <div className={s.feedbackContainer}>
       <p
         className={s.feedbackTitle}

@@ -118,17 +118,18 @@ export const userTokenAvatar = (avatar) => {
   };
 };
 
-export const logoutUser = () => {
-  return async function (dispatch) {
-    try{
-      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`,{
-        withCredentials: true
-      })
+export const logoutUser = async () => {
+  try {
+    return await fetch(
+      "http://localhost:5000/api/v1/auth/logout",
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
 
-      console.log('cookie clear');
-      dispatch(setUser({}));
-    } catch (e) {
-      console.log('error logout')
-    }
-  }
+}catch(error){
+  console.log(error)
 }
+};
+
