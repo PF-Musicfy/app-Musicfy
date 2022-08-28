@@ -74,7 +74,7 @@ export default function Player({ detail, music }){
               }
             }} >
             {audioElem.current
-              ? (audioElem.current.paused ? <FaPause /> : <FaPlay />) 
+              ? (audioElem.current.paused ? <FaPlay /> : <FaPause />) 
               : ''
             }
           </button>

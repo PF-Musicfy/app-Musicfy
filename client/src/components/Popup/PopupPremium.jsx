@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import s from './popup.module.css';
 import Popup from './Popup.jsx';
 
-export default function PopupLogin({ imagen }){
+export default function PopupPremium({ imagen , user }){
   const navigate = useNavigate();
 
   return (
@@ -15,20 +15,14 @@ export default function PopupLogin({ imagen }){
         />
       </div>
       <div className={s.info}>
-        <p>Empieza a escuchar musica con Musicfy</p>
+        <p>User: {user ? user.username : 'desconocido'}</p>
+        <span>{user.premium ? "es premium" : "no es premium"}</span>
+        <p>Reproduce música sin anuncios.</p>
         <div>
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/premium')}
           >
-            Registrate Gratis
-          </button>
-        </div>
-        <div className={s.login}>
-          <span>¿Ya tienes cuenta?</span>
-          <button
-            onClick={() => navigate('/login')}
-          >
-            Inicia sesion
+            pasate a Premium
           </button>
         </div>
       </div>
