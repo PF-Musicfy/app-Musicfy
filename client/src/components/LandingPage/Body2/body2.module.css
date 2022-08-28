@@ -18,29 +18,28 @@
   width: 33%;
 }
 .icon {
-  width: 90px;
+  width: 60%;
   height: fit-content;
   color: var(--mainColor);
 }
 .title {
-  position: absolute;
   display: flex;
-  bottom: -290px;
-  font-size: 25px;
   justify-content: center;
   align-items: center;
-  width: 33%;
+  font-size: 160%;
+  width: 200%;
 }
 .phrase {
-  position: absolute;
-  bottom: -315px;
-  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
   color: rgb(129, 129, 129);
+  width: 250%;
 }
 .container2 {
   display: flex;
   flex-direction: column;
-  /*   justify-content: center; */
   align-items: center;
   width: 100%;
   height: 100vh;
@@ -68,7 +67,6 @@
 .button {
   color: #fff;
   font-family: "Cabin", sans-serif;
-  /*   font-size: 20px; */
   font-size: 120%;
   font-weight: 500;
   background-color: rgb(95, 22, 95);
@@ -79,4 +77,34 @@
 .button:hover {
   background-color: #fff;
   color: rgb(95, 22, 95);
+}
+@media only screen and (max-width: 800px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 180vh;
+  }
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    width: 500%;
+  }
+  .phrase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    color: rgb(129, 129, 129);
+    width: 500%;
+  }
+  .icon {
+    width: 120%;
+    height: fit-content;
+    color: var(--mainColor);
+  }
 }
