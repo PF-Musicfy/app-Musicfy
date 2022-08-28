@@ -1,5 +1,6 @@
 import s from "./dashboard.module.css";
 import CompactCard from "./CompactCard.jsx";
+import { CardsFeedbackCompact } from "../../components/CardsFeedback";
 
 export default function DashboardHome() {
   return (
@@ -20,6 +21,7 @@ export default function DashboardHome() {
         title={'collect'}
         value={'$23'}
       />
+      <CardsFeedbackCompact />
       <div>
         Ultimas compras de cuenta Premium
       </div>
