@@ -31,7 +31,6 @@ export default function Body2() {
         </div>
       </div>
       <div className={styles.container2}>
-        <img src={imagen} alt="backg" className={styles.imagenback} />
         <h1 className={styles.titulo2}>Not premium yet?</h1>
         <h2 className={styles.subtitulo2}>Try premium free for 7 days</h2>
         <Link to="/premium">
