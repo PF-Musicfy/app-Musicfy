@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { userTokenPremium } from "./store/slice/user";
+import { userTokenInfo } from "./store/slice/user";
 
 const Perfil = () => {
   const { userToken } = useSelector((state) => state.user);
@@ -7,7 +7,7 @@ const Perfil = () => {
 
   const handleClick = () => {
     dispatch(
-      userTokenPremium("http://localhost:5000/api/v1/auth/premium", true)
+      userTokenInfo()
     );
   };
 

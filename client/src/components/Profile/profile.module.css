@@ -1,0 +1,185 @@
+.mainContainer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* border: 1px solid greenyellow; */
+
+}
+
+.centerContainer {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    color: white;
+    width: 1200px;
+    height: 900px;
+    background: radial-gradient(100% 100% at 100% 0%, #cf355c74 0%, #0c11365d 100%);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-top: 50px;
+    margin-left: 15px;
+    /* border: 1px solid purple; */
+    /* box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%); */
+
+}
+
+/* ------- all items of center container ------- */
+
+.navbarCenter {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    border-bottom: 1px solid #cfca352b;
+    /* background: radial-gradient(100% 100% at 60% 50%, #0000005b 0%, #cf355c36 100%); */
+}
+
+.circleImage {
+    height: 175px;
+    width: 175px;
+    margin-left: 10px;
+    background: gray;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.insideCircle {
+    border-radius: 50%;
+}
+
+.infoNavbar {
+    display: flex;
+    margin: 20px 0px 0px 15px;
+    flex-flow: column;
+    justify-content: flex-end;
+    font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif), sans-serif;
+}
+
+.h2Perfil {
+    margin-left: 0.2em;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+.h1UserName {
+    margin: 0.02em 0px 0.12em;
+    visibility: visible;
+    width: 100%;
+    font-size: 4.5rem;
+}
+
+.underUsername{
+    font-size: 15px;
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+
+
+.premiumNormal{
+    border-radius: 3px;
+    background: var(--mainColor);
+    border: 2px solid var(--mainColor);
+    padding: 5px;
+    position: absolute;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 1060px;
+}
+
+
+
+.infoDetail {
+    display: flex;
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 8px;
+    color: white;
+    height: 100px;
+    width: 720px;
+    background: radial-gradient(100% 100% at 100% 0%, #303638 0%, #0c11364b 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 6px;
+}
+
+.centerInfoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    width: 800px;
+    height: 450px;
+    /* border: 1px solid pink; */
+}
+
+.titleGenre{
+    font-weight: 600;
+    margin-top: -10px;
+    margin-left: 29px;
+}
+
+.titleGenre2{
+    font-weight: 600;
+    margin-top: 15px;
+    margin-left: 29px;
+
+}
+
+.containerSwiper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 30px; */
+    /* border: 1px solid greenyellow; */
+}
+
+.containerSwiper2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgSwiper {
+    margin-top: 40px;
+    border-radius: 3px;
+    width: 160px;
+    height: 150px;
+    object-fit: cover;
+    /* border: 1px solid greenyellow; */
+}
+
+.swiper{
+    width: 1200px;
+}
+
+.h3Colors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 450;
+    width: 150px;
+    height: 60px;
+    /* border: 1px solid purple; */
+}
+
+.h3Colors2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 450;
+    margin-top: 5px;
+    width: 160px;
+    height: 35px;
+    /* border: 1px solid purple; */
+}
+
+.h3artistName{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 15px;
+}
