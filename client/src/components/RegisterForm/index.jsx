@@ -65,36 +65,18 @@ export default function RegisterForm() {
     console.log(newUser);
   }
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'center',
-    showConfirmButton: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-
-  // function keyClick(e) {
-  //   e.preventDefault();
-  //   axios
-  //     .post(`${axios.defaults.baseURL}/send-email`, newUser)
-  //     .then((token) => {
-  //       setNewUser({ ...newUser, token: newUser.eMail + token.data });
-  //       console.log(token.data);
-
-  //       // alert sweet when key is sended to email
-  //       Toast.fire({
-  //         icon: 'success',
-  //         title: 'Key generated and sent to your email'
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: 'center',
+  //   showConfirmButton: false,
+  //   timer: 2000,
+  //   timerProgressBar: true,
+  //   // didOpen: (toast) => {
+  //   //   toast.addEventListener('mouseenter', Swal.stopTimer)
+  //   //   toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //   // }
+  // })
+  
 
   function onSubmit(e) {
     e.preventDefault();
@@ -105,29 +87,22 @@ export default function RegisterForm() {
         password: newUser.password,
         repassword: newUser.rePassword,
       })
-      // .then(() => {
-      //   axios.post(`${axios.defaults.baseURL}/send-email-registered`, newUser);
-
-        // ====>alert sweet when registered succesfully
-
-        // Toast.fire({
-        //   icon: 'success',
-        //   title: 'User registered succesfully'
-        // })
-        
-        setTimeout(() => {
-          navigate(-1);
-        }, 2000);
-      // })
-      // .catch((error) => {
-      //   if (error.response) {
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Oops try again!',
-      //       text: 'Email already exist',
-      //     })
-      //   }
-      // });
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Check your email and click in the link to validate your registration'
+        }) 
+        navigate(-1);     
+      })     
+      .catch((error) => {
+        if (error.response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops try again!',
+            text: 'Email already exist',
+          })
+        }
+      });
   }
   return (
     <div className={styles.create}>
