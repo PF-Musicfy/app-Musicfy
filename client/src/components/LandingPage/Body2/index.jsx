@@ -6,7 +6,7 @@ import { IoHeadsetSharp } from "react-icons/io5";
 import imagen from "./c0d19485337437b7e6955ae26f737978.jpg";
 export default function Body2() {
   return (
-    <div>
+    <div className={styles.containerall}>
       <div className={styles.container}>
         <div className={styles.element}>
           <IoHeadsetSharp className={styles.icon} />
@@ -31,7 +31,6 @@ export default function Body2() {
         </div>
       </div>
       <div className={styles.container2}>
-        <img src={imagen} alt="backg" className={styles.imagenback} />
         <h1 className={styles.titulo2}>Not premium yet?</h1>
         <h2 className={styles.subtitulo2}>Try premium free for 7 days</h2>
         <Link to="/premium">
