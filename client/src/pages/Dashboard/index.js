@@ -9,6 +9,7 @@ import { userTokenInfo } from "../../store/slice/user";
 import SideBar from "../../components/SideBar";
 import DashboardHome from "./DashboardHome.jsx";
 import DashboardFeedback from "./DashboardFeedback.jsx";
+import PageAdmin from "../../components/PageAdmin";
 
 function LoginForm() {
   const inputPass = useRef();
@@ -24,7 +25,7 @@ function LoginForm() {
       withCredentials: true
     })
     .then(() => {
-      alert("logeado");
+      alert("Ingresando al dashboard - Admin");
       dispatch(userTokenInfo())
     })
     .catch((e) => {
@@ -83,11 +84,16 @@ export default function Dashboard() {
         <Link to=''>Home</Link>
         <br />
         <Link to='feedback'>Feedback</Link>
+        <br />
+        <Link to='list'>List</Link>
       </SideBar>
-      <Routes>
-        <Route exact path="/" element={<DashboardHome />} />
-        <Route exact path="/feedback" element={<DashboardFeedback />} />
-      </Routes>
+      <div className={s.content}>
+        <Routes>
+          <Route exact path="/" element={<DashboardHome />} />
+          <Route exact path="/feedback" element={<DashboardFeedback />} />
+          <Route exact path="/list" element={<PageAdmin />} />
+        </Routes>
+      </div>
       </>
       : <LoginForm />
       }

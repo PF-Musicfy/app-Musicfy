@@ -4,7 +4,7 @@ import { CardsFeedback } from "../../components/CardsFeedback";
 export default function DashboardFeedback() {
 
   return (
-    <div className={s.main}>
+    <div>
       <h2>Dashboard - Musicfy</h2>
       <h2>Dashboard - Feedback</h2>
       <CardsFeedback />
