@@ -2,6 +2,44 @@ const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
 const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
 
+// Kosovomba
+const bcrypt = require("bcryptjs");
+const {mailTransport} = require('../controllers/mailController')
+const validate = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(404).send(`${email} already exists`);
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(password, salt);    
+    let validationLink = `http://localhost:3000/validate/${email}/${username}/${hashPassword}`
+    let transporter = mailTransport()
+  let mailOptions = {
+    from: "adminAPI",
+    to: email,
+    subject: "Validation link",
+    html: `<b> Hello! Click this link in order to complete registration: </b>
+    <a href= "${validationLink}">${validationLink}</a>`
+  }
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.status(500).send(error.message)
+    } else {
+      console.log('email enviado')
+      res.status(200).jsonp(token)
+    }
+  })
+    
+
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+}
+
+// Kosovomba
+
 const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -103,6 +141,7 @@ const avatarUser = async (req, res) => {
 };
 
 module.exports = {
+  validate,
   registerUser,
   loginUser,
   infoUser,
