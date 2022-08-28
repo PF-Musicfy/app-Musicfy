@@ -1,43 +1,67 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slice/user.js";
+
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { gapi } from "gapi-script";
 
 export default function LoginWithGoogle() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user)
+  const clientId =  "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com";
 
   useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com",
-      callback: responseGoogle
-    })
+    const initClient = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ''
+      })
+    }
+    gapi.load("client:auth2", initClient)
+  }, [])
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large"}
-    );
-    //google.accounts.id.prompt();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-
-  const responseGoogle = (response) => {
-    const userObject = jwt_decode(response.credential);
-    console.log(userObject);
-
-    alert("logeado");
-    dispatch(setUser(userObject))
-
-    window.localStorage.setItem(
-      'loggedAppUser', JSON.stringify(userObject)
-    )
-
-    navigate("/home");
+  const onSuccess = (res) => {
+    console.log('success', res.profileObj);
+    const data = {
+      username: res.profileObj.name,
+      email: res.profileObj.email,
+      avatar: res.profileObj.imageUrl,
+      admin: false,
+      premium: false,
+      isblocked: false,
+      online: true,
+    }
+    dispatch(setUser(data))
+    console.log(data)
+  }
+  const onFailure = (res) => {
+    console.log('failed', res);
+  }
+  const logOut = () => {
+    console.log('logout');
+    dispatch(setUser({}))
   }
 
   return (
-    <div id="signInDiv"></div>
+    <div>
+      {Object.keys(user).length ?
+        <GoogleLogout
+          clientId={clientId}
+          buttonText="Log out"
+          onLogoutSuccess={logOut}
+        />
+        :
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Sign in with Google"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+        />
+      }
+    </div>
   )
 }
