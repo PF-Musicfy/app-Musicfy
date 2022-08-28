@@ -16,6 +16,7 @@ import PageAdmin from "./components/PageAdmin";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
 import Perfil from "./Perfil";
+import Validation from "./components/Validation"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route exact path="/miperfil" element={<Perfil />} />
+        <Route exact path="/validate/:email/:username/:hashPassword" element={<Validation />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>

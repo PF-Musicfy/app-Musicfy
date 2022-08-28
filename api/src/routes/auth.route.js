@@ -15,6 +15,12 @@ const {
 } = require("../middlewares/validatorManager.js");
 const app = express.Router();
 
+// Kosovomba
+// app.post("/validate", bodyRegisterValidator, validate); ====== importar validate
+// app.post("/register", register); ======= borrar la otra /register y usar ésta
+
+// Kosovomba
+
 app.post("/register", bodyRegisterValidator, register);
 
 app.post("/login", bodyLoginValidator, login);

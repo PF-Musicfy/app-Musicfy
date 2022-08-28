@@ -107,6 +107,7 @@ export default function RegisterForm() {
     e.preventDefault();
     axios
       .post(`${axios.defaults.baseURL}/api/v1/auth/register`, {
+      // .post(`${axios.defaults.baseURL}/api/v1/auth/validate`, {
         username: newUser.name,
         email: newUser.eMail,
         password: newUser.password,
