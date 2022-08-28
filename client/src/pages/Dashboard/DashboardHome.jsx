@@ -5,7 +5,6 @@ import { CardsFeedbackCompact } from "../../components/CardsFeedback";
 export default function DashboardHome() {
   return (
     <div>
-      <h2>Dashboard - Musicfy</h2>
       <CompactCard
         total={'2,123'}
         title={'free'}

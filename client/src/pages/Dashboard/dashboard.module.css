@@ -1,8 +1,13 @@
 .container {
+  background: #27293d;
 }
 
+/*body {
+  background: linear-gradient(#1e1e2f,#1e1e24);
+}
+*/
 .content {
-  margin-left: 100px;
+  margin-left: 150px;
   padding: 10px;
 }
 
