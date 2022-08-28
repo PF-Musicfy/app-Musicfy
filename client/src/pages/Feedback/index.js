@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import s from "./feedback.module.css";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+import s from "./feedback.module.css";
 import { getFeedback } from "../../store/slice/user.js";
 import NavBarLandingOn from "../../components/LandingPage/NavBarLandingOn";
 import Footer from "../../components/LandingPage/Footer";
 import NavBarLandingOff from "../../components/LandingPage/NavBarLandingOff";
+import { CardsFeedback } from "../../components/CardsFeedback";
 
 const colors = {
   orange: "#FFBA5A",
@@ -15,15 +17,11 @@ const colors = {
 
 export default function Feedback() {
   const dispatch = useDispatch();
-  const { feedback, user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0) // === [0,0,0,0,0]
-
-  useEffect(() => {
-    dispatch(getFeedback())
-  },[dispatch])
 
   const submit = (e) => {
     e.preventDefault();
@@ -99,27 +97,7 @@ export default function Feedback() {
         </div>
       </form>
       : 'logeate'}
-      <div className={s.feedbackComments}>
-        {feedback.map((e) => (
-          <div
-            key={e._id}
-            className={s.feedbackComment}
-          >
-            <div
-              className={s.feedbackAvatar}
-            >
-              <img src={e.avatar} alt='' />
-              <div>
-                <p>username: {e.username}</p>
-              </div>
-            </div>
-            <p>date: {e.date}</p>
-            <p>plan: {e.plan}</p>
-            <p>title: {e.title}</p>
-            <p>description: {e.description}</p>
-          </div>
-        ))}
-      </div>
+      <CardsFeedback />
       </div>
       <Footer />
     </div>

@@ -16,7 +16,6 @@ import Feedback from "./pages/Feedback";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import ProfileInfo from './components/Profile';
-import PageAdmin from "./components/PageAdmin";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
 import CheckUp from "./pages/CheckUp";
@@ -47,7 +46,6 @@ function App() {
         <Route exact path="/profile" element={<ProfileInfo />} />
         <Route path="/validate/:email/:username/:hashPassword/*" element={<Validation />} />
         <Route path="*" element={<PageDev />} />
-        <Route exact path="/admin" element={<PageAdmin />} />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route exact path="/checkup" element={<CheckUp />} />
