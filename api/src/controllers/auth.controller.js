@@ -1,9 +1,6 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
-const {
-  generateRefreshToken,
-  generateToken,
-} = require("../utils/tokenManager.js");
+const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
 
 // Kosovomba
 const bcrypt = require("bcryptjs");
@@ -96,6 +93,7 @@ const infoUser = async (req, res) => {
       password: 0,
       _id: 0
     });
+    if(user === null) throw new Error('aqui devuelve null y rompe el front')
     res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "server error" });
@@ -122,12 +120,24 @@ const premiumUser = async (req, res) => {
   console.log(req.body);
 
   const user = await User.findByIdAndUpdate(req.uid, {
-    premium,
+    premium
   });
   // if (!user) return res.json({ message: "El usuario no existe" });
   await user.save();
 
   return res.json({ message: "Usuario pasado a premium" });
+};
+
+const avatarUser = async (req, res) => {
+  const { avatar } = req.body;
+  console.log(req.body);
+
+  const user = await User.findByIdAndUpdate(req.uid, {
+    avatar
+  });
+  await user.save();
+
+  return res.json({ message: "Avatar cambiado" });
 };
 
 module.exports = {
@@ -138,4 +148,5 @@ module.exports = {
   refreshTokenUser,
   logoutUser,
   premiumUser,
+  avatarUser
 };

@@ -203,10 +203,10 @@ app.post("/send-email-registered", (req, res, next) => {
 
 app.post("/feedback", async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const newPost = new Post({title, description});
+    const { username, title, description } = req.body;
+    const newPost = new Post({username, title, description});
     await newPost.save()
-    console.log(newPost)
+    //console.log(newPost)
     res.send('newPost saved');
   }catch(e){
     res.status(500).send('newPost failed');

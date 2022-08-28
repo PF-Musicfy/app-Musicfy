@@ -7,13 +7,11 @@ const {
   refreshTokenUser,
   logoutUser,
   premiumUser,
+  avatarUser
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
-const {
-  bodyLoginValidator,
-  bodyRegisterValidator,
-} = require("../middlewares/validatorManager.js");
+const { bodyLoginValidator, bodyRegisterValidator } = require("../middlewares/validatorManager.js");
 const app = express.Router();
 
 // Kosovomba
@@ -30,5 +28,6 @@ app.get("/perfil", requireToken, infoUser);
 app.get("/refresh", requireRefreshToken, refreshTokenUser);
 app.get("/logout", logoutUser);
 app.post("/premium", requireToken, premiumUser);
+app.post("/setavatar", requireToken, avatarUser);
 
 module.exports = app;
