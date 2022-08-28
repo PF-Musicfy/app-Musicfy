@@ -21,6 +21,7 @@ import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
 import CheckUp from "./pages/CheckUp";
 import Perfil from "./Perfil"
+import Validation from "./components/Validation"
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/dashboard/*" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/profile" element={<ProfileInfo />} />
+        <Route path="/validate/:email/:username/:hashPassword/*" element={<Validation />} />
         <Route path="*" element={<PageDev />} />
         <Route exact path="/admin" element={<PageAdmin />} />
         <Route exact path="/avatar" element={<Avatar />} />
