@@ -1,9 +1,6 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
-const {
-  generateRefreshToken,
-  generateToken,
-} = require("../utils/tokenManager.js");
+const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
 
 const registerUser = async (req, res) => {
   try {
@@ -84,12 +81,24 @@ const premiumUser = async (req, res) => {
   console.log(req.body);
 
   const user = await User.findByIdAndUpdate(req.uid, {
-    premium,
+    premium
   });
   // if (!user) return res.json({ message: "El usuario no existe" });
   await user.save();
 
   return res.json({ message: "Usuario pasado a premium" });
+};
+
+const avatarUser = async (req, res) => {
+  const { avatar } = req.body;
+  console.log(req.body);
+
+  const user = await User.findByIdAndUpdate(req.uid, {
+    avatar
+  });
+  await user.save();
+
+  return res.json({ message: "Avatar cambiado" });
 };
 
 module.exports = {
@@ -99,4 +108,5 @@ module.exports = {
   refreshTokenUser,
   logoutUser,
   premiumUser,
+  avatarUser
 };
