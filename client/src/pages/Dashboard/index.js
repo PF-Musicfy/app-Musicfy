@@ -81,6 +81,8 @@ export default function Dashboard() {
       {Object.keys(user).length ?
       <>
       <SideBar>
+        <p>Dashboard</p>
+        <hr />
         <Link to=''>Home</Link>
         <br />
         <Link to='feedback'>Feedback</Link>
