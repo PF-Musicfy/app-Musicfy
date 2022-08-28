@@ -78,25 +78,25 @@ app.get("/name", async (req, res, next)=> {
 }
 })
 
-app.post("/send-email", (req, res, next) => {
-  const {eMail} = req.body
-  let token = generateToken()
-  let transporter = mailTransport()
-  let mailOptions = {
-    from: "adminAPI",
-    to: eMail,
-    subject: "Key obtained",
-    text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
-  }
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      res.status(500).send(error.message)
-    } else {
-      console.log('email enviado')
-      res.status(200).jsonp(token)
-    }
-  })
-})
+// app.post("/send-email", (req, res, next) => {
+//   const {eMail} = req.body
+//   let token = generateToken()
+//   let transporter = mailTransport()
+//   let mailOptions = {
+//     from: "adminAPI",
+//     to: eMail,
+//     subject: "Key obtained",
+//     text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
+//   }
+//   transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       res.status(500).send(error.message)
+//     } else {
+//       console.log('email enviado')
+//       res.status(200).jsonp(token)
+//     }
+//   })
+// })
 
 app.post("/send-email-registered", (req, res, next) => {
   const {eMail} = req.body  
@@ -203,10 +203,10 @@ app.post("/send-email-registered", (req, res, next) => {
 
 app.post("/feedback", async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const newPost = new Post({title, description});
+    const { username, title, description } = req.body;
+    const newPost = new Post({username, title, description});
     await newPost.save()
-    console.log(newPost)
+    //console.log(newPost)
     res.send('newPost saved');
   }catch(e){
     res.status(500).send('newPost failed');

@@ -6,42 +6,43 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      trim: true,
+      trim: true
     },
     email: {
       type: String,
       required: true,
       unique: true,
       trim: true,
-      index: { unique: true },
+      index: { unique: true }
     },
     password: {
       type: String,
-      required: true,
+      required: true
     },
     avatar: {
       type: String,
-      default: "http://cdn.onlinewebfonts.com/svg/img_569204.png",
+      default:
+        "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_355,w_355/v1661641450/aedocfnxcvh3emgc65he.png"
     },
     admin: {
       type: Boolean,
-      default: false,
+      default: false
     },
     premium: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isblocked: {
       type: Boolean,
-      default: false,
+      default: false
     },
     online: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   {
-    versionKey: false,
+    versionKey: false
   }
 );
 
@@ -50,8 +51,8 @@ userSchema.pre("save", async function (next) {
 
   if (!user.isModified("password")) return next();
 
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  // const salt = await bcrypt.genSalt(10);
+  // user.password = await bcrypt.hash(user.password, salt);
 
   next();
 });
