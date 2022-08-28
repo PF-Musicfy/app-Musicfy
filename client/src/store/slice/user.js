@@ -96,3 +96,18 @@ export const userTokenPremium = (premium) => {
     }
   };
 };
+
+export const logoutUser = () => {
+  return async function (dispatch) {
+    try{
+      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`,{
+        withCredentials: true
+      })
+
+      console.log('cookie clear');
+      dispatch(setUser({}));
+    } catch (e) {
+      console.log('error logout')
+    }
+  }
+}
