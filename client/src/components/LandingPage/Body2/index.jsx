@@ -6,7 +6,7 @@ import { IoHeadsetSharp } from "react-icons/io5";
 import imagen from "./c0d19485337437b7e6955ae26f737978.jpg";
 export default function Body2() {
   return (
-    <div>
+    <div className={styles.containerall}>
       <div className={styles.container}>
         <div className={styles.element}>
           <IoHeadsetSharp className={styles.icon} />
