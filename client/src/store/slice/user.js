@@ -58,7 +58,6 @@ export const userTokenInfo = () => {
           Authorization: `Bearer ${token}`
         }
       });
-
       dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);

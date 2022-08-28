@@ -55,6 +55,7 @@ const infoUser = async (req, res) => {
       password: 0,
       _id: 0
     });
+    if(user === null) throw new Error('aqui devuelve null y rompe el front')
     res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "server error" });
