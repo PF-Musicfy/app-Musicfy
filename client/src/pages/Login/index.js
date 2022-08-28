@@ -51,7 +51,7 @@ export default function Login() {
 
       dispatch(userTokenInfo())
 
-      navigate("/home");
+      navigate("/");
       
     })
     .catch((e) => {

@@ -7,11 +7,12 @@ import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
 import { userTokenInfo, logoutInfo  } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios'
 
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
-  // const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
+  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true); 
@@ -22,9 +23,10 @@ export default function NavBarHome() {
   };
 
   async function handleClick() {
+    setProfile(!profile);
     dispatch(userTokenInfo());
-  }
-  function handleLog() {
+   }
+  function handleLog () {
     logoutInfo()
     setLogged(!logged);
   }
@@ -33,8 +35,18 @@ export default function NavBarHome() {
     navigate(0);
   }
 
+  console.log(userToken.online)
+
+  const logOut = ()=>{
+   
+
+  }
+
   return (
     <div>
+      {
+        userToken.online === true ? console.log("logead"): console.log("no logeado")
+      }
       {logged ? (
         <div>
           <header>
@@ -96,9 +108,9 @@ export default function NavBarHome() {
                 <Link to="/premium">
                   <span>Premium</span>
                 </Link>
-                <span onClick={handleLog} className="logOut">
+                <button onClick={handleLog} className="logOut">
                   Log out
-                </span>
+                </button>
               </div>{" "}
             </div>
           )}
@@ -126,6 +138,7 @@ export default function NavBarHome() {
           </button>
         </header>
       )}
+    
     </div>
   );
 }

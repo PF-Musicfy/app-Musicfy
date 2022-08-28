@@ -1,7 +1,7 @@
-import styles from "./NavBarLanding.module.css";
+import styles from "./NavBarLandingOn.module.css";
 import { Link } from "react-router-dom";
 
-function NavBarLanding() {
+function NavBarLandingOn() {
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -21,12 +21,12 @@ function NavBarLanding() {
             <Link to="/about">
               <li className={styles.btnNavbar}>About</li>
             </Link>
-            <Link to="/register">
+            {/* <Link to="/register">
               <li className={styles.btnNavbar}>Register</li>
-            </Link>
-            <Link to="/login">
+            </Link> */}
+            {/* <Link to="/login">
               <li className={styles.btnNavbar}>Login</li>
-            </Link>
+            </Link> */}
             <Link to="/profile">
               <li className={styles.btnNavbar}>Profile</li>
             </Link>
@@ -40,32 +40,4 @@ function NavBarLanding() {
   );
 }
 
-export default NavBarLanding;
-
-/* 
- <div className="w-full text-white flex justify-between p-4 item-center">
-        <div className={styles.conterImg}>
-          <img className="w-10 h-10 mx-4" src="https://i.imgur.com/WJT6FaB.png" alt="logo" />
-          <span className={styles.logoTxt}>MusicFy</span>
-        </div>
-        <nav>
-          <ul className={"md:flex gap-8 p-4 hidden"}>
-            <li>
-              <Link to="/premium">Premium</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/login">Perfil</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-*/
+export default NavBarLandingOn;

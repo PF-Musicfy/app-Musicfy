@@ -43,6 +43,9 @@ header .nav-btn {
   height: 40px;
   padding-right: 5px;
 }
+.logoOff{
+  display: none
+}
 
 .avatar {
   height: 40px;

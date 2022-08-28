@@ -1,14 +1,20 @@
-import NavBarLanding from "../LandingPage/NavBarLanding";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import Footer from "../LandingPage/Footer";
 import CardPlan from "../CardPlan";
 import styles from "./premium.module.css";
+import { useSelector } from 'react-redux'
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 
 export default function Premium() {
 
+  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
 
   return (
     <div>
-      <NavBarLanding />
+      {
+        userToken.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+      {/* <NavBarLandingOff /> */}
       <div className={styles.subcontainer}>
         <img
           src="https://i.pinimg.com/originals/66/d1/b4/66d1b4865389a633bc108a602aee9311.jpg"

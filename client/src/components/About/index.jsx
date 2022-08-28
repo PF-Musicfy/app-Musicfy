@@ -1,8 +1,12 @@
-import NavBarLanding from "../LandingPage/NavBarLanding";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import Footer from "../LandingPage/Footer";
 import CardAbout from "./CardAbout";
 import styles from "./about.module.css";
 import { MdLocationOn } from "react-icons/md";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { userTokenInfo } from "../../store/slice/user";
 
 function About() {
   const staff = [
@@ -53,9 +57,20 @@ function About() {
       images: "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661186886/alejandro_pciivb.jpg"
     }
   ];
+
+  const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(userTokenInfo())
+  },[dispatch])
+
   return (
     <>
-      <NavBarLanding />
+     {
+        userToken.online === true? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+      {/* <NavBarLandingOff /> */}
       <div className={styles.containerAbout}>
         {staff.map((e) => (
           <div className="container-about" key={e.name}>
