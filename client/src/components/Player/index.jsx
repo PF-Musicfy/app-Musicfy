@@ -19,6 +19,8 @@ export default function Player({ detail, music }){
   const volumeBar = useRef();
 
   useEffect(() => {
+    if(!Object.keys(music).length) return;
+
     audioElem.current.play();
     audioElem.current.volume = 0.1;
   }, [music])
