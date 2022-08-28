@@ -1,9 +1,10 @@
 import s from "./dashboard.module.css";
 import CompactCard from "./CompactCard.jsx";
+import { CardsFeedbackCompact } from "../../components/CardsFeedback";
 
 export default function DashboardHome() {
   return (
-    <div className={s.main}>
+    <div>
       <h2>Dashboard - Musicfy</h2>
       <CompactCard
         total={'2,123'}
@@ -20,6 +21,7 @@ export default function DashboardHome() {
         title={'collect'}
         value={'$23'}
       />
+      <CardsFeedbackCompact />
       <div>
         Ultimas compras de cuenta Premium
       </div>
