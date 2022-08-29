@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     dispatch(userTokenInfo())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">
