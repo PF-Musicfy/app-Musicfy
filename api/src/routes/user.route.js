@@ -11,9 +11,6 @@ router.get("/", async (req, res) => {
     let userFound = await User.find({
       username: { $regex: username, $options: "i" }
     }).limit(5);
-    /* if (!userFound[0]) {
-      res.status(404).send(`No user found with the search '${username}'`);
-    } */
     return res.send(userFound);
   } else {
     const users = await User.find();
@@ -59,6 +56,29 @@ router.get("/online/:id", async (req, res) => {
     res.send(user.online);
   } catch (e) {
     res.status(500).send("error get/online");
+  }
+});
+
+router.post("/changeadmin", async (req, res) => {
+  try {
+    const { id } = req.body;
+    let user = await User.findById(id);
+    user.admin = !user.admin;
+    await user.save();
+    res.send();
+  } catch (error) {
+    res.status(500).send("error put/admin");
+  }
+});
+router.post("/changeblock", async (req, res) => {
+  try {
+    const { id } = req.body;
+    let user = await User.findById(id);
+    user.isblocked = !user.isblocked;
+    await user.save();
+    res.send();
+  } catch (error) {
+    res.status(500).send("error put/block");
   }
 });
 module.exports = router;

@@ -36,6 +36,7 @@ function elCreador(url = "", cb1, cb2) {
     }
   };
 }
+
 export const getFeedback = () => elCreador("/feedback", setFeedback);
 export const getUsers = () => elCreador("/user", setUsers);
 export const getUsersFree = () => elCreador("/user/free", setUsers);
@@ -52,12 +53,42 @@ export const userTokenInfo = () => {
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true
       });
+
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       dispatch(setUser(data));
+    } catch (error) {
+      console.log("No se encontro el token");
+    }
+  };
+};
+
+export const userTokenPremium = (premium = true) => {
+  return async function (dispatch) {
+    console.log(premium);
+    try {
+      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
+        method: "GET",
+        credentials: "include"
+      });
+
+      const { token } = await resToken.json();
+      console.log(token);
+
+      const res = await fetch("http://localhost:5000/api/v1/auth/premium", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ premium })
+      });
+
+      const data = await res.json();
+      return dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
     }
@@ -88,45 +119,6 @@ export const userTokenAvatar = (avatar) => {
   };
 };
 
-export const logoutUser = () => {
-  return async function (dispatch) {
-    try {
-      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
-        withCredentials: true
-      });
-      console.log("cookie clear");
-      dispatch(setUser({}));
-    } catch (e) {
-      console.log("error logout");
-    }
-  };
-};
-
-export const userTokenPremium = (premium = true) => {
-  return async function (dispatch) {
-    try {
-      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
-        method: "GET",
-        credentials: "include"
-      });
-      const { token } = await resToken.json();
-      console.log(token);
-      const res = await fetch("http://localhost:5000/api/v1/auth/premium", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ premium })
-      });
-      const data = await res.json();
-      return dispatch(setUser(data));
-    } catch (error) {
-      console.log("Ocurrio un error", error);
-    }
-  };
-};
-
 export async function getMercadoPago(email) {
   try {
     const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}`);
@@ -137,6 +129,17 @@ export async function getMercadoPago(email) {
     console.log(error);
   }
 }
+
+export const logoutUser = async () => {
+  try {
+    return await fetch("http://localhost:5000/api/v1/auth/logout", {
+      method: "GET",
+      credentials: "include"
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 /* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {
