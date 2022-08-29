@@ -1,4 +1,4 @@
-.player {
+.container {
   background: rgb(32, 32, 32);
   color: #fff;
   overflow: hidden;
@@ -9,32 +9,11 @@
   z-index: 10;
 }
 
-.player-info {
-  display: flex;
-  gap: 20px;
-}
-
-.player-info img {
-  height: 50px;
-}
-
-.player-tools {
-  display: flex;
-  justify-content: center;
-}
-
-.player-button {
-  color: #fff;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.player p {
+.container p {
   margin: 0;
 }
 
-.player input[type="range"] {
+.container input[type="range"] {
   appearance: none;
   background: #333;
   height: 5px;
@@ -46,7 +25,7 @@
   top: -10px;
 }
 
-.player input[type="range"]::-webkit-slider-thumb {
+.container input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 0px;
   height: 0px;
@@ -54,20 +33,36 @@
   box-shadow: -2000px 0 0 2000px #0f0;
 }
 
-.player-controls {
+.info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.info img {
+  height: 50px;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  color: #fff;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.controls {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding-bottom: 15px;
 }
 
-.player-volume {
+.volume {
   width: 100px !important;
   position: static !important;
-}
-
-.player-icons {
-  display: inline;
-  width: 20px;
-  height: 20px;
 }

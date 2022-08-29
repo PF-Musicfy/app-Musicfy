@@ -11,6 +11,13 @@
   padding: 10px;
 }
 
+.module {
+  margin: 10px 0px;
+  background: #1e1e2f;
+  padding: 15px;
+  border-radius: 5px;
+}
+
 .feedbackComments {
   width: 500px;
   border-bottom: 1px solid;
