@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
-import { IconContext } from "react-icons";
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
 import { useSelector } from "react-redux";
 
-import './player.css';
+import s from './player.module.css';
 import toMinutes from '../../utils/toMinutes.js';
 
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
@@ -19,6 +18,8 @@ export default function Player({ detail, music }){
   const volumeBar = useRef();
 
   useEffect(() => {
+    if(!Object.keys(music).length) return;
+
     audioElem.current.play();
     audioElem.current.volume = 0.1;
   }, [music])
@@ -43,7 +44,7 @@ export default function Player({ detail, music }){
   }
 
   return (
-    <div className="player">
+    <div className={s.container}>
       <audio
         ref={audioElem}
         src={music.previewURL || url}
@@ -60,10 +61,9 @@ export default function Player({ detail, music }){
           audioElem.current.currentTime = progressBar.current.value;
         }}
       />
-      <IconContext.Provider value={{className: 'player-icons'}}>
-      <div className="player-controls">
-        <div className="player-tools">
-          <button className="player-button"
+      <div className={s.controls}>
+        <div className={s.tools}>
+          <button className={s.button}
             onClick={() => {
               if(audioElem.current){
                 if(audioElem.current.paused){
@@ -80,16 +80,21 @@ export default function Player({ detail, music }){
           </button>
           <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
         </div>
-        <div className="player-info">
+        <div className={s.info}>
           <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
           <div>
-          <p>Name: {music.name || ''}</p>
-          <p>Artist: {music.artistName || ''}</p>
+          {music.name ? 
+            <>
+            <p>Name: {music.name}</p>
+            <p>Artist: {music.artistName}</p>
+            </>
+          : <p>selecciona una cancion</p>
+          }
           </div>
         </div>
         <div>
           <input
-            className='player-volume'
+            className={s.volume}
             type='range'
             defaultValue="0"
             max='10'
@@ -98,10 +103,9 @@ export default function Player({ detail, music }){
               audioElem.current.volume = volumeBar.current.value/10;
             }}
           />
-          <FaVolumeDown />
+          <FaVolumeDown style={{display: 'inline'}}/>
         </div>
       </div>
-      </IconContext.Provider>
     </div>
   )
 }
