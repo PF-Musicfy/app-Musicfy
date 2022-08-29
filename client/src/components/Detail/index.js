@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 
 function DetailFront({ e }) {
   return (
@@ -53,7 +55,7 @@ function DetailAll({ a, setEvoker }) {
 export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
-  const { user } = useSelector(state => state.user)
+  const { user } = useSelector((state) => state.user);
   const [evoker, setEvoker] = useState({});
 
   const [allSongs, setAllSongs] = useState([]);
@@ -66,21 +68,20 @@ export default function Detail() {
 
   useEffect(() => {
     setAllSongs(Object.values(detailTracks));
-  }, [detailTracks])
+  }, [detailTracks]);
 
   return (
-    <div className="allcontainer">
-      {Object.keys(user).length
-        ? <PopupPremium
-            imagen={allSongs[0] ? allSongs[0][0].images : ''}
-            user={user}
-          />
-        : <PopupLogin
-            imagen={allSongs[0] ? allSongs[0][0].images : ''}
-          />
-      }
-      <DetailAll a={detailTracks} setEvoker={setEvoker} />
-      <Player music={evoker} />
-    </div>
+    <>
+      {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
+      <div className="allcontainer">
+        {Object.keys(user).length ? (
+          <PopupPremium imagen={allSongs[0] ? allSongs[0][0].images : ""} user={user} />
+        ) : (
+          <PopupLogin imagen={allSongs[0] ? allSongs[0][0].images : ""} />
+        )}
+        <DetailAll a={detailTracks} setEvoker={setEvoker} />
+        <Player music={evoker} />
+      </div>
+    </>
   );
 }

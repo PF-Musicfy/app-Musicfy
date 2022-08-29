@@ -22,6 +22,7 @@ import CheckUp from "./pages/CheckUp";
 import Perfil from "./Perfil";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
+import TestMP from "./components/TestMP";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
         <Route exact path="/miperfil" element={<Perfil />} />
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
         <Route path="*" element={<Page404 />} />
+        <Route exact path="/mercadopago" element={<TestMP />} />
       </Routes>
     </div>
   );

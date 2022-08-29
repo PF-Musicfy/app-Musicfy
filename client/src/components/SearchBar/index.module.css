@@ -1,7 +1,7 @@
 .box {
   position: relative;
   margin-top: 15px;
-  margin-left: 30px;
+  margin-left: 310px;
 }
 
 .input {
@@ -19,7 +19,7 @@
   margin-bottom: 10px;
 }
 .box:hover input {
-  width: 700px;
+  width: 650px;
   background: #383a39;
   border-radius: 3px;
 }

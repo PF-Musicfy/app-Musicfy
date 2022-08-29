@@ -8,11 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { userTokenInfo, logoutUser } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function NavBarHome() {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
-  console.log(user.username)
+  const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
+  console.log(user.username);
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);
   const navRef = useRef();
@@ -26,9 +25,9 @@ export default function NavBarHome() {
     // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
-    logoutUser()
+    logoutUser();
     setLogged(!logged);
-    window.location.reload()
+    window.location.reload();
   }
   function onClickHome(e) {
     e.preventDefault();
@@ -55,6 +54,7 @@ export default function NavBarHome() {
                 onClick={(e) => {
                   onClickHome(e);
                 }}
+                className="btnHomeLoco"
               >
                 Home
               </span>
@@ -68,22 +68,17 @@ export default function NavBarHome() {
               <Link to="/library">
                 <span>Library</span>
               </Link>
-              <Link onClick={handleClick} to="/miperfil">
+              {/* <Link onClick={handleClick} to="/profile">
                 <span>Perfil</span>
-              </Link>
+              </Link> */}
 
-              <Link to="/profile">
+              {/* <Link to="/profile">
                 <span className="perfil">Profile</span>
-              </Link>
+              </Link> */}
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img
-                src={imagen}
-                className="avatar"
-                onClick={handleClick}
-                alt="avatarsito"
-              />
+              <img src={imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />

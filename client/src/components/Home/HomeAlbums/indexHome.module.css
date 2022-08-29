@@ -39,24 +39,26 @@
   font-size: 18px;
 }
 
-.buttonsFilter{
-  margin-bottom: 5px;
+.buttonsFilter {
+  margin-bottom: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   /* background-color: greenyellow; */
 }
 
-.selectorFilter{
-  color:black;
+.selectorFilter {
+  color: black;
   font-weight: 500;
+  height: 38px;
+  font-size: 14px;
   /* display: flex;
   justify-content: center;
   align-items: center; */
   /* background-color: greenyellow; */
 }
 
-.buttonStyles{
+.buttonStyles {
   border: 2px solid var(--mainColor);
   border-radius: 8px;
   padding: 0px 6px 0px 6px;
@@ -64,16 +66,19 @@
   margin: 0px 10px 0px 10px;
   background: var(--mainColor);
 }
-
-.containerAlbumes{
+.buttonStyles:hover {
+  background-color: aliceblue;
+  color: var(--mainColor);
+}
+.containerAlbumes {
   display: none;
 }
 
-.containerAlbumes2{
-   transition: none;
+.containerAlbumes2 {
+  transition: none;
 }
 
-.buttonOff{
+.buttonOff {
   border: 2px solid gray;
   border-radius: 8px;
   padding: 0px 6px 0px 6px;

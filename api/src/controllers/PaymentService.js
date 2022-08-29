@@ -45,7 +45,7 @@ class PaymentService {
       },
       // back_url: "https://app-musicfy.vercel.app/",
       notification_url: "",
-      back_url: "http://127.0.0.1:3000/checkoutpremium",
+      back_url: "http://127.0.0.1:3000/mercadopago",
       payer_email: email
     };
     const subscription = await axios.post(url, body, {
