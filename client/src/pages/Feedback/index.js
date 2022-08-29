@@ -5,8 +5,9 @@ import axios from "axios";
 
 import s from "./feedback.module.css";
 import { getFeedback } from "../../store/slice/user.js";
-import NavBarLanding from "../../components/LandingPage/NavBarLanding";
+import NavBarLandingOn from "../../components/LandingPage/NavBarLandingOn";
 import Footer from "../../components/LandingPage/Footer";
+import NavBarLandingOff from "../../components/LandingPage/NavBarLandingOff";
 import { CardsFeedback } from "../../components/CardsFeedback";
 
 const colors = {
@@ -50,7 +51,10 @@ export default function Feedback() {
 
   return (
     <div>
-      <NavBarLanding />
+      {
+        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+
       <div className={s.feedbackContainer}>
       <p
         className={s.feedbackTitle}

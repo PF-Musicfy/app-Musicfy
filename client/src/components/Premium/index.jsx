@@ -1,14 +1,21 @@
-import NavBarLanding from "../LandingPage/NavBarLanding";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import Footer from "../LandingPage/Footer";
 import CardPlan from "../CardPlan";
 import styles from "./premium.module.css";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { useSelector } from "react-redux"
+
 
 export default function Premium() {
 
+  const { user } = useSelector(state => state.user)
 
   return (
     <div>
-      <NavBarLanding />
+      {
+        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+
       <div className={styles.subcontainer}>
         <img
           src="https://i.pinimg.com/originals/66/d1/b4/66d1b4865389a633bc108a602aee9311.jpg"

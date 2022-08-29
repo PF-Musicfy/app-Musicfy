@@ -25,14 +25,14 @@ const validate = async (req, res) => {
       to: email,
       subject: "Validation link",
       html: `<b> Hello! Click this link in order to complete registration: </b>
-    <a href= "${validationLink}">${validationLink}</a>`,
+    <a href= "${validationLink}">Link</a>`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         res.status(500).send(error.message);
       } else {
         console.log("email enviado");
-        res.status(200).jsonp(token);
+        return res.status(200).send();
       }
     });
   } catch (error) {

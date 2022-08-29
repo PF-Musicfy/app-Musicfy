@@ -1,4 +1,4 @@
-import styles from "./NavBarLanding.module.css";
+import styles from "./NavBarLandingOff.module.css";
 import { Link } from "react-router-dom";
 
 function NavBarLanding() {
@@ -27,12 +27,12 @@ function NavBarLanding() {
             <Link to="/login">
               <li className={styles.btnNavbar}>Login</li>
             </Link>
-            <Link to="/profile">
+            {/* <Link to="/profile">
               <li className={styles.btnNavbar}>Profile</li>
-            </Link>
-            <li>
+            </Link> */}
+            {/* <li>
               <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" className={styles.iconUser} />
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

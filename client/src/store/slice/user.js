@@ -65,7 +65,7 @@ export const userTokenInfo = () => {
       );
       dispatch(setUser(data));
     } catch (error) {
-      console.log("Ocurrio un error", error);
+      console.log("No se encontro el token");
     }
   };
 };
@@ -129,17 +129,13 @@ export const userTokenAvatar = (avatar) => {
   };
 };
 
-export const logoutUser = () => {
-  return async function (dispatch) {
-    try {
-      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
-        withCredentials: true,
-      });
-
-      console.log("cookie clear");
-      dispatch(setUser({}));
-    } catch (e) {
-      console.log("error logout");
-    }
-  };
+export const logoutUser = async () => {
+  try {
+    return await fetch("http://localhost:5000/api/v1/auth/logout", {
+      method: "GET",
+      credentials: "include",
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
