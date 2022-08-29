@@ -7,8 +7,8 @@ const {
   refreshTokenUser,
   logoutUser,
   premiumUser,
-  avatarUser,
-  setmp3User
+  avatarUser
+  // setmp3
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
@@ -22,13 +22,12 @@ app.post("/register", registerUser);
 // Kosovomba
 
 // app.post("/register", bodyRegisterValidator, registerUser);
-
 app.post("/login", bodyLoginValidator, loginUser);
 app.get("/perfil", requireToken, infoUser);
 app.get("/refresh", requireRefreshToken, refreshTokenUser);
 app.get("/logout", logoutUser);
 app.post("/premium", requireToken, premiumUser);
 app.post("/setavatar", requireToken, avatarUser);
-app.post("/setmp3", requireToken, setmp3User);
+// app.post("/setmp3", requireToken, setmp3);
 
 module.exports = app;

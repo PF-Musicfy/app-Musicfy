@@ -115,6 +115,7 @@ const logoutUser = (req, res) => {
 };
 
 const premiumUser = async (req, res) => {
+  console.log("llegue aca");
   const { premium } = req.body;
   const user = await User.findByIdAndUpdate(req.uid, {
     premium
@@ -126,8 +127,6 @@ const premiumUser = async (req, res) => {
 
 const avatarUser = async (req, res) => {
   const { avatar } = req.body;
-  console.log(req.body);
-
   const user = await User.findByIdAndUpdate(req.uid, {
     avatar
   });
@@ -138,13 +137,10 @@ const avatarUser = async (req, res) => {
 
 const setmp3User = async (req, res) => {
   const { avatar } = req.body;
-  console.log(req.body);
-
   const user = await User.findByIdAndUpdate(req.uid, {
     avatar
   });
   await user.save();
-
   return res.json({ message: "Avatar cambiado" });
 };
 

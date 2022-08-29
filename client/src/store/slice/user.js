@@ -52,7 +52,6 @@ export const userTokenInfo = () => {
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true
       });
-
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -95,7 +94,6 @@ export const logoutUser = () => {
       await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
         withCredentials: true
       });
-
       console.log("cookie clear");
       dispatch(setUser({}));
     } catch (e) {
@@ -106,7 +104,6 @@ export const logoutUser = () => {
 
 export const userTokenPremium = (premium = true) => {
   return async function (dispatch) {
-    console.log(premium);
     try {
       const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
         method: "GET",
@@ -133,14 +130,14 @@ export const userTokenPremium = (premium = true) => {
 export async function getMercadoPago(email) {
   try {
     const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}`);
-    console.log({ url: emailVerify.data.init_point, id: emailVerify.data.id, payer_id: emailVerify.data.payer_id });
     console.log(emailVerify);
-    return { url: emailVerify.data.init_point, id: emailVerify.data.id, payer_id: emailVerify.data.payer_id };
+    console.log({ url: emailVerify.data.init_point, id: emailVerify.data.id });
+    return { url: emailVerify.data.init_point, id: emailVerify.data.id };
   } catch (error) {
     console.log(error);
   }
 }
-
+/* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {
     if (id) {
@@ -169,3 +166,4 @@ export function getUserIdPremium(id, premium = true) {
     }
   };
 }
+ */

@@ -6,7 +6,6 @@ import { FiCheck } from "react-icons/fi";
 // import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMercadoPago } from "../../store/slice/user";
-
 import styles from "../Premium/premium.module.css";
 
 export default function CardPlan({ plan }) {
@@ -16,8 +15,8 @@ export default function CardPlan({ plan }) {
 
   const handleclick = async () => {
     const responseMp = await getMercadoPago("test_user_71847263@testuser.com");
-    // window.location.replace(responseMp.url);
-    console.log(responseMp.id);
+    window.location.replace(responseMp.url);
+    // console.log(responseMp.id);
   };
 
   return (

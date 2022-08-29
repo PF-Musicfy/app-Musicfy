@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   console.log(req.query);
   if (username) {
     let userFound = await User.find({
-      username: { $regex: username, $options: "i" },
+      username: { $regex: username, $options: "i" }
     }).limit(5);
     /* if (!userFound[0]) {
       res.status(404).send(`No user found with the search '${username}'`);
@@ -34,10 +34,12 @@ router.get("/premium", async (req, res) => {
   const users = await User.find({ premium: true });
   res.send(users);
 });
+
 router.get("/admin", async (req, res) => {
   const users = await User.find({ admin: true });
   res.send(users);
 });
+
 router.post("/online", async (req, res) => {
   try {
     const { id } = req.body;

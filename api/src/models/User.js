@@ -40,9 +40,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false
     },
-    usermptres: {
+    usermp3: {
       type: String,
-      default: "test mp3"
+      default: "test"
     }
   },
   {
