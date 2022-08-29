@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from './profile.module.css'
-import avatar from './utilsIMG/bsines.jpeg';
+// import avatar from './utilsIMG/bsines.jpeg';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom"
 import { useEffect } from 'react';
 import { getTopMusic } from '../../store/slice';
-
-
+import Avatar from '../Avatar';
+import { CgCloseO } from "react-icons/cg";
 // import Orders from './Orders'
 // import Shopping from './Shopping'
 
@@ -16,29 +16,49 @@ import { getTopMusic } from '../../store/slice';
 function ProfileInfo() {
     const dispatch = useDispatch();
     const { topMusic } = useSelector((state) => state.music);
+    const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
+    const { avatar } = useSelector((state) => state.music);
+    console.log(avatar)
+
+    const [modal, setModal] = useState(false)
+
+    const toggleModal = () => {
+        setModal(!modal)
+    }
 
     useEffect(() => {
+        if(avatar.length > 0){
+            dispatch(getTopMusic())
+        }
         dispatch(getTopMusic());
-    }, []);
+    }, [dispatch, avatar]);
 
     return (
         <div className={s.mainContainer}>
-
+            {modal && (
+                <div className={s.mainContainerModal}>
+                    <CgCloseO className={s.buttonCloseModal} onClick={() => setModal(!modal)} />
+                    <div className={s.containerModal}>
+                        <Avatar />
+                    </div>
+                </div>
+            )}
             {/* ------ START Center Information ------ */}
-            <section className={s.centerContainer}>
+            <section className={modal === false ? s.centerContainer : s.centerContainerDisplay}>
                 <p className={s.premiumNormal}>Cambiar Plan</p>
 
                 <div className={s.navbarCenter}>
-                    <div className={s.circleImage}>
-                        <img className={s.insideCircle} src={avatar} alt='avatar' />
+                    <div onClick={() => toggleModal()} className={s.circleImage}>
+                        {/* <h1 className={s.editImage}>editame boludo</h1> */}
+                        <img className={s.insideCircle} src={user.avatar} alt='avatar' />
                     </div>
-
                     <div className={s.infoNavbar}>
                         <h2 className={s.h2Perfil}>Perfil</h2>
                         <span>
-                            <h1 className={s.h1UserName}>Unknown</h1>
+                            <h1 className={s.h1UserName}>{user.username}</h1>
                         </span>
-                        {true ? <p className={s.underUsername}> Eres premium</p> : false}
+                        {user.premium === 'true' ? <p className={s.underUsername}>Premium</p>
+                            : <p className={s.underUsername}>Free</p>}
                     </div>
                 </div>
 
