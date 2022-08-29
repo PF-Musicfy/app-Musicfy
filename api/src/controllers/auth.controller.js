@@ -1,10 +1,13 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
-const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
+const {
+  generateRefreshToken,
+  generateToken,
+} = require("../utils/tokenManager.js");
 
 // Kosovomba
 const bcrypt = require("bcryptjs");
-const {mailTransport} = require('../controllers/mailController')
+const { mailTransport } = require("../controllers/mailController");
 const validate = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -13,30 +16,29 @@ const validate = async (req, res) => {
       return res.status(404).send(`${email} already exists`);
     }
     const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(password, salt);    
-    let validationLink = `http://localhost:3000/validate/${email}/${username}/${hashPassword}`
-    let transporter = mailTransport()
-  let mailOptions = {
-    from: "adminAPI",
-    to: email,
-    subject: "Validation link",
-    html: `<b> Hello! Click this link in order to complete registration: </b>
-    <a href= "${validationLink}">${validationLink}</a>`
-  }
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      res.status(500).send(error.message)
-    } else {
-      console.log('email enviado')
-      res.status(200).jsonp(token)
-    }
-  })
-    
-
+    const hashPassword = await bcrypt.hash(password, salt);
+    let validationLink = `http://localhost:3000/validate/${email}/${username}/${hashPassword}`;
+    console.log(validationLink);
+    let transporter = mailTransport();
+    let mailOptions = {
+      from: "adminAPI",
+      to: email,
+      subject: "Validation link",
+      html: `<b> Hello! Click this link in order to complete registration: </b>
+    <a href= "${validationLink}">${validationLink}</a>`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else {
+        console.log("email enviado");
+        res.status(200).jsonp(token);
+      }
+    });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
-}
+};
 
 // Kosovomba
 
@@ -91,9 +93,9 @@ const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid, {
       password: 0,
-      _id: 0
+      _id: 0,
     });
-    if(user === null) throw new Error('aqui devuelve null y rompe el front')
+    if (user === null) throw new Error("aqui devuelve null y rompe el front");
     res.json(user);
   } catch (error) {
     return res.status(500).json({ error: "server error" });
@@ -120,7 +122,7 @@ const premiumUser = async (req, res) => {
   console.log(req.body);
 
   const user = await User.findByIdAndUpdate(req.uid, {
-    premium
+    premium,
   });
   // if (!user) return res.json({ message: "El usuario no existe" });
   await user.save();
@@ -133,7 +135,7 @@ const avatarUser = async (req, res) => {
   console.log(req.body);
 
   const user = await User.findByIdAndUpdate(req.uid, {
-    avatar
+    avatar,
   });
   await user.save();
 
@@ -148,5 +150,5 @@ module.exports = {
   refreshTokenUser,
   logoutUser,
   premiumUser,
-  avatarUser
+  avatarUser,
 };
