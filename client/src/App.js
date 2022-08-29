@@ -27,7 +27,8 @@ function App() {
 
   useEffect(() => {
     dispatch(userTokenInfo())
-  }, [])
+    console.log('dos veces')
+  }, [dispatch])
 
   return (
     <div className="App">

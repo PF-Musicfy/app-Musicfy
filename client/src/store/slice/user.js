@@ -60,7 +60,7 @@ export const userTokenInfo = () => {
       });
       dispatch(setUser(data));
     } catch (error) {
-      console.log("Ocurrio un error", error);
+      console.log("No se encontro el token");
     }
   };
 };
