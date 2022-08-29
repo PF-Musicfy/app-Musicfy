@@ -30,7 +30,6 @@ export const infoMusic = createSlice({
 });
 
 export const { setTopMusic, setMusicSearch, setDetailTracks, setImageAvatar, setUserMp3 } = infoMusic.actions;
-
 export default infoMusic.reducer;
 
 // Kosovomba
@@ -123,18 +122,6 @@ export function getTrackId(id) {
 export function topMusicClear() {
   return function (dispatch) {
     return dispatch(setTopMusic([]));
-  };
-}
-
-export function getMercadoPago(email) {
-  return async function (dispatch) {
-    try {
-      const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription`);
-      console.log(emailVerify.data);
-      return dispatch(emailVerify.data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 }
 

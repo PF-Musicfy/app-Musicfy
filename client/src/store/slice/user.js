@@ -6,7 +6,7 @@ export const userSlice = createSlice({
   initialState: {
     feedback: [],
     users: [],
-    user: {},
+    user: {}
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -17,8 +17,8 @@ export const userSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { setFeedback, setUsers, setUser } = userSlice.actions;
@@ -42,27 +42,23 @@ export const getUsers = () => elCreador("/user", setUsers);
 export const getUsersFree = () => elCreador("/user/free", setUsers);
 export const getUsersPremium = () => elCreador("/user/premium", setUsers);
 export const getUsersAdmin = () => elCreador("/user/admin", setUsers);
-export const getUserByName = (user) =>
-  elCreador(`/user?username=${user}`, setUsers);
+export const getUserByName = (user) => elCreador(`/user?username=${user}`, setUsers);
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
     try {
       const {
-        data: { token },
+        data: { token }
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-        withCredentials: true,
+        withCredentials: true
       });
 
-      const { data } = await axios.get(
-        `${axios.defaults.baseURL}/api/v1/auth/perfil`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      );
+      });
       dispatch(setUser(data));
     } catch (error) {
       console.log("No se encontro el token");
@@ -70,17 +66,14 @@ export const userTokenInfo = () => {
   };
 };
 
-export const userTokenPremium = (premium) => {
+export const userTokenPremium = (premium = true) => {
   return async function (dispatch) {
     console.log(premium);
     try {
-      const resToken = await fetch(
-        "http://localhost:5000/api/v1/auth/refresh",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
+        method: "GET",
+        credentials: "include"
+      });
 
       const { token } = await resToken.json();
       console.log(token);
@@ -89,9 +82,9 @@ export const userTokenPremium = (premium) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ premium }),
+        body: JSON.stringify({ premium })
       });
 
       const data = await res.json();
@@ -105,21 +98,18 @@ export const userTokenPremium = (premium) => {
 export const userTokenAvatar = (avatar) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(
-        "http://localhost:5000/api/v1/auth/refresh",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
+        method: "GET",
+        credentials: "include"
+      });
       const { token } = await resToken.json();
       const res = await fetch("http://localhost:5000/api/v1/auth/setavatar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ avatar }),
+        body: JSON.stringify({ avatar })
       });
       const data = await res.json();
       return dispatch(setUser(data));
@@ -129,13 +119,54 @@ export const userTokenAvatar = (avatar) => {
   };
 };
 
+export async function getMercadoPago(email) {
+  try {
+    const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}`);
+    console.log(emailVerify);
+    console.log({ url: emailVerify.data.init_point, id: emailVerify.data.id });
+    return { url: emailVerify.data.init_point, id: emailVerify.data.id };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const logoutUser = async () => {
   try {
     return await fetch("http://localhost:5000/api/v1/auth/logout", {
       method: "GET",
-      credentials: "include",
+      credentials: "include"
     });
   } catch (error) {
     console.log(error);
   }
 };
+/* 
+export function getUserIdPremium(id, premium = true) {
+  return async function (dispatch) {
+    if (id) {
+      try {
+        const idVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${id}`);
+        console.log(idVerify);
+        const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
+          method: "GET",
+          credentials: "include"
+        });
+        const { token } = await resToken.json();
+        console.log(token);
+        const res = await fetch("http://localhost:5000/api/v1/auth/premium", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ premium })
+        });
+        const data = await res.json();
+        return dispatch(setUser(data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+}
+ */

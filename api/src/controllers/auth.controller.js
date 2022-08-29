@@ -1,9 +1,6 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
-const {
-  generateRefreshToken,
-  generateToken,
-} = require("../utils/tokenManager.js");
+const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
 
 // Kosovomba
 const bcrypt = require("bcryptjs");
@@ -25,7 +22,7 @@ const validate = async (req, res) => {
       to: email,
       subject: "Validation link",
       html: `<b> Hello! Click this link in order to complete registration: </b>
-    <a href= "${validationLink}">Link</a>`,
+    <a href= "${validationLink}">Link</a>`
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -93,7 +90,7 @@ const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid, {
       password: 0,
-      _id: 0,
+      _id: 0
     });
     if (user === null) throw new Error("aqui devuelve null y rompe el front");
     res.json(user);
@@ -118,27 +115,32 @@ const logoutUser = (req, res) => {
 };
 
 const premiumUser = async (req, res) => {
+  console.log("llegue aca");
   const { premium } = req.body;
-  console.log(req.body);
-
   const user = await User.findByIdAndUpdate(req.uid, {
-    premium,
+    premium
   });
-  // if (!user) return res.json({ message: "El usuario no existe" });
   await user.save();
-
+  console.log("El usuario se hizo premium");
   return res.json({ message: "Usuario pasado a premium" });
 };
 
 const avatarUser = async (req, res) => {
   const { avatar } = req.body;
-  console.log(req.body);
-
   const user = await User.findByIdAndUpdate(req.uid, {
-    avatar,
+    avatar
   });
   await user.save();
 
+  return res.json({ message: "Avatar cambiado" });
+};
+
+const setmp3User = async (req, res) => {
+  const { avatar } = req.body;
+  const user = await User.findByIdAndUpdate(req.uid, {
+    avatar
+  });
+  await user.save();
   return res.json({ message: "Avatar cambiado" });
 };
 
@@ -151,4 +153,5 @@ module.exports = {
   logoutUser,
   premiumUser,
   avatarUser,
+  setmp3User
 };

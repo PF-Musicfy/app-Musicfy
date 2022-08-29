@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   console.log(req.query);
   if (username) {
     let userFound = await User.find({
-      username: { $regex: username, $options: "i" },
+      username: { $regex: username, $options: "i" }
     }).limit(5);
     return res.send(userFound);
   } else {
@@ -31,6 +31,7 @@ router.get("/premium", async (req, res) => {
   const users = await User.find({ premium: true });
   res.send(users);
 });
+
 router.get("/admin", async (req, res) => {
   const users = await User.find({ admin: true });
   res.send(users);

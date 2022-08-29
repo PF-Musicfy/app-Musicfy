@@ -35,7 +35,6 @@ class PaymentService {
 
   async createSubscription(email) {
     const url = "https://api.mercadopago.com/preapproval";
-
     const body = {
       reason: "Musicfy Premium",
       auto_recurring: {
@@ -44,19 +43,25 @@ class PaymentService {
         transaction_amount: 189,
         currency_id: "ARS"
       },
-      back_url: "https://app-musicfy.vercel.app/",
+      // back_url: "https://app-musicfy.vercel.app/",
+      notification_url: "",
+      back_url: "http://127.0.0.1:3000/mercadopago",
       payer_email: email
     };
-
     const subscription = await axios.post(url, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
       }
     });
-
+    console.log(subscription.data);
     return subscription.data;
   }
 }
+
+const notificationOrder = async (req, res) => {
+  const data = req.query;
+  console.log(data);
+};
 
 module.exports = PaymentService;

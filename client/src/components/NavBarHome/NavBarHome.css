@@ -131,13 +131,22 @@ nav a {
   z-index: 30;
 }
 
-.searchStyle{
+.searchStyle {
   position: absolute;
   /* width: 400px; */
   margin: 0px 5px 0px 300px;
   /* margin: 0; */
 }
 
-.logOut{
+.logOut {
   cursor: pointer;
+}
+
+.btnHomeLoco {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btnHomeLoco:hover {
+  color: purple;
 }
