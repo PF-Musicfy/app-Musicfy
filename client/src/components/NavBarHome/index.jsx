@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
-  // const { userToken } = useSelector(state => state.user) //aqui tienes la info del usuario
-
+  const { user } = useSelector(state => state.user) //aqui tienes la info del usuario
+  console.log(user.username)
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);
   const navRef = useRef();
@@ -28,7 +28,7 @@ export default function NavBarHome() {
   function handleLog() {
     logoutUser()
     setLogged(!logged);
-    // window.location.reload()
+    window.location.reload()
   }
   function onClickHome(e) {
     e.preventDefault();
