@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
     online: {
       type: Boolean,
       default: false
+    },
+    usermptres: {
+      type: String,
+      default: "test mp3"
     }
   },
   {

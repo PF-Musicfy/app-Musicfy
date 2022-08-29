@@ -7,7 +7,8 @@ const {
   refreshTokenUser,
   logoutUser,
   premiumUser,
-  avatarUser
+  avatarUser,
+  setmp3User
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
@@ -23,11 +24,11 @@ app.post("/register", registerUser);
 // app.post("/register", bodyRegisterValidator, registerUser);
 
 app.post("/login", bodyLoginValidator, loginUser);
-
 app.get("/perfil", requireToken, infoUser);
 app.get("/refresh", requireRefreshToken, refreshTokenUser);
 app.get("/logout", logoutUser);
 app.post("/premium", requireToken, premiumUser);
 app.post("/setavatar", requireToken, avatarUser);
+app.post("/setmp3", requireToken, setmp3User);
 
 module.exports = app;
