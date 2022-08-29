@@ -3,14 +3,22 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAvatar } from "../../store/slice";
 import { userTokenAvatar } from "../../store/slice/user";
+import { useNavigate } from "react-router-dom";
 
 export default function Avatar() {
   const [imageSelected, setImageSelected] = useState("");
   const dispatch = useDispatch();
   const { avatar } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
+
+  const navigate = useNavigate();
+
   function handleSubmit() {
     dispatch(getAvatar(imageSelected));
+    
+    setTimeout(() => {
+      navigate(0)
+    }, 2000);
   }
   useEffect(() => {
     if (avatar.length > 0) {
