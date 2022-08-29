@@ -1,0 +1,46 @@
+.box {
+  display: flex;
+  justify-content: start;
+  margin-left: 1%;
+}
+
+.input {
+  padding-left: 55px;
+  width: 45px;
+  height: 45px;
+  background: none;
+  border: 4px solid #3c3a3500;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: #fff;
+  outline: none;
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+.box:hover input {
+  width: 700px;
+  background: #383a39;
+  border-radius: 3px;
+}
+
+/* .box:hover, .lupitaEstilo{
+    margin-top: 20px;
+} */
+
+.input:focus,
+.input:active {
+  border: 0;
+  outline: none !important;
+}
+
+.lupitaEstilo {
+  position: absolute;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  margin: 7px 30px 0px 15px;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 0 rgb(255, 255, 255);
+}

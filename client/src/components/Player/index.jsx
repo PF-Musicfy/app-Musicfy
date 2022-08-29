@@ -1,39 +1,32 @@
-import './player.css';
 import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
-import toMinutes from '../../utils/toMinutes.js';
-import { IconContext } from "react-icons";
+import { useSelector } from "react-redux";
 
-//const url = "https://cdn.pixabay.com/download/audio/2022/08/02/audio_884fe92c21.mp3"
+import s from './player.module.css';
+import toMinutes from '../../utils/toMinutes.js';
+
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
-const usePlayerRef = (ref) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function Player({ detail, music }){
+  const { detailTracks } = useSelector((state) => state.music);
 
-  useEffect(() => {
-    if(isPlaying){
-      ref.current.play();
-      ref.current.volume = 0.1;
-    }else{
-      ref.current.pause()
-    }
-  }, [isPlaying, ref])
-
-  const changeState = () => {
-    setIsPlaying(!isPlaying)
-  }
-
-  return { isPlaying, changeState };
-}
-
-export default function Player({ music }){
   const [dataSong, setDataSong] = useState({});
+  const [allSongs, setAllSongs] = useState([]);
  
   const audioElem = useRef();
   const progressBar = useRef();
   const volumeBar = useRef();
 
-  const { isPlaying, changeState } = usePlayerRef(audioElem);
+  useEffect(() => {
+    if(!Object.keys(music).length) return;
+
+    audioElem.current.play();
+    audioElem.current.volume = 0.1;
+  }, [music])
+
+  useEffect(() => {
+    setAllSongs(Object.values(detailTracks));
+  }, [detailTracks])
 
   const onPlaying = () => {
     const duration = Math.floor(audioElem.current.duration);
@@ -50,13 +43,14 @@ export default function Player({ music }){
     volumeBar.current.value = audioElem.current.volume * 10;
   }
 
-  console.log('player',music);
   return (
-    <div className="player">
+    <div className={s.container}>
       <audio
-        src={music.previewURL || url}
         ref={audioElem}
+        src={music.previewURL || url}
         onTimeUpdate={onPlaying}
+        onPlay={() => {console.log('play')}}
+        onPause={() => {console.log('pause')}}
       >
       </audio>
       <input
@@ -67,26 +61,40 @@ export default function Player({ music }){
           audioElem.current.currentTime = progressBar.current.value;
         }}
       />
-      <IconContext.Provider value={{className: 'player-icons'}}>
-      <div className="player-controls">
-        <div className="player-tools">
-          <button
-            className="player-button"
-            onClick={changeState}
-          >
-            {isPlaying ? <FaPause /> : <FaPlay />}
+      <div className={s.controls}>
+        <div className={s.tools}>
+          <button className={s.button}
+            onClick={() => {
+              if(audioElem.current){
+                if(audioElem.current.paused){
+                  audioElem.current.play()
+                }else{
+                  audioElem.current.pause()
+                }
+              }
+            }} >
+            {audioElem.current
+              ? (audioElem.current.paused ? <FaPlay /> : <FaPause />) 
+              : ''
+            }
           </button>
-          <span>
-            {dataSong.current || '0:00'}/{dataSong.length || '0:00'}
-          </span>
+          <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
         </div>
-        <div>
-          <p>Name: {music.name}</p>
-          <p>Artist Name: {music.artistName}</p>
+        <div className={s.info}>
+          <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
+          <div>
+          {music.name ? 
+            <>
+            <p>Name: {music.name}</p>
+            <p>Artist: {music.artistName}</p>
+            </>
+          : <p>selecciona una cancion</p>
+          }
+          </div>
         </div>
         <div>
           <input
-            className='player-volume'
+            className={s.volume}
             type='range'
             defaultValue="0"
             max='10'
@@ -95,10 +103,9 @@ export default function Player({ music }){
               audioElem.current.volume = volumeBar.current.value/10;
             }}
           />
-          <FaVolumeDown />
+          <FaVolumeDown style={{display: 'inline'}}/>
         </div>
       </div>
-      </IconContext.Provider>
     </div>
   )
 }

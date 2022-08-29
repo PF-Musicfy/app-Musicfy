@@ -5,8 +5,8 @@ function mailTransport() {
         port: 465,
         secure: true,
         auth: {
-          user: 'JavierAvilaasdf@gmail.com',
-          pass: 'yrrfmuxcfilbaxzl'
+          user: 'santiagolevyavila@gmail.com',
+          pass: 'njmjcewrjosbmxgc'
         }
     })    
 }

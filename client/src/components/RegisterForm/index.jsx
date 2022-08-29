@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-// import { fetchUsers } from '../store/actions'
 import { useState } from "react";
 import styles from "./RegisterForm.module.css";
 import axios from "axios";
+import { FaBackward } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 export default function RegisterForm() {
   const [newUser, setNewUser] = useState({
@@ -10,25 +11,16 @@ export default function RegisterForm() {
     eMail: "",
     password: "",
     rePassword: "",
-    token: "",
-    key: "",
   });
   let navigate = useNavigate();
   let error = true;
   let errorName = false;
-  let errorToken = false;
   let errorEMail = false;
   let errorPassword = false;
   let errorRePassword = false;
 
-  if (
-    newUser.name.length < 3 ||
-    /[^a-zñáéíóú]/i.test(newUser.name) === true
-  ) {
+  if (newUser.name.length < 3 || /[^a-zñáéíóú]/i.test(newUser.name) === true) {
     errorName = true;
-  }
-  if (newUser.eMail + newUser.key !== newUser.token) {
-    errorToken = true;
   }
   if (
     newUser.eMail.length === 0 ||
@@ -55,7 +47,6 @@ export default function RegisterForm() {
 
   if (
     errorName === false &&
-    errorToken === false &&
     errorEMail === false &&
     errorPassword === false &&
     errorRePassword === false
@@ -74,115 +65,114 @@ export default function RegisterForm() {
     console.log(newUser);
   }
 
-  function keyClick(e) {
-    e.preventDefault();
-    axios
-      .post("http://localhost:5000/send-email", newUser)
-      .then((token) => {
-        setNewUser({ ...newUser, token: newUser.eMail + token.data });
-        console.log(token.data);
-        alert("Key generated and sent to your email");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: 'center',
+  //   showConfirmButton: false,
+  //   timer: 2000,
+  //   timerProgressBar: true,
+  //   // didOpen: (toast) => {
+  //   //   toast.addEventListener('mouseenter', Swal.stopTimer)
+  //   //   toast.addEventListener('mouseleave', Swal.resumeTimer)
+  //   // }
+  // })
+  
 
   function onSubmit(e) {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/v1/auth/register", {
+    axios     
+      .post(`${axios.defaults.baseURL}/api/v1/auth/validate`, {
         username: newUser.name,
         email: newUser.eMail,
         password: newUser.password,
         repassword: newUser.rePassword,
       })
       .then(() => {
-        axios.post("http://localhost:5000/send-email-registered", newUser);
-        alert("User registered succesfully");       
-        navigate(-1);
-      })
+        Swal.fire({
+          icon: 'success',
+          title: 'Check your email and click in the link to validate your registration'
+        }) 
+        navigate(-1);     
+      })     
       .catch((error) => {
-        console.log(error);
+        if (error.response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops try again!',
+            text: 'Email already exist',
+          })
+        }
       });
   }
   return (
     <div className={styles.create}>
+      <div className={styles.register_logo} onClick={() => navigate("/")}>
+        <img src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
+        <span>Musicfy</span>
+      </div>
+      <div className={styles.space}></div>
       <button className={styles.back} onClick={onClick}>
-        Back
+        <FaBackward />
       </button>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <h2 className={styles.title}>REGISTER</h2>
+      <form className={styles.form_register} onSubmit={(e) => onSubmit(e)}>
         <div className={styles.form}>
           <div className={styles.item}>
-            <label htmlFor="">*USERNAME </label>
+            <label htmlFor="">* Username</label>
             <input
               type="text"
               name="name"
               onChange={onInputChange}
               value={newUser.name}
-              placeholder="Insert name"
+              placeholder="Username"
             />
-            {errorName === true ? (
-              <span className={styles.error}>
-                {" Insert a name of at least 3 letters."}
-              </span>
-            ) : (
-              <span> Name correct!</span>
+            {errorName && (
+              <span className={styles.error_span}>At least 3 characters</span>
             )}
           </div>
           <div className={styles.item}>
-            <label htmlFor="">*EMAIL </label>
+            <label htmlFor="">* Email</label>
             <input
               type="text"
               name="eMail"
               id="eMail"
               onChange={onInputChange}
               value={newUser.eMail}
-              placeholder="Insert a valid e-mail"
+              placeholder="Email"
             />
-            {errorEMail === true ? (
-              <span className={styles.error}>{" Must be a valid email."}</span>
-            ) : (
-              <span> E-mail correct!</span>
+            {errorEMail && (
+              <span className={styles.error_span}>Enter email</span>
             )}
           </div>
           <div className={styles.item}>
-            <label htmlFor="">*PASSWORD </label>
+            <label htmlFor="">* Password</label>
             <input
               type="password"
               name="password"
               onChange={onInputChange}
               value={newUser.password}
-              placeholder="Insert a password"
+              placeholder="Password"
             />
-            {errorPassword === true ? (
-              <span className={styles.error}>
-                {
-                  " Must be of more than 8 characters and can contain letters and/or numbers."
-                }
-              </span>
-            ) : (
-              <span> Password correct!</span>
+            {errorPassword && (
+              <span className={styles.error_span}>At least 8 characters</span>
             )}
           </div>
           <div className={styles.item}>
-            <label htmlFor="">*REPEAT PASSWORD </label>
+            <label htmlFor="">* Repeat password</label>
             <input
               type="password"
               name="rePassword"
               onChange={onInputChange}
               value={newUser.rePassword}
-              placeholder="Repeat the password"
+              placeholder="Repeat password"
             />
-            {errorRePassword === true ? (
-              <span className={styles.error}>{" Passwords must match."}</span>
-            ) : (
-              <span> Passwords match!</span>
+            {errorRePassword !== errorPassword && (
+              <span className={styles.error_span}>Passwords do not match</span>
             )}
           </div>
-          {newUser.token.length > 0 ? (
+          {/* {newUser.token.length > 0 ? (
             <div className={styles.item}>
-              <label htmlFor="">*KEY </label>
+              <label htmlFor="">* Key</label>
               <input
                 type="text"
                 name="key"
@@ -190,32 +180,28 @@ export default function RegisterForm() {
                 value={newUser.key}
                 placeholder="Insert key"
               />
-              {errorToken === true ? (
-                <span className={styles.error}>
-                  {" Insert the key sent to your email."}
-                </span>
-              ) : (
-                <span> Key correct!</span>
+              {errorToken && (
+                <span className={styles.error_span}>Insert the key</span>
               )}
             </div>
           ) : (
             <button
-              className={styles.register}
+              className={errorEMail ? styles.registerDisabled : styles.register}
               onClick={keyClick}
               value="ObtainKey"
               disabled={errorEMail ? true : false}
             >
-              {" "}
-              Click and obtain key to register!{" "}
+              ! Obtain key to register !
             </button>
-          )}
+          )} */}
         </div>
-        <input
-          className={styles.submit}
+        <button
+          className={error ? styles.registerDisabled : styles.submit}
           type="submit"
-          value=" Register "
           disabled={error ? true : false}
-        />
+        >
+          <span>Register</span>
+        </button>
       </form>
     </div>
   );

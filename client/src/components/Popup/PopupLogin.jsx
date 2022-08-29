@@ -1,24 +1,33 @@
-import Popup from './index.js';
-import './popup.css';
+import { useNavigate } from "react-router-dom";
 
-export default function PopupLogin(){
+import s from './popup.module.css';
+import Popup from './Popup.jsx';
+
+export default function PopupLogin({ imagen }){
+  const navigate = useNavigate();
+
   return (
     <Popup>
-      <div className='pp-logo'>
-        <img src='' alt='Musicfy Logo' />
+      <div className={s.logo}>
+        <img
+          src={ imagen || 'https://i.imgur.com/GiyjGcI.png' }
+          alt='Musicfy Logo'
+        />
       </div>
-      <div className='pp-info'>
-        <p>
-        Empieza a escuchar musica con Musicfy
-        </p>
+      <div className={s.info}>
+        <p>Empieza a escuchar musica con Musicfy</p>
         <div>
-          <button>
+          <button
+            onClick={() => navigate('/register')}
+          >
             Registrate Gratis
           </button>
         </div>
-        <div className='pp-login'>
+        <div className={s.login}>
           <span>¿Ya tienes cuenta?</span>
-          <button>
+          <button
+            onClick={() => navigate('/login')}
+          >
             Inicia sesion
           </button>
         </div>

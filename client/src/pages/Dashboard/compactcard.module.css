@@ -1,0 +1,26 @@
+.container {
+  background: #d35;
+  align-items: center;
+  padding: 20px;
+  display: inline-flex;
+  gap: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  background: linear-gradient(#cf355c,#33202A);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.big {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 18px;
+  font-weight: bold;
+}

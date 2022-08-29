@@ -1,7 +1,10 @@
-import NavBarLanding from "../LandingPage/NavBarLanding";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import Footer from "../LandingPage/Footer";
 import CardAbout from "./CardAbout";
 import styles from "./about.module.css";
+import { MdLocationOn } from "react-icons/md";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff"
+import { useSelector } from "react-redux"
 
 function About() {
   const staff = [
@@ -49,12 +52,17 @@ function About() {
       name: "Alejandro Maturrano",
       title: "Full Stack Developer",
       location: "Lima, Peru",
-      images: "https://www.w3schools.com/howto/img_avatar.png"
+      images: "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661186886/alejandro_pciivb.jpg"
     }
   ];
+
+  const { user } = useSelector(state => state.user)
   return (
     <>
-      <NavBarLanding />
+      {
+        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+
       <div className={styles.containerAbout}>
         {staff.map((e) => (
           <div className="container-about" key={e.name}>

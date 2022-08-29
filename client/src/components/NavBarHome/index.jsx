@@ -3,20 +3,35 @@ import "./NavBarHome.css";
 import imagen from "./img_avatar.png";
 import { useRef, useState } from "react";
 import imagen2 from "./WJT6FaB.png";
+import SearchBar from "../SearchBar/Index";
+import { Link, useNavigate } from "react-router-dom";
+import { userTokenInfo, logoutUser } from "../../store/slice/user";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function NavBarHome() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
+  console.log(user.username);
   const [profile, setProfile] = useState(false);
   const [logged, setLogged] = useState(true);
   const navRef = useRef();
+  let navigate = useNavigate();
   const showNavBar = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  function handleClick() {
+  async function handleClick() {
     setProfile(!profile);
+    // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
+    logoutUser();
     setLogged(!logged);
+    window.location.reload();
+  }
+  function onClickHome(e) {
+    e.preventDefault();
+    navigate(0);
   }
 
   return (
@@ -24,25 +39,46 @@ export default function NavBarHome() {
       {logged ? (
         <div>
           <header>
+            <div className="searchStyle">
+              <SearchBar />
+            </div>
             <div className="logo-div">
               <a href="./">
-                <img src={imagen2} className="logo" alt="imagen" />
+                <img src={imagen2} className="logo" alt="loguito" />
               </a>
               <span>Musicfy</span>
             </div>
             <nav ref={navRef}>
-              <a href="/home">Home</a>
-              <a href="/favorites">Favorites</a>
-              <a href="/favorites">+Playlist</a>
-              <a href="/library">Library</a>
-              <a>Search</a>
-              <a href="/profile" className="perfil">
-                Profile
-              </a>
+              {/* <Link to='/home'> */}
+              <span
+                onClick={(e) => {
+                  onClickHome(e);
+                }}
+                className="btnHomeLoco"
+              >
+                Home
+              </span>
+              {/* </Link> */}
+              <Link to="/favorites">
+                <span>Favorites</span>
+              </Link>
+              <Link to="/favorites">
+                <span>+Playlist</span>
+              </Link>
+              <Link to="/library">
+                <span>Library</span>
+              </Link>
+              {/* <Link onClick={handleClick} to="/profile">
+                <span>Perfil</span>
+              </Link> */}
+
+              {/* <Link to="/profile">
+                <span className="perfil">Profile</span>
+              </Link> */}
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={imagen} className="avatar" onClick={handleClick} />
+              <img src={imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -51,9 +87,15 @@ export default function NavBarHome() {
           {profile && (
             <div className="container">
               <div className="select-perfil">
-                <a href="/profile">Profile</a>
-                <a href="/premium">Premium</a>
-                <a onClick={handleLog}>Log out</a>
+                <Link to="/profile">
+                  <span>Profile</span>
+                </Link>
+                <Link to="/premium">
+                  <span>Premium</span>
+                </Link>
+                <span onClick={handleLog} className="logOut">
+                  Log out
+                </span>
               </div>{" "}
             </div>
           )}
@@ -61,13 +103,15 @@ export default function NavBarHome() {
       ) : (
         <header>
           <div className="logo-div">
-            <img src={imagen2} className="logo" alt="imagen" />
+            <img src={imagen2} className="logo" alt="loguito2" />
             <span>Musicfy</span>
           </div>
           <nav ref={navRef}>
             <div className="no-logged">
-              <a href="/register">Register</a>
-              <a onClick={handleLog}>Log in</a>
+              <Link to="/register">
+                <span>Register</span>
+              </Link>
+              <span onClick={handleLog}>Log in</span>
             </div>
 
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>

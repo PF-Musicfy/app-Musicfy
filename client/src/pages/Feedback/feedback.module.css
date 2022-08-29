@@ -1,0 +1,74 @@
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #111;
+  padding: 40px;
+}
+
+.feedbackTitle {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.feedbackComments {
+  width: 500px;
+  border-bottom: 1px solid;
+}
+
+.feedbackAvatar {
+  padding: 0px 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.feedbackComment {
+  padding: 20px 0px;
+  border-top: 1px solid;
+}
+
+.feedbackComment img {
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.feedbackContainer input {
+  color: #000;
+  width: 100%;
+}
+
+.feedbackForm {
+  width: 500px;
+}
+
+.feedbackSubmit {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  justify-content: flex-end;
+}
+
+.feedbackStars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.feedbackTextarea {
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  min-height: 100px;
+  width: 100%;
+  color: #000;
+}
+.feedbackButton {
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  width: 100px;
+  padding: 5px;
+}

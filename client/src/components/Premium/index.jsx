@@ -1,15 +1,21 @@
-import NavBarLanding from "../LandingPage/NavBarLanding";
-import styles from "./premium.module.css";
-import { MdComputer } from "react-icons/md";
-import { RiComputerLine } from "react-icons/ri";
-import { BsTabletLandscape } from "react-icons/bs";
-import { HiOutlineDeviceTablet } from "react-icons/hi";
-import { FiCheck } from "react-icons/fi";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import Footer from "../LandingPage/Footer";
+import CardPlan from "../CardPlan";
+import styles from "./premium.module.css";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { useSelector } from "react-redux"
+
+
 export default function Premium() {
+
+  const { user } = useSelector(state => state.user)
+
   return (
     <div>
-      <NavBarLanding />
+      {
+        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
+      }
+
       <div className={styles.subcontainer}>
         <img
           src="https://i.pinimg.com/originals/66/d1/b4/66d1b4865389a633bc108a602aee9311.jpg"
@@ -19,78 +25,9 @@ export default function Premium() {
         <h1 className={styles.title}>Listen trend music any time, anywhere</h1>
       </div>
       <div className={styles.subcontainer2}>
-        <div className={styles.card}>
-          <h1>$5 / 1 month</h1>
-          <div className={styles.icons}>
-            <HiOutlineDeviceTablet />
-            <BsTabletLandscape className={styles.iconito} />
-            <MdComputer className={styles.iconito} />
-            <RiComputerLine className={styles.iconito} />
-          </div>
-          <div className={styles.cardwords}>
-            <p>
-              <FiCheck />
-              Choose your music
-            </p>
-            <p>
-              <FiCheck />
-              Create your own playlists
-            </p>
-            <p>
-              <FiCheck />
-              Music without publicity
-            </p>
-          </div>
-          <button>Choose plan</button>
-        </div>
-        <div className={styles.card}>
-          <h1>$25 / 1 month</h1>
-          <div className={styles.icons}>
-            <HiOutlineDeviceTablet />
-            <BsTabletLandscape className={styles.iconito} />
-            <MdComputer className={styles.iconito} />
-            <RiComputerLine className={styles.iconito} />
-          </div>
-          <div className={styles.cardwords}>
-            <p>
-              <FiCheck />
-              Choose your music
-            </p>
-            <p>
-              <FiCheck />
-              Create your own playlists
-            </p>
-            <p>
-              <FiCheck />
-              Music without publicity
-            </p>
-          </div>
-          <button>Choose plan</button>
-        </div>
-        <div className={styles.card}>
-          <h1>$55 / 12 month</h1>
-          <div className={styles.icons}>
-            <HiOutlineDeviceTablet />
-            <BsTabletLandscape className={styles.iconito} />
-            <MdComputer className={styles.iconito} />
-            <RiComputerLine className={styles.iconito} />
-          </div>
-          <div className={styles.cardwords}>
-            <p>
-              <FiCheck />
-              Choose your music
-            </p>
-            <p>
-              <FiCheck />
-              Create your own playlists
-            </p>
-            <p>
-              <FiCheck />
-              Music without publicity
-            </p>
-          </div>
-          <button>Choose plan</button>
-        </div>
+        <CardPlan plan={"$2,99 / 1 month"} />
+        <CardPlan plan={"$5,99 / 3 months"} />
+        <CardPlan plan={"$20,99 / 12 months"} />
       </div>
       <Footer />
     </div>

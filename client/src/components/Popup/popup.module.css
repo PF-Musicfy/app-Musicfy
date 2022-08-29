@@ -1,0 +1,89 @@
+.popup {
+  background: #0008;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  animation: show .3s ease-out;
+  z-index: 1000;
+}
+
+.visible {
+  display: none;
+}
+
+@keyframes show {
+  0% {transform: scale(0.7);}
+  45% {transform: scale(1.05);}
+  80% {transform: scale(0.95);}
+  100% {transform: scale(1);}
+}
+
+@keyframes hide {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
+.popup button {
+  background: #667;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+.container {
+  padding: 60px;
+  background: linear-gradient(#cf355c,#33202A);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 40px;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+  background: #333;
+}
+
+.info {
+  width: 250px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  margin: 10px;
+  font-size: 14px;
+}
+
+.login button {
+  border: none;
+  color: #fff;
+  background: none;
+  cursor: pointer;
+  padding: 0px 15px;
+  font-weight: bold;
+}
+
+.info p {
+  margin-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
