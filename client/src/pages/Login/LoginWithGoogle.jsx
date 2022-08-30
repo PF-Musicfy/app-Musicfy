@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../store/slice/user.js";
-
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
+import axios from 'axios';
+
+import { setUser, userTokenInfo } from "../../store/slice/user.js";
 
 export default function LoginWithGoogle() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user)
   const clientId =  "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com";
@@ -23,19 +24,27 @@ export default function LoginWithGoogle() {
   }, [])
 
   const onSuccess = (res) => {
-    //console.log('success', res.profileObj);
-    console.log('login with google')
-    const data = {
+    axios.post(`${axios.defaults.baseURL}/user/google`,{
       username: res.profileObj.name,
       email: res.profileObj.email,
-      avatar: res.profileObj.imageUrl,
-      admin: false,
-      premium: false,
-      isblocked: false,
-      online: true,
-    }
-    dispatch(setUser(data))
-    console.log('data guardada')
+      //avatar: res.profileObj.imageUrl,
+    },{
+      withCredentials: true,
+    })
+    .then((e) => {
+      alert("logeado con google");
+      
+      dispatch(userTokenInfo())
+      navigate("/home");
+    })
+    .catch((e) => {
+      console.log(e);
+      alert("posibles errores:\n" +
+          "- el back no se ha iniciado\n" +
+          "- alguno de los campos falta o es incorrecto\n" +
+          "- el usuario no existe en la base de datos"
+      );
+    });
   }
   const onFailure = (res) => {
     console.log('failed', res);

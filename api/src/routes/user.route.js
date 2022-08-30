@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const User = require("../models/User.js");
+const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
 
 const router = Router();
 
@@ -81,4 +82,30 @@ router.post("/changeblock", async (req, res) => {
     res.status(500).send("error put/block");
   }
 });
+router.post("/google", async (req,res) => {
+  try {
+    const { username, email } = req.body;
+    console.log(req.body);
+    let user = await User.findOne({ email });
+
+    if (user) {
+      const { token, expiresIn } = generateToken(user.id);
+      generateRefreshToken(user.id, res);
+      console.log('google',user);
+      return res.status(201).json({ token, expiresIn });
+    }
+
+    user = new User({ username, email });
+    user.google = true;
+    await user.save();
+
+    const { token, expiresIn } = generateToken(user.id);
+    generateRefreshToken(user.id, res);
+
+    console.log('google',user);
+    return res.status(201).json({ token, expiresIn });
+  } catch (error) {
+    console.log('error post/google',error)
+  }
+})
 module.exports = router;

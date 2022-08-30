@@ -17,7 +17,6 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true
     },
     avatar: {
       type: String,
@@ -43,6 +42,10 @@ const userSchema = new mongoose.Schema(
     usermp3: {
       type: String,
       default: "test"
+    },
+    google: {
+      type: Boolean,
+      default: false,
     }
   },
   {

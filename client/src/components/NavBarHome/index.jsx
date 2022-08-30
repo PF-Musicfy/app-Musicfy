@@ -25,9 +25,9 @@ export default function NavBarHome() {
     // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
-    logoutUser();
-    setLogged(!logged);
-    window.location.reload();
+    dispatch(logoutUser());
+    //setLogged(!logged);
+    //window.location.reload();
   }
   function onClickHome(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function NavBarHome() {
 
   return (
     <div>
-      {logged ? (
+      {Object.keys(user).length ? (
         <div>
           <header>
             <div className="searchStyle">
@@ -78,7 +78,7 @@ export default function NavBarHome() {
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
+              <img src={user.avatar || imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -111,7 +111,7 @@ export default function NavBarHome() {
               <Link to="/register">
                 <span>Register</span>
               </Link>
-              <span onClick={handleLog}>Log in</span>
+              <span onClick={() => navigate('/login')}>Log in</span>
             </div>
 
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
