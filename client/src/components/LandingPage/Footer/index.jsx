@@ -41,10 +41,10 @@ export default function Footer() {
           <Link to="/ads">Advertising</Link>
         </div>
         <div className={styles.footerSocial}>
-          <CgFacebook onClick={() => window.location.assign("http://facebook.com")} className={styles.faceIcon} />
-          <CgInstagram onClick={() => window.location.assign("http://instagram.com")} className={styles.instaIcon} />
-          <BsTwitter onClick={() => window.location.assign("http://twitter.com")} className={styles.twitterIcon} />
-          <BsGithub onClick={() => window.location.assign("http://github.com")} className={styles.gitHubIcon} />
+          <CgFacebook onClick={() => window.open("http://facebook.com")} className={styles.faceIcon} />
+          <CgInstagram onClick={() => window.open("http://instagram.com")} className={styles.instaIcon} />
+          <BsTwitter onClick={() => window.open("http://twitter.com")} className={styles.twitterIcon} />
+          <BsGithub onClick={() => window.open("http://github.com")} className={styles.gitHubIcon} />
         </div>
       </div>
     </footer>
