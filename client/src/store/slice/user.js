@@ -51,6 +51,7 @@ export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
+    dispatch(setLoading('cargando'))
     try {
       const {
         data: { token }
@@ -64,11 +65,13 @@ export const userTokenInfo = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      dispatch(setLoading('tengo la data'))
       dispatch(setUser(data));
+      dispatch(setLoading('tengo la data'))
     } catch (error) {
       console.log("No se encontro el token");
+      dispatch(setLoading('no encontre el token'))
     }
+    dispatch(setLoading(''))
   };
 };
 

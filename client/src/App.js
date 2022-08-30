@@ -29,12 +29,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function esperar() {
-      await dispatch(setLoading('cargando'))
-      await dispatch(userTokenInfo());
-      await dispatch(setLoading(''))
-    }
-    esperar();
+    dispatch(userTokenInfo())
   }, [dispatch]);
 
   return (
