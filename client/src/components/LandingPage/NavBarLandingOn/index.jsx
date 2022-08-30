@@ -1,9 +1,22 @@
 import styles from "./NavBarLandingOn.module.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../../store/slice/user";
+import { useState } from "react";
+import imagen from "../.././NavBarHome/img_avatar.png";
 
 function NavBarLanding() {
+  const [profile, setProfile] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    setProfile(!profile);
+  }
+  const handleLog = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -27,8 +40,17 @@ function NavBarLanding() {
               <li className={styles.btnNavbar}>Profile</li>
             </Link>
             <li>
-              <img src={user.avatar} alt="Avatar" className={styles.iconUser} />
+              <img src={user.avatar || imagen} className={styles.iconUser} onClick={handleClick} alt="avatarsito" />
             </li>
+            {profile && (
+              <div className={styles.container}>
+                <div className={styles.selectPerfil}>
+                  <span onClick={handleLog} className={styles.logOut}>
+                    Log out
+                  </span>
+                </div>{" "}
+              </div>
+            )}
           </ul>
         </nav>
       </div>
