@@ -29,38 +29,37 @@ export default function HomeAlbum() {
 
   const changingState = (e) => {
     e.preventDefault();
-    console.log('estoy funcionando')
-    console.log(musicSearch)
+
     setState({
       tracks: e.target.name === 'tracks' ? true : false,
       albums: e.target.name === 'albums' ? true : false,
       playlist: e.target.name === 'playlist' ? true : false,
       artist: e.target.name === 'artist' ? true : false,
     })
-    // setState({...state, [e.target.name]: state[e.target.name] === true ? false : true})
   }
-  
-                                        // Kosovomba
 
-  const [combFilter, setCombFilter] = useState({genre: ['Choose genre', ''], tops: 'Choose option'})
-  const genreOptions = [['Choose genre', ''], ["Pop", "g.115"], ["Rock", "g.5"], ["Alternative", "g.33"], ["Hip-Hop/Rap", "g.146"], 
-  ["R&B/Soul", "g.194"], ["Country", "g.407"], ["Jazz", "g.299"], ["Dance/Electronica", "g.71"], ["Latin", "g.510"], 
-  ["World", "g.488"], ["Reggae", "g.383"], ["Classical", "g.21"], ["Oldies", "g.4"], ["New Age", "g.453"], 
-  ["Christian/Gospel", "g.75"], ["Blues", "g.438"], ["Folk", "g.446"], ["Easy Listening", "g.69"], 
+  // Kosovomba
+
+  const [combFilter, setCombFilter] = useState({ genre: ['Choose genre', ''], tops: 'Choose option' })
+  
+  const genreOptions = [['Choose genre', ''], ["Pop", "g.115"], ["Rock", "g.5"], ["Alternative", "g.33"], ["Hip-Hop/Rap", "g.146"],
+  ["R&B/Soul", "g.194"], ["Country", "g.407"], ["Jazz", "g.299"], ["Dance/Electronica", "g.71"], ["Latin", "g.510"],
+  ["World", "g.488"], ["Reggae", "g.383"], ["Classical", "g.21"], ["Oldies", "g.4"], ["New Age", "g.453"],
+  ["Christian/Gospel", "g.75"], ["Blues", "g.438"], ["Folk", "g.446"], ["Easy Listening", "g.69"],
   ["Soundtracks", "g.246"], ["Children", "g.470"], ["Comedy/Spoken Word", "g.156"], ["Metal", "g.394"]]
   let genreOption = []
 
   function handleChangeGenre(e) {
     e.preventDefault()
-    genreOption = genreOptions.filter( (g) => g[0] === e.target.value)
-    setCombFilter({...combFilter, genre: genreOption[0]}) 
+    genreOption = genreOptions.filter((g) => g[0] === e.target.value)
+    setCombFilter({ ...combFilter, genre: genreOption[0] })
     console.log(combFilter)
-  } 
+  }
 
   function handleChangeTops(e) {
     e.preventDefault()
-    setCombFilter({...combFilter, tops: e.target.value})
-  }  
+    setCombFilter({ ...combFilter, tops: e.target.value })
+  }
 
   const handleCombFilter = (e) => {
     e.preventDefault();
@@ -68,7 +67,7 @@ export default function HomeAlbum() {
     // setCombFilter({genre: ['Choose genre', ''], tops: 'Choose option'})
   }
 
-                                        // Kosovomba
+  // Kosovomba
 
   const onClickResetFilters = () => {
     setState({
@@ -105,27 +104,27 @@ export default function HomeAlbum() {
         {<button className={styles.buttonStyles} name='reset' onClick={() => onClickResetFilters()}>Reset filters</button>}
       </div>
 
-                                     {/* Kosovomba */}
+      {/* Kosovomba */}
 
       <div className={styles.buttonsFilter}>
         <span>Tops by genre: </span>
         <select name='genre' className={styles.selectorFilter} onChange={handleChangeGenre} value={combFilter.genre[0]}>
-            {/* <option>Choose genre</option> */}
-            {genreOptions.map((g) => {
-                    return <option key={g[0]} value={g[0]}>{g[0]}</option>
-                })}
+          {/* <option>Choose genre</option> */}
+          {genreOptions.map((g) => {
+            return <option key={g[0]} value={g[0]}>{g[0]}</option>
+          })}
         </select>
         <select className={styles.selectorFilter} name='tops' onChange={handleChangeTops} value={combFilter.tops}>
-            <option>Choose option</option>
-            <option>Tracks</option>
-            <option>Albums</option>
-            <option>Artists</option>
-            <option>Playlists</option>
+          <option>Choose option</option>
+          <option>Tracks</option>
+          <option>Albums</option>
+          <option>Artists</option>
+          <option>Playlists</option>
         </select>
-        <button onClick={(e) => handleCombFilter(e)} disabled={ combFilter.genre[0] === 'Choose genre'? true : (combFilter.tops === 'Choose option'? true : false) }>Search</button>
+        <button onClick={(e) => handleCombFilter(e)} disabled={combFilter.genre[0] === 'Choose genre' ? true : (combFilter.tops === 'Choose option' ? true : false)}>Search</button>
       </div>
 
-                                    {/* Kosovomba */}
+      {/* Kosovomba */}
 
       <div className={state.tracks === false ? styles.containerAlbumes : styles.containerAlbumes2} >
         {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Tracks</h1> : <h1 className={styles.titleGenre}>Tracks</h1>}
@@ -209,7 +208,7 @@ export default function HomeAlbum() {
 
 
       <div className={state.albums === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-        <h1 className={styles.titleGenre}>Top Albums</h1>
+      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Albums</h1> : <h1 className={styles.titleGenre}>Albums</h1>}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -289,7 +288,7 @@ export default function HomeAlbum() {
       </div>
 
       <div className={state.artist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-        <h1 className={styles.titleGenre}>Top Artists</h1>
+        {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Artists</h1> : <h1 className={styles.titleGenre}>Artists</h1>}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -331,6 +330,7 @@ export default function HomeAlbum() {
             },
           }}
         >
+
           <div>
             {musicSearch.length === 0 ? topMusic.apiArtists?.map((item) => {
               return (
@@ -343,7 +343,6 @@ export default function HomeAlbum() {
                       onError={onImgError}
                     />
                     <h3 className={styles.h3Colors}>{item.name}</h3>
-                    <h3 className={styles.h3Colors}>{item.shortcut}</h3>
                   </Link>
                 </SwiperSlide>
               );
@@ -359,7 +358,6 @@ export default function HomeAlbum() {
                         onError={onImgError}
                       />
                       <h3 className={styles.h3Colors}>{item.name}</h3>
-                      <h3 className={styles.h3Colors}>{item.artistName}</h3>
                     </Link>
                   </SwiperSlide>
                 );
@@ -370,7 +368,7 @@ export default function HomeAlbum() {
 
 
       <div className={state.playlist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-        <h1 className={styles.titleGenre}>Top Playlists</h1>
+      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Playlist</h1> : <h1 className={styles.titleGenre}>Playlist</h1>}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
