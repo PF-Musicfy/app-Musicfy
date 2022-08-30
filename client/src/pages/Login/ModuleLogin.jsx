@@ -1,19 +1,17 @@
 import { useState, useRef } from "react";
 import validate from "../../utils/validate.js";
-import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import s from "./login.module.css";
 import LoginWithGoogle from "./LoginWithGoogle.jsx";
 import login from "../../utils/login.js";
 
-export default function ModuleLogin() {
+export default function ModuleLogin({ success }) {
   const [input, setInput] = useState({
     user: "",
     pass: "",
   });
   const [errors, setErrors] = useState({});
   const inputPass = useRef();
-  const navigate = useNavigate();
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +26,7 @@ export default function ModuleLogin() {
       await login({
         email: input.user,
         password: input.pass,
-      }, '/api/v1/auth/login')
-      navigate('/home')
+      }, '/api/v1/auth/login', success)
     }catch(e){
       console.log('error login')
     }
