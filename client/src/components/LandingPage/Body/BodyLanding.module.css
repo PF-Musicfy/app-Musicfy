@@ -65,3 +65,25 @@
   font-size: 26px;
   margin-left: 12px;
 }
+
+@media (max-width: 856px) {
+  .Title {
+    font-size: 88px;
+  }
+}
+
+@media (max-width: 540px) {
+  .Title {
+    font-size: 46px;
+  }
+  .Subtitle {
+    font-size: 15px;
+    padding: 0 0 22px 43px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  .BodyLanding {
+    width: 104%;
+  }
+}

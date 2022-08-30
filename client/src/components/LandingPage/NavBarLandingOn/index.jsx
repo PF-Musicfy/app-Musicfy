@@ -1,7 +1,9 @@
 import styles from "./NavBarLandingOn.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function NavBarLanding() {
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <div className={styles.containerNavbar}>
@@ -25,7 +27,7 @@ function NavBarLanding() {
               <li className={styles.btnNavbar}>Profile</li>
             </Link>
             <li>
-              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" className={styles.iconUser} />
+              <img src={user.avatar} alt="Avatar" className={styles.iconUser} />
             </li>
           </ul>
         </nav>
