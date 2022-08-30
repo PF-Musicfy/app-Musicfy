@@ -18,18 +18,19 @@ import Login from "./pages/Login";
 import ProfileInfo from "./components/Profile";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
-import CheckUp from "./pages/CheckUp";
 import Perfil from "./Perfil";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
 import TestMP from "./components/TestMP";
 
+import Loading from "./components/Loading";
+
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userTokenInfo());
-  }, []);
+    dispatch(userTokenInfo())
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -50,7 +51,7 @@ function App() {
         <Route path="*" element={<PageDev />} />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
-        <Route exact path="/checkup" element={<CheckUp />} />
+        <Route exact path="/loading" element={<Loading />} />
         <Route exact path="/miperfil" element={<Perfil />} />
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
         <Route path="*" element={<Page404 />} />

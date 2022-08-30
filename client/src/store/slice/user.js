@@ -6,7 +6,8 @@ export const userSlice = createSlice({
   initialState: {
     feedback: [],
     users: [],
-    user: {}
+    user: {},
+    loading: '',
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -17,11 +18,14 @@ export const userSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     }
   }
 });
 
-export const { setFeedback, setUsers, setUser } = userSlice.actions;
+export const { setFeedback, setUsers, setUser, setLoading } = userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -47,12 +51,14 @@ export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
+    dispatch(setLoading('cargando'))
     try {
       const {
         data: { token }
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true
       });
+      dispatch(setLoading('tengo el token'))
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
@@ -60,9 +66,12 @@ export const userTokenInfo = () => {
         }
       });
       dispatch(setUser(data));
+      dispatch(setLoading('tengo la data'))
     } catch (error) {
       console.log("No se encontro el token");
+      dispatch(setLoading('no encontre el token'))
     }
+    dispatch(setLoading(''))
   };
 };
 
@@ -130,16 +139,20 @@ export async function getMercadoPago(email) {
   }
 }
 
-export const logoutUser = async () => {
-  try {
-    return await fetch("http://localhost:5000/api/v1/auth/logout", {
-      method: "GET",
-      credentials: "include"
-    });
-  } catch (error) {
-    console.log(error);
+export const logoutUser = () => {
+  return async function (dispatch) {
+    try{
+      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`,{
+        withCredentials: true
+      })
+
+      console.log('cookie clear');
+      dispatch(setUser({}));
+    } catch (e) {
+      console.log('error logout')
+    }
   }
-};
+}
 /* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {

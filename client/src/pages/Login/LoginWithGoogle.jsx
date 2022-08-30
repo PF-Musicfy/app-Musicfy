@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../store/slice/user.js";
-
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
 
+import { setUser } from "../../store/slice/user.js";
+import login from "../../utils/login.js";
+
 export default function LoginWithGoogle() {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user)
   const clientId =  "425370046788-u6dorcbq4s799p4rc5q5e7ik4j501gta.apps.googleusercontent.com";
@@ -22,20 +23,16 @@ export default function LoginWithGoogle() {
     gapi.load("client:auth2", initClient)
   }, [])
 
-  const onSuccess = (res) => {
-    //console.log('success', res.profileObj);
-    console.log('login with google')
-    const data = {
-      username: res.profileObj.name,
-      email: res.profileObj.email,
-      avatar: res.profileObj.imageUrl,
-      admin: false,
-      premium: false,
-      isblocked: false,
-      online: true,
+  const onSuccess = async (res) => {
+    try{
+      await login({
+        username: res.profileObj.name,
+        email: res.profileObj.email,
+      }, '/user/google', 'logeado with goooogle')
+      navigate('/home')
+    }catch(e){
+      console.log('error login')
     }
-    dispatch(setUser(data))
-    console.log('data guardada')
   }
   const onFailure = (res) => {
     console.log('failed', res);
