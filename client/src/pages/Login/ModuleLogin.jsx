@@ -6,7 +6,7 @@ import s from "./login.module.css";
 import LoginWithGoogle from "./LoginWithGoogle.jsx";
 import login from "../../utils/login.js";
 
-export default function ModuleLogin() {
+export default function ModuleLogin({ success }) {
   const [input, setInput] = useState({
     user: "",
     pass: "",
@@ -28,8 +28,7 @@ export default function ModuleLogin() {
       await login({
         email: input.user,
         password: input.pass,
-      }, '/api/v1/auth/login')
-      navigate('/home')
+      }, '/api/v1/auth/login', success)
     }catch(e){
       console.log('error login')
     }

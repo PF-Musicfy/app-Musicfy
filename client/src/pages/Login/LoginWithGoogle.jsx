@@ -29,7 +29,6 @@ export default function LoginWithGoogle() {
         username: res.profileObj.name,
         email: res.profileObj.email,
       }, '/user/google', 'logeado with goooogle')
-      navigate('/home')
     }catch(e){
       console.log('error login')
     }
