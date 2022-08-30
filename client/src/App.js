@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { userTokenInfo, setLoading } from "./store/slice/user";
+import { userTokenInfo } from "./store/slice/user";
 import RegisterForm from "./components/RegisterForm";
 import Home from "./components/Home";
 import LandingPage from "./components/LandingPage";
