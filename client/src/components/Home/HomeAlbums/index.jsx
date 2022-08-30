@@ -177,8 +177,9 @@ export default function HomeAlbum() {
                   <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
-                      src={item.images}
+                      src={item.images || item.image}
                       alt={item.name}
+                      onError={onImgError}
                     />
                     <h3 className={styles.h3Colors}>{item.name}</h3>
                     <h3 className={styles.h3Colors}>{item.artistName}</h3>
@@ -257,8 +258,9 @@ export default function HomeAlbum() {
                   <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
-                      src={item.images}
+                      src={item.image || item.images}
                       alt={item.name}
+                      onError={onImgError}
                     />
                     <h3 className={styles.h3Colors}>{item.name}</h3>
                     <h3 className={styles.h3Colors}>{item.artistName}</h3>
@@ -272,7 +274,7 @@ export default function HomeAlbum() {
                     <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
-                        src={item.images}
+                        src={item.image || item.images}
                         alt={item.name}
                         onError={onImgError}
                       />
@@ -336,8 +338,9 @@ export default function HomeAlbum() {
                   <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
-                      src={item.images}
+                      src={item.image || item.images}
                       alt={item.name}
+                      onError={onImgError}
                     />
                     <h3 className={styles.h3Colors}>{item.name}</h3>
                     <h3 className={styles.h3Colors}>{item.shortcut}</h3>
@@ -351,7 +354,7 @@ export default function HomeAlbum() {
                     <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
-                        src={item.images}
+                        src={item.image || item.images}
                         alt={item.name}
                         onError={onImgError}
                       />
@@ -416,8 +419,9 @@ export default function HomeAlbum() {
                   <Link to={`/home/${item.id}`}>
                     <img
                       className={styles.imgSwiper}
-                      src={item.images}
+                      src={item.image || item.images}
                       alt={item.name}
+                      onError={onImgError}
                     />
                     <h3 className={styles.h3Colors}>{item.name}</h3>
                   </Link>
@@ -430,7 +434,7 @@ export default function HomeAlbum() {
                     <Link to={`/home/${item.id}`}>
                       <img
                         className={styles.imgSwiper}
-                        src={item.images}
+                        src={item.image || item.images}
                         alt={item.name}
                         onError={onImgError}
                       />
