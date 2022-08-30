@@ -6,7 +6,8 @@ export const userSlice = createSlice({
   initialState: {
     feedback: [],
     users: [],
-    user: {}
+    user: {},
+    loading: '',
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -17,11 +18,14 @@ export const userSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     }
   }
 });
 
-export const { setFeedback, setUsers, setUser } = userSlice.actions;
+export const { setFeedback, setUsers, setUser, setLoading } = userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -53,12 +57,14 @@ export const userTokenInfo = () => {
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true
       });
+      dispatch(setLoading('tengo el token'))
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
+      dispatch(setLoading('tengo la data'))
       dispatch(setUser(data));
     } catch (error) {
       console.log("No se encontro el token");

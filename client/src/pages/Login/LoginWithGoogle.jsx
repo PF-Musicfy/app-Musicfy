@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
-import axios from 'axios';
 
-import { setUser, userTokenInfo } from "../../store/slice/user.js";
+import { setUser } from "../../store/slice/user.js";
+import login from "../../utils/login.js";
 
 export default function LoginWithGoogle() {
   const navigate = useNavigate();
@@ -23,28 +23,16 @@ export default function LoginWithGoogle() {
     gapi.load("client:auth2", initClient)
   }, [])
 
-  const onSuccess = (res) => {
-    axios.post(`${axios.defaults.baseURL}/user/google`,{
-      username: res.profileObj.name,
-      email: res.profileObj.email,
-      //avatar: res.profileObj.imageUrl,
-    },{
-      withCredentials: true,
-    })
-    .then((e) => {
-      alert("logeado con google");
-      
-      dispatch(userTokenInfo())
-      navigate("/home");
-    })
-    .catch((e) => {
-      console.log(e);
-      alert("posibles errores:\n" +
-          "- el back no se ha iniciado\n" +
-          "- alguno de los campos falta o es incorrecto\n" +
-          "- el usuario no existe en la base de datos"
-      );
-    });
+  const onSuccess = async (res) => {
+    try{
+      await login({
+        username: res.profileObj.name,
+        email: res.profileObj.email,
+      }, '/user/google', 'logeado with goooogle')
+      navigate('/home')
+    }catch(e){
+      console.log('error login')
+    }
   }
   const onFailure = (res) => {
     console.log('failed', res);

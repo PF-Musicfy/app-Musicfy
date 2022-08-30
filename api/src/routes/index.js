@@ -229,7 +229,7 @@ app.post("/feedback", async (req, res) => {
 app.get("/feedback", async (req, res) => {
   try {
     const posts = await Post.find();
-    console.log(posts);
+    //console.log(posts);
     res.send(posts);
   } catch (e) {
     res.status(500).send("not get Post");

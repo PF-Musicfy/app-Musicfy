@@ -18,6 +18,7 @@
 }
 
 .form {
+  border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 30px;
   text-align: center;
@@ -47,7 +48,6 @@
 
 .options {
   padding: 10px;
-  border-bottom: 1px solid;
 }
 .container {
   margin: auto;

@@ -1,5 +1,5 @@
 import { Link, Route, Routes } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import st from "../Login/login.module.css";
@@ -10,6 +10,8 @@ import SideBar from "../../components/SideBar";
 import DashboardHome from "./DashboardHome.jsx";
 import DashboardFeedback from "./DashboardFeedback.jsx";
 import PageAdmin from "../../components/PageAdmin";
+import Loading from "../../components/Loading";
+import { useLoading } from "../../hooks/useLoading.js";
 
 function LoginForm() {
   const inputPass = useRef();
@@ -75,6 +77,7 @@ function LoginForm() {
 
 export default function Dashboard() {
   const { user } = useSelector(state => state.user)
+  const { display, loading } = useLoading();
 
   return (
     <div className={s.container}>
@@ -97,7 +100,9 @@ export default function Dashboard() {
         </Routes>
       </div>
       </>
-      : <LoginForm />
+      : loading ?
+        <Loading text={loading}/>
+        : <div style={{display}}><LoginForm /></div>
       }
     </div>
   )
