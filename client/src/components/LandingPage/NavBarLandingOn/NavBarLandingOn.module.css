@@ -55,8 +55,44 @@
   margin-right: 28px;
 }
 
+.selectPerfil {
+  background-color: rgb(44, 44, 44);
+  color: white;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  width: 6em;
+  border-radius: 2px;
+  position: absolute;
+  right: 0px;
+  z-index: 30;
+}
+
+.logOut {
+  cursor: pointer;
+}
+
+.container {
+  z-index: 30;
+  text-decoration: none;
+  color: white;
+}
+.container span:hover {
+  color: var(--mainColor);
+}
+
+.prem{
+  font-size: 20px
+}
+
 @media (max-width: 856px) {
   .containerButtomNavbar {
     display: none;
   }
 }
+
