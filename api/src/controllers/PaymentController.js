@@ -15,9 +15,9 @@ class PaymentController {
     }
   }
 
-  async getSubscriptionLink(req, res, email) {
+  async getSubscriptionLink(req, res, email, plan, month) {
     try {
-      const subscription = await this.subscriptionService.createSubscription(email);
+      const subscription = await this.subscriptionService.createSubscription(email, plan, month);
 
       return res.json(subscription);
     } catch (error) {

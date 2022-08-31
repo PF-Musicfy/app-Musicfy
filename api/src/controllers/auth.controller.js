@@ -115,7 +115,6 @@ const logoutUser = (req, res) => {
 };
 
 const premiumUser = async (req, res) => {
-  console.log("llegue aca");
   const { premium } = req.body;
   const user = await User.findByIdAndUpdate(req.uid, {
     premium
@@ -131,7 +130,6 @@ const avatarUser = async (req, res) => {
     avatar
   });
   await user.save();
-
   return res.json({ message: "Avatar cambiado" });
 };
 
