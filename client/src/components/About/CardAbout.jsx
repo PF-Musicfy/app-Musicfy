@@ -6,7 +6,6 @@ function CardAbout({ name, title, location, images }) {
   return (
     <div className="card-about">
       <div className={styles.containerCards}>
-        <img src={images} alt="avatar" className={styles.imgCard} />
         <div className={styles.containerTxt}>
           <h2 className={styles.cardName}>{name}</h2>
           <h3 className={styles.cardTitle}>{title}</h3>
@@ -19,6 +18,7 @@ function CardAbout({ name, title, location, images }) {
             <BsLinkedin onClick={() => window.open("http://linkedin.com", "_blank")} className={styles.linkedinIcon} />
           </div>
         </div>
+        <img src={images} alt="avatar" className={styles.imgCard} />
       </div>
     </div>
   );
