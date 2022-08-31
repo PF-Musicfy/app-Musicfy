@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   background: rgb(36, 36, 36);
-  height: 1780px;
+  height: 1480px;
   background: url("https://th.bing.com/th/id/R.2d53f19ed26de46cf8bfeab30778d312?rik=CNnkzK0NukYFUw&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fePRFbBv.jpg&ehk=RHLdYSJmzbqoo8AFw2s3oCpbiSrfy%2bXm43htIjJZXJA%3d&risl=&pid=ImgRaw&r=0");
   background-size: cover;
 }
@@ -18,7 +18,7 @@
   flex-direction: row;
   background-color: #fff;
   width: 672px;
-  height: 192px;
+  height: 152px;
   border-radius: 4px;
   margin-bottom: 40px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
@@ -28,11 +28,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 480px;
+  width: 520px;
 }
 .cardName {
   color: #000;
-  font-size: 40px;
+  font-size: 34px;
 }
 .imgCard {
   clip-path: polygon(10% 0%, 101% 0, 101% 100%, 0 100%);
@@ -50,7 +50,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: #6c757d;
+  color: var(--mainColor);
   font-size: 16px;
   font-family: "Poppins", sans-serif;
 }
@@ -68,4 +68,39 @@
 .linkedinIcon:hover {
   cursor: pointer;
   color: var(--mainColor);
+}
+
+@media (max-width: 720px) {
+  .containerCards {
+    width: 520px;
+  }
+  .cardName {
+    font-size: 24px;
+  }
+  .cardTitle,
+  .cardLocation {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 536px) {
+  .containerCards {
+    width: 370px;
+    height: 120px;
+  }
+  .cardName {
+    font-size: 24px;
+  }
+  .containerAbout {
+    height: 1080px;
+  }
+  .footerSocial {
+    font-size: 16px;
+  }
+  .cardName {
+    font-size: 20px;
+  }
+  .containerCards {
+    margin-bottom: 20px;
+  }
 }
