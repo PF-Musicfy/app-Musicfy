@@ -40,11 +40,11 @@ app.get("/payment", async function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
 
-app.get("/subscription/:email", async function (req, res, next) {
-  const { email } = req.params;
+app.get("/subscription/:email/:plan/:month", async function (req, res, next) {
+  const { email, plan, month } = req.params;
   if (email) {
     try {
-      PaymentInstance.getSubscriptionLink(req, res, email);
+      PaymentInstance.getSubscriptionLink(req, res, email, plan, month);
     } catch (error) {
       next(error);
     }
@@ -53,18 +53,18 @@ app.get("/subscription/:email", async function (req, res, next) {
   }
 });
 
-app.get("/subscription", async function (req, res, next) {
-  const { preapproval_id } = req.query;
-  if (preapproval_id) {
-    try {
-      res.send("Hay id");
-    } catch (error) {
-      next(error);
-    }
-  } else {
-    res.send("No hay id");
-  }
-});
+// app.get("/subscription", async function (req, res, next) {
+//   const { preapproval_id } = req.query;
+//   if (preapproval_id) {
+//     try {
+//       res.send("Hay id");
+//     } catch (error) {
+//       next(error);
+//     }
+//   } else {
+//     res.send("No hay id");
+//   }
+// });
 
 app.get("/topmusic", async (req, res, next) => {
   try {

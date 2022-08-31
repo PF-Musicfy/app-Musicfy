@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     feedback: [],
     users: [],
     user: {},
-    loading: '',
+    loading: ""
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -51,14 +51,14 @@ export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
-    dispatch(setLoading('cargando'))
+    dispatch(setLoading("cargando"));
     try {
       const {
         data: { token }
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true
       });
-      dispatch(setLoading('tengo el token'))
+      dispatch(setLoading("tengo el token"));
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
@@ -66,12 +66,12 @@ export const userTokenInfo = () => {
         }
       });
       dispatch(setUser(data));
-      dispatch(setLoading('tengo la data'))
+      dispatch(setLoading("tengo la data"));
     } catch (error) {
       console.log("No se encontro el token");
-      dispatch(setLoading('no encontre el token'))
+      dispatch(setLoading("no encontre el token"));
     }
-    dispatch(setLoading(''))
+    dispatch(setLoading(""));
   };
 };
 
@@ -128,11 +128,9 @@ export const userTokenAvatar = (avatar) => {
   };
 };
 
-export async function getMercadoPago(email) {
+export async function getMercadoPago(email, btnPrice, month) {
   try {
-    const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}`);
-    console.log(emailVerify);
-    console.log({ url: emailVerify.data.init_point, id: emailVerify.data.id });
+    const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}/${btnPrice}/${month}`);
     return { url: emailVerify.data.init_point, id: emailVerify.data.id };
   } catch (error) {
     console.log(error);
@@ -141,18 +139,18 @@ export async function getMercadoPago(email) {
 
 export const logoutUser = () => {
   return async function (dispatch) {
-    try{
-      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`,{
+    try {
+      await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
         withCredentials: true
-      })
+      });
 
-      console.log('cookie clear');
+      console.log("cookie clear");
       dispatch(setUser({}));
     } catch (e) {
-      console.log('error logout')
+      console.log("error logout");
     }
-  }
-}
+  };
+};
 /* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {
