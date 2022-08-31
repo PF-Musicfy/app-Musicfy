@@ -1,14 +1,18 @@
 import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
-import { useSelector } from "react-redux";
+import { IoPlayForward, IoRepeatSharp } from "react-icons/io5"
+import { useDispatch, useSelector } from "react-redux";
+import { goPlaylist } from "../../store/slice/player.js";
 
 import s from './player.module.css';
 import toMinutes from '../../utils/toMinutes.js';
 
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
-export default function Player({ detail, music }){
+export default function Player(){
   const { detailTracks } = useSelector((state) => state.music);
+  const { actual } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
 
   const [dataSong, setDataSong] = useState({});
   const [allSongs, setAllSongs] = useState([]);
@@ -18,11 +22,11 @@ export default function Player({ detail, music }){
   const volumeBar = useRef();
 
   useEffect(() => {
-    if(!Object.keys(music).length) return;
+    if(!Object.keys(actual).length) return;
 
     audioElem.current.play();
     audioElem.current.volume = 0.1;
-  }, [music])
+  }, [actual])
 
   useEffect(() => {
     setAllSongs(Object.values(detailTracks));
@@ -47,7 +51,7 @@ export default function Player({ detail, music }){
     <div className={s.container}>
       <audio
         ref={audioElem}
-        src={music.previewURL || url}
+        src={actual.previewURL || url}
         onTimeUpdate={onPlaying}
         onPlay={() => {console.log('play')}}
         onPause={() => {console.log('pause')}}
@@ -63,6 +67,23 @@ export default function Player({ detail, music }){
       />
       <div className={s.controls}>
         <div className={s.tools}>
+          <button className={s.button}
+            onClick={() => {
+              audioElem.current.loop = !audioElem.current.loop
+              console.log(audioElem.current.loop);
+            }}
+          >
+            {audioElem.current ?
+              (audioElem.current.loop ? 'on' : 'off') : 'loop'}
+              <IoRepeatSharp />
+          </button>
+          <button className={s.button}
+            onClick={() => {
+              dispatch(goPlaylist(actual));
+            }}
+          >
+            <IoPlayForward />
+          </button>
           <button className={s.button}
             onClick={() => {
               if(audioElem.current){
@@ -81,16 +102,16 @@ export default function Player({ detail, music }){
           <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
         </div>
         <div className={s.info}>
-          <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
-          <div>
-          {music.name ? 
+          {actual.name ? 
             <>
-            <p>Name: {music.name}</p>
-            <p>Artist: {music.artistName}</p>
+              <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
+              <div>
+                <p>Name: {actual.name}</p>
+                <p>Artist: {actual.artistName}</p>
+              </div>
             </>
           : <p>selecciona una cancion</p>
           }
-          </div>
         </div>
         <div>
           <input
