@@ -80,11 +80,15 @@ export default function HomeAlbum() {
 
 
   useEffect(() => {
-    dispatch(getTopMusic());
+    if (topMusic.length === 0){
+    dispatch(getTopMusic())
+    };
   }, []);
 
   useEffect(() => {
+    if (musicSearch.length !== 0) {
     dispatch(topMusicClear())
+    }
   }, [musicSearch])
 
 
