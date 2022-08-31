@@ -36,6 +36,14 @@ export default function Validation() {
             navigate('/')
         }, 2000);
     })
+    .catch((error) => {
+        console.log(error)
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops try again!',
+            text: 'Email already registered',
+          })
+    })
     return (
         <div>
             Register succesful!
