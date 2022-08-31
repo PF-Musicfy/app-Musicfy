@@ -122,7 +122,8 @@ app.post("/send-email-registered", (req, res, next) => {
     from: "adminAPI",
     to: eMail,
     subject: "Register succesful",
-    text: `You have been succesfully registered in Musicfy! Welcome!`
+    text: `You have been succesfully registered in Musicfy! Welcome!`,
+    html: ``
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
