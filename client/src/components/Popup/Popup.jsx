@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import s from './popup.module.css';
 
-export default function Popup({children}){
+export default function Popup({ children }){
   const [isOpen, setIsOpen] = useState(true);
   const ref = useRef();
 
