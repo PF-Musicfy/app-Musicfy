@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrackId } from "../../store/slice";
+import { setActual, setPlaylist } from "../../store/slice/player.js";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import toMinutes from '../../utils/toMinutes.js';
 
 function DetailFront({ e }) {
   return (
@@ -20,33 +22,36 @@ function DetailFront({ e }) {
     </div>
   );
 }
-function DetailList({ e, setEvoker }) {
+function DetailList({ e }) {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div className="divTracks">
         <li className="liTracks">
           <div className="containerLi">
-            <button className="btn-detail" onClick={() => setEvoker(e)}>
+            <button className="btn-detail" onClick={() => {
+              dispatch(setActual(e))
+            }}>
               <div className="arrow-up"></div>
             </button>
             <p className="name">{e.name}</p>
             <p className="artistName">{e.artistName}</p>
-            <p className="seconds">{e.playbackSeconds}</p>
+            <p className="seconds">{toMinutes(e.playbackSeconds)}</p>
           </div>
         </li>
       </div>
     </div>
   );
 }
-function DetailAll({ a, setEvoker }) {
-  const arr = Object.values(a);
+function DetailAll({ arr }) {
   return (
     <>
       {arr[0]?.map((e, id) => (
         <DetailFront key={id} e={e} />
       ))}
       {arr[1]?.map((e, id) => (
-        <DetailList key={id} e={e} setEvoker={setEvoker} />
+        <DetailList key={id} e={e} />
       ))}
     </>
   );
@@ -56,7 +61,6 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
-  const [evoker, setEvoker] = useState({});
 
   const [allSongs, setAllSongs] = useState([]);
 
@@ -70,6 +74,12 @@ export default function Detail() {
     setAllSongs(Object.values(detailTracks));
   }, [detailTracks]);
 
+  useEffect(() => {
+    if(allSongs.length){
+      dispatch(setPlaylist(allSongs[1]));
+    }
+  }, [dispatch, allSongs]);
+
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
@@ -79,8 +89,8 @@ export default function Detail() {
         ) : (
           <PopupLogin imagen={allSongs[0] ? allSongs[0][0].images : ""} />
         )}
-        <DetailAll a={detailTracks} setEvoker={setEvoker} />
-        <Player music={evoker} />
+        <DetailAll arr={allSongs} />
+        <Player />
       </div>
     </>
   );
