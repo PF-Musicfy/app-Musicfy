@@ -31,12 +31,45 @@ export const { setPrevious, setActual, setNext, setPlaylist, setLoading } = play
 
 export default playerSlice.reducer;
 
-export const goPlaylist = (song) => {
+export const forwardPlaylist = (song) => {
   return async function (dispatch, getState) {
     try {
       const { playlist } = getState().player
       const i = playlist.map(e => e.id).indexOf(song.id)
+
+      if(playlist[i+1] === undefined ) return dispatch(setActual({}));
+
       dispatch(setActual(playlist[i+1]));
+    } catch (e) {
+      console.log("error: action play");
+    }
+  }
+}
+
+export const backPlaylist = (song) => {
+  return async function (dispatch, getState) {
+    try {
+      const { playlist } = getState().player
+      const i = playlist.map(e => e.id).indexOf(song.id)
+
+      if(playlist[i-1] === undefined ) return dispatch(setActual({}));
+
+      dispatch(setActual(playlist[i-1]));
+    } catch (e) {
+      console.log("error: action play");
+    }
+  }
+}
+
+export const randomPlaylist = () => {
+  return async function (dispatch, getState) {
+    try {
+      const { playlist } = getState().player
+      const i = Math.floor(Math.random() * playlist.length)
+
+      if(playlist[i] === undefined ) return dispatch(setActual({}));
+
+      dispatch(setActual(playlist[i]));
     } catch (e) {
       console.log("error: action play");
     }

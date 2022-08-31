@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
-import { IoPlayForward, IoRepeatSharp } from "react-icons/io5"
+import { IoPlayForward, IoPlayBack, IoRepeatSharp, IoShuffle } from "react-icons/io5"
 import { useDispatch, useSelector } from "react-redux";
-import { goPlaylist } from "../../store/slice/player.js";
+import { forwardPlaylist, backPlaylist, randomPlaylist } from "../../store/slice/player.js";
 
 import s from './player.module.css';
 import toMinutes from '../../utils/toMinutes.js';
@@ -67,39 +67,38 @@ export default function Player(){
       />
       <div className={s.controls}>
         <div className={s.tools}>
-          <button className={s.button}
-            onClick={() => {
-              audioElem.current.loop = !audioElem.current.loop
-              console.log(audioElem.current.loop);
-            }}
-          >
-            {audioElem.current ?
-              (audioElem.current.loop ? 'on' : 'off') : 'loop'}
-              <IoRepeatSharp />
-          </button>
-          <button className={s.button}
-            onClick={() => {
-              dispatch(goPlaylist(actual));
-            }}
-          >
-            <IoPlayForward />
-          </button>
-          <button className={s.button}
-            onClick={() => {
-              if(audioElem.current){
-                if(audioElem.current.paused){
-                  audioElem.current.play()
-                }else{
-                  audioElem.current.pause()
+          <div className={s.options}>
+            <button className={s.button}
+              onClick={() => {
+                dispatch(backPlaylist(actual));
+              }}
+            >
+              <IoPlayBack />
+            </button>
+            <button className={s.button}
+              onClick={() => {
+                if(audioElem.current){
+                  if(audioElem.current.paused){
+                    audioElem.current.play()
+                  }else{
+                    audioElem.current.pause()
+                  }
                 }
+              }} >
+              {audioElem.current
+                ? (audioElem.current.paused ? <FaPlay /> : <FaPause />) 
+                : ''
               }
-            }} >
-            {audioElem.current
-              ? (audioElem.current.paused ? <FaPlay /> : <FaPause />) 
-              : ''
-            }
-          </button>
-          <span>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</span>
+            </button>
+            <button className={s.button}
+              onClick={() => {
+                dispatch(forwardPlaylist(actual));
+              }}
+            >
+              <IoPlayForward />
+            </button>
+            <p>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</p>
+          </div>
         </div>
         <div className={s.info}>
           {actual.name ? 
@@ -113,18 +112,36 @@ export default function Player(){
           : <p>selecciona una cancion</p>
           }
         </div>
-        <div>
-          <input
-            className={s.volume}
-            type='range'
-            defaultValue="0"
-            max='10'
-            ref={volumeBar}
-            onChange={() => {
-              audioElem.current.volume = volumeBar.current.value/10;
+        <div className={s.extra}>
+          <div className={s.volumen}>
+            <input
+              type='range'
+              defaultValue="0"
+              max='10'
+              ref={volumeBar}
+              onChange={() => {
+                audioElem.current.volume = volumeBar.current.value/10;
+              }}
+            />
+            <FaVolumeDown />
+          </div>
+          <button className={s.button}
+            onClick={() => {
+              audioElem.current.loop = !audioElem.current.loop
+              console.log(audioElem.current.loop);
             }}
-          />
-          <FaVolumeDown style={{display: 'inline'}}/>
+          >
+            {audioElem.current ?
+              (audioElem.current.loop ? 'on' : 'off') : 'loop'}
+              <IoRepeatSharp />
+          </button>
+          <button className={s.button}
+            onClick={() => {
+              dispatch(randomPlaylist());
+            }}
+          >
+            <IoShuffle />
+          </button>
         </div>
       </div>
     </div>
