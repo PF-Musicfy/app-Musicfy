@@ -127,7 +127,7 @@ export default function HomeAlbum() {
       {/* Kosovomba */}
 
       <div className={state.tracks === false ? styles.containerAlbumes : styles.containerAlbumes2} >
-        {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Tracks</h1> : <h1 className={styles.titleGenre}>Tracks</h1>}
+        {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Tracks</h1> : (musicSearch.tracks? <h1 className={styles.titleGenre}>Tracks</h1> : false)}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -208,7 +208,7 @@ export default function HomeAlbum() {
 
 
       <div className={state.albums === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Albums</h1> : <h1 className={styles.titleGenre}>Albums</h1>}
+      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Albums</h1> : (musicSearch.albums? <h1 className={styles.titleGenre}>Albums</h1> : false)}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -288,7 +288,7 @@ export default function HomeAlbum() {
       </div>
 
       <div className={state.artist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-        {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Artists</h1> : <h1 className={styles.titleGenre}>Artists</h1>}
+        {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Artists</h1> : (musicSearch.artists? <h1 className={styles.titleGenre}>Artists</h1> : false)}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -368,7 +368,7 @@ export default function HomeAlbum() {
 
 
       <div className={state.playlist === false ? styles.containerAlbumes : styles.containerAlbumes2}>
-      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Playlist</h1> : <h1 className={styles.titleGenre}>Playlist</h1>}
+      {musicSearch.length === 0 ? <h1 className={styles.titleGenre}>Top Playlist</h1> : (musicSearch.playlists? <h1 className={styles.titleGenre}>Playlist</h1> : false)}
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}

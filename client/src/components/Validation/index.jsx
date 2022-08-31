@@ -1,9 +1,11 @@
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 export default function Validation() {
     const {email, username} = useParams()
+    const navigate = useNavigate()
     const eMail = email
     const location = useLocation()
     const Toast = Swal.mixin({
@@ -28,6 +30,11 @@ export default function Validation() {
             title: 'User registered succesfully'
           })
         axios.post(`${axios.defaults.baseURL}/send-email-registered`, {eMail});
+    })
+    .then(() => {
+        setTimeout(() => {
+            navigate('/')
+        }, 2000);
     })
     return (
         <div>
