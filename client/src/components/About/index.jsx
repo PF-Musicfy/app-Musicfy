@@ -2,12 +2,11 @@ import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import Footer from "../LandingPage/Footer";
 import CardAbout from "./CardAbout";
 import styles from "./about.module.css";
-import { MdLocationOn } from "react-icons/md";
-import NavBarLandingOff from "../LandingPage/NavBarLandingOff"
-import { useSelector } from "react-redux"
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { useSelector } from "react-redux";
 
 function About() {
-  const staff = [
+  let staff = [
     {
       name: "Jose Casanova",
       title: "Full Stack Developer",
@@ -52,16 +51,26 @@ function About() {
       name: "Alejandro Maturrano",
       title: "Full Stack Developer",
       location: "Lima, Peru",
-      images: "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661186886/alejandro_pciivb.jpg"
+      images: "https://res.cloudinary.com/hugok2k/image/upload/v1661916969/alejandro_leodxr.jpg"
     }
   ];
 
-  const { user } = useSelector(state => state.user)
+  const shuffle = function (deck) {
+    let deckShuffled = [];
+    while (deck.length > 0) {
+      let cardIndex = Math.floor(Math.random() * deck.length);
+      let card = deck[cardIndex];
+      deckShuffled.push(card);
+      deck.splice(cardIndex, 1);
+    }
+    return deckShuffled;
+  };
+  staff = shuffle(staff);
+
+  const { user } = useSelector((state) => state.user);
   return (
     <>
-      {
-        Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />
-      }
+      {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
 
       <div className={styles.containerAbout}>
         {staff.map((e) => (
@@ -69,7 +78,6 @@ function About() {
             <CardAbout name={e.name} title={e.title} location={e.location} images={e.images} />
           </div>
         ))}
-        {/* <CardAbout name={staff.name} title={staff.title} location={staff.location} images={staff.images} /> */}
       </div>
       <Footer />
     </>
