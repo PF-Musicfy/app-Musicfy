@@ -1,0 +1,64 @@
+.mainContainerCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #cf355cdd;
+  margin: 0px 0px 80px 0px;
+  width: 320px;
+  height: 500px;
+  border-radius: 4px;
+  font-family: var(--second-font);
+}
+.mainContainerCard:hover {
+  background-color: var(--mainColor);
+}
+.Title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.icono {
+  font-size: 30px;
+  margin: 8px;
+  margin-bottom: 60px;
+}
+
+.cardwordsContainer {
+  margin-bottom: 20px;
+}
+
+.wordsTitleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 220px;
+}
+
+.wordsTitle {
+  margin-left: 12px;
+}
+
+.plan {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.button {
+  background-color: #fff;
+  color: var(--mainColor);
+  width: 180px;
+  height: 40px;
+  margin-top: 20px;
+  transition: 0.2s;
+}
+.button:hover {
+  border: 2px solid var(--mainColor);
+  outline: 2px solid #fff;
+  transition: 0.2s;
+}
