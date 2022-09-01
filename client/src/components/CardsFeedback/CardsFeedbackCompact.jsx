@@ -15,22 +15,14 @@ export default function CardsFeedbackCompact() {
   return (
     <div className={s.feedbackComments}>
       {feedback.slice(0,3).map((e) => (
-        <div
-          key={e._id}
-          className={s.feedbackComment}
-          style={{
-            padding: '5px 0px'
-          }}
-        >
-          <div
-            className={s.feedbackAvatar}
-          >
+        <div key={e._id} className={s.feedbackComment}>
+          <div className={s.feedbackAvatar}>
             <div>
-              <p>username: {e.username}</p>
+              <p>Register User</p>
+              <p className={s.date}>{e.date}</p>
             </div>
           </div>
-          <p>title: {e.title}</p>
-          <p>description: {e.description}</p>
+          <p className={s.description}>{e.description}</p>
         </div>
       ))}
     </div>

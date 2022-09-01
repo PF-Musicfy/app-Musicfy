@@ -12,6 +12,7 @@ const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp
 export default function Player(){
   const { detailTracks } = useSelector((state) => state.music);
   const { actual } = useSelector((state) => state.player);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [dataSong, setDataSong] = useState({});
@@ -61,18 +62,13 @@ export default function Player(){
         type='range'
         defaultValue="0"
         ref={progressBar}
-        onChange={() => {
-          audioElem.current.currentTime = progressBar.current.value;
-        }}
+        onChange={() => audioElem.current.currentTime = progressBar.current.value}
       />
+      {actual.name ?
       <div className={s.controls}>
         <div className={s.tools}>
           <div className={s.options}>
-            <button className={s.button}
-              onClick={() => {
-                dispatch(backPlaylist(actual));
-              }}
-            >
+            <button className={s.button} onClick={() => dispatch(backPlaylist(actual))}>
               <IoPlayBack />
             </button>
             <button className={s.button}
@@ -90,27 +86,18 @@ export default function Player(){
                 : ''
               }
             </button>
-            <button className={s.button}
-              onClick={() => {
-                dispatch(forwardPlaylist(actual));
-              }}
-            >
+            <button className={s.button} onClick={() => dispatch(forwardPlaylist(actual))}>
               <IoPlayForward />
             </button>
             <p>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</p>
           </div>
         </div>
         <div className={s.info}>
-          {actual.name ? 
-            <>
-              <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
-              <div>
-                <p>Name: {actual.name}</p>
-                <p>Artist: {actual.artistName}</p>
-              </div>
-            </>
-          : <p>selecciona una cancion</p>
-          }
+          <img src={allSongs[0] ? allSongs[0][0].images : ''} alt='' />
+          <div>
+            <p className={s.name}>Name: {actual.name}</p>
+            <p>Artist: {actual.artistName}</p>
+          </div>
         </div>
         <div className={s.extra}>
           <div className={s.volumen}>
@@ -126,24 +113,28 @@ export default function Player(){
             <FaVolumeDown />
           </div>
           <button className={s.button}
-            onClick={() => {
-              audioElem.current.loop = !audioElem.current.loop
-              console.log(audioElem.current.loop);
-            }}
+            onClick={() => {audioElem.current.loop = !audioElem.current.loop}}
           >
             {audioElem.current ?
               (audioElem.current.loop ? 'on' : 'off') : 'loop'}
               <IoRepeatSharp />
           </button>
-          <button className={s.button}
-            onClick={() => {
-              dispatch(randomPlaylist());
-            }}
-          >
+          <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
             <IoShuffle />
           </button>
         </div>
       </div>
+      : <> <span className={s.msg}>
+          {Object.keys(user).length
+            ? 'empieza a escuchar => '
+            : 'Logeate para escuchar musica en Musicfy'
+          }
+        </span>
+        <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
+          <IoShuffle />
+        </button>
+        </>
+      }
     </div>
   )
 }

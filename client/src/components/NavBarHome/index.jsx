@@ -43,9 +43,9 @@ export default function NavBarHome() {
               <SearchBar />
             </div>
             <div className="logo-div">
-              <a href="./">
+              <Link to="/">
                 <img src={imagen2} className="logo" alt="loguito" />
-              </a>
+              </Link>
               <span>Musicfy</span>
             </div>
             <nav ref={navRef}>

@@ -16,12 +16,6 @@ export default function Dashboard() {
   const { display, loading } = useLoading();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(Object.keys(user).length){
-      navigate('/dashboard')
-    }
-  }, [user,navigate])
-
   return (
     <div className={s.container}>
       {Object.keys(user).length ?

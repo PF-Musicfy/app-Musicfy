@@ -105,12 +105,16 @@ export default function HomeAlbum() {
   };
 
   useEffect(() => {
-    dispatch(getTopMusic());
-  }, [dispatch]);
+    if (topMusic.length === 0){
+    dispatch(getTopMusic())
+    };
+  }, []);
 
   useEffect(() => {
-    dispatch(topMusicClear());
-  }, [dispatch]);
+    if (musicSearch.length !== 0) {
+    dispatch(topMusicClear())
+    }
+  }, [musicSearch])
 
   const onImgError = (e) => {
     e.target.src =
@@ -320,6 +324,7 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
+
       <div
         className={
           state.albums === false
@@ -332,6 +337,7 @@ export default function HomeAlbum() {
         ) : (
           <h1 className={styles.titleGenre}>Albums</h1>
         )}
+
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -417,6 +423,7 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
+
       <div
         className={
           state.artist === false
@@ -429,6 +436,7 @@ export default function HomeAlbum() {
         ) : (
           <h1 className={styles.titleGenre}>Artists</h1>
         )}
+
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
@@ -512,6 +520,7 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
+
       <div
         className={
           state.playlist === false
@@ -524,6 +533,7 @@ export default function HomeAlbum() {
         ) : (
           <h1 className={styles.titleGenre}>Playlist</h1>
         )}
+
         <Swiper
           // className={styles.swiper}
           // spaceBetween={-70}
