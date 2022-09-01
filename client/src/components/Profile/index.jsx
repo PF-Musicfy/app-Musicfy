@@ -34,6 +34,10 @@ function ProfileInfo() {
     dispatch(getTopMusic());
   }, [dispatch, avatar]);
 
+  const onImgError = (e) => {
+    e.target.src = "https://pixabay.com/es/images/download/icon-1968245_640.png";
+  }
+
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
@@ -84,7 +88,7 @@ function ProfileInfo() {
                 className={s.swiper}
                 // spaceBetween={-70}
                 slidesPerView={5}
-                slidesPerGroup={3}
+                slidesPerGroup={2}
                 loop={false}
                 loopFillGroupWithBlank={true}
                 pagination={{
@@ -94,28 +98,33 @@ function ProfileInfo() {
                 modules={[Pagination, Navigation]}
                 // Responsive breakpoints
                 breakpoints={{
-                  // when window width is >= 220px
-                  220: {
+                  // when window width is >= 320px
+                  410: {
                     slidesPerView: 1,
                     // spaceBetween: -20
                   },
-                  // when window width is >= 320px
-                  380: {
+                  // when window width is >= 455px
+                  455: {
                     slidesPerView: 2,
+                    // spaceBetween: -20
+                  },
+                  // when window width is >= 320px
+                  580: {
+                    slidesPerView: 3,
                     // spaceBetween: 10
                   },
                   // when window width is >= 480px
-                  600: {
+                  780: {
                     slidesPerView: 3,
                     // spaceBetween: 15
                   },
                   // when window width is >= 640px
-                  900: {
+                  1015: {
                     slidesPerView: 4,
                     // spaceBetween: 25
                   },
                   // when window width is >= 800px
-                  1200: {
+                  1230: {
                     slidesPerView: 5,
                     // spaceBetween: -40
                   },
@@ -128,8 +137,9 @@ function ProfileInfo() {
                         <Link to={`/home/${item.id}`}>
                           <img
                             className={s.imgSwiper}
-                            src={item.images}
+                            src={item.images || item.image}
                             alt={item.name}
+                            onError={onImgError}
                           />
                           <h3 className={s.h3Colors}>{item.name}</h3>
                         </Link>
@@ -148,7 +158,7 @@ function ProfileInfo() {
                 className={s.swiper}
                 // spaceBetween={-70}
                 slidesPerView={5}
-                slidesPerGroup={3}
+                slidesPerGroup={2}
                 loop={false}
                 loopFillGroupWithBlank={true}
                 pagination={{
@@ -159,27 +169,32 @@ function ProfileInfo() {
                 // Responsive breakpoints
                 breakpoints={{
                   // when window width is >= 220px
-                  220: {
+                  410: {
                     slidesPerView: 1,
                     // spaceBetween: -20
                   },
-                  // when window width is >= 320px
-                  380: {
+                  // when window width is >= 455px
+                  455: {
                     slidesPerView: 2,
+                    // spaceBetween: -20
+                  },
+                  // when window width is >= 320px
+                  580: {
+                    slidesPerView: 3,
                     // spaceBetween: 10
                   },
                   // when window width is >= 480px
-                  600: {
+                  780: {
                     slidesPerView: 3,
                     // spaceBetween: 15
                   },
                   // when window width is >= 640px
-                  900: {
+                  1015: {
                     slidesPerView: 4,
                     // spaceBetween: 25
                   },
                   // when window width is >= 800px
-                  1200: {
+                  1230: {
                     slidesPerView: 5,
                     // spaceBetween: -40
                   },
@@ -194,6 +209,7 @@ function ProfileInfo() {
                             className={s.imgSwiper}
                             src={item.images}
                             alt={item.name}
+                            onError={onImgError}
                           />
                           <h3 className={s.h3Colors2}>{item.name}</h3>
                           <h3 className={s.h3artistName}>{item.artistName}</h3>
