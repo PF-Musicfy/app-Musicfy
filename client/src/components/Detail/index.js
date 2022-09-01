@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTrackId } from "../../store/slice";
-import { setActual, setPlaylist } from "../../store/slice/player.js";
+import { setActual, setPlaylist, getFavorites, removeFavorites } from "../../store/slice/player.js";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Player from "../Player";
@@ -9,6 +9,7 @@ import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import toMinutes from '../../utils/toMinutes.js';
+
 
 function DetailFront({ e }) {
   return (
@@ -25,6 +26,10 @@ function DetailFront({ e }) {
 function DetailList({ e }) {
   const dispatch = useDispatch();
 
+  const getTracksFavorites = () => {
+    dispatch(getFavorites(e.id))
+  }
+
   return (
     <div>
       <div className="divTracks">
@@ -38,6 +43,7 @@ function DetailList({ e }) {
             <p className="name">{e.name}</p>
             <p className="artistName">{e.artistName}</p>
             <p className="seconds">{toMinutes(e.playbackSeconds)}</p>
+            <button className= "favorites" onClick={()=> getTracksFavorites()}>favorites</button>
           </div>
         </li>
       </div>

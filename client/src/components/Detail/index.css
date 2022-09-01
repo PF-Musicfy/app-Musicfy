@@ -95,3 +95,8 @@
   border-bottom: 15px solid transparent;
   border-top: 15px solid transparent;
 }
+
+.favorites{
+  position: absolute;
+  left: 400px
+}
