@@ -60,9 +60,7 @@ function ProfileInfo() {
             modal === false ? s.centerContainer : s.centerContainerDisplay
           }
         >
-          <Link to="/premium">
-            <p className={s.premiumNormal}>Cambiar Plan</p>
-          </Link>
+          
           <div className={s.navbarCenter}>
             <div onClick={() => toggleModal()} className={s.circleImage}>
               {/* <h1 className={s.editImage}>editame boludo</h1> */}
