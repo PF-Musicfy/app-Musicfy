@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { CgArrowUpO } from "react-icons/cg"
 
 import s from './cardsfeedback.module.css';
 import { getFeedback } from "../../store/slice/user.js";
@@ -15,21 +16,14 @@ export default function CardsFeedback() {
   return (
     <div className={s.feedbackComments}>
       {feedback.map((e) => (
-        <div
-          key={e._id}
-          className={s.feedbackComment}
-        >
-          <div
-            className={s.feedbackAvatar}
-          >
-            <img src={e.avatar} alt='' />
+        <div key={e._id} className={s.feedbackComment}>
+          <div className={s.feedbackAvatar}>
             <div>
-              <p>username: {e.username}</p>
-              <p>date: {e.date}</p>
+              <p>Register User</p>
+              <p className={s.date}>{e.date}</p>
             </div>
           </div>
-          <p>title: {e.title}</p>
-          <p>description: {e.description}</p>
+          <p className={s.description}>{e.description}</p>
         </div>
       ))}
     </div>

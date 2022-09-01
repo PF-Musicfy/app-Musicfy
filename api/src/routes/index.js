@@ -217,10 +217,9 @@ app.get("/playlist/:id", async (req, res, next) => {
 
 app.post("/feedback", async (req, res) => {
   try {
-    const { username, title, description } = req.body;
-    const newPost = new Post({ username, title, description });
+    const { description } = req.body;
+    const newPost = new Post({ description });
     await newPost.save();
-    //console.log(newPost)
     res.send("newPost saved");
   } catch (e) {
     res.status(500).send("newPost failed");

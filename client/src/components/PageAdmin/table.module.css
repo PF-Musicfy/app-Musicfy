@@ -1,23 +1,22 @@
-table {
+.table {
   min-width: 65%;
 }
-th {
+.head {
   background: var(--mainColor);
   color: #000;
 }
 
-th,
-td {
+th, td {
   padding: 0px 15px;
   text-align: center;
   font-weight: normal;
 }
 
-tr {
+.row {
   background-color: #555;
 }
 
-tr:nth-child(even) {
+.row:nth-child(even) {
   background-color: #333;
 }
 button {

@@ -47,7 +47,7 @@ function Fila({ user }) {
   function handleMessage() {}
 
   return (
-    <tr>
+    <tr className={s.row}>
       <td>{user.username}</td>
       <td>{user.email}</td>
       <td>{user.premium ? "Premium" : "Free"}</td>
@@ -87,9 +87,9 @@ export default function PageAdmin() {
       <Buttons />
       {/* <FirstLine />
       <Cards users={users} />  */}
-      <table>
+      <table className={s.table}>
         <thead>
-          <tr>
+          <tr className={s.head}>
             <th>Name</th>
             <th>Email</th>
             <th>Plan</th>

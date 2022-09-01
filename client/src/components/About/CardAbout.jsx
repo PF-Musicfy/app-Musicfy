@@ -2,7 +2,8 @@ import styles from "./about.module.css";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 
-function CardAbout({ name, title, location, images }) {
+function CardAbout({ name, title, location, images, linkedin, github }) {
+  console.log(linkedin, github);
   return (
     <div className="card-about">
       <div className={styles.containerCards}>
@@ -14,8 +15,8 @@ function CardAbout({ name, title, location, images }) {
             {location}
           </h4>
           <div className={styles.footerSocial}>
-            <BsGithub onClick={() => window.open("http://github.com", "_blank")} className={styles.gitHubIcon} />
-            <BsLinkedin onClick={() => window.open("http://linkedin.com", "_blank")} className={styles.linkedinIcon} />
+            <BsGithub onClick={() => window.open(github, "_blank")} className={styles.gitHubIcon} />
+            <BsLinkedin onClick={() => window.open(linkedin, "_blank")} className={styles.linkedinIcon} />
           </div>
         </div>
         <img src={images} alt="avatar" className={styles.imgCard} />
