@@ -1,106 +1,75 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.graphicpanic.com/images/music-powerpoint-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .subcontainer {
   display: flex;
-  width: 90%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   max-width: 1200px;
-  margin: 20px auto;
 }
-.subcontainer2 {
+
+.containerCard {
   display: flex;
   justify-content: center;
-  width: 90%;
-  margin: 50px auto;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
-.imagen {
-  width: 45%;
-  margin-top: 0px;
+.Title {
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+  font-size: 120px;
+  font-weight: 500;
+  margin: 80px 0px -30px 0px;
+}
+.SubTitle {
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+  font-size: 30px;
+  margin-bottom: 80px;
+  margin-left: 8px;
 }
 
-.title {
-  color: rgb(13, 151, 231);
-  width: 60%;
-  margin-left: 150px;
-  margin-top: 150px;
-  font-size: 60px;
-}
-@media only screen and (max-width: 990px) {
-  .subcontainer {
-    display: grid;
+@media only screen and (max-width: 1042px) {
+  .containerCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+  .Title {
+    font-size: 80px;
+    margin-bottom: -18px;
+  }
+  .SubTitle {
+    font-size: 20px;
+    margin-left: 5px;
   }
 }
 
-.card {
-  height: 100%;
-  width: 30%;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(42, 50, 200, 1) 100%
-  );
-  margin-left: 10%;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: flex-start;
-  font-size: 30px;
-  justify-content: center;
-}
-.card h1 {
-  margin-left: auto;
-  margin-right: auto;
-}
-.card:hover {
-  opacity: 0.9;
-}
-.button {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 120px;
-  margin-bottom: 10px;
-  color: rgb(0, 0, 0);
-  padding-left: 10px;
-  padding-right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  letter-spacing: 2px;
-  outline: 1px solid rgb(0, 0, 0);
-  padding: 5px 15px;
-  overflow: hidden;
-  position: relative;
-  transition: color 1s;
-}
-.button:hover {
-  color: rgb(255, 255, 255);
-}
-.button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -50px;
-  width: 0;
-  height: 100%;
-  background-color: rgb(0, 0, 0);
-  transform: skewX(35deg);
-  z-index: -1;
-  transition: width 1s;
-}
-.button:hover:before {
-  width: 150%;
-}
-.cardwords {
-  margin-top: 50px;
-}
-.icons {
-  display: flex;
-  margin-top: 30px;
-}
-.iconito {
-  margin-left: 10px;
-}
-.cardwords p {
-  display: flex;
-  margin-top: 10px;
-  font-size: 20px;
+@media only screen and (max-width: 690px) {
+  .subcontainer {
+    justify-content: center;
+    align-items: center;
+  }
+  .Title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0px;
+  }
+  .SubTitle {
+    text-align: center;
+    font-size: 14px;
+    width: 90%;
+  }
 }

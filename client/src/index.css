@@ -9,7 +9,8 @@
   --mainColor: #cf355c;
   --btn: #cf355c;
   --boton-hover: #cf355c;
-  --main-font: "Poppins", "Cabin", monospace, source-code-pro, Menlo, Monaco, Consolas, "Courier New";
+  --main-font: "Cabin", sans-serif;
+  --second-font: "Poppins", sans-serif;
 }
 
 body {
@@ -33,7 +34,9 @@ code {
   color: white !important;
 }
 
-{/*sweetalert*/}
+ {
+  /*sweetalert*/
+}
 
 .colored-toast.swal2-icon-success {
   background-color: #a5dc86 !important;

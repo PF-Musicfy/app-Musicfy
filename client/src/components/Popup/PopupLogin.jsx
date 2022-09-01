@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import s from './popup.module.css';
 import Popup from './Popup.jsx';
 
-export default function PopupLogin({ imagen }){
+export default function PopupLogin({ open, onClose, imagen }){
   const navigate = useNavigate();
 
   return (
-    <Popup>
+    <Popup
+      open={open}
+      onClose={onClose}
+    >
       <div className={s.logo}>
         <img
           src={ imagen || 'https://i.imgur.com/GiyjGcI.png' }

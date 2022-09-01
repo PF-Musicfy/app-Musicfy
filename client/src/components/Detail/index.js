@@ -102,6 +102,8 @@ export default function Detail() {
   const { detailTracks } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
 
+  const [ open, setOpen ] = useState(false)
+
   const [allSongs, setAllSongs] = useState([]);
 
   const { id } = useParams();
@@ -122,14 +124,24 @@ export default function Detail() {
 
   return (
     <div>
+      <PopupPremium
+        open={open}
+        onClose={() => setOpen(false)}
+        user={user}
+        imagen={allSongs[0] ? allSongs[0][0].images : ""}
+      />
       {Object.keys(user).length ? (
         <PopupPremium imagen={allSongs[0] ? allSongs[0][0].images : ""} user={user} />
       ) : (
-        <PopupLogin imagen={allSongs[0] ? allSongs[0][0].images : ""} />
+        <PopupLogin
+          open={open}
+          onClose={() => setOpen(false)}
+          imagen={allSongs[0] ? allSongs[0][0].images : ""}
+        />
       )}
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
       <DetailAll arr={allSongs} />
-      <Player />
+      <Player open={() => setOpen(true)}/>
     </div>
   );
 }

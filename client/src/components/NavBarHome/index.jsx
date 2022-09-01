@@ -78,7 +78,12 @@ export default function NavBarHome() {
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={user.avatar || imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
+              <img
+                src={user.avatar || imagen}
+                className="avatar"
+                onClick={handleClick}
+                alt="avatarsito"
+              />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -94,7 +99,7 @@ export default function NavBarHome() {
                   <span>Premium</span>
                 </Link>
                 <span onClick={handleLog} className="logOut">
-                  Log out
+                  Logout
                 </span>
               </div>{" "}
             </div>
@@ -103,7 +108,9 @@ export default function NavBarHome() {
       ) : (
         <header>
           <div className="logo-div">
-            <img src={imagen2} className="logo" alt="loguito2" />
+            <Link to="/">
+              <img src={imagen2} className="logo" alt="loguito2" />
+            </Link>
             <span>Musicfy</span>
           </div>
           <nav ref={navRef}>
@@ -111,7 +118,9 @@ export default function NavBarHome() {
               <Link to="/register">
                 <span>Register</span>
               </Link>
-              <span onClick={() => navigate('/login')}>Log in</span>
+              <Link to="/login">
+                <span>Login</span>
+              </Link>
             </div>
 
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
