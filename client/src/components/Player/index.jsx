@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaVolumeDown } from "react-icons/fa"
-import { IoPlayForward, IoPlayBack, IoRepeatSharp, IoShuffle } from "react-icons/io5"
+import { IoPlayForward, IoPlayBack, IoShuffle } from "react-icons/io5"
+import { TbRepeat, TbRepeatOff } from "react-icons/tb"
 import { useDispatch, useSelector } from "react-redux";
 import { forwardPlaylist, backPlaylist, randomPlaylist } from "../../store/slice/player.js";
 
@@ -9,7 +10,7 @@ import toMinutes from '../../utils/toMinutes.js';
 
 const url = "https://ia800504.us.archive.org/33/items/TetrisThemeMusic/Tetris.mp3"
 
-export default function Player(){
+export default function Player({ open }){
   const { detailTracks } = useSelector((state) => state.music);
   const { actual } = useSelector((state) => state.player);
   const { user } = useSelector((state) => state.user);
@@ -17,6 +18,7 @@ export default function Player(){
 
   const [dataSong, setDataSong] = useState({});
   const [allSongs, setAllSongs] = useState([]);
+  const [count, setCount] = useState(0);
  
   const audioElem = useRef();
   const progressBar = useRef();
@@ -54,8 +56,6 @@ export default function Player(){
         ref={audioElem}
         src={actual.previewURL || url}
         onTimeUpdate={onPlaying}
-        onPlay={() => {console.log('play')}}
-        onPause={() => {console.log('pause')}}
       >
       </audio>
       <input
@@ -68,9 +68,11 @@ export default function Player(){
       <div className={s.controls}>
         <div className={s.tools}>
           <div className={s.options}>
-            <button className={s.button} onClick={() => dispatch(backPlaylist(actual))}>
-              <IoPlayBack />
-            </button>
+            {user.premium ?
+              <button className={s.button} onClick={() => dispatch(backPlaylist(actual))}>
+                <IoPlayBack />
+              </button>
+            : ''}
             <button className={s.button}
               onClick={() => {
                 if(audioElem.current){
@@ -86,9 +88,11 @@ export default function Player(){
                 : ''
               }
             </button>
-            <button className={s.button} onClick={() => dispatch(forwardPlaylist(actual))}>
-              <IoPlayForward />
-            </button>
+            {user.premium ?
+              <button className={s.button} onClick={() => dispatch(forwardPlaylist(actual))}>
+                <IoPlayForward />
+              </button>
+            : ''}
             <p>{dataSong.current || '0:00'}/{dataSong.length || '0:00'}</p>
           </div>
         </div>
@@ -112,28 +116,38 @@ export default function Player(){
             />
             <FaVolumeDown />
           </div>
-          <button className={s.button}
-            onClick={() => {audioElem.current.loop = !audioElem.current.loop}}
-          >
-            {audioElem.current ?
-              (audioElem.current.loop ? 'on' : 'off') : 'loop'}
-              <IoRepeatSharp />
-          </button>
-          <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
+          {user.premium ?
+            <button className={s.button}
+              onClick={() => {audioElem.current.loop = !audioElem.current.loop}}
+            >
+              {audioElem.current ?
+                (audioElem.current.loop ? <TbRepeat /> : <TbRepeatOff />) : 'loop'}
+            </button>
+          : ''}
+          <button className={s.button} onClick={() => {
+            dispatch(randomPlaylist())
+            if(count === 3){
+              open();
+              setCount(0);
+            }
+            setCount(count => count+1)
+          }}>
             <IoShuffle />
           </button>
         </div>
       </div>
-      : <> <span className={s.msg}>
+      :
+      <>
+        <p className={s.msg}>
           {Object.keys(user).length
-            ? 'empieza a escuchar => '
+            ? <> <span>empieza a escuchar => </span>
+              <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
+                <IoShuffle />
+              </button></>
             : 'Logeate para escuchar musica en Musicfy'
           }
-        </span>
-        <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
-          <IoShuffle />
-        </button>
-        </>
+        </p>
+      </>
       }
     </div>
   )
