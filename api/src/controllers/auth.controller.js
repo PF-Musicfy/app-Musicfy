@@ -130,6 +130,7 @@ const avatarUser = async (req, res) => {
     avatar
   });
   await user.save();
+  console.log(avatar)
   return res.json({ message: "Avatar cambiado" });
 };
 
@@ -142,6 +143,16 @@ const setmp3User = async (req, res) => {
   return res.json({ message: "Avatar cambiado" });
 };
 
+const favoritesUser = async (req, res) => {
+  const { favorites } = req.body;
+  const favoritesUser = await User.findByIdAndUpdate(req.uid, {
+    favorites
+  });
+  console.log(favorites)
+  await favoritesUser.save();
+  return res.json({message: "musica posteada"})
+}
+
 module.exports = {
   validate,
   registerUser,
@@ -151,5 +162,6 @@ module.exports = {
   logoutUser,
   premiumUser,
   avatarUser,
-  setmp3User
+  setmp3User,
+  favoritesUser
 };

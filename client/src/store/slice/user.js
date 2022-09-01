@@ -7,7 +7,8 @@ export const userSlice = createSlice({
     feedback: [],
     users: [],
     user: {},
-    loading: ""
+    loading: "",
+    favorites: []
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -151,6 +152,30 @@ export const logoutUser = () => {
     }
   };
 };
+
+export const favoritesUser = (music) => {
+  return async function(dispatch){
+    try {
+      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+        method: "GET",
+        credentials: "include"
+      });
+      const { token } = await resToken.json();
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/favorites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ music })
+      });
+      const data = await res.json();
+      return dispatch(setUser(data));
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+}
 /* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {

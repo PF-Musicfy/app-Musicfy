@@ -2,23 +2,49 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaPlay } from "react-icons/fa"
-
 import s from "./detail.module.css";
+import { ImHeart } from "react-icons/im"
 import toMinutes from '../../utils/toMinutes.js';
 import { getTrackId } from "../../store/slice";
-import { setActual, setPlaylist, getFavorites, removeFavorites } from "../../store/slice/player.js";
+import { setActual, setPlaylist, getFavorites } from "../../store/slice/player.js";
+import { favoritesUser } from "../../store/slice/user"
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 
+// const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
+
 function DetailTable({ e }) {
+  const [color, setColor] = useState(true)
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const { favorites } = useSelector((state) => state.player);
 
   const getTracksFavorites = () => {
     dispatch(getFavorites(e.id))
-  }
+    // dispatch(favoritesUser(e.id))
+    setColor(!color)
+    // localStorage.setItem('favorites', JSON.stringify(favorites))
+  //  dispatch(favoritesUser(localStorage.getItem('favorites')))
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+    localStorage.setItem('color', JSON.stringify(color))
+
+    console.log(favorites)
+    // useEffect(()=>{
+
+    // },[dispatch, e.id])
+    
+    // useEffect(() => {
+    //   if (favorites.length > 0) {
+    //     dispatch(favoritesUser(localStorage.getItem('favorites')));
+    //   }
+    // }, [dispatch, favorites]);
+ 
+   
+ 
 
   return (
     <tr className={s.row}>
@@ -34,6 +60,11 @@ function DetailTable({ e }) {
         <p>{e.name}</p>
         <p>{e.artistName}</p>
       </td>
+        <td>
+          {color? <ImHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> : <ImHeart className={s.favorites1} onClick={()=> getTracksFavorites()}/>
+          }
+        {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
+        </td>
       <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
       </td>

@@ -29,10 +29,11 @@ export const playerSlice = createSlice({
       state.favorites = state.favorites.concat(action.payload)
     },
     setRemove: (state, action) => {
-      state.favorites = state.favorites.concat(action.payload)
-    }
-  }
+      state.favorites = action.payload
+    },
+  },
 });
+
 
 export const { setPrevious, setActual, setNext, setPlaylist, setLoading, setFavorites, setRemove } = playerSlice.actions;
 
@@ -89,29 +90,13 @@ export const getFavorites = (id) => {
         const { favorites } = getState().player
         const { playlist } = getState().player
         const filter = playlist.filter(e => e.id === id)
-          console.log(favorites)
-        if(favorites.length){
-          if(favorites.map(e => e.id !== filter)){
-            console.log("entra3");
-            return dispatch(setFavorites(filter))
-          }else{
-            return favorites
-          }
-        }
-        return dispatch(setFavorites(filter))
-      } catch (error) {
-        console.log(error)
+        let i = favorites.map(e => e.id).indexOf(id)
+        if(favorites[i] === undefined){
+      return dispatch(setFavorites(filter))
+      }else{
+        const remove = favorites.filter(e => e.id !== id )
+        return dispatch(setRemove(remove))
       }
-    }
-}
-
-export const removeFavorites = (id) => {
-    return async function(dispatch, getState ){
-      try {
-        const { favorites } = getState().player
-        const filter = favorites.filter(e => e.id !== id)
-        console.log(filter)
-        return dispatch(setFavorites(filter))
       } catch (error) {
         console.log(error)
       }
