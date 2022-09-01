@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import s from './popup.module.css';
 import Popup from './Popup.jsx';
 
-export default function PopupPremium({ imagen , user }){
+export default function PopupPremium({ open, onClose, imagen , user }){
   const navigate = useNavigate();
 
   return (
-    <Popup>
+    <Popup
+      open={open}
+      onClose={onClose}
+    >
       <div className={s.logo}>
         <img
           src={ imagen || 'https://i.imgur.com/GiyjGcI.png' }
@@ -15,8 +18,6 @@ export default function PopupPremium({ imagen , user }){
         />
       </div>
       <div className={s.info}>
-        <p>User: {user ? user.username : 'desconocido'}</p>
-        <span>{user.premium ? "es premium" : "no es premium"}</span>
         <p>Reproduce música sin anuncios.</p>
         <div>
           <button
