@@ -32,7 +32,7 @@ function About() {
       images:
         "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661134228/photo_2022-08-21_16-04-30_uearmu.jpg",
       linkedin: "https://www.linkedin.com",
-      github: "https://github.com"
+      github: "https://github.com/Kosovomba"
     },
     {
       name: "Elam Cano",
