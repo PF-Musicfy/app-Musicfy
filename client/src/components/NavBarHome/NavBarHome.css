@@ -21,7 +21,7 @@ nav a {
 }
 
 nav a:hover {
-  color: purple;
+  color: #cf355c;
 }
 
 header .nav-btn {
@@ -111,7 +111,7 @@ nav a {
   color: white;
 }
 .container span:hover {
-  color: purple;
+  color: #cf355c;
 }
 .select-perfil {
   background-color: rgb(44, 44, 44);
@@ -131,6 +131,10 @@ nav a {
   z-index: 30;
 }
 
+.select-perfil > span:hover {
+  color: #cf355c;
+}
+
 .searchStyle {
   position: absolute;
   /* width: 400px; */
@@ -148,5 +152,5 @@ nav a {
 }
 
 .btnHomeLoco:hover {
-  color: purple;
+  color: #cf355c;
 }
