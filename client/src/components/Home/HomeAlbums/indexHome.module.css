@@ -45,18 +45,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: greenyellow; */
+  margin-top: 15px;
 }
 
 .selectorFilter {
-  color: black;
   font-weight: 500;
-  height: 38px;
   font-size: 14px;
-  /* display: flex;
+  border-radius: 15px;
+  background-color: transparent;
+  color: var(--mainColor);
+  margin: 15px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px #ccc;
+  outline: hidden;
+}
+
+.buttonsFilterSelect {
+  display: flex;
   justify-content: center;
-  align-items: center; */
-  /* background-color: greenyellow; */
+  align-items: center;
+}
+
+.buttonsFilterSelect .btnSearch {
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.buttonsFilterSelect > span {
+  border-bottom: 1px solid #ccc;
 }
 
 .buttonStyles {
@@ -86,4 +103,12 @@
   color: white;
   margin: 0px 10px 0px 10px;
   background: gray;
+}
+
+@media (max-width: 570px) {
+  .buttonsFilterSelect {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
 }
