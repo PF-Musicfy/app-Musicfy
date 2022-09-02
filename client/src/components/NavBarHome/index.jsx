@@ -110,6 +110,9 @@ export default function NavBarHome() {
         </div>
       ) : (
         <header>
+          <div className="searchStyle-nologged">
+            <SearchBar />
+          </div>
           <div className="logo-div">
             <Link to="/">
               <img

@@ -168,6 +168,10 @@ nav a {
   position: absolute;
   left: 8%;
 }
+.searchStyle-nologged {
+  position: absolute;
+  left: 8%;
+}
 @media only screen and (max-width: 1085px) {
   .searchStyle {
     position: absolute;
