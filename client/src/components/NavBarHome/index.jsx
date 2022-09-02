@@ -44,12 +44,17 @@ export default function NavBarHome() {
             </div>
             <div className="logo-div">
               <Link to="/">
-                <img src={imagen2} className="logo" alt="loguito" />
+                <img
+                  className="logo"
+                  src="https://i.imgur.com/GiyjGcI.png"
+                  alt="Musicfy Logo"
+                />
               </Link>
-              <span>Musicfy</span>
+              <Link to="/">
+                <span className="logoTxt">MusicFy</span>
+              </Link>
             </div>
             <nav ref={navRef}>
-              {/* <Link to='/home'> */}
               <span
                 onClick={(e) => {
                   onClickHome(e);
@@ -58,7 +63,6 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              {/* </Link> */}
               <Link to="/favorites">
                 <span>Favorites</span>
               </Link>
@@ -68,13 +72,12 @@ export default function NavBarHome() {
               <Link to="/library">
                 <span>Library</span>
               </Link>
-              {/* <Link onClick={handleClick} to="/profile">
-                <span>Perfil</span>
-              </Link> */}
-
-              {/* <Link to="/profile">
+              <Link to="/profile">
                 <span className="perfil">Profile</span>
-              </Link> */}
+              </Link>
+              <Link to="/login">
+                <span className="logout">Log out</span>
+              </Link>
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
@@ -109,9 +112,15 @@ export default function NavBarHome() {
         <header>
           <div className="logo-div">
             <Link to="/">
-              <img src={imagen2} className="logo" alt="loguito2" />
+              <img
+                className="logo"
+                src="https://i.imgur.com/GiyjGcI.png"
+                alt="Musicfy Logo"
+              />
             </Link>
-            <span>Musicfy</span>
+            <Link to="/">
+              <span className="logoTxt">MusicFy</span>
+            </Link>
           </div>
           <nav ref={navRef}>
             <div className="no-logged">
