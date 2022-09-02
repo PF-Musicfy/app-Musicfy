@@ -86,7 +86,7 @@ function ProfileInfo() {
                 className={s.swiper}
                 // spaceBetween={-70}
                 slidesPerView={5}
-                slidesPerGroup={2}
+                slidesPerGroup={1}
                 loop={false}
                 loopFillGroupWithBlank={true}
                 pagination={{
@@ -97,7 +97,7 @@ function ProfileInfo() {
                 // Responsive breakpoints
                 breakpoints={{
                   // when window width is >= 320px
-                  410: {
+                  375: {
                     slidesPerView: 1,
                     // spaceBetween: -20
                   },
@@ -156,7 +156,7 @@ function ProfileInfo() {
                 className={s.swiper}
                 // spaceBetween={-70}
                 slidesPerView={5}
-                slidesPerGroup={2}
+                slidesPerGroup={1}
                 loop={false}
                 loopFillGroupWithBlank={true}
                 pagination={{
@@ -167,7 +167,7 @@ function ProfileInfo() {
                 // Responsive breakpoints
                 breakpoints={{
                   // when window width is >= 220px
-                  410: {
+                  375: {
                     slidesPerView: 1,
                     // spaceBetween: -20
                   },
