@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import s from "./feedback.module.css";
 import { getFeedback } from "../../store/slice/user.js";
@@ -9,9 +8,12 @@ import NavBarLandingOn from "../../components/LandingPage/NavBarLandingOn";
 import Footer from "../../components/LandingPage/Footer";
 import NavBarLandingOff from "../../components/LandingPage/NavBarLandingOff";
 import { CardsFeedback } from "../../components/CardsFeedback";
+import { useLoading } from "../../hooks/useLoading.js";
+import Loading from "../../components/Loading";
 
 export default function Feedback() {
   const dispatch = useDispatch();
+  const { display, loading } = useLoading();
   const { user } = useSelector((state) => state.user);
 
   const submit = (e) => {
@@ -36,28 +38,54 @@ export default function Feedback() {
 
   return (
     <div>
+    {Object.keys(user).length ?
+      <>
       {Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />}
       <div className={s.feedbackContainer}>
         <p className={s.feedbackTitle}>
           Feedback Musicfy
         </p>
-        {Object.keys(user).length ?
-          <form className={s.feedbackForm} onSubmit={submit}>
-            <p>Post a new comment</p>
-            <textarea
-              placeholder="Description"
-              className={s.feedbackTextarea}
-            />
-            <div className={s.feedbackSubmit}>
-              <button className={s.feedbackButton}>
-                Submit
-              </button>
-            </div>
-          </form>
-        : 'logeate'}
-        <CardsFeedback />
+        <div className={s.content}>
+          {Object.keys(user).length ?
+            <form className={s.feedbackForm} onSubmit={submit}>
+              <p>Post a new comment</p>
+              <textarea
+                rows="4" wrap="hard" maxLength="150"
+                placeholder="Description"
+                className={s.feedbackTextarea}
+              />
+              <div className={s.feedbackSubmit}>
+                <button className={s.feedbackButton}>
+                  Submit
+                </button>
+              </div>
+            </form>
+          : 'logeate'
+          }
+          <CardsFeedback />
+        </div>
       </div>
       <Footer />
+      </>
+    : loading ? 
+      <Loading text={loading} /> :
+      <div style={{display}}>
+      {Object.keys(user).length? <NavBarLandingOn /> : <NavBarLandingOff />}
+      <div className={s.feedbackContainer}>
+        <p className={s.feedbackTitle}>
+          Feedback Musicfy
+        </p>
+        <div className={s.content}>
+          <div className={s.card}>
+            Debes <Link to='/login' style={{color: '#00f'}}>iniciar sesion</Link> con
+            una cuenta activa para publicar comentarios.
+          </div>
+          <CardsFeedback />
+        </div>
+      </div>
+      <Footer />
+      </div>
+    }
     </div>
   )
 }
