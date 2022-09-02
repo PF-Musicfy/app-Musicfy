@@ -1,0 +1,61 @@
+
+.containerNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: #fff;
+  width: 100%;
+  height: 70px;
+  padding: 0px 30px 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logoImg {
+  width: 50px;
+  height: 50px;
+}
+.logoTxt {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+.logoTxt:hover {
+  color: var(--mainColor);
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  gap: 40px;
+}
+
+.navbar a {
+  font-size: 16px;
+  cursor: pointer;
+  margin: auto;
+}
+.navbar a:hover {
+  color: var(--btn);
+}
+
+.iconUser {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 28px;
+}
+
+@media (max-width: 856px) {
+  .containerButtomNavbar {
+    display: none;
+  }
+}

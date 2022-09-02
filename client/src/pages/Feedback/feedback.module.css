@@ -1,3 +1,16 @@
+.content {
+  min-width: 280px;
+  max-width: 60%;
+}
+
+.card {
+  background: #f44;
+  border: 3px solid #f00;
+  padding: 10px;
+  font-size: 18px;
+  color: #000;
+}
+
 .feedbackContainer {
   display: flex;
   flex-direction: column;
@@ -41,7 +54,7 @@
 }
 
 .feedbackForm {
-  width: 500px;
+  width: 100%;
 }
 
 .feedbackSubmit {
@@ -62,7 +75,6 @@
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
-  min-height: 100px;
   width: 100%;
   color: #000;
 }
