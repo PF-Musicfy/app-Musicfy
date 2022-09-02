@@ -105,16 +105,16 @@ export default function HomeAlbum() {
   };
 
   useEffect(() => {
-    if (topMusic.length === 0){
-    dispatch(getTopMusic())
-    };
+    if (topMusic.length === 0) {
+      dispatch(getTopMusic());
+    }
   }, []);
 
   useEffect(() => {
     if (musicSearch.length !== 0) {
-    dispatch(topMusicClear())
+      dispatch(topMusicClear());
     }
-  }, [musicSearch])
+  }, [musicSearch]);
 
   const onImgError = (e) => {
     e.target.src =
@@ -324,7 +324,6 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
-
       <div
         className={
           state.albums === false
@@ -423,7 +422,6 @@ export default function HomeAlbum() {
         </Swiper>
       </div>
 
-
       <div
         className={
           state.artist === false
@@ -519,7 +517,6 @@ export default function HomeAlbum() {
           </div>
         </Swiper>
       </div>
-
 
       <div
         className={
