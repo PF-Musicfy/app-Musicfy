@@ -153,7 +153,7 @@ export const logoutUser = () => {
   };
 };
 
-export const favoritesUser = (music) => {
+export const favoritesUser = (favorites) => {
   return async function(dispatch){
     try {
       const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
@@ -167,10 +167,10 @@ export const favoritesUser = (music) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ music })
+        body: JSON.stringify({ favorites })
       });
       const data = await res.json();
-      return dispatch(setUser(data));
+      console.log(data)
     } catch (error) {
       console.log("Ocurrio un error", error);
     }

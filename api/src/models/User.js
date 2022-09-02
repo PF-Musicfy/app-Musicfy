@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
     favorites: {
-      type: [],
+      type: Array,
       default: [{id: "tra.123456", name: "jbalvin", previewURL: "hola.com"}]
     }
   },

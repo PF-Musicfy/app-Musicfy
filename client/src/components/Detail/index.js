@@ -21,31 +21,29 @@ function DetailTable({ e }) {
   const { user } = useSelector((state) => state.user);
   const { favorites } = useSelector((state) => state.player);
 
+  
   const getTracksFavorites = () => {
+    
     dispatch(getFavorites(e.id))
-    // dispatch(favoritesUser(e.id))
-    setColor(!color)
-    // localStorage.setItem('favorites', JSON.stringify(favorites))
-  //  dispatch(favoritesUser(localStorage.getItem('favorites')))
-    }
-    
-    localStorage.setItem('favorites', JSON.stringify(favorites))
-    localStorage.setItem('color', JSON.stringify(color))
+    // dispatch(favoritesUser(favorites))
+      setColor(!color)
+  }
+  
+  // localStorage.setItem('favorites', JSON.stringify(favorites))
+  // localStorage.setItem('color', JSON.stringify(color))
 
-    console.log(favorites)
-    // useEffect(()=>{
+    // const localInfo = localStorage.getItem('favorites', JSON.stringify(favorites))
 
-    // },[dispatch, e.id])
-    
-    // useEffect(() => {
-    //   if (favorites.length > 0) {
-    //     dispatch(favoritesUser(localStorage.getItem('favorites')));
-    //   }
-    // }, [dispatch, favorites]);
- 
+      console.log(favorites)
+    useEffect(() => {
+      // if(user.premium){
+        if (favorites.length > 0) {
+          dispatch(favoritesUser(favorites));
+        }
+      // }
+    }, [dispatch, favorites]);
+
    
- 
-
   return (
     <tr className={s.row}>
       <td>
@@ -102,6 +100,7 @@ export default function Detail() {
   const { detailTracks } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
 
+  console.log(detailTracks)
   const [ open, setOpen ] = useState(false)
 
   const [allSongs, setAllSongs] = useState([]);
@@ -115,6 +114,8 @@ export default function Detail() {
   useEffect(() => {
     setAllSongs(Object.values(detailTracks));
   }, [detailTracks]);
+
+  console.log(detailTracks)
 
   useEffect(() => {
     if(allSongs.length){
