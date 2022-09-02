@@ -1,3 +1,4 @@
+import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,9 +8,13 @@ import imagen from "../.././NavBarHome/img_avatar.png";
 
 function NavBarLanding() {
   const [profile, setProfile] = useState(false);
+  const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  function handlefabars() {
+    setDetails(!details);
+  }
   function handleClick() {
     setProfile(!profile);
   }
@@ -22,7 +27,11 @@ function NavBarLanding() {
       <div className={styles.containerNavbar}>
         <div className={styles.conterImg}>
           <Link to="/">
-            <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
+            <img
+              className={styles.logoImg}
+              src="https://i.imgur.com/GiyjGcI.png"
+              alt="Musicfy Logo"
+            />
           </Link>
           <Link to="/">
             <span className={styles.logoTxt}>MusicFy</span>
@@ -40,7 +49,12 @@ function NavBarLanding() {
               <li className={styles.btnNavbar}>Profile</li>
             </Link>
             <li>
-              <img src={user.avatar || imagen} className={styles.iconUser} onClick={handleClick} alt="avatarsito" />
+              <img
+                src={user.avatar || imagen}
+                className={styles.iconUser}
+                onClick={handleClick}
+                alt="avatarsito"
+              />
             </li>
             {profile && (
               <div className={styles.container}>
@@ -48,11 +62,30 @@ function NavBarLanding() {
                   <span onClick={handleLog} className={styles.logOut}>
                     Log out
                   </span>
-                </div>{" "}
+                </div>
               </div>
             )}
           </ul>
         </nav>
+        <button className={styles.navbtn}>
+          <FaBars className={styles.fabars} onClick={handlefabars} />
+        </button>
+        {details && (
+          <div className={styles.containerfabars}>
+            <button className={styles.closebtn} onClick={handlefabars}>
+              <FaTimes className={styles.fatimes} />
+            </button>
+            <Link to="/premium">
+              <span className={styles.btnNavbar}>Premium</span>
+            </Link>
+            <Link to="/about">
+              <span className={styles.btnNavbar}>About</span>
+            </Link>
+            <Link to="/profile">
+              <span className={styles.btnNavbar}>Profile</span>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
