@@ -1,31 +1,35 @@
+import { useNavigate } from "react-router-dom";
+
 import s from "./dashboard.module.css";
-import CompactCard from "./CompactCard.jsx";
 import { CardsFeedbackCompact } from "../../components/CardsFeedback";
 
 export default function DashboardHome() {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <div className={s.module}>
-        <CompactCard
-          total={'2,123'}
-          title={'free'}
-        />
-        <CompactCard
-          total={'4,643'}
-          title={'premium'}
-        />
-        <CompactCard
-          total={'$1,012'}
-          title={'collect'}
-        />
+    <>
+      <div className={s.module} onClick={() => navigate('list')}>
+        <div className={s.preview}>
+          <div className={s.statusbar}>
+            <div>
+              free 1376
+            </div>
+            <div>
+              premium 113
+            </div>
+            <div>
+              online 12
+            </div>
+          </div>
+          <div className={s.submodule}>
+            lista de usuarios
+          </div>
+        </div>
       </div>
-      <div className={s.module}>
+      <div className={s.module} onClick={() => navigate('feedback')}>
         <p>FeedbackCompact</p>
         <CardsFeedbackCompact />
       </div>
-      <div className={s.module}>
-        Ultimas compras de cuenta Premium
-      </div>
-    </div>
+    </>
   )
 }
