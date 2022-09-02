@@ -23,11 +23,13 @@ export default function Dashboard() {
           <Link to=''>Home</Link>
         </Navbar>
         <div className={s.content}>
+        {user.admin ?
           <Routes>
             <Route exact path="/" element={<DashboardHome />} />
             <Route exact path="/feedback" element={<DashboardFeedback />} />
             <Route exact path="/list" element={<PageAdmin />} />
           </Routes>
+        : 'debes ser admin para entrar aqui'}
         </div>
       </>
       : loading ?
