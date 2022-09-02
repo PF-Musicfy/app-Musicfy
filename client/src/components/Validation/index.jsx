@@ -8,7 +8,7 @@ import { useState } from "react";
 export default function Validation() {
     const {email, username} = useParams()
     const navigate = useNavigate()
-    const eMail = email
+    // const eMail = email
     const location = useLocation()
     const Toast = Swal.mixin({
         toast: true,
@@ -24,25 +24,25 @@ export default function Validation() {
     console.log(location)
     let password = location.pathname.split('/').splice(4).join('/')
     console.log("password:", password)
-    const [state, setState] = useState({})
+    const [state, setState] = useState({error: 0, success: 0})
     useEffect(()=> {
     
     axios.post(`${axios.defaults.baseURL}/api/v1/auth/register`, {email, username, password})
     .then(() => {
-        setState({success: 1})
+        setState({...state, success: 1})
         Toast.fire({
             icon: 'success',
             title: 'User registered succesfully'
           })
-        axios.post(`${axios.defaults.baseURL}/send-email-registered`, {eMail});
+        axios.post(`${axios.defaults.baseURL}/send-email-registered`, {email});
     })
     .then(() => {
         setTimeout(() => {
             navigate('/')
-        }, 2000);
+        }, 5000);
     })
     .catch((err) => {
-        setState({error: 1})
+        setState({...state, error: 1})
         console.log(err)
         Swal.fire({
             icon: 'error',
@@ -54,8 +54,8 @@ export default function Validation() {
     }, [])
     return (
         <div>
-            {state.error? <p>Register failed</p> : false}
-            {state.success? <p>Register succesful! </p> : false}
+            {state.error === 1? <p>Register failed</p> : false}
+            {state.success === 1? <p>Register succesful! </p> : false}
         </div>
     )
 }
