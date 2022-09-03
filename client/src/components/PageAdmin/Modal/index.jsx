@@ -17,7 +17,7 @@ export default function Modal({ closeModal }) {
   };
   function handleOnSubmit(e) {
     e.preventDefault();
-    let email = usermodal.email;
+    let email = usermodal[0].email;
     closeModal(false);
     axios
       .post(`${axios.defaults.baseURL}/send-message`, {
@@ -38,7 +38,7 @@ export default function Modal({ closeModal }) {
           <div className={s.title}>
             <h1>Send a message</h1>
           </div>
-          <div className={s.user}>User: {usermodal[0].username}</div>
+          <div className={s.user}>User: {usermodal.username}</div>
           <input
             className={s.subject}
             maxLength="20"

@@ -97,6 +97,7 @@ app.get("/name", async (req, res, next) => {
 
 app.post("/send-message", (req, res, next) => {
   const { email, subject, text } = req.body;
+  console.log('email: ', email, 'subject: ', subject, "text: ", text)
   let transporter = mailTransport();
   transporter.sendMail(mailSendMessage(email, subject, text), (error, info) => {
     if (error) {
