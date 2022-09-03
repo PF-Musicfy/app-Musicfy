@@ -98,7 +98,7 @@ export function getTrackId(id) {
     };
   }
 
-  if (id.includes("art")) {
+  if (id.toLowerCase().includes("art")) {
     return async function (dispatch) {
       try {
         const artistId = await axios.get(`${axios.defaults.baseURL}/artist/${id}`);
