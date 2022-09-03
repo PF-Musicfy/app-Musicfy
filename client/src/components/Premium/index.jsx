@@ -1,6 +1,6 @@
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import Footer from "../LandingPage/Footer";
-import CardPlan from "../CardPlan";
+import { CardPlan } from "components/Cards";
 import styles from "./premium.module.css";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import { useSelector } from "react-redux";
