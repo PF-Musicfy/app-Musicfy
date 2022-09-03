@@ -7,7 +7,7 @@ import { getFeedback } from "../../store/slice/user.js";
 import NavBarLandingOn from "../../components/LandingPage/NavBarLandingOn";
 import Footer from "../../components/LandingPage/Footer";
 import NavBarLandingOff from "../../components/LandingPage/NavBarLandingOff";
-import { CardsFeedback } from "../../components/CardsFeedback";
+import { CardsFeedback, CardAlert } from "components/Cards";
 import { useLoading } from "../../hooks/useLoading.js";
 import Loading from "../../components/Loading";
 
@@ -76,10 +76,10 @@ export default function Feedback() {
           Feedback Musicfy
         </p>
         <div className={s.content}>
-          <div className={s.card}>
-            Debes <Link to='/login' style={{color: '#00f'}}>iniciar sesion</Link> con
+          <CardAlert>
+            Debes <Link to='/login'>iniciar sesion</Link> con
             una cuenta activa para publicar comentarios.
-          </div>
+          </CardAlert>
           <CardsFeedback />
         </div>
       </div>

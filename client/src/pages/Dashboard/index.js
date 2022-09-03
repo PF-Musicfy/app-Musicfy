@@ -8,6 +8,7 @@ import PageAdmin from "../../components/PageAdmin";
 import Loading from "../../components/Loading";
 import { useLoading } from "../../hooks/useLoading.js";
 import ModuleLogin from "../Login/ModuleLogin.jsx";
+import { CardAlert } from "components/Cards";
 
 import Navbar from "./Navbar";
 
@@ -29,7 +30,7 @@ export default function Dashboard() {
             <Route exact path="/feedback" element={<DashboardFeedback />} />
             <Route exact path="/list" element={<PageAdmin />} />
           </Routes>
-        : 'debes ser admin para entrar aqui'}
+        : <CardAlert>debes ser admin para entrar aqui</CardAlert>}
         </div>
       </>
       : loading ?

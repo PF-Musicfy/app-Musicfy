@@ -18,7 +18,6 @@ import Login from "./pages/Login";
 import ProfileInfo from "./components/Profile";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
-import Perfil from "./Perfil";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
 import TestMP from "./components/TestMP";
@@ -52,7 +51,6 @@ function App() {
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route exact path="/loading" element={<Loading />} />
-        <Route exact path="/miperfil" element={<Perfil />} />
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
         <Route path="*" element={<Page404 />} />
         <Route exact path="/mercadopago" element={<TestMP />} />
