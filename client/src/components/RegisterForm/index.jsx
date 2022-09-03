@@ -82,6 +82,7 @@ export default function RegisterForm() {
                 onChange={onInputChange}
                 value={newUser.name}
                 placeholder="Username"
+                minLength="3"
               />
               <p className={styles.error}>{errors.user || ""}</p>
             </div>
@@ -89,7 +90,7 @@ export default function RegisterForm() {
               <label htmlFor="">* Email</label>
               <input
                 required
-                type="text"
+                type="email"
                 name="eMail"
                 id="eMail"
                 onChange={onInputChange}
@@ -107,6 +108,7 @@ export default function RegisterForm() {
                 onChange={onInputChange}
                 value={newUser.password}
                 placeholder="Password"
+                minLength="8"
               />
               <p className={styles.error}>{errors.password || ""}</p>
             </div>

@@ -44,7 +44,7 @@ export default function ModuleLogin({ success }) {
       <form className={s.form} onSubmit={handleSubmit}>
         <p>Email</p>
         <input
-          type="text"
+          type="email"
           name="user"
           placeholder="Email"
           onChange={inputChange}
