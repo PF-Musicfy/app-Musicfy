@@ -38,7 +38,7 @@ export default function Validation() {
     })
     .then(() => {
         setTimeout(() => {
-            navigate('/')
+            navigate('/login')
         }, 5000);
     })
     .catch((err) => {
