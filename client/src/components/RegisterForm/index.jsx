@@ -85,6 +85,7 @@ export default function RegisterForm() {
                 minLength="3"
               />
               <p className={styles.error}>{errors.user || ""}</p>
+              <p className={styles.error}>{errors.symbols || ""}</p>
             </div>
             <div className={styles.item}>
               <label htmlFor="">* Email</label>
