@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { getUsers } from "store/slice/user";
 
 import s from "./dashboard.module.css";
-import { CardsFeedbackCompact } from "../../components/CardsFeedback";
+import { CardsFeedbackCompact } from "components/Cards";
 
 export default function DashboardHome() {
   const navigate = useNavigate();
