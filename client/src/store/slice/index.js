@@ -65,7 +65,7 @@ export function getTopMusic() {
 export function getName(name) {
   return async function (dispatch) {
     try {
-      if (name.length === 0) return alert("need to write a music");
+      if (name.length === 0 || /[^\s]/.test(name) === false ) return alert("Need to type a non blank sentence");
       const musicName = await axios.get(`${axios.defaults.baseURL}/name?name=${name}`);
       return dispatch(setMusicSearch(musicName.data));
     } catch (error) {
