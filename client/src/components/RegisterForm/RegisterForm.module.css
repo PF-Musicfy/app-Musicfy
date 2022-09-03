@@ -38,7 +38,7 @@
 }
 
 .form_register {
-  width: 50%;
+  width: 60%;
   margin: auto;
   padding: 40px 0;
   border-top: 1px solid #fff;
@@ -49,6 +49,11 @@
   display: block;
   margin-bottom: 5px;
   text-align: center;
+  margin-top: 40px;
+}
+
+.form_register .labelTop {
+  margin-top: 0;
 }
 
 .form_register input {
@@ -59,19 +64,10 @@
   border-radius: 10px;
   display: block;
   margin: auto;
-  margin-bottom: 35px;
 }
 
 .item {
   position: relative;
-}
-
-.error_span {
-  position: absolute;
-  top: 60px;
-  left: 40%;
-  font-weight: 500;
-  color: rgb(186, 8, 8);
 }
 
 .back {
@@ -124,27 +120,19 @@
   color: #cf355c;
 }
 
-.registerDisabled {
-  background-color: #eae5e6;
-  color: #ccc9ca;
-  border-radius: 15px;
-  padding: 5px 10px;
-  display: block;
-  margin: 20px auto 5px auto;
-}
-
 .submit_border {
   position: relative;
 }
 
 .submit {
-  position: absolute;
-  left: 44%;
   bottom: 180px;
   border: 2px solid #fff;
   width: 95px;
   height: 45px;
   border-radius: 20px;
+  display: block;
+  margin: auto;
+  margin-top: 35px;
 }
 
 .submit span {
@@ -163,14 +151,21 @@
   color: #cf355c;
 }
 
-@media screen and (max-width: 900px) {
-  .error_span {
-    left: 34%;
+.error {
+  color: rgb(241, 54, 54);
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 670px) {
+  .form_register {
+    width: 70%;
   }
 }
 
-@media screen and (max-width: 750px) {
-  .error_span {
-    left: 30%;
+@media screen and (max-width: 550px) {
+  .form_register {
+    width: 85%;
   }
 }
