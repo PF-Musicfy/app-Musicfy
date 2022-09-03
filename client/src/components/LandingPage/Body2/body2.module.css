@@ -121,5 +121,17 @@
     height: fit-content;
     color: var(--mainColor);
   }
+  .titulo2 {
+    font-size: 70px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .titulo2 {
+    font-size: 45px;
+  }
+  .subtitulo2 {
+    font-size: 20px;
+  }
 }
  */

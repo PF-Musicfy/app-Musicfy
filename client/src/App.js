@@ -21,7 +21,7 @@ import UserMP3 from "./components/UserMP3";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
 import TestMP from "./components/TestMP";
-import Favorites from "./components/Favorites"
+import Favorites from "./components/Favorites";
 
 import Loading from "./components/Loading";
 import { CardCookie } from "components/Cards";
@@ -30,7 +30,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(userTokenInfo())
+    dispatch(userTokenInfo());
   }, [dispatch]);
 
   return (
@@ -47,15 +47,17 @@ function App() {
         <Route exact path="/dashboard/*" element={<Dashboard />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/profile" element={<ProfileInfo />} />
-        <Route path="/validate/:email/:username/:hashPassword/*" element={<Validation />} />
-        <Route path="*" element={<PageDev />} />
+        <Route
+          path="/validate/:email/:username/:hashPassword/*"
+          element={<Validation />}
+        />
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route exact path="/loading" element={<Loading />} />
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
-        <Route path="*" element={<Page404 />} />
         <Route exact path="/mercadopago" element={<TestMP />} />
         <Route exact path="/favorites" element={<Favorites />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <CardCookie />
     </div>

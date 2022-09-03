@@ -21,12 +21,12 @@
 .iconsContainer {
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
 }
 
 .icono {
   font-size: 30px;
   margin: 8px;
-  margin-bottom: 60px;
 }
 
 .cardwordsContainer {

@@ -1,9 +1,14 @@
 import s from "./cardcookie.module.css";
 import { useCookies } from "react-cookie";
 import { BiCookie } from "react-icons/bi";
+import { useEffect } from "react";
 
 export default function CardCookie() {
   const [cookie, setCookie] = useCookies();
+
+  useEffect(() => {
+    setCookie('accessCookie', true, {path: '/'})
+  }, [setCookie])
 
   return (
     <div className={cookie.accessCookie ? `${s.cookie} ${s.close}` : s.cookie}>
