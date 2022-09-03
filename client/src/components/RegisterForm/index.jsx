@@ -125,7 +125,7 @@ export default function RegisterForm() {
               <p className={styles.error}>{errors.doNotMatch || ""}</p>
             </div>
           </div>
-          <button className={styles.submit} type="submit">
+          <button disabled={errors.doNotMatch ? true : false} className={styles.submit} type="submit">
             <span>Register</span>
           </button>
         </form>
