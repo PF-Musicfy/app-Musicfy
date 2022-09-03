@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import s from './cardsfeedback.module.css';
-import { getFeedback } from "../../store/slice/user.js";
+import { getFeedback } from "store/slice/user.js";
 
 export default function CardsFeedbackCompact() {
   const dispatch = useDispatch();

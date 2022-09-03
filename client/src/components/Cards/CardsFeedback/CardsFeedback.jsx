@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { CgArrowUpO } from "react-icons/cg"
 
 import s from './cardsfeedback.module.css';
-import { getFeedback } from "../../store/slice/user.js";
-import getPagination from "../../utils/getPagination.js";
+import { getFeedback } from "store/slice/user.js";
+import getPagination from "utils/getPagination.js";
 
 export default function CardsFeedback() {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export default function CardsFeedback() {
 
   const nextPage = () => {setPagina(pagina + 1)}
   const previousPage = () => {setPagina(pagina - 1)}
-  const reset = () => {setPagina(1)}
 
   useEffect(() => {
     dispatch(getFeedback())

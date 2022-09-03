@@ -3,14 +3,6 @@
   max-width: 60%;
 }
 
-.card {
-  background: #f44;
-  border: 3px solid #f00;
-  padding: 10px;
-  font-size: 18px;
-  color: #000;
-}
-
 .feedbackContainer {
   display: flex;
   flex-direction: column;
