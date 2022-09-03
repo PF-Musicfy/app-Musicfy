@@ -158,6 +158,10 @@
   font-size: 14px;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 @media screen and (max-width: 670px) {
   .form_register {
     width: 70%;
