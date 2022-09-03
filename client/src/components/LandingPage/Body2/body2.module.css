@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 75vh;
+  height: 65vh;
 }
 .element {
   padding: 10%;
@@ -42,7 +42,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 65vh;
   background-image: url("./c0d19485337437b7e6955ae26f737978.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -52,8 +52,7 @@
   margin-top: 10%;
   color: #fff;
   font-family: "Cabin", sans-serif;
-  /*   font-size: 120px; */
-  font-size: 650%;
+  font-size: 90px;
   font-weight: 500;
 }
 .subtitulo2 {
@@ -106,5 +105,17 @@
     width: 120%;
     height: fit-content;
     color: var(--mainColor);
+  }
+  .titulo2 {
+    font-size: 70px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .titulo2 {
+    font-size: 45px;
+  }
+  .subtitulo2 {
+    font-size: 20px;
   }
 }
