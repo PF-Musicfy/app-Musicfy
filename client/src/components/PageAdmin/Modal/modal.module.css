@@ -41,7 +41,10 @@
   font-weight: 400;
   font-size: 100%;
 }
-.input {
+.subject {
+  color: black;
+}
+.text {
   flex: 80%;
   display: flex;
   justify-content: center;

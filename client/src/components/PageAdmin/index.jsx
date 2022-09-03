@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import Cards from "./Cards";
 import { useEffect } from "react";
 import s from "./table.module.css";
-import { getUsers } from "../../store/slice/user";
+import { getUserModal, getUsers } from "../../store/slice/user";
 import { BiMailSend } from "react-icons/bi";
 import { ImLock, ImUnlocked } from "react-icons/im";
 import { useState } from "react";
@@ -17,11 +17,13 @@ function Fila({ user, openModal }) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(false);
   const [block, setBlock] = useState(false);
+  const [currentModalUser, setCurrentModal] = useState("");
 
   useEffect(() => {
     setAdmin(user.admin);
     setBlock(user.isblocked);
-  }, []);
+    setCurrentModal(user.email);
+  }, [currentModalUser]);
 
   function handleAdmin(e) {
     e.preventDefault();
@@ -59,7 +61,9 @@ function Fila({ user, openModal }) {
       <td>
         <BiMailSend
           onClick={() => {
-            openModal({ switch: true, username: user.username });
+            openModal(true);
+            dispatch(getUserModal(currentModalUser));
+            setCurrentModal("");
           }}
           className={s.pointer}
         />
@@ -68,15 +72,11 @@ function Fila({ user, openModal }) {
     </tr>
   );
 }
-function Mapeo({ users, openModal, modal }) {
+function Mapeo({ users, openModal }) {
   return (
     <>
       {users?.map((e) => (
-        <Fila
-          key={e._id}
-          user={e}
-          openModal={() => openModal({ ...modal, switch: true })}
-        />
+        <Fila key={e._id} user={e} openModal={() => openModal(true)} />
       ))}
     </>
   );
@@ -85,7 +85,7 @@ function Mapeo({ users, openModal, modal }) {
 export default function PageAdmin() {
   const { users } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [modal, setModal] = useState({ switch: false, username: null });
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -95,10 +95,9 @@ export default function PageAdmin() {
     <div className={s.container}>
       <SearchBar />
       <Buttons />
-      {modal.switch && (
+      {modal && (
         <div className={s.modalito}>
-          {console.log("esto es modal", modal)}
-          <Modal closeModal={setModal} switch={modal.username} />
+          <Modal closeModal={setModal} />
         </div>
       )}
       {/* <FirstLine />
