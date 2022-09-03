@@ -8,7 +8,8 @@ export const infoMusic = createSlice({
     detailTracks: {},
     musicSearch: [],
     avatar: "",
-    usermp3: ""
+    usermp3: "",
+  
   },
   reducers: {
     setTopMusic: (state, action) => {
@@ -25,7 +26,7 @@ export const infoMusic = createSlice({
     },
     setUserMp3: (state, action) => {
       state.usermp3 = action.payload;
-    }
+    },
   }
 });
 

@@ -52,3 +52,22 @@
   overflow-y: scroll;
   height: 60vh;
 }
+
+.favorites{
+  height: 60px;
+  width: 30px;
+  cursor: pointer;
+  /* color: red; */
+}
+
+.favorites1 {
+  color: red;
+  height: 60px;
+  width: 30px;
+  cursor: pointer;
+  /* color: red; */
+}
+
+.favorites :hover {
+  color: red
+}

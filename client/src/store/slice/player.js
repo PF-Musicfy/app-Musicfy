@@ -7,6 +7,7 @@ export const playerSlice = createSlice({
     previous: {},
     actual: {},
     next: {},
+    favorites: []
   },
   reducers: {
     setPrevious: (state, action) => {
@@ -23,11 +24,18 @@ export const playerSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
-    }
-  }
+    },
+    setFavorites: (state, action) => {
+      state.favorites = state.favorites.concat(action.payload)
+    },
+    setRemove: (state, action) => {
+      state.favorites = action.payload
+    },
+  },
 });
 
-export const { setPrevious, setActual, setNext, setPlaylist, setLoading } = playerSlice.actions;
+
+export const { setPrevious, setActual, setNext, setPlaylist, setLoading, setFavorites, setRemove } = playerSlice.actions;
 
 export default playerSlice.reducer;
 
@@ -72,6 +80,35 @@ export const randomPlaylist = () => {
       dispatch(setActual(playlist[i]));
     } catch (e) {
       console.log("error: action play");
+    }
+  }
+}
+
+export const getFavorites = (id) => {
+    return async function(dispatch, getState ){
+      try {
+        const { favorites } = getState().player
+        const { playlist } = getState().player
+        const filter = playlist.filter(e => e.id === id)
+        let i = favorites.map(e => e.id).indexOf(id)
+        if(favorites[i] === undefined){
+      return dispatch(setFavorites(filter))
+      }else{
+        const remove = favorites.filter(e => e.id !== id )
+        return dispatch(setRemove(remove))
+      }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+}
+
+export const clearFavorites = () => {
+  return function(dispatch){
+    try {
+      return dispatch(setFavorites([]))
+    } catch (error) {
+      console.log(error)
     }
   }
 }
