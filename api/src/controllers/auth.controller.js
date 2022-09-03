@@ -49,6 +49,7 @@ const registerUser = async (req, res) => {
     if (user) {
       return res.status(404).send(`${email} already exists`);
     }
+    console.log(user)
 
     user = new User({ username, email, password });
     await user.save();
@@ -59,6 +60,7 @@ const registerUser = async (req, res) => {
 
     return res.status(201).json({ token, expiresIn });
   } catch (error) {
+    console.log(error)
     return res.status(400).json({ error: error.message });
   }
 };
@@ -130,6 +132,7 @@ const avatarUser = async (req, res) => {
     avatar
   });
   await user.save();
+  console.log(avatar)
   return res.json({ message: "Avatar cambiado" });
 };
 
@@ -142,6 +145,19 @@ const setmp3User = async (req, res) => {
   return res.json({ message: "Avatar cambiado" });
 };
 
+const favoritesUser = async (req, res) => {
+  const { favorites } = req.body;
+  const user = await User.findByIdAndUpdate(req.uid, {
+    favorites
+  });
+  console.log(user)
+  // console.log(favorites)
+  // console.log(favorites)
+  console.log(favorites)
+  await user.save();
+  return res.json({message: "musica posteada"})
+}
+
 module.exports = {
   validate,
   registerUser,
@@ -151,5 +167,6 @@ module.exports = {
   logoutUser,
   premiumUser,
   avatarUser,
-  setmp3User
+  setmp3User,
+  favoritesUser
 };

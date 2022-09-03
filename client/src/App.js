@@ -22,6 +22,7 @@ import Perfil from "./Perfil";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
 import TestMP from "./components/TestMP";
+import Favorites from "./components/Favorites"
 
 import Loading from "./components/Loading";
 
@@ -40,7 +41,6 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/home/:id" element={<Detail />} />
-        <Route exact path="/favorites" element={<PageDev />} />
         <Route exact path="/library" element={<PageDev />} />
         <Route exact path="/premium" element={<Premium />} />
         <Route exact path="/feedback" element={<Feedback />} />
@@ -56,6 +56,7 @@ function App() {
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
         <Route path="*" element={<Page404 />} />
         <Route exact path="/mercadopago" element={<TestMP />} />
+        <Route exact path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
   );

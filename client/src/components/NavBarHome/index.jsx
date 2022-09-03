@@ -20,6 +20,8 @@ export default function NavBarHome() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
+  console.log(user.favorites)
+
   async function handleClick() {
     setProfile(!profile);
     // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
@@ -63,17 +65,17 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              <Link to="/favorites">
-                <span>Favorites</span>
-              </Link>
-              <Link to="/favorites">
+              {/* <Link to="/playlist"> */}
                 <span>+Playlist</span>
-              </Link>
+              {/* </Link> */}
               <Link to="/library">
                 <span>Library</span>
               </Link>
-              <Link to="/profile">
-                <span className="perfil">Profile</span>
+              <Link to="/favorites">
+                <span>Favorites</span>
+              </Link>
+                <Link to ="/profile">
+                <span className="profile">Profile</span>
               </Link>
               <Link to="/login">
                 <span className="logout">Log out</span>
@@ -146,4 +148,4 @@ export default function NavBarHome() {
       )}
     </div>
   );
-}
+      }
