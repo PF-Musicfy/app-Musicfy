@@ -24,6 +24,7 @@ import TestMP from "./components/TestMP";
 import Favorites from "./components/Favorites"
 
 import Loading from "./components/Loading";
+import { CardCookie } from "components/Cards";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
         <Route exact path="/mercadopago" element={<TestMP />} />
         <Route exact path="/favorites" element={<Favorites />} />
       </Routes>
+      <CardCookie />
     </div>
   );
 }
