@@ -49,13 +49,26 @@ export default function Validation() {
             title: 'Oops try again!',
             text: 'Email already registered',
           })
+          setTimeout(() => {
+            navigate('/register')
+        }, 5000);
     })
 
     }, [])
     return (
         <div>
-            {state.error === 1? <p>Register failed</p> : false}
-            {state.success === 1? <p>Register succesful! </p> : false}
+            {state.error === 1? 
+            <div style={{position: 'relative', top: '100px'}}>
+                <span style={{fontSize: '30px', backgroundImage: 'url(https://www.gifsanimados.org/data/media/1377/nota-musical-imagen-animada-0046.gif)', backgroundSize: 'contain', padding: '15px 30px 20px 50px', backgroundRepeat: 'no-repeat', margin: '30px'}}> Register failed </span>                
+                <img style={{position: 'relative', left: '32%'}} src="https://i.pinimg.com/736x/75/5a/8b/755a8bb396f33507d804afaa7f769337.jpg" alt="note in fire"/>
+            </div>
+             : false}
+            {state.success === 1?
+             <div style={{position: 'relative', top: '100px'}}>
+             <span style={{fontSize: '30px', backgroundImage: 'url(https://www.gifsanimados.org/data/media/1377/nota-musical-imagen-animada-0046.gif)', backgroundSize: 'contain', padding: '15px 30px 20px 50px', backgroundRepeat: 'no-repeat', margin: '30px'}}> Register succesfull!!! </span>                
+             <img style={{position: 'relative', left: '32%'}} src="https://c.tenor.com/_ghn0Sr3fh0AAAAd/music.gif" alt="note in fire"/>
+         </div>
+             : false}
         </div>
     )
 }
