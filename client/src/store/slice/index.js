@@ -8,7 +8,8 @@ export const infoMusic = createSlice({
     detailTracks: {},
     musicSearch: [],
     avatar: "",
-    usermp3: ""
+    usermp3: "",
+  
   },
   reducers: {
     setTopMusic: (state, action) => {
@@ -25,7 +26,7 @@ export const infoMusic = createSlice({
     },
     setUserMp3: (state, action) => {
       state.usermp3 = action.payload;
-    }
+    },
   }
 });
 
@@ -65,7 +66,7 @@ export function getTopMusic() {
 export function getName(name) {
   return async function (dispatch) {
     try {
-      if (name.length === 0) return alert("need to write a music");
+      if (name.length === 0 || /[^\s]/.test(name) === false ) return alert("Need to type a non blank sentence");
       const musicName = await axios.get(`${axios.defaults.baseURL}/name?name=${name}`);
       return dispatch(setMusicSearch(musicName.data));
     } catch (error) {
@@ -97,7 +98,7 @@ export function getTrackId(id) {
     };
   }
 
-  if (id.includes("art")) {
+  if (id.toLowerCase().includes("art")) {
     return async function (dispatch) {
       try {
         const artistId = await axios.get(`${axios.defaults.baseURL}/artist/${id}`);

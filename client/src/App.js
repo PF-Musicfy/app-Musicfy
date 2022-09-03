@@ -18,12 +18,13 @@ import Login from "./pages/Login";
 import ProfileInfo from "./components/Profile";
 import Avatar from "./components/Avatar";
 import UserMP3 from "./components/UserMP3";
-import Perfil from "./Perfil";
 import Validation from "./components/Validation";
 import CheckoutPremium from "./components/CheckoutPremium";
 import TestMP from "./components/TestMP";
+import Favorites from "./components/Favorites"
 
 import Loading from "./components/Loading";
+import { CardCookie } from "components/Cards";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,6 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/home/:id" element={<Detail />} />
-        <Route exact path="/favorites" element={<PageDev />} />
         <Route exact path="/library" element={<PageDev />} />
         <Route exact path="/premium" element={<Premium />} />
         <Route exact path="/feedback" element={<Feedback />} />
@@ -52,11 +52,12 @@ function App() {
         <Route exact path="/avatar" element={<Avatar />} />
         <Route exact path="/usermp3" element={<UserMP3 />} />
         <Route exact path="/loading" element={<Loading />} />
-        <Route exact path="/miperfil" element={<Perfil />} />
         <Route exact path="/checkoutpremium" element={<CheckoutPremium />} />
         <Route path="*" element={<Page404 />} />
         <Route exact path="/mercadopago" element={<TestMP />} />
+        <Route exact path="/favorites" element={<Favorites />} />
       </Routes>
+      <CardCookie />
     </div>
   );
 }
