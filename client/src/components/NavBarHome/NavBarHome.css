@@ -36,12 +36,20 @@ header .nav-btn {
   font-size: 1.8rem;
 }
 .logo-div {
-  top: 1.1rem;
-  left: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .logo {
-  height: 40px;
-  padding-right: 5px;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.logoTxt {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .avatar {
@@ -53,7 +61,7 @@ header .nav-btn {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 870px) {
   header .nav-btn {
     visibility: visible;
     opacity: 1;
@@ -81,10 +89,27 @@ header .nav-btn {
     display: none;
   }
   nav .perfil {
+    position: absolute;
     visibility: visible;
+    right: 43%;
+  }
+  nav .logout {
+    position: relative;
+    visibility: visible;
+    top: 60%;
+    margin-top: 100%;
   }
   .container {
     display: none;
+  }
+  nav .no-logged {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    left: auto;
   }
 }
 
@@ -97,9 +122,13 @@ nav a {
   font-size: 1.3rem;
 }
 .perfil {
+  position: absolute;
   visibility: hidden;
 }
-
+.logout {
+  position: absolute;
+  visibility: hidden;
+}
 .no-logged {
   position: absolute;
   top: 1.6rem;
@@ -137,11 +166,20 @@ nav a {
 
 .searchStyle {
   position: absolute;
-  /* width: 400px; */
-  margin: 0px 5px 0px 300px;
-  /* margin: 0; */
+  left: 8%;
 }
-
+.searchStyle-nologged {
+  position: absolute;
+  left: 8%;
+}
+@media only screen and (max-width: 1085px) {
+  .searchStyle {
+    position: absolute;
+    right: auto;
+    left: auto;
+    top: 6%;
+  }
+}
 .logOut {
   cursor: pointer;
 }

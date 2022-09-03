@@ -116,11 +116,11 @@ app.get("/name", async (req, res, next) => {
 // })
 
 app.post("/send-email-registered", (req, res, next) => {
-  const { eMail } = req.body;
+  const { email } = req.body;
   let transporter = mailTransport();
   let mailOptions = {
     from: "adminAPI",
-    to: eMail,
+    to: email,
     subject: "Register succesful",
     text: `You have been succesfully registered in Musicfy! Welcome!`,
     html: ``

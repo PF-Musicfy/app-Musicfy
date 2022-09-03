@@ -23,11 +23,6 @@
   background: #383a39;
   border-radius: 3px;
 }
-
-/* .box:hover, .lupitaEstilo{
-    margin-top: 20px;
-} */
-
 .input:focus,
 .input:active {
   border: 0;
@@ -43,4 +38,11 @@
 
 input[type="text"]:focus {
   box-shadow: 0 0 0 rgb(255, 255, 255);
+}
+@media only screen and (max-width: 851px) {
+  .box:hover input {
+    width: 100%;
+    background: #383a39;
+    border-radius: 3px;
+  }
 }
