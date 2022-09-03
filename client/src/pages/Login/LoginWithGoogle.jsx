@@ -34,7 +34,7 @@ export default function LoginWithGoogle() {
   }
   const onFailure = (res) => {
     console.log('failed', res);
-    setError('habilita las cookies')
+    setError('habilita las cookies de terceros')
   }
   const logOut = () => {
     console.log('logout');
