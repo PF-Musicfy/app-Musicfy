@@ -1,0 +1,72 @@
+.background {
+  width: 30vw;
+  height: 60vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 400px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: var(--mainColor);
+  box-shadow: rgba(231, 231, 231, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+.title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 200%;
+}
+.closebtn {
+  display: flex;
+  justify-content: flex-end;
+  color: rgb(255, 255, 255);
+}
+.closebtn button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+.user {
+  color: rgb(255, 255, 255);
+  font-weight: 400;
+  font-size: 100%;
+}
+.input {
+  flex: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(211, 211, 211);
+  color: black;
+  max-lines: 10;
+}
+.buttonsubmit {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonsubmit button {
+  font-weight: 400;
+  font-size: 150%;
+  border: 2px solid var(--mainColor);
+  border-radius: 8px;
+  padding: 2px 15px 2px 15px;
+  color: white;
+  margin: 0px 10px 0px 10px;
+  background: rgb(0, 0, 0);
+}
+.buttonsubmit button:hover {
+  color: var(--mainColor);
+}
