@@ -19,7 +19,7 @@ export default function RegisterForm() {
   let errorPassword = false;
   let errorRePassword = false;
 
-  if (newUser.name.length < 3 || /[^a-zñáéíóú]/i.test(newUser.name) === true) {
+  if (newUser.name.length < 3 || /[^0-9a-zñáéíóú]/i.test(newUser.name) === true) {
     errorName = true;
   }
   if (
@@ -169,31 +169,7 @@ export default function RegisterForm() {
             {errorRePassword !== errorPassword && (
               <span className={styles.error_span}>Passwords do not match</span>
             )}
-          </div>
-          {/* {newUser.token.length > 0 ? (
-            <div className={styles.item}>
-              <label htmlFor="">* Key</label>
-              <input
-                type="text"
-                name="key"
-                onChange={onInputChange}
-                value={newUser.key}
-                placeholder="Insert key"
-              />
-              {errorToken && (
-                <span className={styles.error_span}>Insert the key</span>
-              )}
-            </div>
-          ) : (
-            <button
-              className={errorEMail ? styles.registerDisabled : styles.register}
-              onClick={keyClick}
-              value="ObtainKey"
-              disabled={errorEMail ? true : false}
-            >
-              ! Obtain key to register !
-            </button>
-          )} */}
+          </div>        
         </div>
         <button
           className={error ? styles.registerDisabled : styles.submit}

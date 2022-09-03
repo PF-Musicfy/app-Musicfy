@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const Post = require("../models/Post.js");
-const { mailTransport } = require("../controllers/mailController");
+const { mailTransport, mailRegistered } = require("../controllers/mailController");
 const { Router } = require("express");
 const app = Router();
 const { generateToken } = require("../controllers/generateTokenController");
@@ -95,37 +95,10 @@ app.get("/name", async (req, res, next) => {
   }
 });
 
-// app.post("/send-email", (req, res, next) => {
-//   const {eMail} = req.body
-//   let token = generateToken()
-//   let transporter = mailTransport()
-//   let mailOptions = {
-//     from: "adminAPI",
-//     to: eMail,
-//     subject: "Key obtained",
-//     text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
-//   }
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       res.status(500).send(error.message)
-//     } else {
-//       console.log('email enviado')
-//       res.status(200).jsonp(token)
-//     }
-//   })
-// })
-
 app.post("/send-email-registered", (req, res, next) => {
   const { email } = req.body;
   let transporter = mailTransport();
-  let mailOptions = {
-    from: "adminAPI",
-    to: email,
-    subject: "Register succesful",
-    text: `You have been succesfully registered in Musicfy! Welcome!`,
-    html: ``
-  };
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailRegistered(email), (error, info) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
