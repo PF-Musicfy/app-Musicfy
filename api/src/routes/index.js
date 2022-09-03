@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const Post = require("../models/Post.js");
-const { mailTransport, mailRegistered } = require("../controllers/mailController");
+const { mailTransport, mailRegistered, mailSendMessage } = require("../controllers/mailController");
 const { Router } = require("express");
 const app = Router();
 const { generateToken } = require("../controllers/generateTokenController");
@@ -93,6 +93,19 @@ app.get("/name", async (req, res, next) => {
       next;
     }
   }
+});
+
+app.post("/send-message", (req, res, next) => {
+  const { email, subject, text } = req.body;
+  let transporter = mailTransport();
+  transporter.sendMail(mailSendMessage(email, subject, text), (error, info) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else {
+      console.log("mensaje enviado");
+      res.status(200).jsonp(req.body);
+    }
+  });
 });
 
 app.post("/send-email-registered", (req, res, next) => {

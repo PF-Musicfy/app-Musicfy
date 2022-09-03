@@ -13,6 +13,15 @@ function mailTransport() {
     })    
 }
 
+function mailSendMessage(email, subject, text) {
+  return {
+  from: "adminAPI",
+  to: email,
+  subject: subject,
+  text: text
+  }
+}
+
 function mailRegistered(email) {
   return {
   from: "adminAPI",
@@ -36,4 +45,4 @@ function mailRegistered(email) {
   `
   }
 };
-module.exports = {mailTransport, mailRegistered}
+module.exports = {mailTransport, mailRegistered, mailSendMessage}
