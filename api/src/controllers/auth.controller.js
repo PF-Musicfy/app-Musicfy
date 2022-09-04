@@ -14,7 +14,7 @@ const validate = async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
-    let validationLink = `http://localhost:3000/validate/${email}/${username}/${hashPassword}`;
+    let validationLink = `${express.defaultURL}/validate/${email}/${username}/${hashPassword}`;
     console.log(validationLink);
     let transporter = mailTransport();
     let mailOptions = {
