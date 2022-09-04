@@ -63,6 +63,7 @@ export const userTokenInfo = () => {
   return async function (dispatch) {
     dispatch(setLoading("cargando"));
     try {
+      console.log('entro en login');
       const {
         data: { token },
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
