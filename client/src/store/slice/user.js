@@ -68,6 +68,7 @@ export const userTokenInfo = () => {
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true,
       });
+      console.log('datalogin',token);
       dispatch(setLoading("tengo el token"));
 
       const { data } = await axios.get(
