@@ -8,8 +8,7 @@ export const infoMusic = createSlice({
     detailTracks: {},
     musicSearch: [],
     avatar: "",
-    usermp3: "",
-  
+    usermp3: ""
   },
   reducers: {
     setTopMusic: (state, action) => {
@@ -26,7 +25,7 @@ export const infoMusic = createSlice({
     },
     setUserMp3: (state, action) => {
       state.usermp3 = action.payload;
-    },
+    }
   }
 });
 
@@ -66,7 +65,7 @@ export function getTopMusic() {
 export function getName(name) {
   return async function (dispatch) {
     try {
-      if (name.length === 0 || /[^\s]/.test(name) === false ) return alert("Need to type a non blank sentence");
+      if (name.length === 0 || /[^\s]/.test(name) === false) return alert("Need to type a non blank sentence");
       const musicName = await axios.get(`${axios.defaults.baseURL}/name?name=${name}`);
       return dispatch(setMusicSearch(musicName.data));
     } catch (error) {
@@ -132,7 +131,7 @@ export function getAvatar(imageSelected) {
       const formData = new FormData();
       formData.append("file", imageSelected);
       formData.append("upload_preset", "musicfy");
-      const infoImage = await axios.post("https://api.cloudinary.com/v1_1/hugok2k/image/upload", formData);
+      const infoImage = await axios.post("https://api.cloudinary.com/v1_1/dyj81r2fi/image/upload", formData);
       // Ejecutar una funcion que modifique el avatar del usuario en DB
       return dispatch(setImageAvatar(infoImage.data.secure_url));
     } catch (error) {
@@ -146,8 +145,8 @@ export function getMP3(mp3Selected) {
     try {
       const formData = new FormData();
       formData.append("file", mp3Selected);
-      formData.append("upload_preset", "musicfy");
-      const infoMP3 = await axios.post("https://api.cloudinary.com/v1_1/hugok2k/video/upload", formData);
+      formData.append("upload_preset", "musicfymp3");
+      const infoMP3 = await axios.post("https://api.cloudinary.com/v1_1/dyj81r2fi/video/upload", formData);
       // Ejecutar una funcion que modifique el avatar del usuario en DB
       console.log(infoMP3.data.secure_url);
       return dispatch(setUserMp3(infoMP3.data.secure_url));
