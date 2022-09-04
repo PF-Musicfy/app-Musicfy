@@ -2,6 +2,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarLandingOff.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
 function NavBarLanding() {
   const [details, setDetails] = useState(false);
 
@@ -13,11 +14,7 @@ function NavBarLanding() {
       <div className={styles.containerNavbar}>
         <div className={styles.conterImg}>
           <Link to="/">
-            <img
-              className={styles.logoImg}
-              src="https://i.imgur.com/GiyjGcI.png"
-              alt="Musicfy Logo"
-            />
+            <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
           </Link>
           <Link to="/">
             <span className={styles.logoTxt}>MusicFy</span>

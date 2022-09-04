@@ -27,6 +27,7 @@ function Listas({ arr, objKey }){
       </h1>
       */}
       <Swiper
+        className={styles.swiperGlobal}
         loop={false}
         loopFillGroupWithBlank={true}
         pagination={{
@@ -36,10 +37,11 @@ function Listas({ arr, objKey }){
         modules={[Pagination, Navigation]}
         breakpoints={{
           220: {slidesPerView: 1},
-          380: {slidesPerView: 2},
-          600: {slidesPerView: 3},
-          900: {slidesPerView: 4},
-          1200: {slidesPerView: 5},
+          500: {slidesPerView: 2},
+          600: {slidesPerView: 2},
+          750: {slidesPerView: 3},
+          1000: {slidesPerView: 4},
+          1250: {slidesPerView: 5},
         }}
       >
         <div>
@@ -63,6 +65,7 @@ function Listas({ arr, objKey }){
 
 function Card({ item }) {
   return (
+    <div className={styles.cardImages}>
     <Link to={`/home/${item.id}`}>
       <img
         className={styles.imgSwiper}
@@ -75,6 +78,7 @@ function Card({ item }) {
       <h3 className={styles.h3Colors}>{item.name}</h3>
       <h3 className={styles.h3Colors}>{item.artistName}</h3>
     </Link>
+    </div>
   )
 }
 
