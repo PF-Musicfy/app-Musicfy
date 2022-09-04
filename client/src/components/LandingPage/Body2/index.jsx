@@ -34,7 +34,7 @@ export default function Body2() {
       </div>
       <div className={styles.container2}>
         <h1 className={styles.titulo2}>Not premium yet?</h1>
-        <h2 className={styles.subtitulo2}>Become premium and enjoy </h2>
+        <h2 className={styles.subtitulo2}>Become premium and enjoy</h2>
         <Link to="/premium">
           <button className={styles.button}>Go Premium</button>
         </Link>
