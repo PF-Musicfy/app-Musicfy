@@ -42,7 +42,8 @@ export default function ModuleLogin({ success }) {
        console.log('data en module login',asd)
        setCookie('refreshToken', asd.data.token, {path: '/'})
        console.log('todo bien module login')
-       dispatch(userTokenInfo())
+       console.log('token module',cookie)
+       dispatch(userTokenInfo(cookie.refreshToken))
     } catch (e) {
       console.log("error module login",e);
     }
