@@ -61,9 +61,11 @@ function Fila({ user, openModal }) {
       <td>
         <BiMailSend
           onClick={() => {
-            openModal(true);
-            dispatch(getUserModal(currentModalUser));
-            setCurrentModal("");
+            dispatch(getUserModal(currentModalUser))
+              .then (()=> {
+                openModal(true);
+                setCurrentModal("");
+              })
           }}
           className={s.pointer}
         />
