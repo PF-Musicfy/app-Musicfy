@@ -23,6 +23,9 @@ const generateRefreshToken = (uid, res) => {
     res.cookie("refreshToken", refreshToken, {
       //httpOnly: true,
       //secure: !(process.env.MODO === "developer"),
+      httpOnly: false,
+      secure: false,
+      domain: '.herokuapp.com',
       expires: new Date(Date.now() + expiresIn * 1000),
     });
   } catch (error) {
