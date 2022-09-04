@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 export const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -59,11 +62,13 @@ export const getUserModal = (email) =>
 
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
-export const userTokenInfo = (token) => {
+export const userTokenInfo = () => {
   return async function (dispatch) {
     dispatch(setLoading("cargando"));
     try {
       console.log('entro en login')
+      const token = cookies.get('refreshToken');
+      console.log('cookies dentro de login',cookies.get('refreshToken'))
       //const {
       //  data: { token },
       //} = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
