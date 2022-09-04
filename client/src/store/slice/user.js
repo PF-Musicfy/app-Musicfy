@@ -171,6 +171,7 @@ export const logoutUser = () => {
       await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
         withCredentials: true,
       });
+      cookies.remove('refreshToken');
 
       console.log("cookie clear");
       dispatch(setUser({}));
