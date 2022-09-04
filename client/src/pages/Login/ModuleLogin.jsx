@@ -8,9 +8,12 @@ import login from "../../utils/login.js";
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { userTokenInfo } from "store/slice/user.js";
+import { useCookies } from "react-cookie";
 
 export default function ModuleLogin({ success }) {
   const dispatch = useDispatch();
+  const [cookie, setCookie] = useCookies();
+
   const [input, setInput] = useState({
     user: "",
     pass: "",
@@ -37,6 +40,7 @@ export default function ModuleLogin({ success }) {
          withCredentials: true
        })
        console.log('data en module login',asd)
+       setCookie('refreshToken', asd.data.token, {path: '/'})
        console.log('todo bien module login')
        dispatch(userTokenInfo())
     } catch (e) {
