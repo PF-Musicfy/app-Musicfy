@@ -1,11 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { validateLogin } from "../../utils/validate.js";
 import { FaEye } from "react-icons/fa";
 import s from "./login.module.css";
 import LoginWithGoogle from "./LoginWithGoogle.jsx";
 import login from "../../utils/login.js";
 
+import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { userTokenInfo } from "store/slice/user.js";
+//import { useCookies } from "react-cookie";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 export default function ModuleLogin({ success }) {
+  const dispatch = useDispatch();
+  //const [cookie, setCookie] = useCookies();
+
   const [input, setInput] = useState({
     user: "",
     pass: "",
@@ -23,16 +33,31 @@ export default function ModuleLogin({ success }) {
     e.preventDefault();
 
     try {
-      await login(
-        {
-          email: input.user,
-          password: input.pass,
-        },
-        "/api/v1/auth/login",
-        success
-      );
+      //await login(
+      //  {
+      //    email: input.user,
+      //    password: input.pass,
+      //  },
+      //  "/api/v1/auth/login",
+      //  success
+      //);
+      console.log('dentro de module login')
+
+      const asd = await axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`,{
+        email: input.user,
+        password: input.pass,
+      },{
+        withCredentials: true
+      })
+
+      console.log('token',asd.data.token)
+      //setCookie('refreshToken', asd.data.token, {path: '/'})
+      cookies.set('refreshToken', asd.data.token, {path: '/'})
+      console.log('token module',cookies)
+
+      dispatch(userTokenInfo(cookies.get('refreshToken')))
     } catch (e) {
-      console.log("error login");
+      console.log("error login", e);
     }
   };
 
