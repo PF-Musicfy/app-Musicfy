@@ -1,0 +1,12 @@
+.card {
+  background: #f44;
+  border: 3px solid #f00;
+  padding: 10px;
+  font-size: 18px;
+  color: #000;
+  margin: auto;
+}
+
+.card a {
+  color: #00f;
+}

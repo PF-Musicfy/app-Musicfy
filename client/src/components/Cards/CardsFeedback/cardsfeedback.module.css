@@ -1,16 +1,15 @@
 .feedbackComments {
-  width: 500px;
   border-bottom: 1px solid;
+  width: 100%;
 }
 
 .feedbackAvatar {
-  padding: 0px 10px;
   display: flex;
   gap: 10px;
 }
 
 .feedbackComment {
-  padding: 20px 0px;
+  padding: 15px;
   border-top: 1px solid;
 }
 
@@ -19,4 +18,21 @@
   height: 50px;
   background: #fff;
   border-radius: 50%;
+}
+
+.count {
+  background: #123;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15px;
+}
+
+.date {
+  font-size: 14px;
+}
+
+.description {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

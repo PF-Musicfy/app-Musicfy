@@ -1,5 +1,4 @@
-import s from "./dashboard.module.css";
-import { CardsFeedback } from "../../components/CardsFeedback";
+import { CardsFeedback } from "components/Cards";
 
 export default function DashboardFeedback() {
 

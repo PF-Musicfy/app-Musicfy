@@ -1,3 +1,27 @@
+.options {
+  font-size: 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.msg {
+  margin-bottom: 20px !important;
+}
+
+.name {
+  width: 300px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.extra {
+  display: flex;
+  font-size: 20px;
+  gap: 15px;
+}
+
 .container {
   background: rgb(32, 32, 32);
   color: #fff;
@@ -7,6 +31,7 @@
   bottom: 0;
   width: 100%;
   z-index: 10;
+  text-align: center;
 }
 
 .container p {
@@ -19,8 +44,8 @@
   height: 5px;
   width: 100%;
   cursor: pointer;
-  overflow: hidden;
   margin: 0;
+  overflow: hidden;
   position: relative;
   top: -10px;
 }
@@ -57,12 +82,23 @@
 
 .controls {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
+  padding: 0px 20px 10px 20px;
 }
 
-.volume {
+.volumenIcon {
+  display: inline;
+  font-size: 20px;
+}
+
+.volumen {
+  display: flex;
+  align-items: center;
+}
+
+.volumen input[type="range"] {
+  position: unset;
   width: 100px !important;
-  position: static !important;
 }

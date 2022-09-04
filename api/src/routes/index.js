@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const Post = require("../models/Post.js");
-const { mailTransport } = require("../controllers/mailController");
+const { mailTransport, mailRegistered, mailSendMessage } = require("../controllers/mailController");
 const { Router } = require("express");
 const app = Router();
 const { generateToken } = require("../controllers/generateTokenController");
@@ -40,11 +40,11 @@ app.get("/payment", async function (req, res, next) {
   PaymentInstance.getPaymentLink(req, res);
 });
 
-app.get("/subscription/:email", async function (req, res, next) {
-  const { email } = req.params;
+app.get("/subscription/:email/:plan/:month", async function (req, res, next) {
+  const { email, plan, month } = req.params;
   if (email) {
     try {
-      PaymentInstance.getSubscriptionLink(req, res, email);
+      PaymentInstance.getSubscriptionLink(req, res, email, plan, month);
     } catch (error) {
       next(error);
     }
@@ -53,18 +53,18 @@ app.get("/subscription/:email", async function (req, res, next) {
   }
 });
 
-app.get("/subscription", async function (req, res, next) {
-  const { preapproval_id } = req.query;
-  if (preapproval_id) {
-    try {
-      res.send("Hay id");
-    } catch (error) {
-      next(error);
-    }
-  } else {
-    res.send("No hay id");
-  }
-});
+// app.get("/subscription", async function (req, res, next) {
+//   const { preapproval_id } = req.query;
+//   if (preapproval_id) {
+//     try {
+//       res.send("Hay id");
+//     } catch (error) {
+//       next(error);
+//     }
+//   } else {
+//     res.send("No hay id");
+//   }
+// });
 
 app.get("/topmusic", async (req, res, next) => {
   try {
@@ -95,36 +95,24 @@ app.get("/name", async (req, res, next) => {
   }
 });
 
-// app.post("/send-email", (req, res, next) => {
-//   const {eMail} = req.body
-//   let token = generateToken()
-//   let transporter = mailTransport()
-//   let mailOptions = {
-//     from: "adminAPI",
-//     to: eMail,
-//     subject: "Key obtained",
-//     text: `Hello! Put this key into KEY input in order to complete registration: ${token}.`
-//   }
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       res.status(500).send(error.message)
-//     } else {
-//       console.log('email enviado')
-//       res.status(200).jsonp(token)
-//     }
-//   })
-// })
+app.post("/send-message", (req, res, next) => {
+  const { email, subject, text } = req.body;
+  console.log('email: ', email, 'subject: ', subject, "text: ", text)
+  let transporter = mailTransport();
+  transporter.sendMail(mailSendMessage(email, subject, text), (error, info) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else {
+      console.log("mensaje enviado");
+      res.status(200).jsonp(req.body);
+    }
+  });
+});
 
 app.post("/send-email-registered", (req, res, next) => {
-  const { eMail } = req.body;
+  const { email } = req.body;
   let transporter = mailTransport();
-  let mailOptions = {
-    from: "adminAPI",
-    to: eMail,
-    subject: "Register succesful",
-    text: `You have been succesfully registered in Musicfy! Welcome!`
-  };
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailRegistered(email), (error, info) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
@@ -216,10 +204,9 @@ app.get("/playlist/:id", async (req, res, next) => {
 
 app.post("/feedback", async (req, res) => {
   try {
-    const { username, title, description } = req.body;
-    const newPost = new Post({ username, title, description });
+    const { description } = req.body;
+    const newPost = new Post({ description });
     await newPost.save();
-    //console.log(newPost)
     res.send("newPost saved");
   } catch (e) {
     res.status(500).send("newPost failed");
@@ -229,7 +216,7 @@ app.post("/feedback", async (req, res) => {
 app.get("/feedback", async (req, res) => {
   try {
     const posts = await Post.find();
-    console.log(posts);
+    //console.log(posts);
     res.send(posts);
   } catch (e) {
     res.status(500).send("not get Post");

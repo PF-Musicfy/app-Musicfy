@@ -1,31 +1,45 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import { getUsers } from "store/slice/user";
+
 import s from "./dashboard.module.css";
-import CompactCard from "./CompactCard.jsx";
-import { CardsFeedbackCompact } from "../../components/CardsFeedback";
+import { CardsFeedbackCompact } from "components/Cards";
 
 export default function DashboardHome() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   return (
-    <div>
-      <div className={s.module}>
-        <CompactCard
-          total={'2,123'}
-          title={'free'}
-        />
-        <CompactCard
-          total={'4,643'}
-          title={'premium'}
-        />
-        <CompactCard
-          total={'$1,012'}
-          title={'collect'}
-        />
+    <>
+      <div className={s.module} onClick={() => navigate('list')}>
+        <div className={s.preview}>
+          <div className={s.statusbar}>
+            <div>
+              free {Object.keys(users).length}
+            </div>
+            <div>
+              premium {Object.values(users).reduce((sum, val)=>(val.premium ? sum+1 : sum),0)}
+            </div>
+            <div>
+              online {Object.values(users).reduce((sum, val)=>(val.online ? sum+1 : sum),0)}
+            </div>
+          </div>
+          <div className={s.submodule}>
+            lista de usuarios
+          </div>
+        </div>
       </div>
-      <div className={s.module}>
+      <div className={s.module} onClick={() => navigate('feedback')}>
         <p>FeedbackCompact</p>
         <CardsFeedbackCompact />
       </div>
-      <div className={s.module}>
-        Ultimas compras de cuenta Premium
-      </div>
-    </div>
+    </>
   )
 }

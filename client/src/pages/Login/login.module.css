@@ -18,10 +18,11 @@
 }
 
 .form {
+  border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 30px;
   text-align: center;
-  margin-bottom: 15px;
+  margin: 20px;
 }
 
 .inputError {
@@ -47,21 +48,21 @@
 
 .options {
   padding: 10px;
-  border-bottom: 1px solid;
 }
 .container {
-  margin: auto;
-  width: 40%;
+  margin: 30px auto;
+  width: 45%;
 }
 
 .button {
   padding: 0 10px;
 }
 .msgError {
-  margin-bottom: 0px;
+  margin-bottom: 40px;
   font-size: 14px;
-  color: rgb(186, 8, 8);
-  font-weight: 600;
+  color: rgb(241, 54, 54);
+  text-align: center;
+  font-weight: 500;
 }
 .eye {
   font-size: 20px;
@@ -114,8 +115,12 @@
   border-radius: 10px;
   display: block;
   margin: auto;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   margin-top: 10px;
+}
+
+.form .passInput {
+  margin-top: 70px;
 }
 
 .login .navbar button {
@@ -127,4 +132,16 @@
 
 .login .navbar button:hover {
   color: #fff;
+}
+
+@media screen and (max-width: 670px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    width: 85%;
+  }
 }

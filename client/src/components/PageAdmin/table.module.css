@@ -1,9 +1,20 @@
-table {
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.table {
   min-width: 65%;
 }
-th {
+.head {
   background: var(--mainColor);
   color: #000;
+}
+.modalito {
+  position: absolute;
+  left: 35%;
+  top: 20%;
 }
 
 th,
@@ -12,12 +23,14 @@ td {
   text-align: center;
   font-weight: normal;
 }
-
-tr {
+.pointer {
+  cursor: pointer;
+}
+.row {
   background-color: #555;
 }
 
-tr:nth-child(even) {
+.row:nth-child(even) {
   background-color: #333;
 }
 button {

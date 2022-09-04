@@ -2,21 +2,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: 'Cabin', sans-serif;
-    /* border: 1px solid greenyellow; */
+    /* height: 100vh; */
+    font-family: "Cabin", sans-serif;
+    position: relative;
 
 }
 
 .centerContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: white;
     width: 1200px;
-    height: 900px;
-    background: radial-gradient(100% 100% at 100% 0%, #cf355c74 0%, #0c11365d 100%);
+    height: 100vh;
+    background: radial-gradient(100% 100% at 100% 0%,
+            #cf355c74 0%,
+            #0c11365d 100%);
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    /* border: 1px solid white; */
 }
 
 /* ------- all items of center container ------- */
@@ -36,7 +40,11 @@
     background: gray;
     border-radius: 50%;
     display: inline-block;
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+        rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+        rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+        rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+        rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .circleImage:hover {
@@ -45,6 +53,7 @@
 
 .insideCircle {
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .infoNavbar {
@@ -52,14 +61,15 @@
     margin: 20px 0px 0px 15px;
     flex-flow: column;
     justify-content: flex-end;
-    font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif), sans-serif;
+    font-family: CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl,
+        CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif),
+        sans-serif;
 }
 
 .h2Perfil {
     margin-left: 0.2em;
     font-size: 15px;
     font-weight: 600;
-
 }
 
 .h1UserName {
@@ -67,7 +77,7 @@
     visibility: visible;
     width: 100%;
     font-size: 4.5rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .underUsername {
@@ -83,11 +93,9 @@
     padding: 5px;
     position: absolute;
     font-weight: 600;
-    margin-top: 10px;
-    margin-left: 1060px;
+    top: 10px;
+    right: 40px;
 }
-
-
 
 .infoDetail {
     display: flex;
@@ -106,8 +114,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    width: 800px;
-    height: 450px;
+    width: 1100px;
+    /* height: 450px; */
     /* border: 1px solid pink; */
 }
 
@@ -121,29 +129,23 @@
     font-weight: 600;
     margin-top: 15px;
     margin-left: 29px;
-
 }
 
-.containerSwiper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-bottom: 30px; */
-    /* border: 1px solid greenyellow; */
-}
-
+.containerSwiper,
 .containerSwiper2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px -24px 0px 19px
 }
 
 .imgSwiper {
     margin-top: 40px;
     border-radius: 3px;
-    width: 160px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
+    /* margin-left: 35px; */
     /* border: 1px solid greenyellow; */
 }
 
@@ -184,7 +186,6 @@
     font-size: 15px;
 }
 
-
 .centerContainerDisplay {
     display: none;
 }
@@ -217,5 +218,332 @@
     cursor: pointer;
 }
 
-
 /* ------ FINAL ESTILOS MODAL ------ */
+
+.carousel1,
+.carousel2 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* <------ MENOR A 1230px ------> */
+@media screen and (max-width: 1230px) {
+    .centerContainer {
+        width: 985px;
+        height: 100vh;
+        /* margin-bottom: 5px; */
+        /* border: 1px solid white; */
+    }
+
+    .centerInfoContainer {
+        width: 900px;
+        align-items: center;
+        /* border: 1px solid greenyellow; */
+    }
+    .carousel1,
+    .carousel2 {
+        width: 80%;
+        /* border: 1px solid green; */
+    }
+
+    .imgSwiper {
+        width: 110px;
+        height: 110px;
+    }
+
+    .h3Colors, .h3Colors2, .h3artistName{
+        width: 115px;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -26px 0px 19px;
+    }
+
+
+    .premiumNormal {
+        margin-right: 77px;
+    }
+}
+
+
+/* <------ MENOR A 1015px ------> */
+@media screen and (max-width: 1015px) {
+    .h1UserName {
+        font-size: 45px;
+    }
+
+    .circleImage {
+        width: 160px;
+        height: 160px;
+    }
+
+    .centerContainer {
+        width: 750px;
+        height: 100vh;
+    }
+
+    .imgSwiper {
+        width: 105px;
+        height: 105px;
+    }
+
+    .h3Colors, .h3Colors2, .h3artistName{
+        font-size: 14px;
+        width: 100px;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 70%;
+        /* border: 1px solid green; */
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -24px 0px 19px;
+    }
+
+    .centerInfoContainer {
+        width: 700px;
+        align-items: center;
+    }
+}
+
+
+/* <------ MENOR A 780px ------> */
+@media screen and (max-width: 780px) {
+    .h1UserName {
+        font-size: 30px;
+    }
+
+    .circleImage {
+        width: 140px;
+        height: 140px;
+    }
+
+    .centerContainer {
+        width: 550px;
+        height: 100vh;
+    }
+
+    .imgSwiper {
+        width: 75px;
+        height: 75px;
+    }
+
+    .h3Colors, .h3Colors2, .h3artistName{
+        font-size: 12px;
+        width: 90px;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 80%;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -24px 0px 19px;
+    }
+
+    .centerInfoContainer {
+        width: 550px;
+        align-items: center;
+        /* border: 1px solid red;   */
+    }
+
+    .premiumNormal {
+        font-size: 14px;
+        /* margin-right: 100px; */
+    }
+    .underUsername{
+        margin-top: 5px;
+    }
+}
+
+/* <------ MENOR A 580px ------> */
+@media screen and (max-width: 580px) {
+    .h1UserName {
+        font-size: 30px;
+    }
+
+    .circleImage {
+        width: 120px;
+        height: 120px;
+    }
+
+    .centerContainer {
+        width: 370px;
+        height: 100vh;
+    }
+
+    .imgSwiper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 80%;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -10px 0px 3px;
+    }
+
+    .centerInfoContainer {
+        width: 400px;
+        align-items: center;
+        /* border: 1px solid white; */
+    }
+
+    .premiumNormal {
+        font-size: 14px;
+        /* margin-right: 100px; */
+    }
+    .underUsername{
+        margin-top: 5px;
+    }
+}
+
+/* <------ MENOR A 455px ------> */
+@media screen and (max-width: 455px) {
+    .h1UserName {
+        font-size: 30px;
+    }
+
+    .circleImage {
+        width: 110px;
+        height: 110px;
+    }
+
+    .imgSwiper {
+        width: 110px;
+        height: 110px;
+    }
+
+    .centerContainer {
+        width: 300px;
+        height: 100vh;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 70%;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -5px 0px 5px;
+    }
+
+    .centerInfoContainer {
+        width: 300px;
+        align-items: center;
+        /* border: 1px solid white; */
+    }
+
+    .premiumNormal {
+        font-size: 14px;
+    }
+    .underUsername{
+        margin-top: 5px;
+    }
+}
+
+/* <------ MENOR A 580px ------> */
+@media screen and (max-width: 375px) {
+    .h1UserName {
+        font-size: 30px;
+    }
+
+    .circleImage {
+        width: 110px;
+        height: 110px;
+    }
+
+    .imgSwiper {
+        width: 110px;
+        height: 110px;
+    }
+
+    .centerContainer {
+        width: 300px;
+        height: 100vh;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 70%;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px -22px 0px 8px;
+    }
+
+    .centerInfoContainer {
+        width: 300px;
+        align-items: center;
+        /* border: 1px solid white; */
+    }
+
+    .premiumNormal {
+        font-size: 14px;
+    }
+    .underUsername{
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 220px) {
+    .h1UserName {
+        font-size: 30px;
+    }
+
+    .circleImage {
+        width: 110px;
+        height: 110px;
+    }
+
+    .imgSwiper {
+        width: 105px;
+        height: 105px;
+    }
+
+    .centerContainer {
+        width: 300px;
+        height: 100vh;
+    }
+
+    .carousel1,
+    .carousel2 {
+        width: 70%;
+        border: 1px solid blue;
+    }
+
+    .containerSwiper,
+    .containerSwiper2 {
+        margin: 0px 10px 0px 0px;
+    }
+
+    .centerInfoContainer {
+        width: 375px;
+        align-items: center;
+        /* border: 1px solid white; */
+    }
+
+    .h3Colors, .h3Colors2, .h3artistName{
+        font-size: 12px;
+        width: 105px;
+    }
+
+    .premiumNormal {
+        font-size: 14px;
+    }
+    .underUsername{
+        margin-top: 5px;
+    }
+}

@@ -20,14 +20,16 @@ export default function NavBarHome() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
+  console.log(user.favorites)
+
   async function handleClick() {
     setProfile(!profile);
     // dispatch(userTokenInfo("http://localhost:5000/api/v1/auth/perfil"));
   }
   function handleLog() {
-    logoutUser();
-    setLogged(!logged);
-    window.location.reload();
+    dispatch(logoutUser());
+    //setLogged(!logged);
+    //window.location.reload();
   }
   function onClickHome(e) {
     e.preventDefault();
@@ -36,20 +38,25 @@ export default function NavBarHome() {
 
   return (
     <div>
-      {logged ? (
+      {Object.keys(user).length ? (
         <div>
           <header>
             <div className="searchStyle">
               <SearchBar />
             </div>
             <div className="logo-div">
-              <a href="./">
-                <img src={imagen2} className="logo" alt="loguito" />
-              </a>
-              <span>Musicfy</span>
+              <Link to="/">
+                <img
+                  className="logo"
+                  src="https://i.imgur.com/GiyjGcI.png"
+                  alt="Musicfy Logo"
+                />
+              </Link>
+              <Link to="/">
+                <span className="logoTxt">MusicFy</span>
+              </Link>
             </div>
             <nav ref={navRef}>
-              {/* <Link to='/home'> */}
               <span
                 onClick={(e) => {
                   onClickHome(e);
@@ -58,27 +65,30 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              {/* </Link> */}
-              <Link to="/favorites">
-                <span>Favorites</span>
-              </Link>
-              <Link to="/favorites">
+              {/* <Link to="/playlist"> */}
                 <span>+Playlist</span>
-              </Link>
+              {/* </Link> */}
               <Link to="/library">
                 <span>Library</span>
               </Link>
-              {/* <Link onClick={handleClick} to="/profile">
-                <span>Perfil</span>
-              </Link> */}
-
-              {/* <Link to="/profile">
-                <span className="perfil">Profile</span>
-              </Link> */}
+              <Link to="/favorites">
+                <span>Favorites</span>
+              </Link>
+                <Link to ="/profile">
+                <span className="profile">Profile</span>
+              </Link>
+              <Link to="/login">
+                <span className="logout">Log out</span>
+              </Link>
               <button className="nav-btn nav-close-btn" onClick={showNavBar}>
                 <FaTimes />
               </button>
-              <img src={imagen} className="avatar" onClick={handleClick} alt="avatarsito" />
+              <img
+                src={user.avatar || imagen}
+                className="avatar"
+                onClick={handleClick}
+                alt="avatarsito"
+              />
             </nav>
             <button className="nav-btn" onClick={showNavBar}>
               <FaBars />
@@ -94,7 +104,7 @@ export default function NavBarHome() {
                   <span>Premium</span>
                 </Link>
                 <span onClick={handleLog} className="logOut">
-                  Log out
+                  Logout
                 </span>
               </div>{" "}
             </div>
@@ -102,16 +112,29 @@ export default function NavBarHome() {
         </div>
       ) : (
         <header>
+          <div className="searchStyle-nologged">
+            <SearchBar />
+          </div>
           <div className="logo-div">
-            <img src={imagen2} className="logo" alt="loguito2" />
-            <span>Musicfy</span>
+            <Link to="/">
+              <img
+                className="logo"
+                src="https://i.imgur.com/GiyjGcI.png"
+                alt="Musicfy Logo"
+              />
+            </Link>
+            <Link to="/">
+              <span className="logoTxt">MusicFy</span>
+            </Link>
           </div>
           <nav ref={navRef}>
             <div className="no-logged">
               <Link to="/register">
                 <span>Register</span>
               </Link>
-              <span onClick={handleLog}>Log in</span>
+              <Link to="/login">
+                <span>Login</span>
+              </Link>
             </div>
 
             <button className="nav-btn nav-close-btn" onClick={showNavBar}>
@@ -125,4 +148,4 @@ export default function NavBarHome() {
       )}
     </div>
   );
-}
+      }
