@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { userTokenInfo } from "store/slice/user.js";
 
 export default function ModuleLogin({ success }) {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     user: "",
     pass: "",
