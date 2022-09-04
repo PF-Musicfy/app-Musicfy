@@ -33,29 +33,28 @@ export default function ModuleLogin({ success }) {
     e.preventDefault();
 
     try {
-      //await login(
-      //  {
-      //    email: input.user,
-      //    password: input.pass,
-      //  },
-      //  "/api/v1/auth/login",
-      //  success
-      //);
-      console.log('dentro de module login')
+      await login(
+        {
+          email: input.user,
+          password: input.pass,
+        },
+        "/api/v1/auth/login",
+        success
+      );
+      //console.log('dentro de module login')
 
-      const asd = await axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`,{
-        email: input.user,
-        password: input.pass,
-      },{
-        withCredentials: true
-      })
+      //const asd = await axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`,{
+      //  email: input.user,
+      //  password: input.pass,
+      //},{
+      //  withCredentials: true
+      //})
 
-      console.log('token',asd.data.token)
+      //console.log('token',asd.data.token)
       //setCookie('refreshToken', asd.data.token, {path: '/'})
-      cookies.set('refreshToken', asd.data.token, {path: '/'})
-      console.log('token module',cookies)
+      //cookies.set('refreshToken', asd.data.token, {path: '/'})
 
-      dispatch(userTokenInfo(cookies.get('refreshToken')))
+      //dispatch(userTokenInfo())
     } catch (e) {
       console.log("error login", e);
     }
