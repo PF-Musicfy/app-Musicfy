@@ -23,7 +23,7 @@ export default function ModuleLogin({ success }) {
     e.preventDefault();
 
     try {
-      await login(
+      const { data } = await login(
         {
           email: input.user,
           password: input.pass,
@@ -31,6 +31,7 @@ export default function ModuleLogin({ success }) {
         "/api/v1/auth/login",
         success
       );
+      console.log('data en module login',data)
     } catch (e) {
       console.log("error login");
     }
