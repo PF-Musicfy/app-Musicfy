@@ -27,8 +27,9 @@ export default function Body2() {
         </div>
         <div className={styles.element}>
           <MdHighQuality className={styles.icon} />
-          <h1 className={styles.title}>High Fidelity sound</h1>
+          <h1 className={styles.title}>High Quality</h1>
           <p className={styles.phrase}>High Fidelity sound</p>
+          <br />
         </div>
       </div>
       <div className={styles.container2}>
