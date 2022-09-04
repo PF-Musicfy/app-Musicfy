@@ -67,23 +67,34 @@
 }
 
 @media (max-width: 856px) {
+  .containerTitle {
+    text-align: center;
+  }
   .Title {
     font-size: 88px;
+    padding-left: 0px;
+  }
+  .Subtitle {
+    padding-left: 0px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 655px) {
   .Title {
     font-size: 46px;
+    padding-left: 0px;
   }
   .Subtitle {
     font-size: 15px;
-    padding: 0 0 22px 43px;
   }
   body {
     overflow-x: hidden;
   }
   .BodyLanding {
     width: 104%;
+  }
+  .containerTitle {
+    text-align: center;
+    padding-left: 0px;
   }
 }
