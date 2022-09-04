@@ -24,15 +24,16 @@ export default function ModuleLogin({ success }) {
 
     try {
        console.log('dentro de module login')
-      const asd = await login(
-        {
-          email: input.user,
-          password: input.pass,
-        },
-        "/api/v1/auth/login",
-        success
-      );
-      console.log('data en module login',asd)
+       const asd = await axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`,
+         {
+           email: input.user,
+           password: input.pass,
+         },{
+         withCredentials: true
+       })
+       console.log('data en module login',asd)
+       console.log('todo bien module login')
+       dispatch(userTokenInfo())
     } catch (e) {
       console.log("error module login",e);
     }
