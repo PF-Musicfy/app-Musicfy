@@ -44,7 +44,7 @@ class PaymentService {
         currency_id: "ARS"
       },
       notification_url: "",
-      back_url: "https://app-musicfy.vercel.app/mercadopago",
+      back_url: `${process.env.ORIGIN1}/mercadopago`,
       payer_email: email
     };
     const subscription = await axios.post(url, body, {

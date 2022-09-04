@@ -121,12 +121,12 @@ export const userTokenPremium = (premium = true) => {
 export const userTokenAvatar = (avatar) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
         method: "GET",
         credentials: "include"
       });
       const { token } = await resToken.json();
-      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/setavatar`, {
+      const res = await fetch("http://localhost:5000/api/v1/auth/setavatar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
