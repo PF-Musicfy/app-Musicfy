@@ -12,6 +12,7 @@ const requireRefreshToken = (req, res, next) => {
     next();
     next();
   } catch (error) {
+    console.log('requirerefreshtoken',error)
     res.status(401).json({ error: tokenVerificationErrors[error.message] });
   }
 };
