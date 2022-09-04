@@ -71,8 +71,8 @@ export const userTokenInfo = () => {
       //} = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
       //  withCredentials: true,
       //});
-      console.log("datalogin", token);
-      dispatch(setLoading("tengo el token"));
+      console.log('datalogin', token)
+      dispatch(setLoading("Loading..."));
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
@@ -83,7 +83,7 @@ export const userTokenInfo = () => {
       dispatch(setLoading("tengo la data"));
     } catch (e) {
       console.log("No se encontro el token", e);
-      dispatch(setLoading("no encontre el token"));
+      dispatch(setLoading("Can't find token"));
     }
     dispatch(setLoading(""));
   };
@@ -91,15 +91,17 @@ export const userTokenInfo = () => {
 
 export const userTokenPremium = (premium = true) => {
   return async function (dispatch) {
-    console.log(premium);
     try {
-      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-        method: "GET",
-        credentials: "include"
-      });
+      // const resToken = await fetch(
+      //   "http://localhost:5000/api/v1/auth/refresh",
+      //   {
+      //     method: "GET",
+      //     credentials: "include",
+      //   }
+      // );
 
-      const { token } = await resToken.json();
-      console.log(token);
+      // const { token } = await resToken.json();
+      const token = cookies.get('refreshToken');
 
       const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
@@ -121,11 +123,15 @@ export const userTokenPremium = (premium = true) => {
 export const userTokenAvatar = (avatar) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
-        method: "GET",
-        credentials: "include"
-      });
-      const { token } = await resToken.json();
+      // const resToken = await fetch(
+      //   "http://localhost:5000/api/v1/auth/refresh",
+      //   {
+      //     method: "GET",
+      //     credentials: "include",
+      //   }
+      // );
+      // const { token } = await resToken.json();
+      const token = cookies.get('refreshToken');
       const res = await fetch("http://localhost:5000/api/v1/auth/setavatar", {
         method: "POST",
         headers: {
@@ -170,19 +176,26 @@ export const logoutUser = () => {
 export const favoritesUser = (favorites) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-        method: "GET",
-        credentials: "include"
-      });
-      const { token } = await resToken.json();
-      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/favorites`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ favorites })
-      });
+      // const resToken = await fetch(
+      //   `${axios.defaults.baseURL}/api/v1/auth/refresh`,
+      //   {
+      //     method: "GET",
+      //     credentials: "include",
+      //   }
+      // );
+      // const { token } = await resToken.json();
+      const token = cookies.get('refreshToken');
+      const res = await fetch(
+        `${axios.defaults.baseURL}/api/v1/auth/favorites`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ favorites }),
+        }
+      );
       const data = await res.json();
       console.log(data);
     } catch (error) {
