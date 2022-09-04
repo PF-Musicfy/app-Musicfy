@@ -44,7 +44,7 @@ class PaymentService {
         currency_id: "ARS"
       },
       notification_url: "",
-      back_url: "http://127.0.0.1:3000/mercadopago",
+      back_url: `${process.env.ORIGIN1}/mercadopago`,
       payer_email: email
     };
     const subscription = await axios.post(url, body, {
