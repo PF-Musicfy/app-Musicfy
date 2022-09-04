@@ -81,7 +81,7 @@ export const userTokenInfo = () => {
       dispatch(setUser(data));
       dispatch(setLoading("tengo la data"));
     } catch (error) {
-      console.log("No se encontro el token");
+      console.log("No se encontro el token",error);
       dispatch(setLoading("no encontre el token"));
     }
     dispatch(setLoading(""));
