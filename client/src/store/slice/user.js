@@ -59,16 +59,16 @@ export const getUserModal = (email) =>
 
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
-export const userTokenInfo = () => {
+export const userTokenInfo = (token) => {
   return async function (dispatch) {
     dispatch(setLoading("cargando"));
     try {
       console.log('entro en login');
-      const {
+      /*const {
         data: { token },
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true,
-      });
+      });*/
       console.log('datalogin',token);
       dispatch(setLoading("tengo el token"));
 
