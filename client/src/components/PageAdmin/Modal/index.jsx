@@ -4,10 +4,11 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-export default function Modal({ closeModal }) {
+export default function Modal({ closeModal }) {  
   const { usermodal } = useSelector((state) => state.user);
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
+  let user = usermodal[0].username
 
   const handleSubject = (e) => {
     setSubject(e.target.value);
@@ -38,7 +39,7 @@ export default function Modal({ closeModal }) {
           <div className={s.title}>
             <h1>Send a message</h1>
           </div>
-          <div className={s.user}>User: {usermodal.username}</div>
+          <div className={s.user}> User: {user} </div>
           <input
             className={s.subject}
             maxLength="20"
