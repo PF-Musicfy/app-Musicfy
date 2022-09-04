@@ -22,8 +22,7 @@ const generateRefreshToken = (uid, res) => {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      //secure: !(process.env.MODO === "developer"),
-      domain: process.env.ORIGIN1 || 'http://localhost:3000',
+      secure: !(process.env.MODO === "developer"),
       expires: new Date(Date.now() + expiresIn * 1000),
     });
   } catch (error) {
