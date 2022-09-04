@@ -1,7 +1,10 @@
 const { Router } = require("express");
 const axios = require("axios");
 const User = require("../models/User.js");
-const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
+const {
+  generateRefreshToken,
+  generateToken,
+} = require("../utils/tokenManager.js");
 
 const router = Router();
 
@@ -10,12 +13,23 @@ router.get("/", async (req, res) => {
   console.log(req.query);
   if (username) {
     let userFound = await User.find({
-      username: { $regex: username, $options: "i" }
+      username: { $regex: username, $options: "i" },
     }).limit(5);
     return res.send(userFound);
   } else {
     const users = await User.find();
     res.send(users);
+  }
+});
+router.get("/usermodal", async (req, res) => {
+  const { email } = req.query;
+  if (email) {
+    let userFound = await User.find({
+      email: { $regex: email, $options: "i" },
+    }).limit(5);
+    return res.send(userFound);
+  } else {
+    res.status(500).send("error, no usermodal found");
   }
 });
 router.get("/free", async (req, res) => {
@@ -82,7 +96,7 @@ router.post("/changeblock", async (req, res) => {
     res.status(500).send("error put/block");
   }
 });
-router.post("/google", async (req,res) => {
+router.post("/google", async (req, res) => {
   try {
     const { username, email } = req.body;
     console.log(req.body);
@@ -91,7 +105,7 @@ router.post("/google", async (req,res) => {
     if (user) {
       const { token, expiresIn } = generateToken(user.id);
       generateRefreshToken(user.id, res);
-      console.log('google',user);
+      console.log("google", user);
       return res.status(201).json({ token, expiresIn });
     }
 
@@ -102,10 +116,10 @@ router.post("/google", async (req,res) => {
     const { token, expiresIn } = generateToken(user.id);
     generateRefreshToken(user.id, res);
 
-    console.log('google',user);
+    console.log("google", user);
     return res.status(201).json({ token, expiresIn });
   } catch (error) {
-    console.log('error post/google',error)
+    console.log("error post/google", error);
   }
-})
+});
 module.exports = router;
