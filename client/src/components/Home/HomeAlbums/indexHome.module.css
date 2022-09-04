@@ -1,7 +1,12 @@
+.swiperGlobal{
+  width: 90%;
+}
+
 .imgSwiper {
+  margin-top: 20px;
   border-radius: 3px;
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 170px;
   object-fit: cover;
   /* border: 1px solid greenyellow; */
 }
@@ -10,27 +15,23 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 180px;
+  width: 170px;
   color: white;
   margin-top: 3px;
-  /* border: 1px solid purple; */
+  /* border: 1px solid blue; */
+}
+
+.cardImages{
+  height: 260px;
+  /* border: 1px solid white; */
 }
 
 .containerSwiper {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 220px;
-  height: 250px;
+  justify-content: center;
+  margin: 0px -22px 0px 14px;
   margin-bottom: 30px;
   /* border: 1px solid yellow; */
-}
-
-.albumSuperiorContainer {
-  width: 100%;
-  z-index: -10;
-  /* margin: 0px -10px 0px -10px; */
-  /* border: 1px solid red; */
 }
 
 .titleGenre {
@@ -38,6 +39,8 @@
   margin-bottom: 5px;
   color: white;
   font-size: 18px;
+  width: 120px;
+  margin-left: 175px;
 }
 
 .buttonsFilter {
@@ -72,7 +75,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.buttonsFilterSelect > span {
+.buttonsFilterSelect>span {
   border-bottom: 1px solid #ccc;
 }
 
@@ -84,10 +87,12 @@
   margin: 0px 10px 0px 10px;
   background: var(--mainColor);
 }
+
 .buttonStyles:hover {
   background-color: aliceblue;
   color: var(--mainColor);
 }
+
 .containerAlbumes {
   display: none;
 }
@@ -111,4 +116,121 @@
     align-items: center;
     margin: 20px 0;
   }
+}
+
+@media screen and (max-width: 1000px) {
+  .swiperGlobal{
+    width: 75%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+    /* border: 1px solid yellow; */
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 145px;
+    height: 135px;
+    object-fit: cover;
+    /* border: 1px solid greenyellow; */
+  }
+  
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 145px;
+    color: white;
+    font-size: 14px;
+    /* border: 1px solid blue; */
+  }
+
+  .cardImages{
+    margin-bottom: 10px;
+    height: 240px;
+    /* border: 1px solid white; */
+  }
+
+}
+
+@media screen and (max-width: 650px) {
+  .swiperGlobal{
+    width: 70%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+    /* border: 1px solid yellow; */
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+    /* border: 1px solid greenyellow; */
+  }
+  
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 105px;
+    color: white;
+    font-size: 12px;
+    /* border: 1px solid blue; */
+  }
+
+  .cardImages{
+    margin-bottom: 10px;
+    height: 240px;
+    /* border: 1px solid white; */
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .swiperGlobal{
+    width: 70%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+    /* border: 1px solid yellow; */
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+    /* border: 1px solid greenyellow; */
+  }
+  
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 105px;
+    color: white;
+    font-size: 12px;
+    /* border: 1px solid blue; */
+  }
+
+  .cardImages{
+    margin-bottom: 10px;
+    height: 240px;
+    /* border: 1px solid white; */
+  }
+
 }
