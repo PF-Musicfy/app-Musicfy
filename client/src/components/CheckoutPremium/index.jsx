@@ -10,7 +10,7 @@ export default function CheckoutPremium() {
   useEffect(() => {
     //preguntar algo antes de validar
     dispatch(userTokenPremium());
-    navigate("/");
+    setTimeout(() => navigate("/"), 2000);
     // window.location.replace("http://localhost:3000/");
   }, []);
   return (

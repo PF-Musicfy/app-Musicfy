@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     user: {},
     loading: "",
     favorites: [],
-    usermodal: {},
+    usermodal: {}
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -29,12 +29,11 @@ export const userSlice = createSlice({
     },
     setUserModal: (state, action) => {
       state.usermodal = action.payload;
-    },
-  },
+    }
+  }
 });
 
-export const { setFeedback, setUsers, setUser, setLoading, setUserModal } =
-  userSlice.actions;
+export const { setFeedback, setUsers, setUser, setLoading, setUserModal } = userSlice.actions;
 
 export default userSlice.reducer;
 
@@ -55,10 +54,8 @@ export const getUsers = () => elCreador("/user", setUsers);
 export const getUsersFree = () => elCreador("/user/free", setUsers);
 export const getUsersPremium = () => elCreador("/user/premium", setUsers);
 export const getUsersAdmin = () => elCreador("/user/admin", setUsers);
-export const getUserByName = (user) =>
-  elCreador(`/user?username=${user}`, setUsers);
-export const getUserModal = (email) =>
-  elCreador(`/user/usermodal?email=${email}`, setUserModal);
+export const getUserByName = (user) => elCreador(`/user?username=${user}`, setUsers);
+export const getUserModal = (email) => elCreador(`/user/usermodal?email=${email}`, setUserModal);
 
 export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
@@ -66,25 +63,22 @@ export const userTokenInfo = () => {
   return async function (dispatch) {
     dispatch(setLoading("cargando"));
     try {
-      console.log('entro en login')
-      const token = cookies.get('refreshToken');
-      console.log('cookies dentro de login',cookies.get('refreshToken'))
+      console.log("entro en login");
+      const token = cookies.get("refreshToken");
+      console.log("cookies dentro de login", cookies.get("refreshToken"));
       //const {
       //  data: { token },
       //} = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
       //  withCredentials: true,
       //});
-      console.log('datalogin', token)
+      console.log("datalogin", token);
       dispatch(setLoading("tengo el token"));
 
-      const { data } = await axios.get(
-        `${axios.defaults.baseURL}/api/v1/auth/perfil`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      );
+      });
       dispatch(setUser(data));
       dispatch(setLoading("tengo la data"));
     } catch (e) {
@@ -99,24 +93,21 @@ export const userTokenPremium = (premium = true) => {
   return async function (dispatch) {
     console.log(premium);
     try {
-      const resToken = await fetch(
-        "http://localhost:5000/api/v1/auth/refresh",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+        method: "GET",
+        credentials: "include"
+      });
 
       const { token } = await resToken.json();
       console.log(token);
 
-      const res = await fetch("http://localhost:5000/api/v1/auth/premium", {
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ premium }),
+        body: JSON.stringify({ premium })
       });
 
       const data = await res.json();
@@ -130,21 +121,18 @@ export const userTokenPremium = (premium = true) => {
 export const userTokenAvatar = (avatar) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(
-        "http://localhost:5000/api/v1/auth/refresh",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resToken = await fetch("http://localhost:5000/api/v1/auth/refresh", {
+        method: "GET",
+        credentials: "include"
+      });
       const { token } = await resToken.json();
       const res = await fetch("http://localhost:5000/api/v1/auth/setavatar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ avatar }),
+        body: JSON.stringify({ avatar })
       });
       const data = await res.json();
       return dispatch(setUser(data));
@@ -156,9 +144,7 @@ export const userTokenAvatar = (avatar) => {
 
 export async function getMercadoPago(email, btnPrice, month) {
   try {
-    const emailVerify = await axios.get(
-      `${axios.defaults.baseURL}/subscription/${email}/${btnPrice}/${month}`
-    );
+    const emailVerify = await axios.get(`${axios.defaults.baseURL}/subscription/${email}/${btnPrice}/${month}`);
     return { url: emailVerify.data.init_point, id: emailVerify.data.id };
   } catch (error) {
     console.log(error);
@@ -169,9 +155,9 @@ export const logoutUser = () => {
   return async function (dispatch) {
     try {
       await axios.get(`${axios.defaults.baseURL}/api/v1/auth/logout`, {
-        withCredentials: true,
+        withCredentials: true
       });
-      cookies.remove('refreshToken');
+      cookies.remove("refreshToken");
 
       console.log("cookie clear");
       dispatch(setUser({}));
@@ -184,25 +170,19 @@ export const logoutUser = () => {
 export const favoritesUser = (favorites) => {
   return async function (dispatch) {
     try {
-      const resToken = await fetch(
-        `${axios.defaults.baseURL}/api/v1/auth/refresh`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+        method: "GET",
+        credentials: "include"
+      });
       const { token } = await resToken.json();
-      const res = await fetch(
-        `${axios.defaults.baseURL}/api/v1/auth/favorites`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ favorites }),
-        }
-      );
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/favorites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ favorites })
+      });
       const data = await res.json();
       console.log(data);
     } catch (error) {
