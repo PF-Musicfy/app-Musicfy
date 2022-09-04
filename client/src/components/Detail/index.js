@@ -32,7 +32,6 @@ function DetailTable({ e }) {
 
   // const localInfo = localStorage.getItem('favorites', JSON.stringify(favorites))
 
-  console.log(favorites);
   useEffect(() => {
     // if(user.premium){
     if (favorites.length > 0) {
@@ -73,9 +72,11 @@ function DetailAll({ arr }) {
       {arr[0]?.map((e, i) => (
         <div key={i}>
           <div className={s.front}>
-            <h1>{e.name}</h1>
-            <h2>{e.albumName}</h2>
-            <h2>{e.artistName}</h2>
+            <span className={s.nameInfo}>{e.name}</span>
+            <br />
+            <span className={s.albumNameInfo}>{e.albumName}</span>
+            <br />
+            <span className={s.artisNameInfo}>{e.artistName}</span>
           </div>
           <img src={e.images} alt={e.name} className={s.img} />
         </div>
@@ -97,12 +98,8 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
-
-  console.log(detailTracks);
   const [open, setOpen] = useState(false);
-
   const [allSongs, setAllSongs] = useState([]);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -112,8 +109,6 @@ export default function Detail() {
   useEffect(() => {
     setAllSongs(Object.values(detailTracks));
   }, [detailTracks]);
-
-  console.log(detailTracks);
 
   useEffect(() => {
     if (allSongs.length) {
