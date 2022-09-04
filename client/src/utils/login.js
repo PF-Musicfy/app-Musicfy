@@ -3,6 +3,9 @@ import axios from "axios";
 import { userTokenInfo } from "../store/slice/user";
 import Swal from 'sweetalert2';
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top',
@@ -20,6 +23,7 @@ export default function login(obj, url, text = 'logeado') {
       withCredentials: true
     })
     .then((e) => {
+      cookies.set('refreshToken', e.data.token, {path: '/'})
       Toast.fire({
         icon: 'success',
         title: text || 'Success'
