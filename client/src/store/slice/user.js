@@ -175,7 +175,7 @@ export const logoutUser = () => {
 };
 
 export const favoritesUser = (favorites) => {
-  return async function (dispatch) {
+  return async function () {
     try {
       // const resToken = await fetch(
       //   `${axios.defaults.baseURL}/api/v1/auth/refresh`,
@@ -203,13 +203,14 @@ export const favoritesUser = (favorites) => {
 }
 
 export const removeFavorites = (remove) => {
-  return async function(dispatch){
+  return async function(){
     try {
-      const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-        method: "GET",
-        credentials: "include"
-      });
-      const { token } = await resToken.json();
+      // const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+      //   method: "GET",
+      //   credentials: "include"
+      // });
+      // const { token } = await resToken.json();
+      const token = cookies.get("refreshToken");
       const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/remove`, {
         method: "POST",
         headers: {

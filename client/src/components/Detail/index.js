@@ -17,37 +17,19 @@ import { userTokenInfo } from "store/slice/user"
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
 function DetailTable({ e }) {
-  const [color, setColor] = useState(true);
+  // const [color, setColor] = useState(true);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { favorites } = useSelector((state) => state.player);
+
 
   
   useEffect(()=> {
     dispatch(userTokenInfo())
   },[dispatch])
 
-  // const filterUser = user.favorites.map(e => e.id)
-
   const getTracksFavorites = () => {
-    // if(filterUser && filterUser.includes(e.id)){
-    //   return ""
-    // }else{
       dispatch(favoritesUser(e))
-      // setColor(!color)
-    // }
   }
-
-  
-    //   console.log(favorites)
-    // useEffect(() => {
-    //   // if(user.premium){
-    //     if (favorites.length > 0) {
-    //       dispatch(favoritesUser(favorites));
-    //     }
-    //   // }
-    // }, [dispatch, favorites]);
-
 
 
   return (
@@ -63,11 +45,11 @@ function DetailTable({ e }) {
         <span className={s.artistSong}>{e.artistName}</span>
       </td>
       <td>
-        {color ? (
+        {/* {color ? ( */}
           <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
-        ) : (
+        {/* ) : (
           <AiFillHeart className={s.favorites1} onClick={() => getTracksFavorites()} />
-        )}
+        )} */}
         {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
       </td>
       <td>

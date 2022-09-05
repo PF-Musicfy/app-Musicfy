@@ -18,26 +18,33 @@ export default function DashboardHome() {
 
   return (
     <>
-      <div className={s.module} onClick={() => navigate("list")}>
+      <div className={s.module}>
         <div className={s.preview}>
-          <div className={s.statusbar}>
-            <div>free {Object.keys(users).length}</div>
-            <div>
-              premium{" "}
-              {Object.values(users).reduce(
-                (sum, val) => (val.premium ? sum + 1 : sum),
-                0
-              )}
+          <div className={s.containerstatus}>
+            <div className={s.statusbar} onClick={() => navigate("list")}>
+              <div>Free {Object.keys(users).length}</div>
+              <div>
+                Premium{" "}
+                {Object.values(users).reduce(
+                  (sum, val) => (val.premium ? sum + 1 : sum),
+                  0
+                )}
+              </div>
+              <div>
+                Online{" "}
+                {Object.values(users).reduce(
+                  (sum, val) => (val.online ? sum + 1 : sum),
+                  0
+                )}
+              </div>
             </div>
-            <div>
-              online{" "}
-              {Object.values(users).reduce(
-                (sum, val) => (val.online ? sum + 1 : sum),
-                0
-              )}
+            <div className={s.containerrol}>
+              <div className={s.rol}>Master</div>
             </div>
           </div>
-          <div className={s.submodule}>User list</div>
+          <div className={s.submodule} onClick={() => navigate("list")}>
+            <span className={s.openuser}>Open User List</span>
+          </div>
         </div>
       </div>
       <div className={s.module} onClick={() => navigate("feedback")}>
