@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TestMP() {
+  const navigate = useNavigate();
   useEffect(() => {
-    window.location.replace("http://localhost:3000/checkoutpremium");
+    navigate("/checkoutpremium");
   }, []);
   return (
     <>
