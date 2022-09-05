@@ -66,7 +66,8 @@ export default function ModuleLogin({ success }) {
         <LoginWithGoogle />
       </div>
       <form className={s.form} onSubmit={handleSubmit}>
-        <p>Email</p>
+        <p className={s.emailTitle}>Email</p>
+        <p className={s.msgError}>{errors.user || ""}</p>
         <input
           type="email"
           name="user"
@@ -75,8 +76,9 @@ export default function ModuleLogin({ success }) {
           value={input.user}
           className={errors.user ? s.inputError : ""}
         />
-        <p className={s.msgError}>{errors.user || ""}</p>
-        <p className={s.passInput}>Password</p>
+        
+        <p className={s.emailTitle}>Password</p>
+        <p className={s.msgError}>{errors.pass || ""}</p>
         <input
           ref={inputPass}
           type="password"
@@ -99,7 +101,7 @@ export default function ModuleLogin({ success }) {
         >
           <FaEye className={s.eye} />
         </button>
-        <p className={s.msgError}>{errors.pass || ""}</p>
+        
         <div className={s.containerSend}>
           <button className={s.btnSend}>Login</button>
         </div>

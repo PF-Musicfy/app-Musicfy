@@ -52,8 +52,13 @@
   margin-top: 40px;
 }
 
-.form_register .labelTop {
+.form_register .labelsStyles{
   margin-top: 0;
+  font-weight: 600;
+}
+
+.labels234{
+  font-weight: 600;
 }
 
 .form_register input {
@@ -152,11 +157,27 @@
 }
 
 .error {
+  position: absolute;
+  margin-left: 350px;
   color: rgb(241, 54, 54);
   text-align: center;
   font-weight: 500;
   font-size: 14px;
+  margin-top: 5px;
+  width: 170px;
 }
+
+/* .errorRepeatPasswowrd{
+  position: absolute;
+  margin-left: 350px;
+  margin-top: 40px;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid red;
+  width: 170px;
+} */
 
 .disabled {
   pointer-events: none;

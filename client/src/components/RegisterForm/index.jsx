@@ -72,7 +72,7 @@ export default function RegisterForm() {
         <form className={styles.form_register} onSubmit={(e) => onSubmit(e)}>
           <div className={styles.form}>
             <div className={styles.item}>
-              <label className={styles.labelTop} htmlFor="">
+              <label className={styles.labelsStyles} htmlFor="">
                 * Username
               </label>
               <input
@@ -88,7 +88,7 @@ export default function RegisterForm() {
               <p className={styles.error}>{errors.symbols || ""}</p>
             </div>
             <div className={styles.item}>
-              <label htmlFor="">* Email</label>
+              <label htmlFor="" className={styles.labels234}>* Email</label>
               <input
                 required
                 type="email"
@@ -101,7 +101,7 @@ export default function RegisterForm() {
               <p className={styles.error}>{errors.eMail || ""}</p>
             </div>
             <div className={styles.item}>
-              <label htmlFor="">* Password</label>
+              <label htmlFor="" className={styles.labels234}>* Password</label>
               <input
                 required
                 type="password"
@@ -114,7 +114,7 @@ export default function RegisterForm() {
               <p className={styles.error}>{errors.password || ""}</p>
             </div>
             <div className={styles.item}>
-              <label htmlFor="">* Repeat password</label>
+              <label htmlFor="" className={styles.labels234}>* Repeat password</label>
               <input
                 required
                 type="password"
