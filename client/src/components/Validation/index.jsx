@@ -54,7 +54,7 @@ export default function Validation() {
         }, 5000);
     })
 
-    }, [])
+    }, [Toast, email, navigate, password, state, username])
     return (
         <div>
             {state.error === 1? 
