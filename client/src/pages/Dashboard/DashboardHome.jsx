@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { getUsers } from "store/slice/user";
 
 import s from "./dashboard.module.css";
-import { CardsFeedbackCompact } from "components/Cards";
+import CardsFeedbackCompact from "../.././components/Cards/CardsFeedback/CardsFeedbackCompact";
 
 export default function DashboardHome() {
   const navigate = useNavigate();
@@ -18,28 +18,32 @@ export default function DashboardHome() {
 
   return (
     <>
-      <div className={s.module} onClick={() => navigate('list')}>
+      <div className={s.module} onClick={() => navigate("list")}>
         <div className={s.preview}>
           <div className={s.statusbar}>
+            <div>free {Object.keys(users).length}</div>
             <div>
-              free {Object.keys(users).length}
+              premium{" "}
+              {Object.values(users).reduce(
+                (sum, val) => (val.premium ? sum + 1 : sum),
+                0
+              )}
             </div>
             <div>
-              premium {Object.values(users).reduce((sum, val)=>(val.premium ? sum+1 : sum),0)}
-            </div>
-            <div>
-              online {Object.values(users).reduce((sum, val)=>(val.online ? sum+1 : sum),0)}
+              online{" "}
+              {Object.values(users).reduce(
+                (sum, val) => (val.online ? sum + 1 : sum),
+                0
+              )}
             </div>
           </div>
-          <div className={s.submodule}>
-            lista de usuarios
-          </div>
+          <div className={s.submodule}>User list</div>
         </div>
       </div>
-      <div className={s.module} onClick={() => navigate('feedback')}>
+      <div className={s.module} onClick={() => navigate("feedback")}>
         <p>FeedbackCompact</p>
         <CardsFeedbackCompact />
       </div>
     </>
-  )
+  );
 }
