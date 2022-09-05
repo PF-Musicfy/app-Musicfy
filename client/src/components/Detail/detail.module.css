@@ -1,6 +1,5 @@
 .front {
   text-align: center;
-  font-size: 20px;
 }
 
 .invisible {
@@ -40,6 +39,7 @@
   gap: 30px;
   justify-content: center;
   align-items: center;
+  /* height: 60vh; */
 }
 
 .img {
@@ -85,6 +85,21 @@
   font-family: var(--second-font);
   color: rgb(109, 109, 109);
 }
+.nameInfo {
+  font-size: 32px;
+  font-family: var(--main-font);
+}
+.albumNameInfo {
+  font-family: var(--main-font);
+  font-size: 16px;
+}
+.artisNameInfo {
+  font-family: var(--main-font);
+  font-size: 16px;
+  color: rgb(109, 109, 109);
+}
+
+/********SCROLL BAR***********/
 /* Works on Firefox */
 * {
   scrollbar-width: thin;

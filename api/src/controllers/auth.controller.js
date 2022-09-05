@@ -1,6 +1,7 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
 const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
+const express = require('express')
 
 // Kosovomba
 const bcrypt = require("bcryptjs");
@@ -123,7 +124,7 @@ const premiumUser = async (req, res) => {
   });
   await user.save();
   console.log("El usuario se hizo premium");
-  return res.json({ message: "Usuario pasado a premium" });
+  res.send()
 };
 
 const avatarUser = async (req, res) => {
