@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { FaPlay } from "react-icons/fa"
+import { FaPlay } from "react-icons/fa";
 import s from "./detail.module.css";
-import { ImHeart } from "react-icons/im"
-import toMinutes from '../../utils/toMinutes.js';
+import { AiFillHeart } from "react-icons/ai";
+import toMinutes from "../../utils/toMinutes.js";
 import { getTrackId } from "../../store/slice";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
 import { favoritesUser } from "../../store/slice/user"
@@ -17,7 +17,7 @@ import { userTokenInfo } from "store/slice/user"
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
 function DetailTable({ e }) {
-  const [color, setColor] = useState(true)
+  const [color, setColor] = useState(true);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { favorites } = useSelector((state) => state.player);
@@ -27,17 +27,17 @@ function DetailTable({ e }) {
     dispatch(userTokenInfo())
   },[dispatch])
 
-  const filterUser = user.favorites.map(e => e.id)
+  // const filterUser = user.favorites.map(e => e.id)
 
   const getTracksFavorites = () => {
-    if(filterUser && filterUser.includes(e.id)){
-      return ""
-    }else{
+    // if(filterUser && filterUser.includes(e.id)){
+    //   return ""
+    // }else{
       dispatch(favoritesUser(e))
       // setColor(!color)
     // }
   }
-}
+
   
     //   console.log(favorites)
     // useEffect(() => {
@@ -50,26 +50,26 @@ function DetailTable({ e }) {
 
 
 
-   
   return (
     <tr className={s.row}>
       <td>
-        <button
-          className={user.premium ? '' : s.invisible}
-          onClick={() => dispatch(setActual(e))}
-        >
-          <FaPlay />
+        <button className={user.premium ? "" : s.invisible} onClick={() => dispatch(setActual(e))}>
+          <FaPlay className={s.iconFlaplay} />
         </button>
       </td>
       <td className={s.text}>
-        <p>{e.name}</p>
-        <p>{e.artistName}</p>
+        <span className={s.titleSong}>{e.name}</span>
+        <br />
+        <span className={s.artistSong}>{e.artistName}</span>
       </td>
-        <td>
-          {color? <ImHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> : <ImHeart className={s.favorites1} onClick={()=> getTracksFavorites()}/>
-          }
+      <td>
+        {color ? (
+          <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
+        ) : (
+          <AiFillHeart className={s.favorites1} onClick={() => getTracksFavorites()} />
+        )}
         {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
-        </td>
+      </td>
       <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
       </td>
@@ -82,21 +82,23 @@ function DetailAll({ arr }) {
       {arr[0]?.map((e, i) => (
         <div key={i}>
           <div className={s.front}>
-            <h1>{e.name}</h1>
-            <h2>{e.albumName}</h2>
-            <h2>{e.artistName}</h2>
+            <span className={s.nameInfo}>{e.name}</span>
+            <br />
+            <span className={s.albumNameInfo}>{e.albumName}</span>
+            <br />
+            <span className={s.artisNameInfo}>{e.artistName}</span>
           </div>
-          <img src={e.images} alt={e.name} className={s.img}/>
+          <img src={e.images} alt={e.name} className={s.img} />
         </div>
       ))}
       <div className={s.scroll}>
-      <table className={s.table}>
-        <tbody>
-          {arr[1]?.map((e, i) => (
-            <DetailTable key={i} e={e} />
-          ))}
-        </tbody>
-      </table>
+        <table className={s.table}>
+          <tbody>
+            {arr[1]?.map((e, i) => (
+              <DetailTable key={i} e={e} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -106,12 +108,8 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { detailTracks } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user);
-
-  console.log(detailTracks)
-  const [ open, setOpen ] = useState(false)
-
+  const [open, setOpen] = useState(false);
   const [allSongs, setAllSongs] = useState([]);
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -122,10 +120,8 @@ export default function Detail() {
     setAllSongs(Object.values(detailTracks));
   }, [detailTracks]);
 
-  console.log(detailTracks)
-
   useEffect(() => {
-    if(allSongs.length){
+    if (allSongs.length) {
       dispatch(setPlaylist(allSongs[1]));
     }
   }, [dispatch, allSongs]);
@@ -141,15 +137,11 @@ export default function Detail() {
       {Object.keys(user).length ? (
         <PopupPremium imagen={allSongs[0] ? allSongs[0][0].images : ""} user={user} />
       ) : (
-        <PopupLogin
-          open={open}
-          onClose={() => setOpen(false)}
-          imagen={allSongs[0] ? allSongs[0][0].images : ""}
-        />
+        <PopupLogin open={open} onClose={() => setOpen(false)} imagen={allSongs[0] ? allSongs[0][0].images : ""} />
       )}
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
       <DetailAll arr={allSongs} />
-      <Player open={() => setOpen(true)}/>
+      <Player open={() => setOpen(true)} />
     </div>
   );
 }

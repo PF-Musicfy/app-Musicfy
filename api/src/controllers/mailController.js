@@ -1,4 +1,5 @@
 require("dotenv").config()
+const express = require('express')
 
 const nodemailer = require('nodemailer')
 function mailTransport() {
@@ -11,6 +12,15 @@ function mailTransport() {
           pass: process.env.PASSMAIL
         }
     })    
+}
+
+function mailSendMessage(email, subject, text) {
+  return {
+  from: "adminAPI",
+  to: email,
+  subject: subject,
+  text: text
+  }
 }
 
 function mailRegistered(email) {
@@ -29,11 +39,11 @@ function mailRegistered(email) {
           <div> <h3> As a free user, you can search and listen the best music. You can also see the top tracks, albums, artists and playlists, weekly! </h3> </div>
           <div> <h3> To avoid ads, you can be a premium member!. </h3> 
                     <h3> As a premium member, you can add favorites, custom your own playlists, receive recommendations and more! </h3>
-                    <a href="http://localhost:3000/premium" style="color: white; font-size: 28px; font-weight: 500;"> Click here to see the full benefits and go premium now!!! </a>
+                    <a href="${express.defaultURL}/premium" style="color: white; font-size: 28px; font-weight: 500;"> Click here to see the full benefits and go premium now!!! </a>
           </div>
         </div>
   </div>
   `
   }
 };
-module.exports = {mailTransport, mailRegistered}
+module.exports = {mailTransport, mailRegistered, mailSendMessage}

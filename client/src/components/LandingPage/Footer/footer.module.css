@@ -4,24 +4,22 @@
   justify-content: center;
   align-items: center;
   background: #000;
-  color: #999;
-  padding: 80px;
-  /* border-top: 2px solid var(--btn); */
+  margin-bottom: 60px;
 }
 
 .footerContent {
-  color: #999;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 20px;
-  /* min-width: 900px; */
+  margin-top: 80px;
+  max-width: 900px;
 }
 
 .footerSocial {
   gap: 20px;
   display: flex;
-  padding: 25px 0px;
+  /* padding: 25px 0px; */
 }
 
 .footerListas {
@@ -44,7 +42,7 @@
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  width: 120px;
+  width: 140px;
   font-family: "Poppins", sans-serif;
 }
 .footerSubtitle {
@@ -76,7 +74,7 @@
 .logoImg {
   width: 90px;
   height: 90px;
-  /* margin: 0 20px 0 20px; */
+  object-fit: scale-down;
 }
 .logoTxt {
   font-size: 24px;
@@ -93,4 +91,14 @@
   justify-content: center;
   align-items: center;
   width: 150px;
+}
+
+@media (max-width: 656px) {
+  .footerContent {
+    max-width: 400px;
+    justify-content: center;
+  }
+  .footer {
+    margin-left: 60px;
+  }
 }

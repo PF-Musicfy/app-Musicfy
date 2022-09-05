@@ -16,12 +16,11 @@ const userSchema = new mongoose.Schema(
       index: { unique: true }
     },
     password: {
-      type: String,
+      type: String
     },
     avatar: {
       type: String,
-      default:
-        "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_355,w_355/v1661641450/aedocfnxcvh3emgc65he.png"
+      default: "https://res.cloudinary.com/dyj81r2fi/image/upload/v1662307394/aedocfnxcvh3emgc65he_pjferp.png"
     },
     admin: {
       type: Boolean,
@@ -45,7 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     google: {
       type: Boolean,
-      default: false,
+      default: false
     },
     favorites: {
       type: Array,

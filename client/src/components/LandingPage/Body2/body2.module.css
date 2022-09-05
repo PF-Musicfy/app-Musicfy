@@ -1,49 +1,53 @@
 .containerall {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.titleIcon {
+  font-size: 80px;
+  font-family: var(--main-font);
+  margin-top: 120px;
 }
 .container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  height: 75vh;
+  text-align: center;
+  justify-content: center;
+  max-width: 1200px;
+  height: 400px;
+  background-color: black;
+  margin-bottom: 120px;
 }
 .element {
-  padding: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 33%;
+  margin: 0 40px 0 40px;
 }
 .icon {
-  width: 60%;
-  height: fit-content;
+  font-size: 80px;
   color: var(--mainColor);
 }
 .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 160%;
-  width: 200%;
+  font-size: 20px;
 }
+
 .phrase {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 100%;
+  font-size: 15px;
   color: rgb(129, 129, 129);
-  width: 250%;
+  width: 200px;
 }
+
+/********************************************/
 .container2 {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
-  background-image: url("./c0d19485337437b7e6955ae26f737978.jpg");
+  height: 800px;
+  background-image: url("https://arteculturaymusicablog.files.wordpress.com/2016/08/jazz.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -52,59 +56,149 @@
   margin-top: 10%;
   color: #fff;
   font-family: "Cabin", sans-serif;
-  /*   font-size: 120px; */
-  font-size: 650%;
+  font-size: 100px;
   font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.58);
+  width: 100%;
+  text-align: center;
 }
 .subtitulo2 {
-  margin-top: 2%;
-  color: #fff;
+  color: var(--mainColor);
   font-family: "Cabin", sans-serif;
-  /* font-size: 40px; */
-  font-size: 180%;
-  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.58);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 30px;
 }
 .button {
+  background-color: var(--btn);
   color: #fff;
-  font-family: "Cabin", sans-serif;
-  font-size: 120%;
-  font-weight: 500;
-  background-color: rgb(95, 22, 95);
-  padding: 10px;
-  border-radius: 15px;
-  margin-top: 40%;
+  width: 180px;
+  height: 40px;
+  margin-top: 40px;
+  transition: 0.2s;
 }
 .button:hover {
-  background-color: #fff;
-  color: rgb(95, 22, 95);
+  border: 2px solid #fff;
+  outline: 2px solid var(--btn);
+  transition: 0.2s;
 }
-@media only screen and (max-width: 800px) {
+
+@media only screen and (max-width: 1072px) {
   .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 180vh;
+    height: 400px;
   }
-  .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 200%;
-    width: 500%;
-  }
-  .phrase {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 100%;
-    color: rgb(129, 129, 129);
-    width: 500%;
+  .element {
+    margin: 0 10px 0 10px;
   }
   .icon {
-    width: 120%;
-    height: fit-content;
+    font-size: 60px;
     color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(129, 129, 129);
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 600px;
+    height: 400px;
+  }
+  .element {
+    margin: 0 40px 0 40px;
+  }
+  .icon {
+    font-size: 60px;
+    color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(129, 129, 129);
+    width: 200px;
+  }
+  .titleIcon {
+    font-size: 50px;
+    /* margin-top: 120px; */
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 600px;
+    height: 400px;
+  }
+  .element {
+    margin: 0 40px 0 40px;
+  }
+  .icon {
+    font-size: 60px;
+    color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(129, 129, 129);
+    width: 200px;
+  }
+  .titleIcon {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+  .titulo2 {
+    margin-top: 200px;
+    font-size: 60px;
+  }
+  .subtitulo2 {
+    font-size: 20px;
+  }
+  .button {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 300px;
+    height: 600px;
+  }
+  .icon {
+    font-size: 50px;
+    margin-top: 26px;
+  }
+  .title {
+    font-size: 18px;
+    margin-top: 6px;
+  }
+  .phrase {
+    font-size: 14px;
+  }
+  .titleIcon {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .titulo2 {
+    font-size: 40px;
+  }
+  .subtitulo2 {
+    font-size: 16px;
+  }
+  .container2 {
+    width: 106%;
   }
 }
