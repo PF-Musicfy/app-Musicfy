@@ -6,12 +6,13 @@ import s from "./detail.module.css";
 import { ImHeart } from "react-icons/im"
 import toMinutes from '../../utils/toMinutes.js';
 import { getTrackId } from "../../store/slice";
-import { setActual, setPlaylist, getFavorites } from "../../store/slice/player.js";
+import { setActual, setPlaylist } from "../../store/slice/player.js";
 import { favoritesUser } from "../../store/slice/user"
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { userTokenInfo } from "store/slice/user"
 
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
@@ -22,26 +23,32 @@ function DetailTable({ e }) {
   const { favorites } = useSelector((state) => state.player);
 
   
+  useEffect(()=> {
+    dispatch(userTokenInfo())
+  },[dispatch])
+
+  const filterUser = user.favorites.map(e => e.id)
+
   const getTracksFavorites = () => {
-    
-    dispatch(getFavorites(e.id))
-    // dispatch(favoritesUser(favorites))
-      setColor(!color)
+    if(filterUser && filterUser.includes(e.id)){
+      return ""
+    }else{
+      dispatch(favoritesUser(e))
+      // setColor(!color)
+    // }
   }
+}
   
-  // localStorage.setItem('favorites', JSON.stringify(favorites))
-  // localStorage.setItem('color', JSON.stringify(color))
+    //   console.log(favorites)
+    // useEffect(() => {
+    //   // if(user.premium){
+    //     if (favorites.length > 0) {
+    //       dispatch(favoritesUser(favorites));
+    //     }
+    //   // }
+    // }, [dispatch, favorites]);
 
-    // const localInfo = localStorage.getItem('favorites', JSON.stringify(favorites))
 
-      console.log(favorites)
-    useEffect(() => {
-      // if(user.premium){
-        if (favorites.length > 0) {
-          dispatch(favoritesUser(favorites));
-        }
-      // }
-    }, [dispatch, favorites]);
 
    
   return (
