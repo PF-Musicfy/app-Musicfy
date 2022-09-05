@@ -74,7 +74,7 @@
   .containerfabars {
     position: absolute;
     visibility: visible;
-    width: 100%;
+    width: 110vw;
     height: 200%;
     background-color: black;
     z-index: 60;
@@ -91,7 +91,7 @@
   }
   .closebtn {
     height: 30%;
-    margin-top: 5%;
+    margin-top: 20%;
     margin-left: 90%;
   }
   .fatimes {
