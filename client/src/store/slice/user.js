@@ -61,18 +61,10 @@ export const getOnline = (id) => elCreador(`/user/online/${id}`, setUsers);
 
 export const userTokenInfo = () => {
   return async function (dispatch) {
-    dispatch(setLoading("cargando"));
+    dispatch(setLoading("Loading..."));
     try {
-      console.log("entro en login");
       const token = cookies.get("refreshToken");
-      console.log("cookies dentro de login", cookies.get("refreshToken"));
-      //const {
-      //  data: { token },
-      //} = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
-      //  withCredentials: true,
-      //});
-      console.log("datalogin", token);
-      dispatch(setLoading("Loading..."));
+      dispatch(setLoading("Welcome..."));
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
         headers: {
@@ -80,7 +72,7 @@ export const userTokenInfo = () => {
         }
       });
       dispatch(setUser(data));
-      dispatch(setLoading("tengo la data"));
+      dispatch(setLoading("Data..."));
     } catch (e) {
       console.log("No se encontro el token", e);
       dispatch(setLoading("Can't find token"));
