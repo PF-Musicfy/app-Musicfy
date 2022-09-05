@@ -61,16 +61,14 @@ function Fila({ user, openModal }) {
       <td>
         <BiMailSend
           onClick={() => {
-            dispatch(getUserModal(currentModalUser))
-              .then (()=> {
-                openModal(true);
-                setCurrentModal("");
-              })
+            dispatch(getUserModal(currentModalUser)).then(() => {
+              openModal(true);
+              setCurrentModal("");
+            });
           }}
           className={s.pointer}
         />
       </td>
-      <td></td>
     </tr>
   );
 }
@@ -94,14 +92,9 @@ export default function PageAdmin() {
   }, [dispatch]);
 
   return (
-    <div className={s.container}>
+    <div className={modal ? s.containerblur : s.containerbase}>
       <SearchBar />
       <Buttons />
-      {modal && (
-        <div className={s.modalito}>
-          <Modal closeModal={setModal} />
-        </div>
-      )}
       {/* <FirstLine />
       <Cards users={users} />  */}
       <table className={s.table}>
@@ -119,6 +112,11 @@ export default function PageAdmin() {
           <Mapeo users={users} openModal={setModal} />
         </tbody>
       </table>
+      {modal && (
+        <div className={s.modalito}>
+          <Modal closeModal={setModal} />
+        </div>
+      )}
     </div>
   );
 }
