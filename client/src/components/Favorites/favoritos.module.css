@@ -1,0 +1,96 @@
+/* .container {
+    display: flex;
+    flex-direction: column;
+  } */
+
+  .front {
+    text-align: center;
+    font-size: 30px;
+    margin: 40px;
+  }
+  
+  .invisible {
+    display: none;
+  }
+  
+  .row {
+    background: #000;
+    border-top: 1px solid;
+  }
+  
+  .row:first-child {
+    border-top: 0px solid;
+  }
+  
+  .row td {
+    padding: 0px 10px;
+    text-align: start;
+  }
+  
+  .table {
+    width: 200px;
+  }
+  
+  .text p {
+    width: 360px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .detail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .img {
+    width: 40vw;
+    height: 30vw;
+    max-height: 50vh;
+    margin-left: 80px;
+    margin-top: 50px;
+    border-radius: 20px;
+  }
+  
+  .scroll {
+    overflow-y: scroll;
+    height: 60vh;
+  }
+  
+  .favorites{
+    height: 60px;
+    width: 30px;
+    cursor: pointer;
+    /* color: red; */
+  }
+  
+  .favorites1 {
+    color: red;
+    height: 60px;
+    width: 30px;
+    cursor: pointer;
+    /* color: red; */
+  }
+  
+  .favorites :hover {
+    color: red
+  }
+
+  .containerPrincipal{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+  }
+
+.nameUser{
+    display: flex;
+   margin-left: 200px;
+   margin-bottom: 50px;
+}

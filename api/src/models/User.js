@@ -6,53 +6,57 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
       trim: true,
-      index: { unique: true }
+      index: { unique: true },
     },
     password: {
-      type: String
+      type: String,
     },
     avatar: {
       type: String,
-      default: "https://res.cloudinary.com/dyj81r2fi/image/upload/v1662307394/aedocfnxcvh3emgc65he_pjferp.png"
+      default:
+        "https://res.cloudinary.com/dyj81r2fi/image/upload/v1662307394/aedocfnxcvh3emgc65he_pjferp.png",
+    },
+    master: {
+      type: Boolean,
+      default: true,
     },
     admin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     premium: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isblocked: {
       type: Boolean,
-      default: false
+      default: false,
     },
     online: {
       type: Boolean,
-      default: false
+      default: false,
     },
     usermp3: {
       type: String,
-      default: "test"
+      default: "test",
     },
     google: {
       type: Boolean,
-      default: false
+      default: false,
     },
     favorites: {
       type: Array,
-      default: [{ id: "tra.123456", name: "jbalvin", previewURL: "hola.com" }]
     }
   },
   {
-    versionKey: false
+    versionKey: false,
   }
 );
 

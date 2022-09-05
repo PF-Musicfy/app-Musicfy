@@ -1,4 +1,9 @@
-.container {
+.containerbase {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerblur {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,9 +17,10 @@
   color: #000;
 }
 .modalito {
-  position: absolute;
-  left: 35%;
-  top: 20%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -20%;
 }
 
 th,

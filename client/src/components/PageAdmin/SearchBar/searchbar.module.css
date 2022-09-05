@@ -1,7 +1,6 @@
 .box {
   display: flex;
-  justify-content: flex-start;
-  margin-left: 1%;
+  justify-content: center;
 }
 
 .input {
@@ -23,10 +22,6 @@
   background: #383a39;
   border-radius: 3px;
 }
-
-/* .box:hover, .lupitaEstilo{
-    margin-top: 20px;
-} */
 
 .input:focus,
 .input:active {

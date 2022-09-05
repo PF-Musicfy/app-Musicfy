@@ -57,13 +57,19 @@
 .button {
   padding: 0 10px;
 }
+
+
+
 .msgError {
-  margin-bottom: 40px;
+  position: absolute;
   font-size: 14px;
   color: rgb(241, 54, 54);
-  text-align: center;
   font-weight: 500;
+  width: 220px;
+  margin-top: 45px;
+  margin-left: 160px;
 }
+
 .eye {
   font-size: 20px;
 }
@@ -119,8 +125,8 @@
   margin-top: 10px;
 }
 
-.form .passInput {
-  margin-top: 70px;
+.emailTitle{
+  font-weight: 600;
 }
 
 .login .navbar button {

@@ -6,39 +6,31 @@ import s from "./detail.module.css";
 import { AiFillHeart } from "react-icons/ai";
 import toMinutes from "../../utils/toMinutes.js";
 import { getTrackId } from "../../store/slice";
-import { setActual, setPlaylist, getFavorites } from "../../store/slice/player.js";
-import { favoritesUser } from "../../store/slice/user";
+import { setActual, setPlaylist } from "../../store/slice/player.js";
+import { favoritesUser } from "../../store/slice/user"
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { userTokenInfo } from "store/slice/user"
 
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
 function DetailTable({ e }) {
-  const [color, setColor] = useState(true);
+  // const [color, setColor] = useState(true);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { favorites } = useSelector((state) => state.player);
+
+
+  
+  useEffect(()=> {
+    dispatch(userTokenInfo())
+  },[dispatch])
 
   const getTracksFavorites = () => {
-    dispatch(getFavorites(e.id));
-    // dispatch(favoritesUser(favorites))
-    setColor(!color);
-  };
+      dispatch(favoritesUser(e))
+  }
 
-  // localStorage.setItem('favorites', JSON.stringify(favorites))
-  // localStorage.setItem('color', JSON.stringify(color))
-
-  // const localInfo = localStorage.getItem('favorites', JSON.stringify(favorites))
-
-  useEffect(() => {
-    // if(user.premium){
-    if (favorites.length > 0) {
-      dispatch(favoritesUser(favorites));
-    }
-    // }
-  }, [dispatch, favorites]);
 
   return (
     <tr className={s.row}>
@@ -53,11 +45,11 @@ function DetailTable({ e }) {
         <span className={s.artistSong}>{e.artistName}</span>
       </td>
       <td>
-        {color ? (
+        {/* {color ? ( */}
           <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
-        ) : (
+        {/* ) : (
           <AiFillHeart className={s.favorites1} onClick={() => getTracksFavorites()} />
-        )}
+        )} */}
         {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
       </td>
       <td>

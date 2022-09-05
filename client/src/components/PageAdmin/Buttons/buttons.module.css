@@ -1,7 +1,6 @@
 .buttonsFilter {
   display: flex;
-  justify-content: flex-start;
-  margin-left: 15%;
+  justify-content: center;
 }
 .buttonOff {
   border: 2px solid gray;
