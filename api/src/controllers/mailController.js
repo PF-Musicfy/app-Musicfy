@@ -24,6 +24,7 @@ function mailSendMessage(email, subject, text) {
 }
 
 function mailRegistered(email) {
+  console.log('URL:', express.defaultURL)
   return {
   from: "adminAPI",
   to: email,
