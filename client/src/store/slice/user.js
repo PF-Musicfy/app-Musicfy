@@ -71,7 +71,7 @@ export const userTokenInfo = () => {
       //} = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
       //  withCredentials: true,
       //});
-      console.log('datalogin', token)
+      console.log("datalogin", token);
       dispatch(setLoading("Loading..."));
 
       const { data } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/perfil`, {
@@ -101,7 +101,7 @@ export const userTokenPremium = (premium = true) => {
       // );
 
       // const { token } = await resToken.json();
-      const token = cookies.get('refreshToken');
+      const token = cookies.get("refreshToken");
 
       const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
@@ -131,8 +131,8 @@ export const userTokenAvatar = (avatar) => {
       //   }
       // );
       // const { token } = await resToken.json();
-      const token = cookies.get('refreshToken');
-      const res = await fetch("http://localhost:5000/api/v1/auth/setavatar", {
+      const token = cookies.get("refreshToken");
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/setavatar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -184,18 +184,15 @@ export const favoritesUser = (favorites) => {
       //   }
       // );
       // const { token } = await resToken.json();
-      const token = cookies.get('refreshToken');
-      const res = await fetch(
-        `${axios.defaults.baseURL}/api/v1/auth/favorites`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ favorites }),
-        }
-      );
+      const token = cookies.get("refreshToken");
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/favorites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ favorites })
+      });
       const data = await res.json();
       console.log(data);
     } catch (error) {
