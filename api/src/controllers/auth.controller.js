@@ -143,21 +143,49 @@ const setmp3User = async (req, res) => {
     avatar
   });
   await user.save();
-  return res.json({ message: "Avatar cambiado" });
+  return res.json({ message: "Avatar cambiado"});
 };
 
-const favoritesUser = async (req, res) => {
+const favoritesUser = async (req, res ) => {
   const { favorites } = req.body;
-  const user = await User.findByIdAndUpdate(req.uid, {
-    favorites
-  });
-  console.log(user)
-  // console.log(favorites)
-  // console.log(favorites)
-  console.log(favorites)
+    try {
+      const user = await User.findById(req.uid)
+    
+      const favoriteFound = user.favorites.filter(e => e.id === favorites.id)
+      if (favoriteFound.length) {
+        res.json({message: 'Esta cancion ya se encuentra en favoritos'})
+      }else{
+        const userUpdate = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
+        res.json({message: 'Se guardo la cancion en favoritos'})
+      }
+    }catch (error) {
+      console.log(error)
+    }
+  }
+  //   const user = await User.findById(req.uid, { password: 0})
+  //       const filterUser = user.favorites.map(e => e.id)
+  //       if(!filterUser.length){
+  //         console.log("hola")
+  //       const userUpdate = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
+  //       console.log(userUpdate)
+  //        return res.json({message: "no hay nada en favoritos y se guardo"})
+  //       }else if(filterUser && !filterUser.includes(favorites.id)){
+  //         console.log("chao")
+  //         const userUpdateFilter = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
+  //           return res.json({message: "aqui hay algo en favoritos y no es duplicado"})
+  // } else{
+  //   return res.json({message: "hay duplicado y no se guardo"})
+  // }
+
+
+const favoritesDelete = async (req, res) => {
+  const { remove } = req.body;
+  const user = await User.findByIdAndUpdate(req.uid, {$pull: {favorites: {'id': remove}}});
+
   await user.save();
-  return res.json({message: "musica posteada"})
+  return res.json({message: "musica eliminada"})
 }
+
 
 module.exports = {
   validate,
@@ -169,5 +197,6 @@ module.exports = {
   premiumUser,
   avatarUser,
   setmp3User,
-  favoritesUser
+  favoritesUser,
+  favoritesDelete,
 };

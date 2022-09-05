@@ -113,6 +113,7 @@ export const userTokenPremium = (premium = true) => {
       });
 
       const data = await res.json();
+      console.log(data)
       return dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
@@ -174,7 +175,7 @@ export const logoutUser = () => {
 };
 
 export const favoritesUser = (favorites) => {
-  return async function (dispatch) {
+  return async function () {
     try {
       // const resToken = await fetch(
       //   `${axios.defaults.baseURL}/api/v1/auth/refresh`,
@@ -199,7 +200,54 @@ export const favoritesUser = (favorites) => {
       console.log("Ocurrio un error", error);
     }
   };
-};
+}
+
+export const removeFavorites = (remove) => {
+  return async function(){
+    try {
+      // const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
+      //   method: "GET",
+      //   credentials: "include"
+      // });
+      // const { token } = await resToken.json();
+      const token = cookies.get("refreshToken");
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/remove`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ remove })
+      });
+      const data = await res.json();
+      console.log(data)
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+}
+
+// export const getFavorites = (id) => {
+//   return async function(dispatch, getState ){
+//     try {
+//       const { user } = getState().user
+//       const filter = user.favorites.filter(e => e.id !== id)
+//       console.log(filter)
+//       return dispatch(setUser(filter))
+
+    //   let i = favorites.map(e => e.id).indexOf(id)
+    //   if(favorites[i] === undefined){
+    // return dispatch(setFavorites(filter))
+    // }else{
+    //   const remove = favorites.filter(e => e.id !== id )
+    //   return dispatch(setRemove(remove))
+    // }
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
 /* 
 export function getUserIdPremium(id, premium = true) {
   return async function (dispatch) {

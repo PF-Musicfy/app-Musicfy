@@ -53,8 +53,7 @@ const userSchema = new mongoose.Schema(
     },
     favorites: {
       type: Array,
-      default: [{ id: "tra.123456", name: "jbalvin", previewURL: "hola.com" }],
-    },
+    }
   },
   {
     versionKey: false,
