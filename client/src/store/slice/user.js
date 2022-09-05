@@ -68,7 +68,7 @@ export const userTokenInfo = () => {
       } = await axios.get(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
         withCredentials: true,
       });
-      dispatch(setLoading("tengo el token"));
+      dispatch(setLoading("Redirecting"));
 
       const { data } = await axios.get(
         `${axios.defaults.baseURL}/api/v1/auth/perfil`,

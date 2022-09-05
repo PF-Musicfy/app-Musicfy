@@ -1,0 +1,52 @@
+.containerCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* border: 1px solid white; */
+}
+
+.cardMessage{
+    display: flex;
+    justify-content: center;
+    width: 520px;
+    height: 360px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-image: url('https://res.cloudinary.com/djmckgy47/image/upload/v1662321326/dancing-people-club_-_Editada_zuscmo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border: 1px solid #cf355c7e;
+}
+
+.descripMessage{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 85px;
+    width: 500px;
+    height: 300px;
+    padding: 5px;
+    /* border: 1px solid white; */
+}
+
+.buttonRedirect{
+    position: absolute;
+    margin-top: 250px;
+    width: 120px;
+    height: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #cf355c7e;
+    margin-bottom: 25px;
+}
+
+.pHome:hover{
+    color: black;
+}
+
+.buttonRedirect:hover{
+    background: #d9c5ca7e;
+}
