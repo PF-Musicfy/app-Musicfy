@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { FaBackward } from "react-icons/fa";
 
 import s from "./login.module.css";
+import sLight from "./loginLight.module.css";
 import setTitle from "../../utils/setTitle.js";
 import ModuleLogin from "./ModuleLogin.jsx";
 import Loading from "../../components/Loading";
@@ -16,6 +17,7 @@ export default function Login() {
   const { display, loading } = useLoading();
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const theme = localStorage.getItem("theme");
 
   useEffect(() => {
     if (Object.keys(user).length) {
@@ -31,8 +33,11 @@ export default function Login() {
         ) : loading ? (
           <Loading text={loading} />
         ) : (
-          <div className={s.login} style={{ display }}>
-            <div className={s.navbar}>
+          <div
+            className={theme === "light" ? sLight.login : s.login}
+            style={{ display }}
+          >
+            <div className={theme === "light" ? sLight.navbar : s.navbar}>
               <div onClick={() => navigate("/")}>
                 <img src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
                 <span>Musicfy</span>
@@ -44,7 +49,7 @@ export default function Login() {
             <ModuleLogin />
             <p>¿You do not have an account?</p>
             <button
-              className={s.btnRegister}
+              className={theme === "light" ? sLight.btnRegister : s.btnRegister}
               onClick={() => navigate("/register")}
             >
               ¡ REGISTER IN MUSICFY !

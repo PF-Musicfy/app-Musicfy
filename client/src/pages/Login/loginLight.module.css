@@ -1,7 +1,7 @@
 .login {
   text-align: center;
-  color: #fff;
-  background: #000;
+  color: #000;
+  background: #fff;
   height: 100vh;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .login .navbar span:hover {
-  color: #fff;
+  color: #000;
 }
 
 .form {
@@ -37,13 +37,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  border-bottom: 1px solid;
+  box-shadow: 5px 0 5px #777;
 }
 
 .navbar img {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   display: inline;
+  border-radius: 15px;
 }
 
 .options {
@@ -81,7 +82,7 @@
 .containerSend {
   width: 117px;
   height: 51px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 20px;
   margin: auto;
   margin-top: 20px;
@@ -91,11 +92,12 @@
   font-weight: 500;
   transition: 300ms;
   margin-top: 10px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
+  margin-bottom: 59px;
 }
 
 .btnRegister:hover {
-  color: #fff;
+  color: #000;
   border-bottom: 1px solid #cf355c;
 }
 .btnSend {
@@ -109,7 +111,7 @@
 }
 
 .btnSend:hover {
-  background-color: #fff;
+  background-color: #000;
   color: #cf355c;
   position: relative;
 }
@@ -138,7 +140,7 @@
 }
 
 .login .navbar button:hover {
-  color: #fff;
+  color: #000;
 }
 
 @media screen and (max-width: 800px) {
