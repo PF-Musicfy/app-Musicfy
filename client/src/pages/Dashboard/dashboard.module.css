@@ -1,6 +1,10 @@
+.allhome {
+  display: flex;
+  flex-direction: column;
+}
 .container {
   background: #27293d;
-  min-width: 688px;
+  min-width: 753px;
 }
 
 .containerstatus {
@@ -32,7 +36,7 @@
 .preview {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .module {
@@ -43,8 +47,10 @@
 }
 
 .submodule {
+  align-self: center;
+  width: 35%;
   background: #1e1e1f;
-  padding: 15px;
+  padding: 12px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -92,13 +98,4 @@
 .openuser {
   font-size: 20px;
   font-weight: 500;
-}
-@media (max-width: 640px) {
-  .containerstatus {
-    flex-direction: column;
-  }
-  .containerrol {
-    display: flex;
-    justify-content: center;
-  }
 }

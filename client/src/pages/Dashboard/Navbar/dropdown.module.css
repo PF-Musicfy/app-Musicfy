@@ -22,8 +22,11 @@
   display: flex;
   flex-direction: column;
 }
-.action .menu.active{
+.action .menu.active {
   top: 60px;
   visibility: visible;
   opacity: 1;
+}
+.logout:hover {
+  color: var(--mainColor);
 }
