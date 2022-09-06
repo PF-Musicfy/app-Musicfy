@@ -95,7 +95,7 @@ export const userTokenPremium = (premium = true) => {
       // const { token } = await resToken.json();
       const token = cookies.get("refreshToken");
 
-      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
+      await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,9 +104,9 @@ export const userTokenPremium = (premium = true) => {
         body: JSON.stringify({ premium })
       });
 
-      const data = await res.json();
-      console.log(data);
-      return dispatch(setUser(data));
+      // const data = await res.json();
+      // console.log(data);
+      // return dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
     }
