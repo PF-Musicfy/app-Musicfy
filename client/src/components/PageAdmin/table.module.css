@@ -11,6 +11,7 @@
 
 .table {
   min-width: 65%;
+  margin-top: 15px;
 }
 .head {
   background: var(--mainColor);
@@ -31,6 +32,7 @@ td {
 }
 .pointer {
   cursor: pointer;
+  margin-left: 40%;
 }
 .row {
   background-color: #555;

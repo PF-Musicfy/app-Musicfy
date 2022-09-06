@@ -1,75 +1,83 @@
-.background {
-  width: 30vw;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
   width: 400px;
   height: 500px;
   border-radius: 12px;
-  background-color: var(--mainColor);
+  background-color: black;
   box-shadow: rgba(231, 231, 231, 0.35) 0px 5px 15px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   padding: 25px;
+  margin-top: -40px;
 }
-.title {
-  display: inline-block;
-  text-align: center;
-  margin-top: 10px;
-  color: rgb(255, 255, 255);
-  font-weight: 600;
-  font-size: 200%;
-}
+/* -------------------------------------------------------- */
 .closebtn {
   display: flex;
   justify-content: flex-end;
-  color: rgb(255, 255, 255);
+  color: var(--mainColor);
 }
 .closebtn button {
   cursor: pointer;
   background-color: transparent;
   border: none;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
 }
-.user {
+/* -------------------------------------------------------- */
+.cardmessage {
+  align-self: center;
+}
+.icon {
+  font-size: 100px;
+  color: var(--mainColor);
+  margin-top: -40px;
+}
+/* -------------------------------------------------------- */
+.title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 0px;
   color: rgb(255, 255, 255);
-  font-weight: 400;
-  font-size: 100%;
+  font-weight: 600;
+  font-size: 200%;
 }
+.username {
+  color: var(--mainColor);
+}
+/* -------------------------------------------------------- */
 .subject {
+  background-color: rgb(211, 211, 211);
+  border: black 1px solid;
+  border-color: black;
   color: black;
+  margin-top: 2px;
 }
 .text {
   flex: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: rgb(211, 211, 211);
+  background-color: rgb(141, 141, 141);
   color: black;
-  max-lines: 10;
+  border: black 1px solid;
 }
+/* -------------------------------------------------------- */
 .buttonsubmit {
   flex: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: -15px;
 }
 .buttonsubmit button {
-  font-weight: 400;
+  font-weight: 450;
   font-size: 150%;
   border: 2px solid var(--mainColor);
   border-radius: 8px;
   padding: 2px 15px 2px 15px;
-  color: white;
-  margin: 0px 10px 0px 10px;
-  background: rgb(0, 0, 0);
+  color: black;
+  margin: 10px 10px 0px 10px;
+  background: var(--mainColor);
 }
 .buttonsubmit button:hover {
+  transition: 0.5s;
+  background-color: black;
   color: var(--mainColor);
 }
