@@ -23,11 +23,9 @@ export default function CheckoutPremium() {
         subject,
         text,
       })
+      .then(()=> navigate(0))
     })
     .catch((e) => console.log(e));
-  
-    // navigate("http://localhost:3000");
-    // window.location.replace("http://localhost:3000/");
   }, [user]);
 
   const handleRedirect = () => {
