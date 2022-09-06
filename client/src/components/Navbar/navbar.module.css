@@ -9,6 +9,21 @@
   padding: 0px 30px 0 20px;
 }
 
+@media (max-width: 600px) {
+  .navbar > a {
+    /*position: fixed;
+    width: 200px;
+    background: #111;
+    top: 80px;
+    left: 0;
+    text-align: center;
+    flex-direction: column-reverse;
+    transition: all .5s;
+    */
+    display: none;
+  }
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -44,6 +59,14 @@
 .navbar a:hover {
   color: var(--btn);
 }
+.navbar button {
+  font-size: 16px;
+  cursor: pointer;
+  margin: auto;
+}
+.navbar button:hover {
+  color: var(--btn);
+}
 
 .iconUser {
   vertical-align: middle;
@@ -55,6 +78,19 @@
 
 @media (max-width: 856px) {
   .containerButtomNavbar {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .logo {
+    position: fixed;
+    margin-left: 0%;
+    top: 0;
+  }
+  .logoImg {
+    display: none;
+  }
+  .logoTxt {
     display: none;
   }
 }

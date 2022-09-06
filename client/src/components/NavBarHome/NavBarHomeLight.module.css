@@ -4,52 +4,54 @@
   box-sizing: border-box;
 }
 
-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 80px;
   padding: 0 2em;
-  background-color: black;
-  color: white;
+  background-color: #fff;
+  color: #000;
 }
 
-nav a {
+.nav a {
   margin: 0 2rem;
-  color: white;
+  color: #000;
   text-decoration: none;
 }
 
-nav a:hover {
+.nav a:hover {
   color: #cf355c;
 }
 
-header .nav-btn {
+.header .navBtn {
   padding: 5px;
   cursor: pointer;
   background: transparent;
   border: none;
   outline: none;
-  color: white;
+  color: #000;
   visibility: hidden;
   opacity: 0;
   font-size: 1.8rem;
 }
-.logo-div {
+.logoDiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  box-shadow: 5px 0px 5px #777;
 }
 .logo {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
+  margin: 10px;
+  border-radius: 15px;
 }
 .logoTxt {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #000;
 }
 
 .avatar {
@@ -61,12 +63,23 @@ header .nav-btn {
   cursor: pointer;
 }
 
+.noLogged span {
+  font-size: 18px;
+  color: #000;
+  margin: 0 15px;
+  font-weight: 600;
+}
+
+.noLogged span:hover {
+  color: #cf355c;
+}
+
 @media only screen and (max-width: 870px) {
-  header .nav-btn {
+  .header .navBtn {
     visibility: visible;
     opacity: 1;
   }
-  header nav {
+  .header .nav {
     z-index: 30;
     position: fixed;
     top: 0;
@@ -78,22 +91,22 @@ header .nav-btn {
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    background-color: black;
+    background-color: #fff;
     transition: 1s;
     transform: translateY(-100vh);
   }
-  header .responsive_nav {
+  .header .responsiveNav {
     transform: none;
   }
   .avatar {
     display: none;
   }
-  nav .perfil {
+  .nav .perfil {
     position: absolute;
     visibility: visible;
     right: 43%;
   }
-  nav .logout {
+  .nav .logout {
     position: relative;
     visibility: visible;
     top: 60%;
@@ -102,7 +115,7 @@ header .nav-btn {
   .container {
     display: none;
   }
-  nav .no-logged {
+  .nav .noLogged {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -113,12 +126,12 @@ header .nav-btn {
   }
 }
 
-nav .nav-close-btn {
+.nav .navCloseBtn {
   position: absolute;
   top: 2rem;
   right: 2rem;
 }
-nav a {
+.nav a {
   font-size: 1.3rem;
 }
 .perfil {
@@ -129,22 +142,23 @@ nav a {
   position: absolute;
   visibility: hidden;
 }
-.no-logged {
+.noLogged {
   position: absolute;
   top: 1.6rem;
   right: 2rem;
+  margin: 0 15px;
 }
 .container a {
   z-index: 30;
   text-decoration: none;
-  color: white;
+  color: #000;
 }
 .container span:hover {
   color: #cf355c;
 }
-.select-perfil {
-  background-color: rgb(44, 44, 44);
-  color: white;
+.selectPerfil {
+  background-color: rgb(219, 217, 217);
+  color: #000;
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -160,7 +174,7 @@ nav a {
   z-index: 30;
 }
 
-.select-perfil > span:hover {
+.selectPerfil > span:hover {
   color: #cf355c;
 }
 
@@ -168,7 +182,7 @@ nav a {
   position: absolute;
   left: 8%;
 }
-.searchStyle-nologged {
+.searchStyleNologged {
   position: absolute;
   left: 8%;
 }

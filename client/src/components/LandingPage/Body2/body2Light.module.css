@@ -1,0 +1,207 @@
+.containerall {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  font-weight: 600;
+}
+.titleIcon {
+  font-size: 80px;
+  font-family: var(--main-font);
+  margin-top: 120px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  justify-content: center;
+  max-width: 1200px;
+  height: 400px;
+  background-color: #fff;
+  margin-bottom: 120px;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 40px 0 40px;
+}
+.icon {
+  font-size: 80px;
+  color: var(--mainColor);
+}
+.title {
+  font-size: 20px;
+}
+
+.phrase {
+  font-size: 15px;
+  color: rgb(100, 99, 99);
+  width: 200px;
+}
+
+/********************************************/
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 800px;
+  background-image: url("https://arteculturaymusicablog.files.wordpress.com/2016/08/jazz.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.titulo2 {
+  margin-top: 10%;
+  color: #000;
+  font-family: "Cabin", sans-serif;
+  font-size: 100px;
+  font-weight: 500;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+}
+.subtitulo2 {
+  color: var(--mainColor);
+  font-family: "Cabin", sans-serif;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+.button {
+  background-color: var(--btn);
+  color: #000;
+  width: 180px;
+  height: 40px;
+  margin-top: 40px;
+  transition: 0.2s;
+}
+.button:hover {
+  border: 2px solid #000;
+  outline: 2px solid var(--btn);
+  transition: 0.2s;
+}
+
+@media only screen and (max-width: 1072px) {
+  .container {
+    width: 100%;
+    height: 400px;
+  }
+  .element {
+    margin: 0 10px 0 10px;
+  }
+  .icon {
+    font-size: 60px;
+    color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(100, 99, 99);
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 600px;
+    height: 400px;
+  }
+  .element {
+    margin: 0 40px 0 40px;
+  }
+  .icon {
+    font-size: 60px;
+    color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(100, 99, 99);
+    width: 200px;
+  }
+  .titleIcon {
+    font-size: 50px;
+    /* margin-top: 120px; */
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 600px;
+    height: 400px;
+  }
+  .element {
+    margin: 0 40px 0 40px;
+  }
+  .icon {
+    font-size: 60px;
+    color: var(--mainColor);
+  }
+  .title {
+    font-size: 20px;
+  }
+  .phrase {
+    font-size: 15px;
+    color: rgb(100, 99, 99);
+    width: 200px;
+  }
+  .titleIcon {
+    font-size: 50px;
+    margin-bottom: 50px;
+  }
+  .titulo2 {
+    margin-top: 200px;
+    font-size: 60px;
+  }
+  .subtitulo2 {
+    font-size: 20px;
+  }
+  .button {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 918px) {
+  .container {
+    flex-wrap: wrap;
+    width: 300px;
+    height: 600px;
+  }
+  .icon {
+    font-size: 50px;
+    margin-top: 26px;
+  }
+  .title {
+    font-size: 18px;
+    margin-top: 6px;
+  }
+  .phrase {
+    font-size: 14px;
+  }
+  .titleIcon {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  .titulo2 {
+    font-size: 40px;
+  }
+  .subtitulo2 {
+    font-size: 16px;
+  }
+  .container2 {
+    width: 106%;
+  }
+}
