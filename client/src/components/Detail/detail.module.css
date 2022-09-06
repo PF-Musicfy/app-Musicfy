@@ -1,4 +1,14 @@
 .front {
+  display: flex;
+  flex-direction: row;
+  /* text-align: center; */
+}
+.containerTapaTitulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
   text-align: center;
 }
 
@@ -16,24 +26,22 @@
 }
 
 .row td {
-  padding: 0px 10px;
+  padding: 5px 0px 5px 0px;
   text-align: start;
+  background-color: rgb(30, 30, 30);
 }
 
 .table {
-  min-width: 100%;
+  width: 1200px;
 }
 
-.text p {
-  width: 300px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.text {
+  max-width: 1400px;
 }
 
 .detail {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 30px;
   gap: 30px;
@@ -43,14 +51,8 @@
 }
 
 .img {
-  width: 40vw;
-  height: auto;
-  max-height: 50vh;
-}
-
-.scroll {
-  overflow-y: scroll;
-  height: 60vh;
+  width: 600px;
+  /* height: 400px; */
 }
 
 .favorites {
@@ -71,6 +73,7 @@
 .iconFlaplay {
   color: #fff;
   /* margin: 8px; */
+  margin-left: 20px;
 }
 .iconFlaplay:hover {
   color: var(--btn);
@@ -86,17 +89,39 @@
   color: rgb(109, 109, 109);
 }
 .nameInfo {
-  font-size: 32px;
+  font-size: 70px;
   font-family: var(--main-font);
 }
 .albumNameInfo {
   font-family: var(--main-font);
-  font-size: 16px;
+  font-size: 24px;
 }
 .artisNameInfo {
   font-family: var(--main-font);
-  font-size: 16px;
-  color: rgb(109, 109, 109);
+  font-size: 20px;
+  color: rgb(175, 175, 175);
+}
+.trespuntitos {
+  font-size: 20px;
+  cursor: pointer;
+}
+.trespuntitos:hover {
+  color: var(--btn);
+}
+
+.containerModal {
+  width: 240px;
+  height: auto;
+  background-color: rgb(48, 48, 48);
+  position: absolute;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 0 0 0 -250px;
+}
+.scroll {
+  /* overflow-y: scroll; */
+  /* height: 60vh; */
+  margin-bottom: 300px;
 }
 
 /********SCROLL BAR***********/
@@ -118,4 +143,48 @@
 *::-webkit-scrollbar-thumb {
   background-color: rgb(51, 51, 51);
   border: 1px solid #000;
+}
+
+@media only screen and (max-width: 1235px) {
+  .table {
+    width: 800px;
+  }
+  .img {
+    width: 400px;
+  }
+  .containerTapaTitulo {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .table {
+    width: 100%;
+  }
+  .row td {
+    padding: 5px 10px 5px 10px;
+  }
+  .img {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 533px) {
+  .table {
+    width: 100%;
+  }
+  .row td {
+    padding: 5px 5px 5px 5px;
+  }
+  .img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .front {
+    flex-direction: column;
+  }
+  .containerTapaTitulo {
+    width: 100%;
+  }
 }

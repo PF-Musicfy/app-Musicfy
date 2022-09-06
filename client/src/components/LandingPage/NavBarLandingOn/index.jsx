@@ -5,12 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
 import { useState } from "react";
 import imagen from "../.././NavBarHome/img_avatar.png";
+import { useNavigate } from "react-router-dom";
 
 function NavBarLanding() {
   const [profile, setProfile] = useState(false);
   const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handlefabars() {
     setDetails(!details);
@@ -20,6 +22,7 @@ function NavBarLanding() {
   }
   const handleLog = () => {
     dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
@@ -27,11 +30,7 @@ function NavBarLanding() {
       <div className={styles.containerNavbar}>
         <div className={styles.conterImg}>
           <Link to="/">
-            <img
-              className={styles.logoImg}
-              src="https://i.imgur.com/GiyjGcI.png"
-              alt="Musicfy Logo"
-            />
+            <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
           </Link>
           <Link to="/">
             <span className={styles.logoTxt}>MusicFy</span>
@@ -49,12 +48,7 @@ function NavBarLanding() {
               <li className={styles.btnNavbar}>Profile</li>
             </Link>
             <li>
-              <img
-                src={user.avatar || imagen}
-                className={styles.iconUser}
-                onClick={handleClick}
-                alt="avatarsito"
-              />
+              <img src={user.avatar || imagen} className={styles.iconUser} onClick={handleClick} alt="avatarsito" />
             </li>
             {profile && (
               <div className={styles.container}>

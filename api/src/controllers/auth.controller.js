@@ -1,7 +1,7 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
 const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
-const express = require('express')
+const express = require("express");
 
 // Kosovomba
 const bcrypt = require("bcryptjs");
@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
     if (user) {
       return res.status(404).send(`${email} already exists`);
     }
-    console.log(user)
+    console.log(user);
 
     user = new User({ username, email, password });
     await user.save();
@@ -61,7 +61,7 @@ const registerUser = async (req, res) => {
 
     return res.status(201).json({ token, expiresIn });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(400).json({ error: error.message });
   }
 };
@@ -124,7 +124,7 @@ const premiumUser = async (req, res) => {
   });
   await user.save();
   console.log("El usuario se hizo premium");
-  res.send()
+  res.send();
 };
 
 const avatarUser = async (req, res) => {
@@ -133,7 +133,7 @@ const avatarUser = async (req, res) => {
     avatar
   });
   await user.save();
-  console.log(avatar)
+  console.log(avatar);
   return res.json({ message: "Avatar cambiado" });
 };
 
@@ -143,49 +143,56 @@ const setmp3User = async (req, res) => {
     avatar
   });
   await user.save();
-  return res.json({ message: "Avatar cambiado"});
+  return res.json({ message: "Avatar cambiado" });
 };
 
-const favoritesUser = async (req, res ) => {
+const favoritesUser = async (req, res) => {
   const { favorites } = req.body;
-    try {
-      const user = await User.findById(req.uid)
-    
-      const favoriteFound = user.favorites.filter(e => e.id === favorites.id)
-      if (favoriteFound.length) {
-        res.json({message: 'Esta cancion ya se encuentra en favoritos'})
-      }else{
-        const userUpdate = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
-        res.json({message: 'Se guardo la cancion en favoritos'})
-      }
-    }catch (error) {
-      console.log(error)
+  try {
+    const user = await User.findById(req.uid);
+    const favoriteFound = user.favorites.filter((e) => e.id === favorites.id);
+    if (favoriteFound.length) {
+      res.json({ message: "Esta cancion ya se encuentra en favoritos" });
+    } else {
+      const userUpdate = await User.findByIdAndUpdate(req.uid, { $push: { favorites } });
+      res.json({ message: "Se guardo la cancion en favoritos" });
     }
+  } catch (error) {
+    console.log(error);
   }
-  //   const user = await User.findById(req.uid, { password: 0})
-  //       const filterUser = user.favorites.map(e => e.id)
-  //       if(!filterUser.length){
-  //         console.log("hola")
-  //       const userUpdate = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
-  //       console.log(userUpdate)
-  //        return res.json({message: "no hay nada en favoritos y se guardo"})
-  //       }else if(filterUser && !filterUser.includes(favorites.id)){
-  //         console.log("chao")
-  //         const userUpdateFilter = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
-  //           return res.json({message: "aqui hay algo en favoritos y no es duplicado"})
-  // } else{
-  //   return res.json({message: "hay duplicado y no se guardo"})
-  // }
-
+};
+//   const user = await User.findById(req.uid, { password: 0})
+//       const filterUser = user.favorites.map(e => e.id)
+//       if(!filterUser.length){
+//         console.log("hola")
+//       const userUpdate = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
+//       console.log(userUpdate)
+//        return res.json({message: "no hay nada en favoritos y se guardo"})
+//       }else if(filterUser && !filterUser.includes(favorites.id)){
+//         console.log("chao")
+//         const userUpdateFilter = await User.findByIdAndUpdate(req.uid, {$push: {favorites}})
+//           return res.json({message: "aqui hay algo en favoritos y no es duplicado"})
+// } else{
+//   return res.json({message: "hay duplicado y no se guardo"})
+// }
 
 const favoritesDelete = async (req, res) => {
   const { remove } = req.body;
-  const user = await User.findByIdAndUpdate(req.uid, {$pull: {favorites: {'id': remove}}});
-
+  const user = await User.findByIdAndUpdate(req.uid, { $pull: { favorites: { id: remove } } });
   await user.save();
-  return res.json({message: "musica eliminada"})
-}
+  return res.json({ message: "musica eliminada" });
+};
 
+const playlistUser = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const userUpdate = await User.findByIdAndUpdate(req.uid, { $push: { playlist: name } });
+    console.log(userUpdate.playlist);
+    res.json({ message: "Se guardo la cancion en playlist" });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 module.exports = {
   validate,
@@ -199,4 +206,5 @@ module.exports = {
   setmp3User,
   favoritesUser,
   favoritesDelete,
+  playlistUser
 };

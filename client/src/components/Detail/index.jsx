@@ -7,12 +7,14 @@ import { AiFillHeart } from "react-icons/ai";
 import toMinutes from "../../utils/toMinutes.js";
 import { getTrackId } from "../../store/slice";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
-import { favoritesUser } from "../../store/slice/user"
+import { favoritesUser } from "../../store/slice/user";
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { userTokenInfo } from "store/slice/user"
+import { userTokenInfo } from "store/slice/user";
+import { BsThreeDots } from "react-icons/bs";
+import MenuTresPuntos from "./MenuTresPuntos";
 
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
@@ -20,57 +22,74 @@ function DetailTable({ e }) {
   // const [color, setColor] = useState(true);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const [modal, setModal] = useState(false);
 
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
-  
-  useEffect(()=> {
-    dispatch(userTokenInfo())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(userTokenInfo());
+  }, [dispatch]);
 
   const getTracksFavorites = () => {
-      dispatch(favoritesUser(e))
-  }
-
+    dispatch(favoritesUser(e));
+  };
 
   return (
-    <tr className={s.row}>
-      <td>
-        <button className={user.premium ? "" : s.invisible} onClick={() => dispatch(setActual(e))}>
-          <FaPlay className={s.iconFlaplay} />
-        </button>
-      </td>
-      <td className={s.text}>
-        <span className={s.titleSong}>{e.name}</span>
-        <br />
-        <span className={s.artistSong}>{e.artistName}</span>
-      </td>
-      <td>
-        {/* {color ? ( */}
+    <>
+      <tr className={s.row}>
+        <td>
+          <button className={user.premium ? "" : s.invisible} onClick={() => dispatch(setActual(e))}>
+            <FaPlay className={s.iconFlaplay} />
+          </button>
+        </td>
+        <td className={s.text}>
+          <span className={s.titleSong}>{e.name}</span>
+          <br />
+          <span className={s.artistSong}>{e.artistName}</span>
+        </td>
+        <td>
+          {/* {color ? ( */}
           <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
-        {/* ) : (
+          {/* ) : (
           <AiFillHeart className={s.favorites1} onClick={() => getTracksFavorites()} />
         )} */}
-        {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
-      </td>
-      <td>
-        <p>{toMinutes(e.playbackSeconds)}</p>
-      </td>
-    </tr>
+          {/* <FaRegHeart className={s.favorites} onClick={()=> getTracksFavorites()}/> */}
+        </td>
+        <td>
+          <p>{toMinutes(e.playbackSeconds)}</p>
+        </td>
+        <td>
+          <span className={s.trespuntitos}>
+            <BsThreeDots onClick={() => toggleModal()} />
+          </span>
+          {modal && (
+            <div className={s.mainContainerModal}>
+              <div className={s.containerModal}>
+                <MenuTresPuntos setModal={setModal} />
+              </div>
+            </div>
+          )}
+        </td>
+      </tr>
+    </>
   );
 }
 function DetailAll({ arr }) {
   return (
     <div className={s.detail}>
+      {console.log(arr)}
       {arr[0]?.map((e, i) => (
         <div key={i}>
           <div className={s.front}>
-            <span className={s.nameInfo}>{e.name}</span>
-            <br />
-            <span className={s.albumNameInfo}>{e.albumName}</span>
-            <br />
-            <span className={s.artisNameInfo}>{e.artistName}</span>
+            <img src={e.images} alt={e.name} className={s.img} />
+            <div className={s.containerTapaTitulo}>
+              <span className={s.nameInfo}>{e.name}</span>
+              <span className={s.albumNameInfo}>{e.albumName}</span>
+              <span className={s.artisNameInfo}>{e.artistName}</span>
+            </div>
           </div>
-          <img src={e.images} alt={e.name} className={s.img} />
         </div>
       ))}
       <div className={s.scroll}>
