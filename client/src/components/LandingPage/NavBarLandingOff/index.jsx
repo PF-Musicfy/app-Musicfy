@@ -13,14 +13,13 @@ function NavBarLanding() {
     setDetails(!details);
   }
 
-  function handleTheme() {
+  async function handleTheme() {
     if (theme === "light") {
       localStorage.clear();
-      localStorage.setItem("theme", "dark");
-      navigate("/");
+      await navigate("/");
     } else {
       localStorage.setItem("theme", "light");
-      navigate("/");
+      await navigate("/");
     }
   }
 
