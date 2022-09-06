@@ -105,7 +105,7 @@ export const userTokenPremium = (premium = true) => {
       });
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       return dispatch(setUser(data));
     } catch (error) {
       console.log("Ocurrio un error", error);
@@ -192,10 +192,10 @@ export const favoritesUser = (favorites) => {
       console.log("Ocurrio un error", error);
     }
   };
-}
+};
 
 export const removeFavorites = (remove) => {
-  return async function(){
+  return async function () {
     try {
       // const resToken = await fetch(`${axios.defaults.baseURL}/api/v1/auth/refresh`, {
       //   method: "GET",
@@ -212,12 +212,32 @@ export const removeFavorites = (remove) => {
         body: JSON.stringify({ remove })
       });
       const data = await res.json();
-      console.log(data)
+      console.log(data);
     } catch (error) {
       console.log("Ocurrio un error", error);
     }
   };
-}
+};
+
+export const playlistUser = (name) => {
+  return async function () {
+    try {
+      const token = cookies.get("refreshToken");
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/playlist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+};
 
 // export const getFavorites = (id) => {
 //   return async function(dispatch, getState ){
@@ -227,13 +247,13 @@ export const removeFavorites = (remove) => {
 //       console.log(filter)
 //       return dispatch(setUser(filter))
 
-    //   let i = favorites.map(e => e.id).indexOf(id)
-    //   if(favorites[i] === undefined){
-    // return dispatch(setFavorites(filter))
-    // }else{
-    //   const remove = favorites.filter(e => e.id !== id )
-    //   return dispatch(setRemove(remove))
-    // }
+//   let i = favorites.map(e => e.id).indexOf(id)
+//   if(favorites[i] === undefined){
+// return dispatch(setFavorites(filter))
+// }else{
+//   const remove = favorites.filter(e => e.id !== id )
+//   return dispatch(setRemove(remove))
+// }
 //     } catch (error) {
 //       console.log(error)
 //     }
