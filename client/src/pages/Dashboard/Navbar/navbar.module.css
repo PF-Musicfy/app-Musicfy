@@ -58,16 +58,3 @@
     display: none;
   }
 }
-@media (max-width: 380px) {
-  .logo {
-    position: fixed;
-    margin-left: 0%;
-    top: 0;
-  }
-  .logoImg {
-    display: none;
-  }
-  .logoTxt {
-    display: none;
-  }
-}

@@ -11,13 +11,20 @@ export default function DashboardHome() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
+
+  let findRol = () => {
+    if (user.master) return "Admin";
+    return "Moderator";
+  };
+  let currentRol = findRol();
 
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
 
   return (
-    <>
+    <div className={s.allhome}>
       <div className={s.module}>
         <div className={s.preview}>
           <div className={s.containerstatus}>
@@ -39,7 +46,7 @@ export default function DashboardHome() {
               </div>
             </div>
             <div className={s.containerrol}>
-              <div className={s.rol}>Master</div>
+              <div className={s.rol}>{currentRol}</div>
             </div>
           </div>
           <div className={s.submodule} onClick={() => navigate("list")}>
@@ -51,6 +58,6 @@ export default function DashboardHome() {
         <p>FeedbackCompact</p>
         <CardsFeedbackCompact />
       </div>
-    </>
+    </div>
   );
 }

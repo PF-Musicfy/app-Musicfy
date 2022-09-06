@@ -10,6 +10,7 @@ const {
   avatarUser,
   favoritesUser,
   favoritesDelete,
+  playlistUser
   // setmp3
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
@@ -30,8 +31,9 @@ app.get("/refresh", requireRefreshToken, refreshTokenUser);
 app.get("/logout", logoutUser);
 app.post("/premium", requireToken, premiumUser);
 app.post("/setavatar", requireToken, avatarUser);
-app.post("/favorites", requireToken, favoritesUser )
-app.post("/remove", requireToken, favoritesDelete)
+app.post("/favorites", requireToken, favoritesUser);
+app.post("/remove", requireToken, favoritesDelete);
+app.post("/playlist", requireToken, playlistUser);
 // app.post("/setmp3", requireToken, setmp3);
 
 module.exports = app;
