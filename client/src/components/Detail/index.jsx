@@ -79,7 +79,6 @@ function DetailTable({ e }) {
 function DetailAll({ arr }) {
   return (
     <div className={s.detail}>
-      {console.log(arr)}
       {arr[0]?.map((e, i) => (
         <div key={i}>
           <div className={s.front}>
