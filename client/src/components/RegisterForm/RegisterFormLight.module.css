@@ -1,6 +1,10 @@
+.create {
+  background-color: #eee;
+}
+
 .register_nabvar {
   width: 100%;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
 }
 
 .register_logo {
@@ -27,13 +31,13 @@
 }
 
 .register_logo span:hover {
-  color: #fff;
+  color: #000;
 }
 
 .space {
   width: 100%;
   height: 1px;
-  border: 1px solid #fff;
+  box-shadow: -5px 0px 3px #555;
   margin-bottom: 30px;
 }
 
@@ -41,8 +45,8 @@
   width: 60%;
   margin: auto;
   padding: 40px 0;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .form_register label {
@@ -85,13 +89,13 @@
 }
 
 .back:hover {
-  color: #fff;
+  color: #000;
 }
 
 .btn_token_container {
   width: 231px;
   height: 51px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 20px;
   margin: 40px auto -25px auto;
 }
@@ -121,7 +125,7 @@
 
 .register:hover {
   cursor: pointer;
-  background-color: #fff;
+  background-color: #000;
   color: #cf355c;
 }
 
@@ -131,7 +135,7 @@
 
 .submit {
   bottom: 180px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   width: 95px;
   height: 45px;
   border-radius: 20px;
@@ -141,7 +145,7 @@
 }
 
 .submit span {
-  color: #fff;
+  color: #000;
   background-color: #cf355c;
   width: 100px;
   cursor: pointer;
@@ -152,7 +156,7 @@
 }
 
 .submit span:hover {
-  background-color: #fff;
+  background-color: #000;
   color: #cf355c;
 }
 
