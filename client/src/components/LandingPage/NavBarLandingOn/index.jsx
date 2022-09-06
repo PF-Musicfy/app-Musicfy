@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
 import { useState } from "react";
 import imagen from "../.././NavBarHome/img_avatar.png";
-import { useNavigate } from "react-router-dom";
 
 function NavBarLanding() {
   const [profile, setProfile] = useState(false);
