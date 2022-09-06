@@ -19,7 +19,7 @@ function mailSendMessage(email, subject, text) {
   from: "adminAPI",
   to: email,
   subject: subject,
-  text: text
+  html: text
   }
 }
 
