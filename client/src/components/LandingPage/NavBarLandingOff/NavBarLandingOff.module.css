@@ -99,3 +99,12 @@
     margin-top: 10px;
   }
 }
+
+.btnTheme {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.btnTheme:hover {
+  color: var(--btn);
+}

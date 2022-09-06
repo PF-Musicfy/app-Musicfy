@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import s from "./profile.module.css";
-// import avatar from './utilsIMG/bsines.jpeg';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,17 +10,14 @@ import Avatar from "../Avatar";
 import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-// import Orders from './Orders'
-// import Shopping from './Shopping'
 
 function ProfileInfo() {
   const dispatch = useDispatch();
   const { topMusic } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
   const { avatar } = useSelector((state) => state.music);
-  console.log(avatar);
-
   const [modal, setModal] = useState(false);
+  const theme = localStorage.getItem("theme");
 
   const toggleModal = () => {
     setModal(!modal);
@@ -35,14 +31,17 @@ function ProfileInfo() {
   }, [dispatch, avatar]);
 
   const onImgError = (e) => {
-    e.target.src = "https://pixabay.com/es/images/download/icon-1968245_640.png";
-  }
+    e.target.src =
+      "https://pixabay.com/es/images/download/icon-1968245_640.png";
+  };
 
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
 
-      <div className={s.mainContainer}>
+      <div
+        className={theme === "light" ? s.mainContainerLight : s.mainContainer}
+      >
         {modal && (
           <div className={s.mainContainerModal}>
             <CgCloseO
@@ -60,7 +59,6 @@ function ProfileInfo() {
             modal === false ? s.centerContainer : s.centerContainerDisplay
           }
         >
-          
           <div className={s.navbarCenter}>
             <div onClick={() => toggleModal()} className={s.circleImage}>
               {/* <h1 className={s.editImage}>editame boludo</h1> */}
