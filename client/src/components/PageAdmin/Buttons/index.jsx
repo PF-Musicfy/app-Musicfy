@@ -63,7 +63,7 @@ export default function Buttons() {
           name="admins"
           onClick={(e) => changingState(e)}
         >
-          Admins
+          Moderators
         </button>
       }
       {

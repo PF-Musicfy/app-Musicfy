@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Buttons from "./Buttons";
-import CardUser from "./CardUser";
-import FirstLine from "./firstline";
 import SearchBar from "./SearchBar";
-import Cards from "./Cards";
 import { useEffect } from "react";
 import s from "./table.module.css";
 import { getUserModal, getUsers } from "../../store/slice/user";
@@ -13,50 +10,64 @@ import { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal";
 
-function Fila({ user, openModal }) {
+function Fila({ userindex, openModal }) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(false);
   const [block, setBlock] = useState(false);
   const [currentModalUser, setCurrentModal] = useState("");
+  const { user } = useSelector((state) => state.user);
+
+  let findRol = () => {
+    if (user.master) return "Admin";
+    return "Moderator";
+  };
+  let currentRol = findRol();
 
   useEffect(() => {
-    setAdmin(user.admin);
-    setBlock(user.isblocked);
-    setCurrentModal(user.email);
+    setAdmin(userindex.admin);
+    setBlock(userindex.isblocked);
+    setCurrentModal(userindex.email);
   }, [currentModalUser]);
 
   function handleAdmin(e) {
-    e.preventDefault();
-    let variable = e.target.id;
-    variable = variable.slice(1);
-    setAdmin(!admin);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeadmin`, {
-        id: variable,
-      })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+    if (currentRol === "Admin" && !userindex.master) {
+      e.preventDefault();
+      let variable = e.target.id;
+      variable = variable.slice(1);
+      setAdmin(!admin);
+      axios
+        .post(`${axios.defaults.baseURL}/user/changeadmin`, {
+          id: variable,
+        })
+        .then(dispatch(getUsers()))
+        .catch((e) => console.log(e));
+    }
   }
   function handleBlock(e) {
     e.preventDefault();
     setBlock(!block);
     axios
       .post(`${axios.defaults.baseURL}/user/changeblock`, {
-        id: user._id,
+        id: userindex._id,
       })
       .then(dispatch(getUsers()))
       .catch((e) => console.log(e));
   }
+
   return (
     <tr className={s.row}>
-      <td>{user.username}</td>
-      <td>{user.email}</td>
-      <td>{user.premium ? "Premium" : "Free"}</td>
-      <td onClick={handleAdmin} id={"a" + user._id} className={s.pointer}>
-        {admin ? "Admin" : "Not Admin"}
+      <td>{userindex.username}</td>
+      <td>{userindex.email}</td>
+      <td>{userindex.premium ? "Premium" : "Free"}</td>
+      <td onClick={handleAdmin} id={"a" + userindex._id} className={s.pointer}>
+        {admin ? "Moderator" : "Not Moderator"}
       </td>
-      <td onClick={handleBlock} id={user._id} className={s.pointer}>
-        {block ? <ImLock /> : <ImUnlocked />}
+      <td onClick={handleBlock} id={userindex._id}>
+        {block ? (
+          <ImLock className={s.pointer} />
+        ) : (
+          <ImUnlocked className={s.pointer} />
+        )}
       </td>
       <td>
         <BiMailSend
@@ -76,7 +87,7 @@ function Mapeo({ users, openModal }) {
   return (
     <>
       {users?.map((e) => (
-        <Fila key={e._id} user={e} openModal={() => openModal(true)} />
+        <Fila key={e._id} userindex={e} openModal={() => openModal(true)} />
       ))}
     </>
   );

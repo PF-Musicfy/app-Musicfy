@@ -18,15 +18,18 @@ export default function DropDown() {
         <div className={s.profile}>
           <img
             src={user.avatar || imagen}
-            onClick={() => setProfile(!profile)} alt="avatarsito"
+            onClick={() => setProfile(!profile)}
+            alt="avatarsito"
           />
         </div>
         <div className={profile ? `${s.menu} ${s.active}` : s.menu}>
-          <Link to='/profile'>Profile</Link>
-          <Link to='/home'>Home</Link>
-          <button onClick={() => dispatch(logoutUser())}>Log out</button>
+          <Link to="/profile">Profile</Link>
+          <Link to="/home">Home</Link>
+          <button onClick={() => dispatch(logoutUser())} className={s.logout}>
+            Log out
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
