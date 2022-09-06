@@ -12,7 +12,6 @@ import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { userTokenInfo } from "store/slice/user";
 import { BsThreeDots } from "react-icons/bs";
 import MenuTresPuntos from "./MenuTresPuntos";
 
@@ -27,10 +26,6 @@ function DetailTable({ e }) {
   const toggleModal = () => {
     setModal(!modal);
   };
-
-  useEffect(() => {
-    dispatch(userTokenInfo());
-  }, [dispatch]);
 
   const getTracksFavorites = () => {
     dispatch(favoritesUser(e));
@@ -79,7 +74,6 @@ function DetailTable({ e }) {
 function DetailAll({ arr }) {
   return (
     <div className={s.detail}>
-      {console.log(arr)}
       {arr[0]?.map((e, i) => (
         <div key={i}>
           <div className={s.front}>
