@@ -1,4 +1,4 @@
-import { FaBars, FaTimes, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarHome.module.css";
 import stylesLight from "./NavBarHomeLight.module.css";
 import imagen from "./img_avatar.png";
@@ -17,7 +17,7 @@ export default function NavBarHome() {
   const navigate = useNavigate();
 
   const showNavBar = () => {
-    navRef.current.classList.toggle("responsive_nav");
+    navRef.current.classList.toggle("responsiveNav");
   };
 
   async function handleClick() {
@@ -31,17 +31,6 @@ export default function NavBarHome() {
   function onClickHome(e) {
     e.preventDefault();
     navigate(0);
-  }
-
-  function handleTheme() {
-    if (theme === "light") {
-      localStorage.clear();
-      localStorage.setItem("theme", "dark");
-      navigate("/home");
-    } else {
-      localStorage.setItem("theme", "light");
-      navigate("/home");
-    }
   }
 
   return (
@@ -112,19 +101,12 @@ export default function NavBarHome() {
                   Profile
                 </span>
               </Link>
-              <button
-                onClick={handleTheme}
-                className={
-                  theme === "light" ? stylesLight.btnTheme : styles.btnTheme
-                }
-              >
-                {theme !== "light" ? <FaRegLightbulb /> : <FaLightbulb />}
-              </button>
+
               <button
                 className={
                   theme === "light"
-                    ? `${stylesLight.navBtn} ${stylesLight.navCloseBtn}`
-                    : `${styles.navBtn} ${styles.navCloseBtn}`
+                    ? `${(stylesLight.navBtn, stylesLight.navCloseBtn)}`
+                    : `${(styles.navBtn, styles.navCloseBtn)}`
                 }
                 onClick={showNavBar}
               >
@@ -222,23 +204,23 @@ export default function NavBarHome() {
               </Link>
             </div>
 
-            <button
+            {/* <button
               className={
                 theme === "light"
-                  ? `${styles.navBtn} ${styles.navCloseBtn}`
-                  : `${styles.navBtn} ${styles.navCloseBtn}`
+                  ? `${stylesLight.navBtn} navCloseBtn"`
+                  : `${styles.navBtn} navCloseBtn"`
               }
               onClick={showNavBar}
             >
               <FaTimes />
-            </button>
+            </button> */}
           </nav>
-          <button
+          {/* <button
             className={theme === "light" ? stylesLight.navBtn : styles.navBtn}
             onClick={showNavBar}
           >
             <FaBars />
-          </button>
+          </button> */}
         </header>
       )}
     </div>

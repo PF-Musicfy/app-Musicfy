@@ -12,7 +12,6 @@
   padding: 0 2em;
   background-color: #fff;
   color: #000;
-  box-shadow: 5px 0px 5px #777;
 }
 
 .nav a {
@@ -25,7 +24,7 @@
   color: #cf355c;
 }
 
-.header .nav-btn {
+.header .navBtn {
   padding: 5px;
   cursor: pointer;
   background: transparent;
@@ -39,13 +38,14 @@
 .logoDiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  box-shadow: 5px 0px 5px #777;
 }
 .logo {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
+  margin: 10px;
   border-radius: 15px;
 }
 .logoTxt {
@@ -63,8 +63,19 @@
   cursor: pointer;
 }
 
+.noLogged span {
+  font-size: 18px;
+  color: #000;
+  margin: 0 15px;
+  font-weight: 600;
+}
+
+.noLogged span:hover {
+  color: #cf355c;
+}
+
 @media only screen and (max-width: 870px) {
-  .header .nav-btn {
+  .header .navBtn {
     visibility: visible;
     opacity: 1;
   }
@@ -84,7 +95,7 @@
     transition: 1s;
     transform: translateY(-100vh);
   }
-  .header .responsive_nav {
+  .header .responsiveNav {
     transform: none;
   }
   .avatar {
@@ -135,6 +146,7 @@
   position: absolute;
   top: 1.6rem;
   right: 2rem;
+  margin: 0 15px;
 }
 .container a {
   z-index: 30;

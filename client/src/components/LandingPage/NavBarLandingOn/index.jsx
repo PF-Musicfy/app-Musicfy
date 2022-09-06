@@ -1,7 +1,7 @@
-import { FaBars, FaTimes, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
 import stylesLight from "./NavBarLandingOnLight.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
 import { useState } from "react";
@@ -12,7 +12,6 @@ function NavBarLanding() {
   const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const theme = localStorage.getItem("theme");
 
   function handlefabars() {
@@ -25,17 +24,6 @@ function NavBarLanding() {
 
   function handleLog() {
     dispatch(logoutUser());
-  }
-
-  function handleTheme() {
-    if (theme === "light") {
-      localStorage.clear();
-      localStorage.setItem("theme", "dark");
-      navigate("/");
-    } else {
-      localStorage.setItem("theme", "light");
-      navigate("/");
-    }
   }
 
   return (
@@ -198,14 +186,6 @@ function NavBarLanding() {
                 Profile
               </span>
             </Link>
-            <button
-              onClick={handleTheme}
-              className={
-                theme === "light" ? stylesLight.btnTheme : styles.btnTheme
-              }
-            >
-              {theme !== "light" ? <FaRegLightbulb /> : <FaLightbulb />}
-            </button>
           </div>
         )}
       </div>
@@ -214,31 +194,3 @@ function NavBarLanding() {
 }
 
 export default NavBarLanding;
-
-/* 
- <div className="w-full text-white flex justify-between p-4 item-center">
-        <div className={styles.conterImg}>
-          <img className="w-10 h-10 mx-4" src="https://i.imgur.com/WJT6FaB.png" alt="logo" />
-          <span className={styles.logoTxt}>MusicFy</span>
-        </div>
-        <nav>
-          <ul className={"md:flex gap-8 p-4 hidden"}>
-            <li>
-              <Link to="/premium">Premium</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/login">Perfil</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-*/
