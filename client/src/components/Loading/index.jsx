@@ -1,10 +1,13 @@
-import s from './loading.module.css';
+import s from "./loading.module.css";
+import sLight from "./loadingLight.module.css";
 
-export default function Loading({ text }){
+export default function Loading({ text }) {
+  const theme = localStorage.getItem("theme");
+
   return (
-    <div className={s.container}>
-      {text || 'Loading'}
-      <div className={s.spinner}></div>
+    <div className={theme === "light" ? sLight.container : s.container}>
+      {text || "Loading"}
+      <div className={theme === "light" ? sLight.spinner : s.spinner}></div>
     </div>
-  )
+  );
 }

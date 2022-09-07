@@ -39,6 +39,11 @@
   max-width: 1400px;
 }
 
+.swal2-popup{
+  width: 200px;
+  height: 200px;
+}
+
 .detail {
   display: flex;
   flex-direction: column;
@@ -121,7 +126,7 @@
 .scroll {
   /* overflow-y: scroll; */
   /* height: 60vh; */
-  margin-bottom: 300px;
+  margin-bottom: 100px;
 }
 
 /********SCROLL BAR***********/

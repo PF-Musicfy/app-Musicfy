@@ -4,7 +4,7 @@
 }
 .container {
   background: #27293d;
-  min-width: 753px;
+  /*min-width: 753px;*/
 }
 
 .containerstatus {
@@ -48,7 +48,7 @@
 
 .submodule {
   align-self: center;
-  width: 35%;
+  width: 100%;
   background: #1e1e1f;
   padding: 12px;
   border-radius: 5px;
