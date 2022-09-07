@@ -277,6 +277,7 @@ export default function HomeAlbum() {
         <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>
           Tops by genre:{" "}
         </span>
+
         <select
           name="genre"
           className={
