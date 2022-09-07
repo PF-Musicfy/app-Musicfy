@@ -30,8 +30,8 @@ function Fila({ userindex, openModal }) {
   }, [currentModalUser]);
 
   function handleAdmin(e) {
+    e.preventDefault();
     if (currentRol === "Admin" && !userindex.master) {
-      e.preventDefault();
       let variable = e.target.id;
       variable = variable.slice(1);
       setAdmin(!admin);
@@ -45,13 +45,15 @@ function Fila({ userindex, openModal }) {
   }
   function handleBlock(e) {
     e.preventDefault();
-    setBlock(!block);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeblock`, {
-        id: userindex._id,
-      })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+    if ((currentRol === "Admin" && !userindex.master) || !userindex.admin) {
+      setBlock(!block);
+      axios
+        .post(`${axios.defaults.baseURL}/user/changeblock`, {
+          id: userindex._id,
+        })
+        .then(dispatch(getUsers()))
+        .catch((e) => console.log(e));
+    }
   }
 
   return (
@@ -106,8 +108,6 @@ export default function PageAdmin() {
     <div className={modal ? s.containerblur : s.containerbase}>
       <SearchBar />
       <Buttons />
-      {/* <FirstLine />
-      <Cards users={users} />  */}
       <table className={s.table}>
         <thead>
           <tr className={s.head}>
