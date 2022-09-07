@@ -101,7 +101,7 @@ router.post("/google", async (req, res) => {
     const { username, email } = req.body;
     console.log(req.body);
     let user = await User.findOne({ email });
-    //ff
+    if (user.isblocked) return res.status(500).send("This user is blocked");
     if (user) {
       const { token, expiresIn } = generateToken(user.id);
       generateRefreshToken(user.id, res);
