@@ -34,7 +34,7 @@ code {
 .swiper-button-next,
 .swiper-button-prev {
   border-radius: 30px;
-  color: white !important;
+  color: #666 !important;
 }
 
 /*sweetalert*/
