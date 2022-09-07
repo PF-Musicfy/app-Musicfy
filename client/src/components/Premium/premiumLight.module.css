@@ -5,9 +5,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  background: url("https://res.cloudinary.com/dyj81r2fi/image/upload/v1662507616/music-powerpoint-background_ljlw8z.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #eee;
+  box-shadow: 5px 0px 5px #777;
 }
 
 .subcontainer {
@@ -26,14 +25,14 @@
 }
 
 .Title {
-  color: #fff;
+  color: #000;
   font-family: "Cabin", sans-serif;
   font-size: 120px;
   font-weight: 500;
   margin: 80px 0px -30px 0px;
 }
 .SubTitle {
-  color: #fff;
+  color: #000;
   font-family: "Cabin", sans-serif;
   font-size: 30px;
   margin-bottom: 80px;

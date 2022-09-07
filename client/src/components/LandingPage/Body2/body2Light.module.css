@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
+  color: #000;
+  font-weight: 600;
 }
 .titleIcon {
   font-size: 80px;
@@ -16,7 +19,7 @@
   justify-content: center;
   max-width: 1200px;
   height: 400px;
-  background-color: black;
+  background-color: #fff;
   margin-bottom: 120px;
 }
 .element {
@@ -36,7 +39,7 @@
 
 .phrase {
   font-size: 15px;
-  color: rgb(129, 129, 129);
+  color: rgb(100, 99, 99);
   width: 200px;
 }
 
@@ -47,25 +50,25 @@
   align-items: center;
   width: 100%;
   height: 800px;
-  background-image: url("https://res.cloudinary.com/dyj81r2fi/image/upload/v1662507760/jazz_jhufep.jpg");
+  background-image: url("https://arteculturaymusicablog.files.wordpress.com/2016/08/jazz.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 .titulo2 {
   margin-top: 10%;
-  color: #fff;
+  color: #000;
   font-family: "Cabin", sans-serif;
   font-size: 100px;
   font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.58);
+  background-color: #fff;
   width: 100%;
   text-align: center;
 }
 .subtitulo2 {
   color: var(--mainColor);
   font-family: "Cabin", sans-serif;
-  background-color: rgba(0, 0, 0, 0.58);
+  background-color: #fff;
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
@@ -73,14 +76,14 @@
 }
 .button {
   background-color: var(--btn);
-  color: #fff;
+  color: #000;
   width: 180px;
   height: 40px;
   margin-top: 40px;
   transition: 0.2s;
 }
 .button:hover {
-  border: 2px solid #fff;
+  border: 2px solid #000;
   outline: 2px solid var(--btn);
   transition: 0.2s;
 }
@@ -102,7 +105,7 @@
   }
   .phrase {
     font-size: 15px;
-    color: rgb(129, 129, 129);
+    color: rgb(100, 99, 99);
     width: 200px;
   }
 }
@@ -125,7 +128,7 @@
   }
   .phrase {
     font-size: 15px;
-    color: rgb(129, 129, 129);
+    color: rgb(100, 99, 99);
     width: 200px;
   }
   .titleIcon {
@@ -152,7 +155,7 @@
   }
   .phrase {
     font-size: 15px;
-    color: rgb(129, 129, 129);
+    color: rgb(100, 99, 99);
     width: 200px;
   }
   .titleIcon {

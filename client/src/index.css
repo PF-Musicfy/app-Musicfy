@@ -11,6 +11,7 @@
   --boton-hover: #cf355c;
   --main-font: "Cabin", sans-serif;
   --second-font: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
 body {
@@ -18,14 +19,16 @@ body {
   padding: 0px;
   background-color: #000;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .swiper-button-next,
@@ -34,9 +37,7 @@ code {
   color: white !important;
 }
 
- {
-  /*sweetalert*/
-}
+/*sweetalert*/
 
 .colored-toast.swal2-icon-success {
   background-color: #a5dc86 !important;

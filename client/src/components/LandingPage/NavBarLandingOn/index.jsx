@@ -1,5 +1,6 @@
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
+import stylesLight from "./NavBarLandingOnLight.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
@@ -11,84 +12,185 @@ function NavBarLanding() {
   const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const theme = localStorage.getItem("theme");
 
   function handlefabars() {
     setDetails(!details);
   }
+
   function handleClick() {
     setProfile(!profile);
   }
-  const handleLog = () => {
+
+  function handleLog() {
     dispatch(logoutUser());
-  };
+  }
 
   return (
     <>
-      <div className={styles.containerNavbar}>
-        <div className={styles.conterImg}>
+      <div
+        className={
+          theme === "light"
+            ? stylesLight.containerNavbar
+            : styles.containerNavbar
+        }
+      >
+        <div
+          className={
+            theme === "light" ? stylesLight.conterImg : styles.conterImg
+          }
+        >
           <Link to="/">
             <img
-              className={styles.logoImg}
+              className={
+                theme === "light" ? stylesLight.logoImg : styles.logoImg
+              }
               src="https://i.imgur.com/GiyjGcI.png"
               alt="Musicfy Logo"
             />
           </Link>
           <Link to="/">
-            <span className={styles.logoTxt}>MusicFy</span>
+            <span
+              className={
+                theme === "light" ? stylesLight.logoTxt : styles.logoTxt
+              }
+            >
+              MusicFy
+            </span>
           </Link>
         </div>
         <nav>
-          <ul className={styles.containerButtomNavbar}>
+          <ul
+            className={
+              theme === "light"
+                ? styles.containerButtomNavbar
+                : styles.containerButtomNavbar
+            }
+          >
             <Link to="/home">
               <li className={styles.btnNavbar}>Home</li>
             </Link>
             <Link to="/premium">
-              <li className={styles.btnNavbar}>Premium</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Premium
+              </li>
             </Link>
             <Link to="/about">
-              <li className={styles.btnNavbar}>About</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                About
+              </li>
             </Link>
             <Link to="/profile">
-              <li className={styles.btnNavbar}>Profile</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Profile
+              </li>
             </Link>
+
             <li>
               <img
                 src={user.avatar || imagen}
-                className={styles.iconUser}
+                className={
+                  theme === "light" ? stylesLight.iconUser : styles.iconUser
+                }
                 onClick={handleClick}
                 alt="avatarsito"
               />
             </li>
             {profile && (
-              <div className={styles.container}>
-                <div className={styles.selectPerfil}>
+              <div
+                className={
+                  theme === "light" ? stylesLight.container : styles.container
+                }
+              >
+                <div
+                  className={
+                    theme === "light"
+                      ? styles.selectPerfil
+                      : styles.selectPerfil
+                  }
+                >
                   {user.admin === true || user.master === true ? <Link to="/dashboard">
-                    <span className={styles.logOut} >Dashboard</span>
+                    <span className={theme === "light" ? stylesLight.logOut : styles.logOut} >Dashboard</span>
                   </Link> : false}
-                  <span onClick={handleLog} className={styles.logOut}>
-                    Log out
+                  <span
+                    onClick={handleLog}
+                    className={
+                      theme === "light" ? stylesLight.logOut : styles.logOut
+                    }
+                  >
+                    Logout
                   </span>
                 </div>
               </div>
             )}
           </ul>
         </nav>
-        <button className={styles.navbtn}>
-          <FaBars className={styles.fabars} onClick={handlefabars} />
+        <button
+          className={theme === "light" ? stylesLight.navbtn : styles.navbtn}
+        >
+          <FaBars
+            className={theme === "light" ? stylesLight.fabars : styles.fabars}
+            onClick={handlefabars}
+          />
         </button>
         {details && (
-          <div className={styles.containerfabars}>
-            <button className={styles.closebtn} onClick={handlefabars}>
-              <FaTimes className={styles.fatimes} />
+          <div
+            className={
+              theme === "light"
+                ? styles.containerfabars
+                : styles.containerfabars
+            }
+          >
+            <button
+              className={
+                theme === "light" ? stylesLight.closebtn : styles.closebtn
+              }
+              onClick={handlefabars}
+            >
+              <FaTimes
+                className={
+                  theme === "light" ? stylesLight.fatimes : styles.fatimes
+                }
+              />
             </button>
             <Link to="/premium">
-              <span className={styles.btnNavbar}>Premium</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Premium
+              </span>
             </Link>
             <Link to="/about">
-              <span className={styles.btnNavbar}>About</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                About
+              </span>
             </Link>
             <Link to="/profile">
-              <span className={styles.btnNavbar}>Profile</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Profile
+              </span>
             </Link>
           </div>
         )}
@@ -98,31 +200,3 @@ function NavBarLanding() {
 }
 
 export default NavBarLanding;
-
-/* 
- <div className="w-full text-white flex justify-between p-4 item-center">
-        <div className={styles.conterImg}>
-          <img className="w-10 h-10 mx-4" src="https://i.imgur.com/WJT6FaB.png" alt="logo" />
-          <span className={styles.logoTxt}>MusicFy</span>
-        </div>
-        <nav>
-          <ul className={"md:flex gap-8 p-4 hidden"}>
-            <li>
-              <Link to="/premium">Premium</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/login">Perfil</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-*/

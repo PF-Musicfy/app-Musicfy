@@ -1,0 +1,57 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--second-font);
+}
+
+.title {
+  color: var(--mainColor);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.title2 {
+  color: var(--mainColor);
+  margin-top: 20px;
+  cursor: pointer;
+}
+.mihr {
+  background-color: rgb(105, 105, 105);
+  color: rgb(105, 105, 105);
+  border-color: rgb(105, 105, 105);
+}
+
+.miLista {
+  margin-top: 10px;
+  cursor: pointer;
+}
+.miLista:hover {
+  color: var(--mainColor);
+}
+.inputLista {
+  background-color: rgb(59, 59, 59);
+  color: #fff;
+  padding: 4px 0px 4px 8px;
+  border: none;
+  width: 170px;
+}
+.containerInput {
+  display: flex;
+  flex-direction: row;
+}
+.signomas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  background-color: rgb(59, 59, 59);
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.signomas:hover {
+  color: var(--mainColor);
+}
