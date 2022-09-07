@@ -273,7 +273,7 @@ export default function HomeAlbum() {
           theme === "light" ? stylesLight.buttonsFilter : styles.buttonsFilter
         }
       >
-        <span style={{ color: "#000" }}>Tops by genre: </span>
+        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>Tops by genre: </span>
         <select
           name="genre"
           className={
@@ -315,7 +315,7 @@ export default function HomeAlbum() {
           <option>Playlists</option>
         </select>
         <button
-          style={{ color: "#000" }}
+          style={theme === "light" ? { color: "#222" } : { color: "#fff" }}
           onClick={() => dispatch(getTopsByGenre(combFilter))}
           disabled={
             combFilter.genre[0] === "Choose genre"
