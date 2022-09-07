@@ -9,6 +9,7 @@ import { ImLock, ImUnlocked } from "react-icons/im";
 import { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal";
+import Swal from "sweetalert2";
 
 function Fila({ userindex, openModal }) {
   const dispatch = useDispatch();
@@ -45,13 +46,33 @@ function Fila({ userindex, openModal }) {
   }
   function handleBlock(e) {
     e.preventDefault();
-    setBlock(!block);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeblock`, {
-        id: userindex._id,
-      })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+
+    Swal.fire({
+      title: 'Do you want to block this user?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Block',
+      denyButtonText: `Unblock`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        setBlock(true);
+        axios
+          .post(`${axios.defaults.baseURL}/user/changeblock`, {
+            id: userindex._id,
+          })
+          .then(dispatch(getUsers()))
+        Swal.fire('Blocked!', '', 'success')
+      } else if (result.isDenied) {
+        setBlock(false);
+        axios
+          .post(`${axios.defaults.baseURL}/user/changeblock`, {
+            id: userindex._id,
+          })
+          .then(dispatch(getUsers()))
+        Swal.fire('Unblocked!', '', 'success')
+      }
+    })
   }
 
   return (
