@@ -94,7 +94,7 @@ const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid, {
       password: 0,
-      _id: 0
+      // _id: 0
     });
     if (user === null) throw new Error("aqui devuelve null y rompe el front");
     res.json(user);

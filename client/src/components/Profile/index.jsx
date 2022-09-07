@@ -3,13 +3,17 @@ import s from "./profile.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getTopMusic } from "../../store/slice";
 import Avatar from "../Avatar";
 import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import Swal from 'sweetalert2'
+import { logoutUser } from "store/slice/user";
+import axios from "axios";
+
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -18,10 +22,66 @@ function ProfileInfo() {
   const { avatar } = useSelector((state) => state.music);
   const [modal, setModal] = useState(false);
   const theme = localStorage.getItem("theme");
+  const navigate = useNavigate();
+
+  console.log(user)
+
+  function deleteAccount() {
+    try {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+        },
+        // buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#666',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your account has been deleted.',
+            'success'
+          )
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: user._id,
+            }).then(() => {
+              dispatch(logoutUser())
+              navigate('/')
+            })
+            
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your account is safe :)',
+            'error'
+          )
+        }
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const toggleModal = () => {
     setModal(!modal);
   };
+
 
   useEffect(() => {
     if (avatar.length > 0) {
@@ -65,7 +125,7 @@ function ProfileInfo() {
               <img className={s.insideCircle} src={user.avatar} alt="avatar" />
             </div>
             <div className={s.infoNavbar}>
-              <h2 className={s.h2Perfil}>Perfil</h2>
+              <h2 className={s.h2Perfil}>Profile</h2>
               <span>
                 <h1 className={s.h1UserName}>{user.username}</h1>
               </span>
@@ -74,6 +134,8 @@ function ProfileInfo() {
               ) : (
                 <p className={s.underUsername}>Free</p>
               )}
+
+              <button onClick={() => deleteAccount()}>Delete Account</button>
             </div>
           </div>
 
