@@ -22,14 +22,9 @@
   color: white;
   width: 1200px;
   height: 100vh;
-  background: radial-gradient(
-    100% 100% at 100% 0%,
-    #cf355c74 0%,
-    #0c11365d 100%
-  );
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  /* border: 1px solid white; */
+  background: radial-gradient(100% 100% at 100% 0%, #cf355c 0%, #0c1136 100%);
+  border-radius: 10px;
+  margin: 15px 0;
 }
 
 .navbarCenter {

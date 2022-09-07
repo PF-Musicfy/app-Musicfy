@@ -43,8 +43,8 @@ const userSchema = new mongoose.Schema(
       default: false
     },
     usermp3: {
-      type: String,
-      default: "test"
+      type: Array,
+      default: []
     },
     google: {
       type: Boolean,

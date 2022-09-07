@@ -12,7 +12,6 @@ import "swiper/css";
 
 function Listas({ arr, objKey }) {
   const { musicSearch } = useSelector((state) => state.music);
-  const {topMusic} = useSelector((state) => state.music);
   const theme = localStorage.getItem("theme");
 
   return (
@@ -108,26 +107,13 @@ export default function HomeAlbum() {
   const { topMusic } = useSelector((state) => state.music);
   const { musicSearch } = useSelector((state) => state.music);
   const theme = localStorage.getItem("theme");
-  const [trackss, setTrackss] = useState([]);
-  const [artistss, setArtistss] = useState([]);
-  const [albumss, setAlbumss] = useState([])
-  const [playlistss, setPlaylistss] = useState([])
-
   useEffect(() => {
     if (topMusic.length === 0) dispatch(getTopMusic());
   }, []);
 
   useEffect(() => {
-    if (musicSearch.length !== 0) dispatch(topMusicClear(trackss, artistss, albumss, playlistss));
+    if (musicSearch.length !== 0) dispatch(topMusicClear());
   }, [musicSearch] );
-
-  useEffect(() => {
-    if (musicSearch.length === 0 || (musicSearch.tracks && musicSearch.tracks.length === 0)) setTrackss(topMusic.apiTracks);
-    if (musicSearch.length === 0 || (musicSearch.artists && musicSearch.artists.length === 0)) setArtistss(topMusic.apiArtists);
-    if (musicSearch.length === 0 || (musicSearch.albums && musicSearch.albums.length === 0)) setAlbumss(topMusic.apiAlbums);
-    if (musicSearch.length === 0 || (musicSearch.playlists && musicSearch.playlists.length === 0)) setPlaylistss(topMusic.apiPlaylists)
-    console.log(topMusic)
-  }, [topMusic] );
 
   const [state, setState] = useState({
     tracks: true,
