@@ -19,7 +19,7 @@ export default function Player({ open }){
   const [dataSong, setDataSong] = useState({});
   const [allSongs, setAllSongs] = useState([]);
   const [count, setCount] = useState(0);
- 
+
   const audioElem = useRef();
   const progressBar = useRef();
   const volumeBar = useRef();
@@ -84,7 +84,7 @@ export default function Player({ open }){
                 }
               }} >
               {audioElem.current
-                ? (audioElem.current.paused ? <FaPlay /> : <FaPause />) 
+                ? (audioElem.current.paused ? <FaPlay /> : <FaPause />)
                 : ''
               }
             </button>
@@ -126,6 +126,7 @@ export default function Player({ open }){
           : ''}
           <button className={s.button} onClick={() => {
             dispatch(randomPlaylist())
+            if(user.premium) return;
             if(count === 3){
               open();
               setCount(0);
@@ -140,11 +141,12 @@ export default function Player({ open }){
       <>
         <p className={s.msg}>
           {Object.keys(user).length
-            ? <> <span>empieza a escuchar => </span>
-              <button className={s.button} onClick={() => dispatch(randomPlaylist())}>
-                <IoShuffle />
-              </button></>
-            : 'Logeate para escuchar musica en Musicfy'
+          ? <>
+            <span onClick={() => dispatch(randomPlaylist())}>
+              empieza a escuchar musica
+            </span>
+            </>
+          : 'Logeate para escuchar musica en Musicfy'
           }
         </p>
       </>
