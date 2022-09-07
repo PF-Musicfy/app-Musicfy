@@ -333,146 +333,137 @@ export default function HomeAlbum() {
         </button>
       </div>
 
-      {!topMusic.apiTracks &&
-      !topMusic.apiAlbums &&
-      !topMusic.apiArtists &&
-      !topMusic.apiPlaylists ? (
-        <Loading />
-      ) : (
-        <>
-          <div
+      <div
+        className={
+          theme === "light"
+            ? state.tracks
+              ? ""
+              : stylesLight.containerAlbumes
+            : state.tracks
+            ? ""
+            : styles.containerAlbumes
+        }
+      >
+        {musicSearch.length === 0 ? (
+          <h1
             className={
-              theme === "light"
-                ? state.tracks
-                  ? ""
-                  : stylesLight.containerAlbumes
-                : state.tracks
-                ? ""
-                : styles.containerAlbumes
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
             }
           >
-            {musicSearch.length === 0 ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Top Tracks+
-              </h1>
-            ) : musicSearch.tracks ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Tracks
-              </h1>
-            ) : (
-              false
-            )}
-            <Listas arr={topMusic.apiTracks} objKey={"tracks"} />
-          </div>
+            Top Tracks+
+          </h1>
+        ) : musicSearch.tracks ? (
+          <h1
+            className={
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+            }
+          >
+            Tracks
+          </h1>
+        ) : (
+          false
+        )}
+        <Listas arr={topMusic.apiTracks} objKey={"tracks"} />
+      </div>
 
-          <div
+      <div
+        className={
+          theme === "light"
+            ? state.albums
+              ? ""
+              : stylesLight.containerAlbumes
+            : state.albums
+            ? ""
+            : styles.containerAlbumes
+        }
+      >
+        {musicSearch.length === 0 ? (
+          <h1
             className={
-              theme === "light"
-                ? state.albums
-                  ? ""
-                  : stylesLight.containerAlbumes
-                : state.albums
-                ? ""
-                : styles.containerAlbumes
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
             }
           >
-            {musicSearch.length === 0 ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Top Albums
-              </h1>
-            ) : musicSearch.albums ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Albums
-              </h1>
-            ) : (
-              false
-            )}
-            <Listas arr={topMusic.apiAlbums} objKey={"albums"} />
-          </div>
+            Top Albums
+          </h1>
+        ) : musicSearch.albums ? (
+          <h1
+            className={
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+            }
+          >
+            Albums
+          </h1>
+        ) : (
+          false
+        )}
+        <Listas arr={topMusic.apiAlbums} objKey={"albums"} />
+      </div>
 
-          <div
+      <div
+        className={
+          theme === "light"
+            ? state.artist
+              ? ""
+              : stylesLight.containerAlbumes
+            : state.artist
+            ? ""
+            : styles.containerAlbumes
+        }
+      >
+        {musicSearch.length === 0 ? (
+          <h1
             className={
-              theme === "light"
-                ? state.artist
-                  ? ""
-                  : stylesLight.containerAlbumes
-                : state.artist
-                ? ""
-                : styles.containerAlbumes
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
             }
           >
-            {musicSearch.length === 0 ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Top Artists
-              </h1>
-            ) : musicSearch.artists ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Artists
-              </h1>
-            ) : (
-              false
-            )}
-            <Listas arr={topMusic.apiArtists} objKey={"artists"} />
-          </div>
+            Top Artists
+          </h1>
+        ) : musicSearch.artists ? (
+          <h1
+            className={
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+            }
+          >
+            Artists
+          </h1>
+        ) : (
+          false
+        )}
+        <Listas arr={topMusic.apiArtists} objKey={"artists"} />
+      </div>
 
-          <div
+      <div
+        className={
+          theme === "light"
+            ? state.playlist
+              ? ""
+              : stylesLight.containerAlbumes
+            : state.playlist
+            ? ""
+            : styles.containerAlbumes
+        }
+      >
+        {musicSearch.length === 0 ? (
+          <h1
             className={
-              theme === "light"
-                ? state.playlist
-                  ? ""
-                  : stylesLight.containerAlbumes
-                : state.playlist
-                ? ""
-                : styles.containerAlbumes
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
             }
           >
-            {musicSearch.length === 0 ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Top Playlist
-              </h1>
-            ) : musicSearch.playlists ? (
-              <h1
-                className={
-                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-                }
-              >
-                Playlist
-              </h1>
-            ) : (
-              false
-            )}
-            <Listas arr={topMusic.apiPlaylists} objKey={"playlists"} />
-          </div>
-        </>
-      )}
+            Top Playlist
+          </h1>
+        ) : musicSearch.playlists ? (
+          <h1
+            className={
+              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+            }
+          >
+            Playlist
+          </h1>
+        ) : (
+          false
+        )}
+        <Listas arr={topMusic.apiPlaylists} objKey={"playlists"} />
+      </div>
     </div>
   );
 }
