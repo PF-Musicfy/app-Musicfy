@@ -65,7 +65,7 @@ function ProfileInfo() {
               <img className={s.insideCircle} src={user.avatar} alt="avatar" />
             </div>
             <div className={s.infoNavbar}>
-              <h2 className={s.h2Perfil}>Perfil</h2>
+              <h2 className={s.h2Perfil}>Profile</h2>
               <span>
                 <h1 className={s.h1UserName}>{user.username}</h1>
               </span>
