@@ -349,6 +349,7 @@ export default function HomeAlbum() {
             Top Tracks
           </h1>
         ) : musicSearch.tracks ? (
+          <div>
           <h1
             className={
               theme === "light" ? stylesLight.titleGenre : styles.titleGenre
@@ -356,6 +357,8 @@ export default function HomeAlbum() {
           >
             Tracks
           </h1>
+          {musicSearch.tracks.length === 0? <span>No results found. We recommend the following:</span> : false}          
+          </div>
         ) : (
           false
         )}
@@ -382,6 +385,7 @@ export default function HomeAlbum() {
             Top Albums
           </h1>
         ) : musicSearch.albums ? (
+          <div>
           <h1
             className={
               theme === "light" ? stylesLight.titleGenre : styles.titleGenre
@@ -389,6 +393,8 @@ export default function HomeAlbum() {
           >
             Albums
           </h1>
+          {musicSearch.albums.length === 0? <span>No results found. We recommend the following: </span> : false}
+          </div>
         ) : (
           false
         )}
@@ -415,6 +421,7 @@ export default function HomeAlbum() {
             Top Artists
           </h1>
         ) : musicSearch.artists ? (
+          <div>
           <h1
             className={
               theme === "light" ? stylesLight.titleGenre : styles.titleGenre
@@ -422,6 +429,8 @@ export default function HomeAlbum() {
           >
             Artists
           </h1>
+          {musicSearch.artists.length === 0? <span>No results found. We recommend the following:</span> : false}
+          </div>
         ) : (
           false
         )}
@@ -448,6 +457,7 @@ export default function HomeAlbum() {
             Top Playlist
           </h1>
         ) : musicSearch.playlists ? (
+          <div>
           <h1
             className={
               theme === "light" ? stylesLight.titleGenre : styles.titleGenre
@@ -455,6 +465,8 @@ export default function HomeAlbum() {
           >
             Playlist
           </h1>
+          {musicSearch.playlists.length === 0? <span>No results found. We recommend the following:</span> : false}
+          </div>
         ) : (
           false
         )}
