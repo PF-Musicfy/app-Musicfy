@@ -8,6 +8,7 @@ import styles from "./indexHome.module.css";
 import stylesLight from "./indexHomeLight.module.css";
 import { getTopMusic, topMusicClear, getTopsByGenre } from "store/slice/index";
 import "swiper/css";
+import Loading from "components/Loading";
 
 function Listas({ arr, objKey }) {
   const { musicSearch } = useSelector((state) => state.music);
@@ -273,7 +274,10 @@ export default function HomeAlbum() {
           theme === "light" ? stylesLight.buttonsFilter : styles.buttonsFilter
         }
       >
-        <span style={{ color: "#000" }}>Tops by genre: </span>
+        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>
+          Tops by genre:{" "}
+        </span>
+
         <select
           name="genre"
           className={
@@ -315,7 +319,7 @@ export default function HomeAlbum() {
           <option>Playlists</option>
         </select>
         <button
-          style={{ color: "#000" }}
+          style={theme === "light" ? { color: "#222" } : { color: "#fff" }}
           onClick={() => dispatch(getTopsByGenre(combFilter))}
           disabled={
             combFilter.genre[0] === "Choose genre"
@@ -329,41 +333,48 @@ export default function HomeAlbum() {
         </button>
       </div>
 
-      <div
-        className={
-          theme === "light"
-            ? state.tracks
-              ? ""
-              : stylesLight.containerAlbumes
-            : state.tracks
-            ? ""
-            : styles.containerAlbumes
-        }
-      >
-        {musicSearch.length === 0 ? (
-          <h1
+      {!topMusic.apiTracks &&
+      !topMusic.apiAlbums &&
+      !topMusic.apiArtists &&
+      !topMusic.apiPlaylists ? (
+        <Loading />
+      ) : (
+        <>
+          <div
             className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+              theme === "light"
+                ? state.tracks
+                  ? ""
+                  : stylesLight.containerAlbumes
+                : state.tracks
+                ? ""
+                : styles.containerAlbumes
             }
           >
-            Top Tracks
-          </h1>
-        ) : musicSearch.tracks ? (
-          <div>
-          <h1
-            className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-            }
-          >
-            Tracks
-          </h1>
-          {musicSearch.tracks.length === 0? <span>No results found. We recommend the following:</span> : false}          
+            {musicSearch.length === 0 ? (
+              <h1
+                className={
+                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+                }
+              >
+                Top Tracks+
+              </h1>
+            ) : musicSearch.tracks ? (
+              <div>
+              <h1
+                className={
+                  theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+                }
+              >
+                Tracks
+              </h1>
+              {musicSearch.tracks.length === 0? <span>No results found. We recommend the following:</span> : false}          
+              </div>
+            ) : (
+              false
+            )}
+            <Listas arr={topMusic.apiTracks} objKey={"tracks"} />
           </div>
-        ) : (
-          false
-        )}
-        <Listas arr={topMusic.apiTracks} objKey={"tracks"} />
-      </div>
 
       <div
         className={

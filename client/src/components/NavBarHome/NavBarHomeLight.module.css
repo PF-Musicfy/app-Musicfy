@@ -12,6 +12,7 @@
   padding: 0 2em;
   background-color: #fff;
   color: #000;
+  box-shadow: 5px 0 5px #777;
 }
 
 .nav a {
@@ -40,7 +41,7 @@
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  box-shadow: 5px 0px 5px #777;
+  /* box-shadow: 5px 0px 5px #777; */
 }
 .logo {
   width: 50px;

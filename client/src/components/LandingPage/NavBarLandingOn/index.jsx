@@ -67,6 +67,9 @@ function NavBarLanding() {
                 : styles.containerButtomNavbar
             }
           >
+            <Link to="/home">
+              <li className={styles.btnNavbar}>Home</li>
+            </Link>
             <Link to="/premium">
               <li
                 className={
@@ -118,6 +121,9 @@ function NavBarLanding() {
                       : styles.selectPerfil
                   }
                 >
+                  {user.admin === true || user.master === true ? <Link to="/dashboard">
+                    <span className={theme === "light" ? stylesLight.logOut : styles.logOut} >Dashboard</span>
+                  </Link> : false}
                   <span
                     onClick={handleLog}
                     className={

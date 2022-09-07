@@ -94,6 +94,7 @@ export const userTokenPremium = (premium = true) => {
 
       // const { token } = await resToken.json();
       const token = cookies.get("refreshToken");
+      console.log('en dispatch')
 
       await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
