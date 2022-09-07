@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "https://res.cloudinary.com/dyj81r2fi/image/upload/v1662307394/aedocfnxcvh3emgc65he_pjferp.png"
     },
+    master: {
+      type: Boolean,
+      default: false
+    },
     admin: {
       type: Boolean,
       default: false
@@ -39,8 +43,8 @@ const userSchema = new mongoose.Schema(
       default: false
     },
     usermp3: {
-      type: String,
-      default: "test"
+      type: Array,
+      default: []
     },
     google: {
       type: Boolean,
@@ -48,7 +52,11 @@ const userSchema = new mongoose.Schema(
     },
     favorites: {
       type: Array,
-      default: [{ id: "tra.123456", name: "jbalvin", previewURL: "hola.com" }]
+      default: []
+    },
+    playlist: {
+      type: Array,
+      default: []
     }
   },
   {

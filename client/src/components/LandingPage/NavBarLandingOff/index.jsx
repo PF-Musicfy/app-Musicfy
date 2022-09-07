@@ -1,66 +1,178 @@
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
 import styles from "./NavBarLandingOff.module.css";
-import { Link } from "react-router-dom";
+import stylesLight from "./NavBarLandingOffLight.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function NavBarLanding() {
   const [details, setDetails] = useState(false);
+  const navigate = useNavigate();
+  const theme = localStorage.getItem("theme");
 
   function handlefabars() {
     setDetails(!details);
   }
+
+  function handleTheme() {
+    if (theme) {
+      localStorage.clear();
+      navigate(0);
+    } else {
+      localStorage.setItem("theme", "light");
+      navigate(0);
+    }
+  }
+
   return (
     <>
-      <div className={styles.containerNavbar}>
-        <div className={styles.conterImg}>
+      <div
+        className={
+          theme === "light"
+            ? stylesLight.containerNavbar
+            : styles.containerNavbar
+        }
+      >
+        <div
+          className={
+            theme === "light" ? stylesLight.conterImg : styles.conterImg
+          }
+        >
           <Link to="/">
-            <img className={styles.logoImg} src="https://i.imgur.com/GiyjGcI.png" alt="Musicfy Logo" />
+            <img
+              className={
+                theme === "light" ? stylesLight.logoImg : styles.logoImg
+              }
+              src="https://i.imgur.com/GiyjGcI.png"
+              alt="Musicfy Logo"
+            />
           </Link>
           <Link to="/">
-            <span className={styles.logoTxt}>MusicFy</span>
+            <span
+              className={
+                theme === "light" ? stylesLight.logoTxt : styles.logoTxt
+              }
+            >
+              MusicFy
+            </span>
           </Link>
         </div>
         <nav>
-          <ul className={styles.containerButtomNavbar}>
+          <ul
+            className={
+              theme === "light"
+                ? stylesLight.containerButtomNavbar
+                : styles.containerButtomNavbar
+            }
+          >
             <Link to="/premium">
-              <li className={styles.btnNavbar}>Premium</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Premium
+              </li>
             </Link>
             <Link to="/about">
-              <li className={styles.btnNavbar}>About</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                About
+              </li>
             </Link>
             <Link to="/register">
-              <li className={styles.btnNavbar}>Register</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Register
+              </li>
             </Link>
             <Link to="/login">
-              <li className={styles.btnNavbar}>Login</li>
+              <li
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Login
+              </li>
             </Link>
-            {/* <Link to="/profile">
-              <li className={styles.btnNavbar}>Profile</li>
-            </Link> */}
-            {/* <li>
-              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" className={styles.iconUser} />
-            </li> */}
+            <button
+              onClick={handleTheme}
+              className={
+                theme === "light" ? stylesLight.btnTheme : styles.btnTheme
+              }
+            >
+              {theme !== "light" ? <FaRegLightbulb /> : <FaLightbulb />}
+            </button>
           </ul>
         </nav>
-        <button className={styles.navbtn}>
-          <FaBars className={styles.fabars} onClick={handlefabars} />
+        <button
+          className={theme === "light" ? stylesLight.navbtn : styles.navbtn}
+        >
+          <FaBars
+            className={theme === "light" ? stylesLight.fabars : styles.fabars}
+            onClick={handlefabars}
+          />
         </button>
         {details && (
-          <div className={styles.containerfabars}>
-            <button className={styles.closebtn} onClick={handlefabars}>
-              <FaTimes className={styles.fatimes} />
+          <div
+            className={
+              theme === "light"
+                ? stylesLight.containerfabars
+                : styles.containerfabars
+            }
+          >
+            <button
+              className={
+                theme === "light" ? stylesLight.closebtn : styles.closebtn
+              }
+              onClick={handlefabars}
+            >
+              <FaTimes
+                className={
+                  theme === "light" ? stylesLight.fatimes : styles.fatimes
+                }
+              />
             </button>
             <Link to="/premium">
-              <span className={styles.btnNavbar}>Premium</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Premium
+              </span>
             </Link>
             <Link to="/about">
-              <span className={styles.btnNavbar}>About</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                About
+              </span>
             </Link>
             <Link to="/register">
-              <span className={styles.btnNavbar}>Register</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Register
+              </span>
             </Link>
             <Link to="/register">
-              <span className={styles.btnNavbar}>Log in</span>
+              <span
+                className={
+                  theme === "light" ? stylesLight.btnNavbar : styles.btnNavbar
+                }
+              >
+                Log in
+              </span>
             </Link>
           </div>
         )}

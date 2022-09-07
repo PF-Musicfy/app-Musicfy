@@ -6,9 +6,9 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 75px;
 }
 
 .spinner {
@@ -22,6 +22,10 @@
 }
 
 @keyframes spin {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg)}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

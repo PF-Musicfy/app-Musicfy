@@ -52,8 +52,13 @@
   margin-top: 40px;
 }
 
-.form_register .labelTop {
+.form_register .labelsStyles {
   margin-top: 0;
+  font-weight: 600;
+}
+
+.labels234 {
+  font-weight: 600;
 }
 
 .form_register input {
@@ -152,10 +157,12 @@
 }
 
 .error {
+  position: absolute;
   color: rgb(241, 54, 54);
   text-align: center;
   font-weight: 500;
   font-size: 14px;
+  left: 42%;
 }
 
 .disabled {
@@ -166,10 +173,18 @@
   .form_register {
     width: 70%;
   }
+
+  .error {
+    left: 35%;
+  }
 }
 
 @media screen and (max-width: 550px) {
   .form_register {
     width: 85%;
+  }
+
+  .error {
+    left: 30%;
   }
 }

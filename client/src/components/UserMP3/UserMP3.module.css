@@ -5,8 +5,8 @@
   align-items: center;
   color: aliceblue;
   margin-top: 80px;
-  font-family: "Cabin", sans-serif;
   text-align: center;
+  font-size: 14px;
 }
 
 .titleAvatar {
@@ -15,18 +15,14 @@
 }
 
 .buttonAvatar {
-  border-radius: 16px;
   background-color: var(--btn);
   color: #fff;
-  width: 120px;
-  height: 40px;
-  font-size: 16px;
+  width: 350px;
+  height: 41px;
+  font-size: 14px;
   cursor: pointer;
-  font-family: "Cabin";
-  margin-top: 80px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-  outline: 2px solid rgba(255, 255, 255, 0.671);
-  outline-offset: 3px;
+  font-family: var(--second-font);
+  margin-top: 20px;
 }
 
 .buttonAvatar:hover {
@@ -38,6 +34,8 @@
 
 .inputAvatar {
   background-color: var(--mainColor);
+  width: 350px;
+  margin-top: 14px;
 }
 
 .imgAvatarContainer {
@@ -47,4 +45,31 @@
 
 .imgAvatar {
   border-radius: 50%;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputTitle {
+  background-color: #1f2937;
+  color: #fff;
+  border: 2px solid var(--mainColor);
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-family: var(--second-font);
+  height: 41px;
+  width: 350px;
+  font-size: 14px;
+}
+
+.spanTitles {
+  font-family: var(--second-font);
+  color: #fff;
+  font-size: 16px;
+  width: 350px;
+  text-align: left;
+  margin-bottom: 6px;
 }

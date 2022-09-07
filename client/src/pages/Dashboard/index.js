@@ -10,35 +10,38 @@ import { useLoading } from "../../hooks/useLoading.js";
 import ModuleLogin from "../Login/ModuleLogin.jsx";
 import { CardAlert } from "components/Cards";
 
-import Navbar from "./Navbar";
+import Navbar from "components/Navbar";
 
 export default function Dashboard() {
-  const { user } = useSelector(state => state.user)
+  const { user } = useSelector((state) => state.user);
   const { display, loading } = useLoading();
 
   return (
     <div className={s.container}>
-      {Object.keys(user).length ?
-      <>
-        <Navbar>
-          <Link to=''>Home</Link>
-        </Navbar>
-        <div className={s.content}>
-        {user.admin ?
-          <Routes>
-            <Route exact path="/" element={<DashboardHome />} />
-            <Route exact path="/feedback" element={<DashboardFeedback />} />
-            <Route exact path="/list" element={<PageAdmin />} />
-          </Routes>
-        : <CardAlert>debes ser admin para entrar aqui</CardAlert>}
-        </div>
-      </>
-      : loading ?
-        <Loading text={loading}/>
-        : <div style={{display}}>
-            <ModuleLogin success={'dashboard - admin'}/>
+      {Object.keys(user).length ? (
+        <>
+          <Navbar>
+            <Link to="">Dashboard</Link>
+          </Navbar>
+          <div className={s.content}>
+            {user.admin ? (
+              <Routes>
+                <Route exact path="/" element={<DashboardHome />} />
+                <Route exact path="/feedback" element={<DashboardFeedback />} />
+                <Route exact path="/list" element={<PageAdmin />} />
+              </Routes>
+            ) : (
+              <CardAlert>You must be admin to see the dashboard</CardAlert>
+            )}
           </div>
-      }
+        </>
+      ) : loading ? (
+        <Loading text={loading} />
+      ) : (
+        <div style={{ display }}>
+          <ModuleLogin success={"dashboard - admin"} />
+        </div>
+      )}
     </div>
-  )
+  );
 }

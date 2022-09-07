@@ -1,23 +1,52 @@
-import React from 'react'
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux"
-import s from "./favoritos.module.css"
+import React from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import s from "./favoritos.module.css";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
-import { FaPlay} from "react-icons/fa"
-import toMinutes from '../../utils/toMinutes.js'
+import { FaPlay } from "react-icons/fa";
+import toMinutes from "../../utils/toMinutes.js";
 import Player from "../Player";
 import { PopupPremium } from "../Popup";
+import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
+import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import { ImHeart } from "react-icons/im";
+import { removeFavorites, userTokenInfo } from "store/slice/user";
+
+function Detail({ e }) {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(userTokenInfo());
+    console.log(user.favorites);
+  }, []);
+
+  return (
+    <>
+      <div className={s.front}>
+        <p className={s.nameUser}>
+          Favorites of {user.username} <ImHeart />
+        </p>
+        <img src={user.avatar} alt={user.username} className={s.img} />
+      </div>
+    </>
+  );
+}
 
 function DetailTable({ e }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
+  const getTracksFavorites = () => {
+    dispatch(removeFavorites(e.id));
+  };
+
   return (
     <tr className={s.row}>
       <td>
         <button
-          className={user.premium ? '' : s.invisible}
+          className={user.premium ? "" : s.invisible}
           onClick={() => dispatch(setActual(e))}
         >
           <FaPlay />
@@ -26,45 +55,55 @@ function DetailTable({ e }) {
       <td className={s.text}>
         <p>{e.name}</p>
         <p>{e.artistName}</p>
+      </td>
+      <td>
+        <ImHeart className={s.favorites} onClick={() => getTracksFavorites()} />
+      </td>
+      <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
       </td>
     </tr>
   );
 }
 
-export default function Favorites(){
-    const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user)
-    const [ open, setOpen ] = useState(false)
-    
-    console.log(user.username)
-    console.log(user.favorites)//[{},{},{}]
+export default function Favorites() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const [open, setOpen] = useState(false);
+  const theme = localStorage.getItem("theme");
 
-    useEffect(() => {
-      if(user.favorites.length){
-        dispatch(setPlaylist(user.favorites));
-      }
-    }, [dispatch]);
+  useEffect(() => {
+    if (user.favorites) {
+      dispatch(setPlaylist(user.favorites));
+    }
+  }, [dispatch]);
 
-    return(
-        <>
-          <PopupPremium
-            open={open}
-            onClose={() => setOpen(false)}
-            user={user}
-            imagen="https://i.imgur.com/GiyjGcI.png"
-          />
-          <table className={s.table}>
+  return (
+    <>
+      {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
+      <div
+        className={
+          theme === "light" ? s.containerPrincipalLight : s.containerPrincipal
+        }
+      >
+        <Detail />
+        <PopupPremium
+          open={open}
+          onClose={() => setOpen(false)}
+          user={user}
+          imagen="https://i.imgur.com/GiyjGcI.png"
+        />
+        <div className={theme === "light" ? s.scrollLight : s.scroll}>
+          <table className={theme === "light" ? s.tableLight : s.table}>
             <tbody>
-            {user === undefined
-              ? ''
-              : user.favorites?.map((e, i) => (
-                  <DetailTable key={i} e={e} />
-                ))
-            }
+              {user === undefined
+                ? ""
+                : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}
             </tbody>
           </table>
-          <Player open={() => setOpen(true)}/>
-        </>
-    )
+        </div>
+        <Player open={() => setOpen(true)} />
+      </div>
+    </>
+  );
 }

@@ -1,27 +1,20 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { validateLogin } from "../../utils/validate.js";
 import { FaEye } from "react-icons/fa";
 import s from "./login.module.css";
+import sLight from "./loginLight.module.css";
 import LoginWithGoogle from "./LoginWithGoogle.jsx";
 import login from "../../utils/login.js";
 
-import axios from 'axios';
-import { useDispatch } from "react-redux";
-import { userTokenInfo } from "store/slice/user.js";
-//import { useCookies } from "react-cookie";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-
 export default function ModuleLogin({ success }) {
-  const dispatch = useDispatch();
-  //const [cookie, setCookie] = useCookies();
-
   const [input, setInput] = useState({
     user: "",
     pass: "",
   });
   const [errors, setErrors] = useState({});
+  const [hasSubmit, setHasSubmit] = useState(false);
   const inputPass = useRef();
+  const theme = localStorage.getItem("theme");
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +25,7 @@ export default function ModuleLogin({ success }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setHasSubmit(true);
     try {
       await login(
         {
@@ -41,54 +35,58 @@ export default function ModuleLogin({ success }) {
         "/api/v1/auth/login",
         success
       );
-      //console.log('dentro de module login')
-
-      //const asd = await axios.post(`${axios.defaults.baseURL}/api/v1/auth/login`,{
-      //  email: input.user,
-      //  password: input.pass,
-      //},{
-      //  withCredentials: true
-      //})
-
-      //console.log('token',asd.data.token)
-      //setCookie('refreshToken', asd.data.token, {path: '/'})
-      //cookies.set('refreshToken', asd.data.token, {path: '/'})
-
-      //dispatch(userTokenInfo())
     } catch (e) {
       console.log("error login", e);
     }
+    setHasSubmit(false);
   };
 
   return (
-    <div className={s.container}>
-      <div className={s.options}>
+    <div className={theme === "light" ? sLight.container : s.container}>
+      <div className={theme === "light" ? sLight.options : s.options}>
         <LoginWithGoogle />
       </div>
-      <form className={s.form} onSubmit={handleSubmit}>
-        <p>Email</p>
-        <input
-          type="email"
-          name="user"
-          placeholder="Email"
-          onChange={inputChange}
-          value={input.user}
-          className={errors.user ? s.inputError : ""}
-        />
-        <p className={s.msgError}>{errors.user || ""}</p>
-        <p className={s.passInput}>Password</p>
-        <input
-          ref={inputPass}
-          type="password"
-          name="pass"
-          placeholder="Password"
-          onChange={inputChange}
-          value={input.pass}
-          className={errors.pass ? s.inputError : ""}
-        />
+      <form
+        className={theme === "light" ? sLight.form : s.form}
+        onSubmit={handleSubmit}
+      >
+        <div className={theme === "light" ? sLight.inputs : s.inputs}>
+          <p className={theme === "light" ? sLight.emailTitle : s.emailTitle}>
+            Email
+          </p>
+          <input
+            type="email"
+            name="user"
+            placeholder="Email"
+            onChange={inputChange}
+            value={input.user}
+            className={errors.user ? s.inputError : ""}
+          />
+          <p className={theme === "light" ? sLight.msgError : s.msgError}>
+            {errors.user || ""}
+          </p>
+        </div>
+
+        <div className={theme === "light" ? sLight.inputs : s.inputs}>
+          <p className={theme === "light" ? sLight.emailTitle : s.emailTitle}>
+            Password
+          </p>
+          <input
+            ref={inputPass}
+            type="password"
+            name="pass"
+            placeholder="Password"
+            onChange={inputChange}
+            value={input.pass}
+            className={errors.pass ? s.inputError : ""}
+          />
+          <p className={theme === "light" ? sLight.msgError : s.msgError}>
+            {errors.pass || ""}
+          </p>
+        </div>
         <button
           type="button"
-          className={s.button}
+          className={theme === "light" ? sLight.button : s.button}
           onClick={() => {
             if (inputPass.current.type === "password") {
               inputPass.current.type = "text";
@@ -97,11 +95,18 @@ export default function ModuleLogin({ success }) {
             }
           }}
         >
-          <FaEye className={s.eye} />
+          <FaEye className={theme === "light" ? sLight : s.eye} />
         </button>
-        <p className={s.msgError}>{errors.pass || ""}</p>
-        <div className={s.containerSend}>
-          <button className={s.btnSend}>Login</button>
+
+        <div
+          className={theme === "light" ? sLight.containerSend : s.containerSend}
+        >
+          <button
+            disabled={hasSubmit}
+            className={theme === "light" ? sLight.btnSend : s.btnSend}
+          >
+            Login
+          </button>
         </div>
       </form>
     </div>

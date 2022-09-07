@@ -1,0 +1,115 @@
+.front {
+  text-align: center;
+  font-size: 30px;
+  margin: 40px;
+}
+
+.invisible {
+  display: none;
+}
+
+.row {
+  background: #000;
+  border-top: 1px solid;
+}
+
+.row:first-child {
+  border-top: 0px solid;
+}
+
+.row td {
+  padding: 0px 10px;
+  text-align: start;
+}
+
+.table {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.text p {
+  width: 360px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 40vw;
+  height: 30vw;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 87vh;
+}
+
+.favorites {
+  height: 60px;
+  width: 30px;
+  cursor: pointer;
+  /* color: red; */
+}
+
+.favorites1 {
+  color: red;
+  height: 60px;
+  width: 30px;
+  cursor: pointer;
+  /* color: red; */
+}
+
+.favorites :hover {
+  color: red;
+}
+
+.containerPrincipal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  height: 85vh;
+}
+
+.nameUser {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+/***** LIGHT THEME *****/
+.scrollLight {
+  overflow-y: scroll;
+  height: 87vh;
+  margin-bottom: 20px;
+}
+
+.containerPrincipalLight {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #eee;
+  color: #222;
+  font-weight: 600;
+  height: 85vh;
+}
+
+.tableLight {
+  width: 200px;
+  color: #fff;
+}

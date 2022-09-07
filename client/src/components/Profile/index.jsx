@@ -1,31 +1,87 @@
 import React, { useState } from "react";
 import s from "./profile.module.css";
-// import avatar from './utilsIMG/bsines.jpeg';
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getTopMusic } from "../../store/slice";
 import Avatar from "../Avatar";
 import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-// import Orders from './Orders'
-// import Shopping from './Shopping'
+import Swal from 'sweetalert2'
+import { logoutUser } from "store/slice/user";
+import axios from "axios";
+
 
 function ProfileInfo() {
   const dispatch = useDispatch();
   const { topMusic } = useSelector((state) => state.music);
   const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
   const { avatar } = useSelector((state) => state.music);
-  console.log(avatar);
-
   const [modal, setModal] = useState(false);
+  const theme = localStorage.getItem("theme");
+  const navigate = useNavigate();
+
+  console.log(user)
+
+  function deleteAccount() {
+    try {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+        },
+        // buttonsStyling: false
+      })
+
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#666',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your account has been deleted.',
+            'success'
+          )
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: user._id,
+            }).then(() => {
+              dispatch(logoutUser())
+              navigate('/')
+            })
+            
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your account is safe :)',
+            'error'
+          )
+        }
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const toggleModal = () => {
     setModal(!modal);
   };
+
 
   useEffect(() => {
     if (avatar.length > 0) {
@@ -35,14 +91,17 @@ function ProfileInfo() {
   }, [dispatch, avatar]);
 
   const onImgError = (e) => {
-    e.target.src = "https://pixabay.com/es/images/download/icon-1968245_640.png";
-  }
+    e.target.src =
+      "https://pixabay.com/es/images/download/icon-1968245_640.png";
+  };
 
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
 
-      <div className={s.mainContainer}>
+      <div
+        className={theme === "light" ? s.mainContainerLight : s.mainContainer}
+      >
         {modal && (
           <div className={s.mainContainerModal}>
             <CgCloseO
@@ -60,14 +119,13 @@ function ProfileInfo() {
             modal === false ? s.centerContainer : s.centerContainerDisplay
           }
         >
-          
           <div className={s.navbarCenter}>
             <div onClick={() => toggleModal()} className={s.circleImage}>
               {/* <h1 className={s.editImage}>editame boludo</h1> */}
               <img className={s.insideCircle} src={user.avatar} alt="avatar" />
             </div>
             <div className={s.infoNavbar}>
-              <h2 className={s.h2Perfil}>Perfil</h2>
+              <h2 className={s.h2Perfil}>Profile</h2>
               <span>
                 <h1 className={s.h1UserName}>{user.username}</h1>
               </span>
@@ -76,6 +134,8 @@ function ProfileInfo() {
               ) : (
                 <p className={s.underUsername}>Free</p>
               )}
+
+              <button onClick={() => deleteAccount()}>Delete Account</button>
             </div>
           </div>
 

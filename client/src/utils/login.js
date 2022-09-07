@@ -37,10 +37,10 @@ export default function login(obj, url, text = 'logeado') {
           "- el usuario no existe en la base de datos";
       Toast.fire({
         icon: 'error',
-        title: error,
+        title: typeof e.response.data === 'object' ? error : e.response.data,
         showConfirmButton: true,
         timer: undefined,
       })
-      throw new Error(e)
+      throw e;
     });
 }

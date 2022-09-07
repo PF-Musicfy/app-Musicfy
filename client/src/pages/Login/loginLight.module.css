@@ -1,0 +1,180 @@
+.login {
+  text-align: center;
+  color: #000;
+  background: #fff;
+  height: 100vh;
+}
+
+.login .navbar span {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #cf355c;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.login .navbar span:hover {
+  color: #000;
+}
+
+.form {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 30px;
+  text-align: center;
+  margin: 20px;
+}
+
+.inputError {
+  outline-color: rgb(186, 8, 8);
+  border: 1px solid red;
+}
+
+.navbar {
+  display: flex;
+  height: 60px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 5px 0 5px #777;
+}
+
+.navbar img {
+  height: 50px;
+  width: 50px;
+  display: inline;
+  border-radius: 15px;
+}
+
+.options {
+  padding: 10px;
+}
+.container {
+  margin: 30px auto;
+  width: 45%;
+}
+
+.button {
+  padding: 0 10px;
+}
+
+.inputs {
+  position: relative;
+}
+
+.msgError {
+  position: absolute;
+  bottom: -20px;
+  left: 35%;
+  color: rgb(241, 54, 54);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.eye {
+  font-size: 20px;
+}
+.eye:hover {
+  color: #cf355c;
+  transition: 300ms;
+}
+.containerSend {
+  width: 117px;
+  height: 51px;
+  border: 2px solid #000;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 20px;
+}
+.btnRegister {
+  color: #cf355c;
+  font-weight: 500;
+  transition: 300ms;
+  margin-top: 10px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 59px;
+}
+
+.btnRegister:hover {
+  color: #000;
+  border-bottom: 1px solid #cf355c;
+}
+.btnSend {
+  padding: 8px 33px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 4px auto;
+  background-color: #cf355c;
+  border-radius: 15px;
+  transition: 300ms;
+}
+
+.btnSend:hover {
+  background-color: #000;
+  color: #cf355c;
+  position: relative;
+}
+
+.form input {
+  width: 95%;
+  height: 20px;
+  padding: 15px;
+  color: #000;
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.emailTitle {
+  font-weight: 600;
+}
+
+.login .navbar button {
+  font-size: 25px;
+  color: #cf355c;
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.login .navbar button:hover {
+  color: #000;
+}
+
+@media screen and (max-width: 800px) {
+  .msgError {
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .container {
+    width: 25%;
+  }
+
+  .msgError {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    width: 85%;
+  }
+
+  .msgError {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 85%;
+  }
+
+  .msgError {
+    margin-left: 5px;
+  }
+}

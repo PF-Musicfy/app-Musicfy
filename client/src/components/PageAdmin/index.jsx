@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Buttons from "./Buttons";
-import CardUser from "./CardUser";
-import FirstLine from "./firstline";
 import SearchBar from "./SearchBar";
-import Cards from "./Cards";
 import { useEffect } from "react";
 import s from "./table.module.css";
 import { getUserModal, getUsers } from "../../store/slice/user";
@@ -12,65 +9,100 @@ import { ImLock, ImUnlocked } from "react-icons/im";
 import { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal";
+import Swal from "sweetalert2";
 
-function Fila({ user, openModal }) {
+function Fila({ userindex, openModal }) {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(false);
   const [block, setBlock] = useState(false);
   const [currentModalUser, setCurrentModal] = useState("");
+  const { user } = useSelector((state) => state.user);
+
+  let findRol = () => {
+    if (user.master) return "Admin";
+    return "Moderator";
+  };
+  let currentRol = findRol();
 
   useEffect(() => {
-    setAdmin(user.admin);
-    setBlock(user.isblocked);
-    setCurrentModal(user.email);
+    setAdmin(userindex.admin);
+    setBlock(userindex.isblocked);
+    setCurrentModal(userindex.email);
   }, [currentModalUser]);
 
   function handleAdmin(e) {
     e.preventDefault();
-    let variable = e.target.id;
-    variable = variable.slice(1);
-    setAdmin(!admin);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeadmin`, {
-        id: variable,
-      })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+    if (currentRol === "Admin" && !userindex.master) {
+      let variable = e.target.id;
+      variable = variable.slice(1);
+      setAdmin(!admin);
+      axios
+        .post(`${axios.defaults.baseURL}/user/changeadmin`, {
+          id: variable,
+        })
+        .then(dispatch(getUsers()))
+        .catch((e) => console.log(e));
+    }
   }
   function handleBlock(e) {
     e.preventDefault();
-    setBlock(!block);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeblock`, {
-        id: user._id,
+    if ((currentRol === "Admin" && !userindex.master) || !userindex.admin) {
+
+      Swal.fire({
+        title: 'Do you want to block this user?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Block',
+        denyButtonText: `Unblock`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          setBlock(true);
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+          Swal.fire('Blocked!', '', 'success')
+        } else if (result.isDenied) {
+          setBlock(false);
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+          Swal.fire('Unblocked!', '', 'success')
+        }
       })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+    }
   }
+
   return (
     <tr className={s.row}>
-      <td>{user.username}</td>
-      <td>{user.email}</td>
-      <td>{user.premium ? "Premium" : "Free"}</td>
-      <td onClick={handleAdmin} id={"a" + user._id} className={s.pointer}>
-        {admin ? "Admin" : "Not Admin"}
+      <td>{userindex.username}</td>
+      <td>{userindex.email}</td>
+      <td>{userindex.premium ? "Premium" : "Free"}</td>
+      <td onClick={handleAdmin} id={"a" + userindex._id} className={s.pointer}>
+        {admin ? "Moderator" : "Not Moderator"}
       </td>
-      <td onClick={handleBlock} id={user._id} className={s.pointer}>
-        {block ? <ImLock /> : <ImUnlocked />}
+      <td onClick={handleBlock} id={userindex._id}>
+        {block ? (
+          <ImLock className={s.pointer} />
+        ) : (
+          <ImUnlocked className={s.pointer} />
+        )}
       </td>
       <td>
         <BiMailSend
           onClick={() => {
-            dispatch(getUserModal(currentModalUser))
-              .then (()=> {
-                openModal(true);
-                setCurrentModal("");
-              })
+            dispatch(getUserModal(currentModalUser)).then(() => {
+              openModal(true);
+              setCurrentModal("");
+            });
           }}
           className={s.pointer}
         />
       </td>
-      <td></td>
     </tr>
   );
 }
@@ -78,7 +110,7 @@ function Mapeo({ users, openModal }) {
   return (
     <>
       {users?.map((e) => (
-        <Fila key={e._id} user={e} openModal={() => openModal(true)} />
+        <Fila key={e._id} userindex={e} openModal={() => openModal(true)} />
       ))}
     </>
   );
@@ -94,16 +126,9 @@ export default function PageAdmin() {
   }, [dispatch]);
 
   return (
-    <div className={s.container}>
+    <div className={modal ? s.containerblur : s.containerbase}>
       <SearchBar />
       <Buttons />
-      {modal && (
-        <div className={s.modalito}>
-          <Modal closeModal={setModal} />
-        </div>
-      )}
-      {/* <FirstLine />
-      <Cards users={users} />  */}
       <table className={s.table}>
         <thead>
           <tr className={s.head}>
@@ -119,6 +144,11 @@ export default function PageAdmin() {
           <Mapeo users={users} openModal={setModal} />
         </tbody>
       </table>
+      {modal && (
+        <div className={s.modalito}>
+          <Modal closeModal={setModal} />
+        </div>
+      )}
     </div>
   );
 }

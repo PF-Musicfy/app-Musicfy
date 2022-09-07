@@ -57,13 +57,20 @@
 .button {
   padding: 0 10px;
 }
-.msgError {
-  margin-bottom: 40px;
-  font-size: 14px;
-  color: rgb(241, 54, 54);
-  text-align: center;
-  font-weight: 500;
+
+.inputs {
+  position: relative;
 }
+
+.msgError {
+  position: absolute;
+  bottom: -20px;
+  left: 35%;
+  color: rgb(241, 54, 54);
+  font-weight: 500;
+  font-size: 14px;
+}
+
 .eye {
   font-size: 20px;
 }
@@ -119,8 +126,8 @@
   margin-top: 10px;
 }
 
-.form .passInput {
-  margin-top: 70px;
+.emailTitle {
+  font-weight: 600;
 }
 
 .login .navbar button {
@@ -134,14 +141,38 @@
   color: #fff;
 }
 
+@media screen and (max-width: 800px) {
+  .msgError {
+    left: 30%;
+  }
+}
+
 @media screen and (max-width: 670px) {
   .container {
-    width: 70%;
+    width: 25%;
+  }
+
+  .msgError {
+    margin-left: 40px;
   }
 }
 
 @media screen and (max-width: 550px) {
   .container {
     width: 85%;
+  }
+
+  .msgError {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 85%;
+  }
+
+  .msgError {
+    margin-left: 5px;
   }
 }

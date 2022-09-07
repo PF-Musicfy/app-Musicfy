@@ -1,0 +1,223 @@
+.swiperGlobal {
+  width: 90%;
+  color: #000;
+}
+
+.imgSwiper {
+  margin-top: 20px;
+  border-radius: 3px;
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+}
+
+.h3Colors {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 170px;
+  color: #000;
+  margin-top: 3px;
+}
+
+.cardImages {
+  height: 260px;
+}
+
+.containerSwiper {
+  display: flex;
+  justify-content: center;
+  margin: 0px -22px 0px 14px;
+  margin-bottom: 30px;
+}
+
+.titleGenre {
+  margin-left: 25px;
+  margin-bottom: 5px;
+  color: #000;
+  font-size: 18px;
+  width: 120px;
+  margin-left: 125px;
+}
+
+.buttonsFilter {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.buttonsFilter .buttonsFilterSpan {
+  color: #000;
+}
+
+.selectorFilter {
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 15px;
+  background-color: transparent;
+  color: var(--mainColor);
+  margin: 15px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgb(139, 137, 137);
+  outline: hidden;
+}
+
+.buttonsFilterSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsFilterSelect .btnSearch {
+  cursor: pointer;
+  border-bottom: 1px solid #111;
+}
+
+.buttonsFilterSelect > span {
+  border-bottom: 1px solid #111;
+}
+
+.buttonStyles {
+  border: 2px solid var(--mainColor);
+  border-radius: 8px;
+  padding: 0px 6px 0px 6px;
+  color: #000;
+  margin: 0px 10px 0px 10px;
+  background: var(--mainColor);
+}
+
+.buttonStyles:hover {
+  background-color: #fff;
+  color: var(--mainColor);
+}
+
+.containerAlbumes {
+  display: none;
+}
+
+.containerAlbumes2 {
+  transition: none;
+}
+
+.buttonOff {
+  border: 2px solid rgb(58, 57, 57);
+  border-radius: 8px;
+  padding: 0px 6px 0px 6px;
+  color: #000;
+  margin: 0px 10px 0px 10px;
+  background: rgb(93, 92, 92);
+}
+
+@media (max-width: 570px) {
+  .buttonsFilterSelect {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .swiperGlobal {
+    width: 75%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 145px;
+    height: 135px;
+    object-fit: cover;
+  }
+
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 145px;
+    color: #000;
+    font-size: 14px;
+  }
+
+  .cardImages {
+    margin-bottom: 10px;
+    height: 240px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .swiperGlobal {
+    width: 70%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+  }
+
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 105px;
+    color: #000;
+    font-size: 12px;
+  }
+
+  .cardImages {
+    margin-bottom: 10px;
+    height: 240px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .swiperGlobal {
+    width: 70%;
+  }
+  .containerSwiper {
+    display: flex;
+    justify-content: center;
+    margin: 0px -24px 0px 19px;
+    margin-bottom: 20px;
+  }
+
+  .imgSwiper {
+    border-radius: 3px;
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+  }
+
+  .h3Colors {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3px;
+    width: 105px;
+    color: #000;
+    font-size: 12px;
+  }
+
+  .cardImages {
+    margin-bottom: 10px;
+    height: 240px;
+    color: #111;
+  }
+}

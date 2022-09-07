@@ -14,13 +14,13 @@
   align-items: center;
   justify-content: center;
   height: 60px;
-  width: 710x;
   font-family: "Poppins", sans-serif;
 }
 
 .btnNavbar {
   font-size: 16px;
   cursor: pointer;
+  margin: 0 15px;
 }
 .btnNavbar:hover {
   color: var(--btn);
@@ -30,6 +30,7 @@
   height: 55px;
   margin-right: 10px;
   object-fit: scale-down;
+  cursor: pointer;
 }
 .conterImg {
   display: flex;
@@ -73,6 +74,7 @@
 }
 
 .logOut {
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -108,7 +110,7 @@
   .containerfabars {
     position: absolute;
     visibility: visible;
-    width: 100%;
+    width: 110vw;
     height: 200%;
     background-color: black;
     z-index: 60;
@@ -124,11 +126,21 @@
     cursor: pointer;
   }
   .closebtn {
-    height: 30%;
-    margin-top: 5%;
-    margin-left: 90%;
+    height: 25%;
+    margin-top: 30%;
+    margin-left: 50%;
   }
   .fatimes {
     height: 400px;
   }
+}
+
+.btnTheme {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #fff;
+}
+
+.btnTheme:hover {
+  color: var(--btn);
 }

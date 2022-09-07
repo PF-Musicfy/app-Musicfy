@@ -1,0 +1,105 @@
+.hola {
+  color: #000;
+}
+/* #6c757d */
+
+.containerAbout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  height: 1480px;
+  box-shadow: 5px 0px 5px #777;
+}
+.containerCards {
+  display: flex;
+  flex-direction: row;
+  background-color: #000;
+  width: 672px;
+  height: 152px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  box-shadow: 0px 0px 10px #fff;
+}
+.containerTxt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 520px;
+}
+.cardName {
+  color: #fff;
+  font-size: 34px;
+}
+.imgCard {
+  clip-path: polygon(10% 0%, 101% 0, 101% 100%, 0 100%);
+  border-radius: 0px 4px 4px 0px;
+}
+.footerSocial {
+  display: flex;
+  flex-direction: row;
+  font-size: 25px;
+  color: #45484b;
+}
+.cardTitle,
+.cardLocation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--mainColor);
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+.cardTitle {
+  margin-bottom: -4px;
+}
+.cardLocation {
+  margin-bottom: 8px;
+}
+.gitHubIcon {
+  margin-right: 8px;
+}
+
+.gitHubIcon:hover,
+.linkedinIcon:hover {
+  cursor: pointer;
+  color: var(--mainColor);
+}
+
+@media (max-width: 720px) {
+  .containerCards {
+    width: 520px;
+  }
+  .cardName {
+    font-size: 24px;
+  }
+  .cardTitle,
+  .cardLocation {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 536px) {
+  .containerCards {
+    width: 370px;
+    height: 120px;
+  }
+  .cardName {
+    font-size: 24px;
+  }
+  .containerAbout {
+    height: 1080px;
+  }
+  .footerSocial {
+    font-size: 16px;
+  }
+  .cardName {
+    font-size: 20px;
+  }
+  .containerCards {
+    margin-bottom: 20px;
+  }
+}

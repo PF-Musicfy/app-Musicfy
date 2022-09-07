@@ -1,0 +1,120 @@
+.containerNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  width: 100%;
+  height: 70px;
+}
+
+.containerButtomNavbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 710x;
+  font-family: "Poppins", sans-serif;
+}
+
+.containerButtomNavbar li {
+  margin: 0 15px;
+}
+
+.btnNavbar {
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+}
+
+.btnNavbar:hover {
+  color: var(--btn);
+}
+
+.logoImg {
+  width: 50px;
+  height: 55px;
+  margin-right: 10px;
+  object-fit: scale-down;
+  border-radius: 15px;
+}
+
+.conterImg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.logoTxt {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.logoTxt:hover {
+  color: var(--mainColor);
+  cursor: pointer;
+}
+.iconUser {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 28px;
+}
+.navbtn {
+  display: none;
+}
+.containerfabars {
+  visibility: hidden;
+}
+@media (max-width: 856px) {
+  .containerButtomNavbar {
+    display: none;
+  }
+  .navbtn {
+    display: contents;
+  }
+  .fabars {
+    width: 10%;
+    height: 20px;
+  }
+  .containerfabars {
+    position: absolute;
+    visibility: visible;
+    width: 110vw;
+    height: 200%;
+    background-color: #fff;
+    z-index: 60;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+  .btnNavbar {
+    font-size: 200%;
+    cursor: pointer;
+  }
+  .closebtn {
+    height: 25%;
+    margin-top: 30%;
+    margin-left: 50%;
+  }
+  .fatimes {
+    height: 400px;
+    margin-top: 10px;
+  }
+}
+
+.btnTheme {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.btnTheme:hover {
+  color: var(--btn);
+}

@@ -103,12 +103,3 @@ export const getFavorites = (id) => {
     }
 }
 
-export const clearFavorites = () => {
-  return function(dispatch){
-    try {
-      return dispatch(setFavorites([]))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}

@@ -2,21 +2,67 @@ import styles from "./UserMP3.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMP3 } from "../../store/slice";
+import { uploadMp3User } from "store/slice/user";
 
 export default function UserMP3() {
-  const [imageSelected, setImageSelected] = useState("");
+  const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
   const { usermp3 } = useSelector((state) => state.music);
+  const [detailmp3, setDetailmp3] = useState({ titlesong: "", albumsong: "", urlsong: "" });
+
+  const handleChangeMp3 = (e) => {
+    e.preventDefault();
+    setDetailmp3({ ...detailmp3, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getMP3(mp3selected)).then((e) => {
+      detailmp3.urlsong = e;
+    });
+    dispatch(uploadMp3User(detailmp3));
+  };
 
   return (
     <div className={styles.avatarContainer}>
       <div className={styles.imgAvatarContainer}></div>
       <audio src={usermp3} preload="none" controls></audio>
       <p className={styles.titleAvatar}>Upload MP3</p>
-      <input className={styles.inputAvatar} onChange={(e) => setImageSelected(e.target.files[0])} type="file" />
-      <button className={styles.buttonAvatar} onClick={() => dispatch(getMP3(imageSelected))}>
-        Upload
-      </button>
+      <form
+        className={styles.formContainer}
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
+        <span className={styles.spanTitles}>Title song</span>
+        <input
+          name="titlesong"
+          value={detailmp3.titlesong}
+          onChange={(e) => {
+            handleChangeMp3(e);
+          }}
+          type="text"
+          placeholder="Enter title"
+          className={styles.inputTitle}
+        ></input>
+        <span className={styles.spanTitles}>Album song</span>
+        <input
+          name="albumsong"
+          value={detailmp3.albumsong}
+          onChange={(e) => {
+            handleChangeMp3(e);
+          }}
+          type="text"
+          placeholder="Enter album"
+          className={styles.inputTitle}
+        ></input>
+        <input
+          // name="urlsong"
+          className={styles.inputAvatar}
+          onChange={(e) => setMp3Selected(e.target.files[0])}
+          type="file"
+        />
+        <button className={styles.buttonAvatar}>Upload song</button>
+      </form>
     </div>
   );
 }
