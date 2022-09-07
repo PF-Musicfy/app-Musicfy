@@ -72,6 +72,7 @@ const loginUser = async (req, res) => {
 
     let user = await User.findOne({ email });
     if (!user) throw new Error("This user does not exist");
+    if (user.isblocked) throw new Error("This user is blocked");
 
     const responsePassword = await user.comparePassword(password);
     if (!responsePassword) throw new Error("Incorrect password");
