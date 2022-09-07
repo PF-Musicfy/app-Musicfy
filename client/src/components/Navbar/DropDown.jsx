@@ -7,7 +7,7 @@ import s from "./dropdown.module.css";
 import imagen from "components/NavBarHome/img_avatar.png";
 import { logoutUser } from "store/slice/user";
 
-export default function DropDown() {
+export default function DropDown({ responsive }) {
   const dispatch = useDispatch();
 
   const [profile, setProfile] = useState(false);
@@ -32,17 +32,21 @@ export default function DropDown() {
         {Object.keys(user).length
         ? <>
           <Link to='/profile'>Profile</Link>
-            <Link to='/premium'>Premium</Link>
-            <div className={s.responsive}>
+          <Link to='/premium'>Premium</Link>
+          <div className={s.responsive}>
+            {responsive ||
+              <>
               <Link to='/'>Home</Link>
               <Link to='/feedback'>Feedback</Link>
               <Link to='/favorites'>Favorites</Link>
-            </div>
-            <button
-              onClick={() => dispatch(logoutUser())}
-            >
-              Log out
-            </button>
+              </>
+            }
+          </div>
+          <button
+            onClick={() => dispatch(logoutUser())}
+          >
+            Log out
+          </button>
           </>
         : <div className={s.responsiveOff}>
           <Link to='/login'>Login</Link>
