@@ -31,7 +31,6 @@
   justify-content: center;
   margin: 0px -22px 0px 14px;
   margin-bottom: 30px;
-  /* border: 1px solid yellow; */
 }
 
 .titleGenre {
@@ -100,6 +99,7 @@
 .containerAlbumes2 {
   transition: none;
 }
+
 
 .buttonOff {
   border: 2px solid gray;
@@ -192,6 +192,18 @@
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
+  }
+
+  .buttonsFilter{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid yellow; */
+  }
+
+  .buttonStyles{
+    margin-top: 6px;
   }
 
 }

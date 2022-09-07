@@ -12,7 +12,8 @@ import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { userTokenInfo } from "store/slice/user"
+import { userTokenInfo } from "store/slice/user";
+import Swal from 'sweetalert2';
 
 // const colorLocal = JSON.parse(localStorage.getItem('favorites')|| true)
 
@@ -22,6 +23,16 @@ function DetailTable({ e }) {
   const { user } = useSelector((state) => state.user);
 
 
+  // ---- TOAST ALERT ----
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  })
+
+  // ---- TOAST ALERT ----
   
   useEffect(()=> {
     dispatch(userTokenInfo())
@@ -29,6 +40,10 @@ function DetailTable({ e }) {
 
   const getTracksFavorites = () => {
       dispatch(favoritesUser(e))
+      Toast.fire({
+        icon: 'success',
+        title: 'The song has added to favorites'
+      })
   }
 
 

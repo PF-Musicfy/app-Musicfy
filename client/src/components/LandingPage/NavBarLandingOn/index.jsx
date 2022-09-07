@@ -39,6 +39,9 @@ function NavBarLanding() {
         </div>
         <nav>
           <ul className={styles.containerButtomNavbar}>
+            <Link to="/home">
+              <li className={styles.btnNavbar}>Home</li>
+            </Link>
             <Link to="/premium">
               <li className={styles.btnNavbar}>Premium</li>
             </Link>
@@ -59,6 +62,9 @@ function NavBarLanding() {
             {profile && (
               <div className={styles.container}>
                 <div className={styles.selectPerfil}>
+                  {user.admin === true || user.master === true ? <Link to="/dashboard">
+                    <span className={styles.logOut} >Dashboard</span>
+                  </Link> : false}
                   <span onClick={handleLog} className={styles.logOut}>
                     Log out
                   </span>

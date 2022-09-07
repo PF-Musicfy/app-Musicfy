@@ -66,7 +66,7 @@ export default function NavBarHome() {
                 Home
               </span>
               {/* <Link to="/playlist"> */}
-                <span>+Playlist</span>
+              <span>+Playlist</span>
               {/* </Link> */}
               <Link to="/library">
                 <span>Library</span>
@@ -74,7 +74,7 @@ export default function NavBarHome() {
               <Link to="/favorites">
                 <span>Favorites</span>
               </Link>
-                <Link to ="/profile">
+              <Link to="/profile">
                 <span className="profile">Profile</span>
               </Link>
               <Link to="/login">
@@ -97,6 +97,9 @@ export default function NavBarHome() {
           {profile && (
             <div className="container">
               <div className="select-perfil">
+                {user.admin === true || user.master === true ? <Link to="/dashboard">
+                  <span className={styles.logOut} >Dashboard</span>
+                </Link> : false}
                 <Link to="/profile">
                   <span>Profile</span>
                 </Link>
@@ -148,4 +151,4 @@ export default function NavBarHome() {
       )}
     </div>
   );
-      }
+}
