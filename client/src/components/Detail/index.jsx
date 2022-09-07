@@ -12,9 +12,11 @@ import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+
 import { userTokenInfo } from "store/slice/user";
 
 import Swal from 'sweetalert2';
+
 
 import { BsThreeDots } from "react-icons/bs";
 import MenuTresPuntos from "./MenuTresPuntos";
@@ -31,6 +33,7 @@ function DetailTable({ e }) {
   const toggleModal = () => {
     setModal(!modal);
   };
+
 
   // ---- TOAST ALERT ----
   const Toast = Swal.mixin({

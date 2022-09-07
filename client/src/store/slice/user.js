@@ -94,6 +94,7 @@ export const userTokenPremium = (premium = true) => {
 
       // const { token } = await resToken.json();
       const token = cookies.get("refreshToken");
+      console.log("en dispatch");
 
       await fetch(`${axios.defaults.baseURL}/api/v1/auth/premium`, {
         method: "POST",
@@ -235,6 +236,24 @@ export const playlistUser = (name) => {
       console.log(data);
     } catch (error) {
       console.log("Ocurrio un error", error);
+    }
+  };
+};
+
+export const uploadMp3User = (usermp3) => {
+  return async function () {
+    try {
+      const token = cookies.get("refreshToken");
+      await fetch(`${axios.defaults.baseURL}/api/v1/auth/setmp3`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ usermp3 })
+      });
+    } catch (error) {
+      console.log("Ocurrio un error guardo mp3 en db", error);
     }
   };
 };

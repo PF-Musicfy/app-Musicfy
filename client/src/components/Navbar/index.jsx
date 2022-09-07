@@ -19,17 +19,20 @@ export default function Navbar({ children }) {
       <nav className={s.navbar}>
         {Object.keys(user).length
         ? <>
+            {children ||
+            <>
             <Link to='/'>Home</Link>
             <Link to='/feedback'>Feedback</Link>
             <Link to='/favorites'>Favorites</Link>
+            </>
+            }
           </>
         : <>
             <Link to='/login'>Login</Link>
             <Link to='/register'>Register</Link>
           </>
         }
-        <DropDown />
-        {children}
+        <DropDown responsive={children}/>
       </nav>
     </div>
   );

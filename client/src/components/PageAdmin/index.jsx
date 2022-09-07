@@ -31,8 +31,8 @@ function Fila({ userindex, openModal }) {
   }, [currentModalUser]);
 
   function handleAdmin(e) {
+    e.preventDefault();
     if (currentRol === "Admin" && !userindex.master) {
-      e.preventDefault();
       let variable = e.target.id;
       variable = variable.slice(1);
       setAdmin(!admin);
@@ -46,33 +46,35 @@ function Fila({ userindex, openModal }) {
   }
   function handleBlock(e) {
     e.preventDefault();
+    if ((currentRol === "Admin" && !userindex.master) || !userindex.admin) {
 
-    Swal.fire({
-      title: 'Do you want to block this user?',
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: 'Block',
-      denyButtonText: `Unblock`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        setBlock(true);
-        axios
-          .post(`${axios.defaults.baseURL}/user/changeblock`, {
-            id: userindex._id,
-          })
-          .then(dispatch(getUsers()))
-        Swal.fire('Blocked!', '', 'success')
-      } else if (result.isDenied) {
-        setBlock(false);
-        axios
-          .post(`${axios.defaults.baseURL}/user/changeblock`, {
-            id: userindex._id,
-          })
-          .then(dispatch(getUsers()))
-        Swal.fire('Unblocked!', '', 'success')
-      }
-    })
+      Swal.fire({
+        title: 'Do you want to block this user?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Block',
+        denyButtonText: `Unblock`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          setBlock(true);
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+          Swal.fire('Blocked!', '', 'success')
+        } else if (result.isDenied) {
+          setBlock(false);
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+          Swal.fire('Unblocked!', '', 'success')
+        }
+      })
+    }
   }
 
   return (
@@ -127,8 +129,6 @@ export default function PageAdmin() {
     <div className={modal ? s.containerblur : s.containerbase}>
       <SearchBar />
       <Buttons />
-      {/* <FirstLine />
-      <Cards users={users} />  */}
       <table className={s.table}>
         <thead>
           <tr className={s.head}>

@@ -8,6 +8,7 @@ import styles from "./indexHome.module.css";
 import stylesLight from "./indexHomeLight.module.css";
 import { getTopMusic, topMusicClear, getTopsByGenre } from "store/slice/index";
 import "swiper/css";
+import Loading from "components/Loading";
 
 function Listas({ arr, objKey }) {
   const { musicSearch } = useSelector((state) => state.music);
@@ -273,7 +274,10 @@ export default function HomeAlbum() {
           theme === "light" ? stylesLight.buttonsFilter : styles.buttonsFilter
         }
       >
-        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>Tops by genre: </span>
+        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>
+          Tops by genre:{" "}
+        </span>
+
         <select
           name="genre"
           className={
@@ -346,7 +350,7 @@ export default function HomeAlbum() {
               theme === "light" ? stylesLight.titleGenre : styles.titleGenre
             }
           >
-            Top Tracks
+            Top Tracks+
           </h1>
         ) : musicSearch.tracks ? (
           <h1
