@@ -45,7 +45,10 @@ function DetailTable({ e }) {
   return (
     <tr className={s.row}>
       <td>
-        <button className={user.premium ? "" : s.invisible} onClick={() => dispatch(setActual(e))}>
+        <button
+          className={user.premium ? "" : s.invisible}
+          onClick={() => dispatch(setActual(e))}
+        >
           <FaPlay />
         </button>
       </td>
@@ -67,6 +70,7 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
+  const theme = localStorage.getItem("theme");
 
   useEffect(() => {
     if (user.favorites) {
@@ -77,12 +81,25 @@ export default function Favorites() {
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
-      <div className={s.containerPrincipal}>
+      <div
+        className={
+          theme === "light" ? s.containerPrincipalLight : s.containerPrincipal
+        }
+      >
         <Detail />
-        <PopupPremium open={open} onClose={() => setOpen(false)} user={user} imagen="https://i.imgur.com/GiyjGcI.png" />
-        <div className={s.scroll}>
-          <table className={s.table}>
-            <tbody>{user === undefined ? "" : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
+        <PopupPremium
+          open={open}
+          onClose={() => setOpen(false)}
+          user={user}
+          imagen="https://i.imgur.com/GiyjGcI.png"
+        />
+        <div className={theme === "light" ? s.scrollLight : s.scroll}>
+          <table className={theme === "light" ? s.tableLight : s.table}>
+            <tbody>
+              {user === undefined
+                ? ""
+                : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}
+            </tbody>
           </table>
         </div>
         <Player open={() => setOpen(true)} />
