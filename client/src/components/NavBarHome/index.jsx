@@ -141,6 +141,9 @@ export default function NavBarHome() {
                     : styles.selectPerfil
                 }
               >
+                {user.admin === true || user.master === true ? <Link to="/dashboard">
+                  <span className={styles.logOut} >Dashboard</span>
+                </Link> : false}
                 <Link to="/profile">
                   <span>Profile</span>
                 </Link>
