@@ -22,7 +22,7 @@ export default function NavBarHome() {
     position: "top-end",
     showConfirmButton: false,
     timer: 1500,
-    timerProgressBar: true,
+    timerProgressBar: true
   });
 
   const showNavBar = () => {
@@ -36,7 +36,7 @@ export default function NavBarHome() {
   function handleLog() {
     Toast.fire({
       icon: "success",
-      title: "Logout successfully",
+      title: "Logout successfully"
     }).then(() => {
       setTimeout(() => {
         dispatch(logoutUser());
@@ -54,21 +54,11 @@ export default function NavBarHome() {
     <div>
       {Object.keys(user).length ? (
         <div>
-          <header
-            className={theme === "light" ? stylesLight.header : styles.header}
-          >
-            <div
-              className={
-                theme === "light" ? stylesLight.searchStyle : styles.searchStyle
-              }
-            >
+          <header className={theme === "light" ? stylesLight.header : styles.header}>
+            <div className={theme === "light" ? stylesLight.searchStyle : styles.searchStyle}>
               <SearchBar />
             </div>
-            <div
-              className={
-                theme === "light" ? stylesLight.logoDiv : styles.logoDiv
-              }
-            >
+            <div className={theme === "light" ? stylesLight.logoDiv : styles.logoDiv}>
               <Link to="/">
                 <img
                   className={theme === "light" ? stylesLight.logo : styles.logo}
@@ -77,48 +67,20 @@ export default function NavBarHome() {
                 />
               </Link>
               <Link to="/">
-                <span
-                  className={
-                    theme === "light" ? stylesLight.logoTxt : styles.logoTxt
-                  }
-                >
-                  MusicFy
-                </span>
+                <span className={theme === "light" ? stylesLight.logoTxt : styles.logoTxt}>MusicFy</span>
               </Link>
             </div>
-            <nav
-              className={theme === "light" ? stylesLight.nav : styles.nav}
-              ref={navRef}
-            >
+            <nav className={theme === "light" ? stylesLight.nav : styles.nav} ref={navRef}>
               <span
                 onClick={(e) => {
                   onClickHome(e);
                 }}
-                className={
-                  theme === "light"
-                    ? stylesLight.btnHomeLoco
-                    : styles.btnHomeLoco
-                }
+                className={theme === "light" ? stylesLight.btnHomeLoco : styles.btnHomeLoco}
               >
                 Home
               </span>
               <Link to="/mp3uploaded">
-                <span
-                  className={
-                    theme === "light" ? stylesLight.profile : styles.profile
-                  }
-                >
-                  Mp3 Uploaded
-                </span>
-              </Link>
-              <Link to="/playlistSongs">
-                <span
-                  className={
-                    theme === "light" ? stylesLight.profile : styles.profile
-                  }
-                >
-                  Playlist
-                </span>
+                <span className={theme === "light" ? stylesLight.profile : styles.profile}>Mp3 Uploaded</span>
               </Link>
               <Link to="/favorites">
                 <span className={styles.btnFavorites}>Favorites</span>
@@ -136,33 +98,18 @@ export default function NavBarHome() {
               </button>
               <img
                 src={user.avatar || imagen}
-                className={
-                  theme === "light" ? stylesLight.avatar : styles.avatar
-                }
+                className={theme === "light" ? stylesLight.avatar : styles.avatar}
                 onClick={handleClick}
                 alt="avatarsito"
               />
             </nav>
-            <button
-              className={theme === "light" ? stylesLight.navBtn : styles.navBtn}
-              onClick={showNavBar}
-            >
+            <button className={theme === "light" ? stylesLight.navBtn : styles.navBtn} onClick={showNavBar}>
               <FaBars />
             </button>
           </header>
           {profile && (
-            <div
-              className={
-                theme === "light" ? stylesLight.container : styles.container
-              }
-            >
-              <div
-                className={
-                  theme === "light"
-                    ? stylesLight.selectPerfil
-                    : styles.selectPerfil
-                }
-              >
+            <div className={theme === "light" ? stylesLight.container : styles.container}>
+              <div className={theme === "light" ? stylesLight.selectPerfil : styles.selectPerfil}>
                 {user.admin === true || user.master === true ? (
                   <Link to="/dashboard">
                     <span className={styles.logOut}>Dashboard</span>
@@ -176,12 +123,7 @@ export default function NavBarHome() {
                 <Link to="/premium">
                   <span>Premium</span>
                 </Link>
-                <span
-                  onClick={handleLog}
-                  className={
-                    theme === "light" ? stylesLight.logOut : styles.logOut
-                  }
-                >
+                <span onClick={handleLog} className={theme === "light" ? stylesLight.logOut : styles.logOut}>
                   Logout
                 </span>
               </div>{" "}
@@ -190,18 +132,10 @@ export default function NavBarHome() {
         </div>
       ) : (
         <header>
-          <div
-            className={
-              theme === "light"
-                ? stylesLight.searchStyleNologged
-                : styles.searchStyleNologged
-            }
-          >
+          <div className={theme === "light" ? stylesLight.searchStyleNologged : styles.searchStyleNologged}>
             <SearchBar />
           </div>
-          <div
-            className={theme === "light" ? stylesLight.logoDiv : styles.logoDiv}
-          >
+          <div className={theme === "light" ? stylesLight.logoDiv : styles.logoDiv}>
             <Link to="/">
               <img
                 className={theme === "light" ? stylesLight.logo : styles.logo}
@@ -210,21 +144,11 @@ export default function NavBarHome() {
               />
             </Link>
             <Link to="/">
-              <span
-                className={
-                  theme === "light" ? stylesLight.logoTxt : styles.logoTxt
-                }
-              >
-                MusicFy
-              </span>
+              <span className={theme === "light" ? stylesLight.logoTxt : styles.logoTxt}>MusicFy</span>
             </Link>
           </div>
           <nav ref={navRef}>
-            <div
-              className={
-                theme === "light" ? stylesLight.noLogged : styles.noLogged
-              }
-            >
+            <div className={theme === "light" ? stylesLight.noLogged : styles.noLogged}>
               <Link to="/register">
                 <span>Register</span>
               </Link>
