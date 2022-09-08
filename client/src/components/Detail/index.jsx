@@ -6,14 +6,13 @@ import s from "./detail.module.css";
 import sLight from "./detailsLight.module.css";
 import { AiFillHeart } from "react-icons/ai";
 import toMinutes from "../../utils/toMinutes.js";
-import { getTrackId } from "../../store/slice";
+import { getTrackId, clearObject } from "../../store/slice";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
-import { favoritesUser } from "../../store/slice/user";
+import { favoritesUser, userTokenInfo, musicPlaylist } from "../../store/slice/user";
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { userTokenInfo } from "store/slice/user";
 import Swal from "sweetalert2";
 import { BsThreeDots } from "react-icons/bs";
 import MenuTresPuntos from "./MenuTresPuntos";
@@ -50,6 +49,12 @@ function DetailTable({ e }) {
       title: "The song has added to favorites",
     });
   };
+
+  // const addMusicPlaylist = () => {
+  //   dispatch(musicPlaylist())
+  // }
+
+
 
   return (
     <>
@@ -187,10 +192,12 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getTrackId(id));
+    dispatch(clearObject())
   }, [dispatch, id]);
 
   useEffect(() => {
     setAllSongs(Object.values(detailTracks));
+
   }, [detailTracks]);
 
   useEffect(() => {

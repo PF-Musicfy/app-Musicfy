@@ -1,6 +1,9 @@
 const { findById } = require("../models/Post.js");
 const User = require("../models/User.js");
-const { generateRefreshToken, generateToken } = require("../utils/tokenManager.js");
+const {
+  generateRefreshToken,
+  generateToken,
+} = require("../utils/tokenManager.js");
 const express = require("express");
 
 // Kosovomba
@@ -23,7 +26,7 @@ const validate = async (req, res) => {
       to: email,
       subject: "Validation link",
       html: `<b> Hello! Click this link in order to complete registration: </b>
-    <a href= "${validationLink}">Link</a>`
+    <a href= "${validationLink}">Link</a>`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -121,7 +124,7 @@ const logoutUser = (req, res) => {
 const premiumUser = async (req, res) => {
   const { premium } = req.body;
   const user = await User.findByIdAndUpdate(req.uid, {
-    premium
+    premium,
   });
   await user.save();
   console.log("El usuario se hizo premium");
@@ -131,7 +134,7 @@ const premiumUser = async (req, res) => {
 const avatarUser = async (req, res) => {
   const { avatar } = req.body;
   const user = await User.findByIdAndUpdate(req.uid, {
-    avatar
+    avatar,
   });
   await user.save();
   console.log(avatar);
@@ -156,7 +159,9 @@ const favoritesUser = async (req, res) => {
     if (favoriteFound.length) {
       res.json({ message: "Esta cancion ya se encuentra en favoritos" });
     } else {
-      const userUpdate = await User.findByIdAndUpdate(req.uid, { $push: { favorites } });
+      const userUpdate = await User.findByIdAndUpdate(req.uid, {
+        $push: { favorites },
+      });
       res.json({ message: "Se guardo la cancion en favoritos" });
     }
   } catch (error) {
@@ -181,20 +186,46 @@ const favoritesUser = async (req, res) => {
 
 const favoritesDelete = async (req, res) => {
   const { remove } = req.body;
-  const user = await User.findByIdAndUpdate(req.uid, { $pull: { favorites: { id: remove } } });
+  const user = await User.findByIdAndUpdate(req.uid, {
+    $pull: { favorites: { id: remove } },
+  });
   await user.save();
   return res.json({ message: "musica eliminada" });
 };
 
 const playlistUser = async (req, res) => {
-  const { name } = req.body;
+  // const { name } = req.body;
+  const { playlist } = req.body;
+  const userPlaylist = await User.findById(req.uid);
+  const filterUser = userPlaylist.playlists.filter(
+    (e) => e.name === playlist.name
+  );
   try {
-    const userUpdate = await User.findByIdAndUpdate(req.uid, { $push: { playlist: name } });
-    console.log(userUpdate.playlist);
-    res.json({ message: "Se guardo la cancion en playlist" });
+    if (filterUser.length) {
+      return res.json({ message: "ya existe nombre de playlist" });
+    } else {
+      const playlistUser = await User.findByIdAndUpdate(req.uid, {
+        $push: { playlists: playlist },
+      });
+      // console.log(playlistUser)
+      return res.json({ message: "playlist agregada" });
+    }
   } catch (error) {
     console.log(error);
   }
+};
+
+const musicPlaylist = async (req, res) => {
+  const { music, name } = req.body;
+  console.log(music);
+
+  const playlistUser = await User.findByIdAndUpdate(
+    req.uid,
+    { $addToSet: { "playlists.$[pls].playlist": music } },
+    { arrayFilters: [{ "pls.name": { $eq: name } }] }
+  );
+
+  console.log(playlistUser);
 };
 
 module.exports = {
@@ -209,5 +240,6 @@ module.exports = {
   setmp3User,
   favoritesUser,
   favoritesDelete,
-  playlistUser
+  playlistUser,
+  musicPlaylist,
 };
