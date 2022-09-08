@@ -13,6 +13,7 @@ import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import Swal from 'sweetalert2'
 import { logoutUser } from "store/slice/user";
 import axios from "axios";
+import UserMP3 from "../UserMP3";
 
 
 function ProfileInfo() {
@@ -21,10 +22,11 @@ function ProfileInfo() {
   const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
   const { avatar } = useSelector((state) => state.music);
   const [modal, setModal] = useState(false);
+  const [modalMp3, setModalMp3] = useState(false);
   const theme = localStorage.getItem("theme");
   const navigate = useNavigate();
 
-  console.log(user)
+  console.log(user.usermp3)
 
   function deleteAccount() {
     try {
@@ -82,6 +84,9 @@ function ProfileInfo() {
     setModal(!modal);
   };
 
+  const toggleMp3 = () => {
+    setModalMp3(!modalMp3)
+  }
 
   useEffect(() => {
     if (avatar.length > 0) {
@@ -102,6 +107,7 @@ function ProfileInfo() {
       <div
         className={theme === "light" ? s.mainContainerLight : s.mainContainer}
       >
+      {/* MODAL AVATAR */}
         {modal && (
           <div className={s.mainContainerModal}>
             <CgCloseO
@@ -113,10 +119,23 @@ function ProfileInfo() {
             </div>
           </div>
         )}
+
+        {/* MODAL MP3 */}
+        {modalMp3 && (
+          <div>
+            <CgCloseO
+              className={s.buttonCloseModal}
+              onClick={() => setModalMp3(!modalMp3)}
+            />
+            <div className={s.containerModal}>
+              <UserMP3 />
+            </div>
+          </div>
+        )}
         {/* ------ START Center Information ------ */}
         <section
           className={
-            modal === false ? s.centerContainer : s.centerContainerDisplay
+            modal === false && modalMp3 === false ? s.centerContainer : s.centerContainerDisplay
           }
         >
           <div className={s.navbarCenter}>
@@ -135,7 +154,10 @@ function ProfileInfo() {
                 <p className={s.underUsername}>Free</p>
               )}
 
-              <button onClick={() => deleteAccount()}>Delete Account</button>
+            </div>
+            <div className={s.buttonsDeleteMp3}>
+              <button onClick={() => deleteAccount()} className={s.btnDelete}><p className={s.pDelete}>Delete Account</p></button>
+              <button onClick={() => toggleMp3()} className={s.btnMp3}><p className={s.pMp3}>Upload Mp3</p></button>
             </div>
           </div>
 

@@ -8,7 +8,7 @@ export default function UserMP3() {
   const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
   const { usermp3 } = useSelector((state) => state.music);
-  const [detailmp3, setDetailmp3] = useState({ titlesong: "", albumsong: "", urlsong: "" });
+  const [detailmp3, setDetailmp3] = useState({ titlesong: "", artists: "", urlsong: "" });
 
   const handleChangeMp3 = (e) => {
     e.preventDefault();
@@ -44,15 +44,15 @@ export default function UserMP3() {
           placeholder="Enter title"
           className={styles.inputTitle}
         ></input>
-        <span className={styles.spanTitles}>Album song</span>
+        <span className={styles.spanTitles}>Artists</span>
         <input
-          name="albumsong"
-          value={detailmp3.albumsong}
+          name="artists"
+          value={detailmp3.artists}
           onChange={(e) => {
             handleChangeMp3(e);
           }}
           type="text"
-          placeholder="Enter album"
+          placeholder="Enter Artist"
           className={styles.inputTitle}
         ></input>
         <input

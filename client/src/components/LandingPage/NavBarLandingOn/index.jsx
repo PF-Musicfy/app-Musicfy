@@ -1,11 +1,12 @@
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
 import stylesLight from "./NavBarLandingOnLight.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
 import { useState } from "react";
 import imagen from "../.././NavBarHome/img_avatar.png";
+import Swal from "sweetalert2";
 
 function NavBarLanding() {
   const [profile, setProfile] = useState(false);
@@ -13,6 +14,15 @@ function NavBarLanding() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const theme = localStorage.getItem("theme");
+  const navigate = useNavigate();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  })
 
   function handlefabars() {
     setDetails(!details);
@@ -23,7 +33,15 @@ function NavBarLanding() {
   }
 
   function handleLog() {
-    dispatch(logoutUser());
+    Toast.fire({
+      icon: 'success',
+      title: 'Logout successfully'
+    }).then(()=> {
+      setTimeout(() => {
+        dispatch(logoutUser()); 
+        navigate('/')
+      }, 1000);
+    })
   }
 
   return (
@@ -97,7 +115,6 @@ function NavBarLanding() {
                 Profile
               </li>
             </Link>
-
             <li>
               <img
                 src={user.avatar || imagen}
