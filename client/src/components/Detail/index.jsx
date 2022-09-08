@@ -7,12 +7,12 @@ import { AiFillHeart } from "react-icons/ai";
 import toMinutes from "../../utils/toMinutes.js";
 import { getTrackId } from "../../store/slice";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
-import { favoritesUser } from "../../store/slice/user";
+import { favoritesUser, userTokenInfo, musicPlaylist } from "../../store/slice/user";
 import Player from "../Player";
 import { PopupLogin, PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { userTokenInfo } from "store/slice/user";
+// import { userTokenInfo, musicPlaylist } from "store/slice/user";
 import { BsThreeDots } from "react-icons/bs";
 import MenuTresPuntos from "./MenuTresPuntos";
 
@@ -35,6 +35,12 @@ function DetailTable({ e }) {
   const getTracksFavorites = () => {
     dispatch(favoritesUser(e));
   };
+
+  // const addMusicPlaylist = () => {
+  //   dispatch(musicPlaylist())
+  // }
+
+
 
   return (
     <>
@@ -67,7 +73,7 @@ function DetailTable({ e }) {
           {modal && (
             <div className={s.mainContainerModal}>
               <div className={s.containerModal}>
-                <MenuTresPuntos setModal={setModal} />
+                <MenuTresPuntos setModal={setModal} e={e} />
               </div>
             </div>
           )}
