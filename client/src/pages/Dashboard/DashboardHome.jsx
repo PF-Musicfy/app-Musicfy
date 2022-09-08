@@ -29,6 +29,9 @@ export default function DashboardHome() {
       <div className={s.module}>
         <div className={s.preview}>
           <div className={s.containerstatus}>
+            <div className={s.rol}>
+              {currentRol}
+            </div>
             <div className={s.statusbar} onClick={() => navigate("list")}>
               <div>Free {Object.keys(users).length}</div>
               <div>
@@ -46,13 +49,8 @@ export default function DashboardHome() {
                 )}
               </div>
             </div>
-            <div className={s.containerrol}>
-              <div className={s.rol}>{currentRol}</div>
-            </div>
           </div>
-          <div className={s.submodule} onClick={() => navigate("list")}>
-            <CardTable />
-          </div>
+          <CardTable />
         </div>
       </div>
       <div className={s.module} onClick={() => navigate("feedback")}>
