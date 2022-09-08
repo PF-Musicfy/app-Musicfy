@@ -8,7 +8,7 @@ export default function UserMP3() {
   const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
   const { usermp3 } = useSelector((state) => state.music);
-  const [detailmp3, setDetailmp3] = useState({ titlesong: "", artists: "", urlsong: "" });
+  const [detailmp3, setDetailmp3] = useState({ name: "", artistName: "", previewURL: "" });
 
   const handleChangeMp3 = (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ export default function UserMP3() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getMP3(mp3selected)).then((e) => {
-      detailmp3.urlsong = e;
+      detailmp3.previewURL = e;
       dispatch(uploadMp3User(detailmp3));
     });
   };
@@ -35,8 +35,8 @@ export default function UserMP3() {
       >
         <span className={styles.spanTitles}>Title song</span>
         <input
-          name="titlesong"
-          value={detailmp3.titlesong}
+          name="name"
+          value={detailmp3.name}
           onChange={(e) => {
             handleChangeMp3(e);
           }}
@@ -46,8 +46,8 @@ export default function UserMP3() {
         ></input>
         <span className={styles.spanTitles}>Artists</span>
         <input
-          name="artists"
-          value={detailmp3.artists}
+          name="artistName"
+          value={detailmp3.artistName}
           onChange={(e) => {
             handleChangeMp3(e);
           }}

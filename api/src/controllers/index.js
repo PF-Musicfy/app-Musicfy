@@ -10,7 +10,7 @@ const mainUrl = 'https://api.napster.com/v2.2'
 
 const combinedFilters = async (genre, top) => {
   let urlInfo = ''
-  top === 'artists'? urlInfo = 'https://api.napster.com/v2.0': urlInfo = mainUrl
+  top === 'artists'? urlInfo = 'https://api.napster.com/v2.2': urlInfo = mainUrl
   let info = await axios.get(`${urlInfo}/genres/${genre}/${top}/top?${apiKey}&limit=15`);
   info = info.data[top]
   console.log('resultados: ', info.data)
@@ -102,7 +102,7 @@ const topMusic = async () => {
   const apiAlbums = noRepetidos(apiAlbum);
   apiAlbums.length > 10 && apiAlbums.splice(10)
 
-  const {data: {artists}} = await axios.get(`https://api.napster.com/v2.0/artists/top?${apiKey}&limit=15`);
+  const {data: {artists}} = await axios.get(`https://api.napster.com/v2.2/artists/top?${apiKey}&limit=15`);
   const apiArtist = await artists.map((e) => {
     return {
       id: e.id,
