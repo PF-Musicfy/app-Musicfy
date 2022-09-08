@@ -12,7 +12,8 @@ export const userSlice = createSlice({
     user: {},
     loading: "",
     favorites: [],
-    usermodal: {}
+    usermodal: {},
+    // playlists: [] 
   },
   reducers: {
     setFeedback: (state, action) => {
@@ -29,7 +30,10 @@ export const userSlice = createSlice({
     },
     setUserModal: (state, action) => {
       state.usermodal = action.payload;
-    }
+    },
+    // setPlaylists: (state, action) => {
+    //   state.playlists = state.playlists.concat(action.payload);
+    // }
   }
 });
 
@@ -220,7 +224,7 @@ export const removeFavorites = (remove) => {
   };
 };
 
-export const playlistUser = (name) => {
+export const playlistUser = (playlist) => {
   return async function () {
     try {
       const token = cookies.get("refreshToken");
@@ -230,7 +234,7 @@ export const playlistUser = (name) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ name })
+        body: JSON.stringify({ playlist })
       });
       const data = await res.json();
       console.log(data);
@@ -257,6 +261,66 @@ export const uploadMp3User = (usermp3) => {
     }
   };
 };
+
+export const musicPlaylist = (music, name) => {
+  return async function () {
+    try {
+      const token = cookies.get("refreshToken");
+      const res = await fetch(`${axios.defaults.baseURL}/api/v1/auth/musicplaylist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ music, name })
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log("Ocurrio un error", error);
+    }
+  };
+};
+
+// export const playlistName = (name) => {
+//   return async function (dispatch){
+//     try {
+//       return dispatch(setPlaylists(name))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+// export const clearPlaylistName = () => {
+//   return async function (dispatch){
+//     try {
+
+//       return dispatch(setPlaylists({}))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+// export const musicPlaylist = (music, name) => {
+//   return async function (dispatch, getState){
+//     try {
+//       const { playlists } = getState().user
+//       const filterName = playlists.filter(e => e.name === name)
+//       console.log(filterName)
+//       if(filterName){
+//         const musicFilter = filterName[0]
+//         musicFilter.music = music
+//         playlists.concat(musicFilter)
+//         console.log("soy playlist new", playlists)
+//         return dispatch(setPlaylists(playlists))
+//       }
+//     } catch (error) {
+      
+//     }
+//   }
+// }
 
 // export const getFavorites = (id) => {
 //   return async function(dispatch, getState ){

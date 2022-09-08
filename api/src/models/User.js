@@ -54,10 +54,10 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: []
     },
-    playlist: {
+    playlists: {
       type: Array,
       default: []
-    }
+    },
   },
   {
     versionKey: false
