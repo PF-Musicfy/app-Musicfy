@@ -23,7 +23,7 @@
   color: white;
   margin-top: 3px;
   font-family: var(--second-font);
-  font-size: 145%;
+  font-size: 110%;
   /* border: 1px solid blue; */
 }
 .h3Colors2 {
@@ -36,8 +36,13 @@
   font-family: var(--mainfont);
   font-size: 110%;
 }
+
 .h3Colors2:hover {
   color: var(--mainColor);
+}
+
+.topsGenretitle{
+  font-family: var(--second-font);
 }
 
 .cardImages {
@@ -58,7 +63,7 @@
   color: white;
   /*  font-size: 23px; */
   /*  width: 120px; */
-  font-size: 300%;
+  font-size: 160%;
   width: 40vw;
   margin-left: 125px;
   font-family: var(--mainfont);
@@ -172,6 +177,10 @@
     font-size: 14px;
     /* border: 1px solid blue; */
   }
+  
+  .h3Colors2{
+    width: 145px;
+  }
 
   .cardImages {
     margin-bottom: 10px;
@@ -211,6 +220,10 @@
     /* border: 1px solid blue; */
   }
 
+  .h3Colors2{
+    width: 105px;
+  }
+
   .cardImages {
     margin-bottom: 10px;
     height: 240px;
@@ -228,9 +241,9 @@
   .buttonStyles {
     margin-top: 6px;
   }
-  .titleGenre {
-    font-size: 35px;
-    width: 50vw;
+  
+  .topsGenretitle{
+    font-size: 12px;
   }
 }
 

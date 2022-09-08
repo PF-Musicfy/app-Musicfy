@@ -26,7 +26,7 @@ export default function NavBarHome() {
   });
 
   const showNavBar = () => {
-    navRef.current.classList.toggle("responsiveNav");
+    navRef.current.classList.toggle(styles.responsiveNav);
   };
 
   async function handleClick() {
@@ -102,24 +102,18 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              {/* <Link to="/library">
-                <span>Library</span>
-              </Link> */}
-              <Link to="/favorites">
-                <span className={styles.btnFavorites}>Favorites</span>
-              </Link>
-              {/* <Link to="/profile">
+              <Link to="/mp3uploaded">
                 <span
                   className={
                     theme === "light" ? stylesLight.profile : styles.profile
                   }
                 >
-                  Profile
+                  Mp3 Uploaded
                 </span>
               </Link>
-              <Link to="/premium">
-                <span>Premium</span>
-              </Link> */}
+              <Link to="/favorites">
+                <span className={styles.btnFavorites}>Favorites</span>
+              </Link>
 
               <button
                 className={

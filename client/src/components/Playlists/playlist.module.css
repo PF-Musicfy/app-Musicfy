@@ -1,0 +1,193 @@
+.front {
+    text-align: center;
+    font-size: 30px;
+    margin: 40px;
+  }
+  .detailContainer {
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+  }
+  .invisible {
+    display: none;
+  }
+  .avatar {
+    width: 400px;
+  }
+  
+  .nameInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-family: var(--main-font);
+    width: 800px;
+  }
+  
+  .row {
+    background: #000;
+    border-top: 1px solid rgb(45, 45, 45);
+  }
+  
+  .row:first-child {
+    border-top: 0px solid;
+  }
+  
+  .row td {
+    padding: 5px;
+    text-align: start;
+    background-color: rgb(30, 30, 30);
+  }
+  
+  .table {
+    width: 1200px;
+  }
+  
+  .text {
+    max-width: 100px;
+  }
+  
+  .detail {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 30px;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    /* height: 60vh; */
+  }
+  
+  .img {
+    width: 600px;
+    /* height: 400px; */
+  }
+  
+  .scroll {
+    overflow-y: scroll;
+    height: 100%;
+  }
+  
+  .favorites {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .favorites1 {
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--mainColor);
+  }
+  
+  .favorites :hover {
+    color: var(--mainColor);
+  }
+  
+  .containerPrincipal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    /* height: 85vh; */
+    margin-bottom: 100px;
+  }
+  
+  .nameUser {
+    display: flex;
+    margin-bottom: 30px;
+  }
+  
+  /***** LIGHT THEME *****/
+  .scrollLight {
+    overflow-y: scroll;
+    height: 87vh;
+    margin-bottom: 20px;
+  }
+  
+  .containerPrincipalLight {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eee;
+    color: #222;
+    font-weight: 600;
+    height: 85vh;
+  }
+  
+  .tableLight {
+    width: 200px;
+    background-color: rgb(183, 180, 180);
+    color: #222;
+  }
+  
+  .iconFlaplay {
+    color: #fff;
+    /* margin: 8px; */
+    margin-left: 20px;
+  }
+  .iconFlaplay:hover {
+    color: var(--btn);
+  }
+  .artistSong {
+    font-size: 14px;
+    font-family: var(--second-font);
+    color: rgb(109, 109, 109);
+  }
+  .titleSong {
+    font-size: 14px;
+    font-family: var(--second-font);
+    font-weight: 600;
+  }
+  .text {
+    max-width: 1400px;
+  }
+  
+  @media only screen and (max-width: 1235px) {
+    .table {
+      width: 800px;
+    }
+    .img {
+      width: 400px;
+    }
+    .containerTapaTitulo {
+      width: 400px;
+    }
+    .nameInfo {
+      width: 500px;
+    }
+    .avatar {
+      width: 300px;
+    }
+    .detailContainer {
+      width: 800px;
+    }
+  }
+  
+  @media only screen and (max-width: 850px) {
+    .table {
+      width: 100%;
+    }
+    .row td {
+      padding: 5px 10px 5px 10px;
+    }
+    .img {
+      width: 200px;
+    }
+    .nameInfo {
+      width: 200px;
+      font-size: 30px;
+    }
+    .avatar {
+      width: 165px;
+    }
+    .detailContainer {
+      width: 365px;
+    }
+  }
+  
