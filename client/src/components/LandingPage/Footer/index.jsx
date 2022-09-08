@@ -11,58 +11,22 @@ export default function Footer() {
 
   return (
     <footer className={theme === "light" ? stylesLight.footer : styles.footer}>
-      <div
-        className={
-          theme === "light" ? stylesLight.footerContent : styles.footerContent
-        }
-      >
+      <div className={theme === "light" ? stylesLight.footerContent : styles.footerContent}>
         <Link to="/">
-          <div
-            className={
-              theme === "light" ? stylesLight.conterImg : styles.conterImg
-            }
-          >
+          <div className={theme === "light" ? stylesLight.conterImg : styles.conterImg}>
             <img
-              className={
-                theme === "light" ? stylesLight.logoImg : styles.logoImg
-              }
+              className={theme === "light" ? stylesLight.logoImg : styles.logoImg}
               src="https://i.imgur.com/GiyjGcI.png"
               alt="Musicfy Logo"
               onClick={() => navigate("/")}
             />
-            <span
-              className={
-                theme === "light" ? stylesLight.logoTxt : styles.logoTxt
-              }
-            >
-              MusicFy
-            </span>
+            <span className={theme === "light" ? stylesLight.logoTxt : styles.logoTxt}>MusicFy</span>
           </div>
         </Link>
-        <div
-          className={
-            theme === "light"
-              ? stylesLight.footerLinkContainer
-              : styles.footerLinkContainer
-          }
-        >
-          <span
-            className={
-              theme === "light"
-                ? stylesLight.footerSubtitle
-                : styles.footerSubtitle
-            }
-          >
-            USEFUL LINKS
-          </span>
+        <div className={theme === "light" ? stylesLight.footerLinkContainer : styles.footerLinkContainer}>
+          <span className={theme === "light" ? stylesLight.footerSubtitle : styles.footerSubtitle}>USEFUL LINKS</span>
           <Link to="/home">
-            <span
-              className={
-                theme === "light"
-                  ? stylesLight.footerSubtitleTxt
-                  : styles.footerSubtitleTxt
-              }
-            >
+            <span className={theme === "light" ? stylesLight.footerSubtitleTxt : styles.footerSubtitleTxt}>
               Web Player
             </span>
           </Link>
@@ -71,72 +35,32 @@ export default function Footer() {
           </Link>
           <Link to="/login">Login</Link>
         </div>
-        <div
-          className={
-            theme === "light"
-              ? stylesLight.footerLinkContainer
-              : styles.footerLinkContainer
-          }
-        >
-          <span
-            className={
-              theme === "light"
-                ? stylesLight.footerSubtitle
-                : styles.footerSubtitle
-            }
-          >
-            COMPANY
-          </span>
+        <div className={theme === "light" ? stylesLight.footerLinkContainer : styles.footerLinkContainer}>
+          <span className={theme === "light" ? stylesLight.footerSubtitle : styles.footerSubtitle}>COMPANY</span>
           <Link to="/about">About</Link>
           <Link to="/premium">Premium</Link>
         </div>
-        <div
-          className={
-            theme === "light"
-              ? stylesLight.footerLinkContainer
-              : styles.footerLinkContainer
-          }
-        >
-          <span
-            className={
-              theme === "light"
-                ? stylesLight.footerSubtitle
-                : styles.footerSubtitle
-            }
-          >
-            LICENCES
-          </span>
-          <Link to="/license">Copyright</Link>
-          <Link to="/ads">Advertising</Link>
+        <div className={theme === "light" ? stylesLight.footerLinkContainer : styles.footerLinkContainer}>
+          <span className={theme === "light" ? stylesLight.footerSubtitle : styles.footerSubtitle}>LICENCES</span>
+          <span to="/license">Copyright</span>
+          <span to="/ads">Advertising</span>
         </div>
-        <div
-          className={
-            theme === "light" ? stylesLight.footerSocial : styles.footerSocial
-          }
-        >
+        <div className={theme === "light" ? stylesLight.footerSocial : styles.footerSocial}>
           <CgFacebook
             onClick={() => window.open("http://facebook.com")}
-            className={
-              theme === "light" ? stylesLight.faceIcon : styles.faceIcon
-            }
+            className={theme === "light" ? stylesLight.faceIcon : styles.faceIcon}
           />
           <CgInstagram
             onClick={() => window.open("http://instagram.com")}
-            className={
-              theme === "light" ? stylesLight.instaIcon : styles.instaIcon
-            }
+            className={theme === "light" ? stylesLight.instaIcon : styles.instaIcon}
           />
           <BsTwitter
             onClick={() => window.open("http://twitter.com")}
-            className={
-              theme === "light" ? stylesLight.twitterIcon : styles.twitterIcon
-            }
+            className={theme === "light" ? stylesLight.twitterIcon : styles.twitterIcon}
           />
           <BsGithub
             onClick={() => window.open("http://github.com")}
-            className={
-              theme === "light" ? stylesLight.gitHubIcon : styles.gitHubIcon
-            }
+            className={theme === "light" ? stylesLight.gitHubIcon : styles.gitHubIcon}
           />
         </div>
       </div>
