@@ -173,6 +173,9 @@ export default function NavBarHome() {
                 <Link to="/profile">
                   <span>Profile</span>
                 </Link>
+                <Link to="/feedback">
+                  <span>Feedback</span>
+                </Link>
                 <Link to="/premium">
                   <span>Premium</span>
                 </Link>
