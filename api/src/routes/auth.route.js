@@ -11,11 +11,14 @@ const {
   favoritesUser,
   favoritesDelete,
   playlistUser,
-  setmp3User
+  setmp3User,
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
-const { bodyLoginValidator, bodyRegisterValidator } = require("../middlewares/validatorManager.js");
+const {
+  bodyLoginValidator,
+  bodyRegisterValidator,
+} = require("../middlewares/validatorManager.js");
 const app = express.Router();
 
 // Kosovomba
