@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   color: aliceblue;
-  margin-top: 80px;
+  height: 92vh;
   text-align: center;
   font-size: 14px;
 }
@@ -12,6 +12,12 @@
 .titleAvatar {
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.titleAvatarLight {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #222;
 }
 
 .buttonAvatar {
@@ -68,6 +74,15 @@
 .spanTitles {
   font-family: var(--second-font);
   color: #fff;
+  font-size: 16px;
+  width: 350px;
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.spanTitlesLight {
+  font-family: var(--second-font);
+  color: #222;
   font-size: 16px;
   width: 350px;
   text-align: left;

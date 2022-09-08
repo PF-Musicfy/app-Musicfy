@@ -119,15 +119,26 @@ function ProfileInfo() {
             </div>
           </div>
         )}
-
+        {/* MODAL MP3 */}
+        {modalMp3 && (
+          <div>
+            <CgCloseO
+              className={s.buttonCloseModal}
+              onClick={() => setModalMp3(!modalMp3)}
+            />
+            <div className={s.containerModal}>
+              <UserMP3 />
+            </div>
+          </div>
+        )}
         {/* ------ START Center Information ------ */}
         <section
           className={
             theme === "light"
-              ? modal === false
+              ? modal === false && modalMp3 === false
                 ? s.centerContainerLight
                 : s.centerContainerDisplay
-              : modal === false
+              : modal === false && modalMp3 === false
               ? s.centerContainer
               : s.centerContainerDisplay
           }

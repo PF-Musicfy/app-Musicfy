@@ -8,7 +8,12 @@ export default function UserMP3() {
   const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
   const { usermp3 } = useSelector((state) => state.music);
-  const [detailmp3, setDetailmp3] = useState({ titlesong: "", artists: "", urlsong: "" });
+  const theme = localStorage.getItem("theme");
+  const [detailmp3, setDetailmp3] = useState({
+    titlesong: "",
+    artists: "",
+    urlsong: "",
+  });
 
   const handleChangeMp3 = (e) => {
     e.preventDefault();
@@ -24,16 +29,26 @@ export default function UserMP3() {
 
   return (
     <div className={styles.avatarContainer}>
-      <div className={styles.imgAvatarContainer}></div>
-      <audio src={usermp3} preload="none" controls></audio>
-      <p className={styles.titleAvatar}>Upload MP3</p>
+      <p
+        className={
+          theme === "light" ? styles.titleAvatarLight : styles.titleAvatar
+        }
+      >
+        Upload MP3
+      </p>
       <form
         className={styles.formContainer}
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <span className={styles.spanTitles}>Title song</span>
+        <span
+          className={
+            theme === "light" ? styles.spanTitlesLight : styles.spanTitles
+          }
+        >
+          Title song
+        </span>
         <input
           name="titlesong"
           value={detailmp3.titlesong}
