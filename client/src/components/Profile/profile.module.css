@@ -20,9 +20,11 @@
   flex-direction: column;
   align-items: center;
   color: white;
-  width: 1200px;
+  max-width: 1200px;
   height: 100vh;
-  background: radial-gradient(100% 100% at 100% 0%, #cf355c 0%, #0c1136 100%);
+  background: radial-gradient(100% 100% at 100% 0%,
+            #cf355c74 0%,
+            #0c11365d 100%);
   border-radius: 10px;
   margin: 15px 0;
 }
@@ -31,7 +33,7 @@
   display: flex;
   align-items: center;
   height: 200px;
-  border-bottom: 1px solid #cfca352b;
+  border-bottom: 1px solid #cfca3562;
 }
 
 .circleImage {
@@ -46,6 +48,8 @@
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .circleImage:hover {
@@ -197,17 +201,23 @@
 
 .mainContainerModal {
   margin-top: 10px;
-  width: 700px;
+  width: 550px;
   height: 700px;
   border-radius: 10px;
   background: black;
   border: 5px solid var(--mainColor);
 }
 
+.containerMp3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .buttonCloseModal {
   position: absolute;
   margin-top: 9px;
-  margin-left: 624px;
+  margin-left: 470px;
   color: white;
   font-size: 48px;
   cursor: pointer;
@@ -300,6 +310,11 @@
     width: 700px;
     align-items: center;
   }
+
+  /* .pDelete,
+  .pMp3{
+    font-size: 12px;
+  } */
 }
 
 /* <------ MENOR A 780px ------> */
@@ -309,8 +324,8 @@
   }
 
   .circleImage {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
   }
 
   .centerContainer {
@@ -356,12 +371,12 @@
 /* <------ MENOR A 580px ------> */
 @media screen and (max-width: 580px) {
   .h1UserName {
-    font-size: 30px;
+    font-size: 15px;
   }
 
   .circleImage {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
   }
 
   .centerContainer {
@@ -397,22 +412,37 @@
   .underUsername {
     margin-top: 5px;
   }
+
+  .pDelete,
+  .pMp3{
+    font-size: 8px;
+  }
+
+  .navbarCenter{
+    margin-left: 60px;
+  }
 }
 
 /* <------ MENOR A 455px ------> */
 @media screen and (max-width: 455px) {
+  .h2Perfil{
+    font-size: 10px;
+  }
   .h1UserName {
-    font-size: 30px;
+    font-size: 12px;
+  }
+  .underUsername{
+    font-size: 10px;
   }
 
   .circleImage {
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
   }
 
   .imgSwiper {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
   }
 
   .centerContainer {
@@ -441,6 +471,11 @@
   }
   .underUsername {
     margin-top: 5px;
+  }
+
+  .pDelete,
+  .pMp3{
+    font-size: 8px;
   }
 }
 
@@ -539,4 +574,37 @@
   .underUsername {
     margin-top: 5px;
   }
+}
+
+.buttonsDeleteMp3{
+  position: relative;
+  /* flex-direction: column; */
+  height: 70px;
+  width: 230px;
+}
+
+.btnDelete{
+  margin-left: 50px;
+  border-radius: 3px;
+  width: 120px;
+  padding: 5px;
+  background-color: gray;
+  /* border: 1px solid yellow; */
+}
+
+.pDelete{
+  color: white;
+}
+
+.btnMp3{
+  margin-left: 50px;
+  border-radius: 3px;
+  width: 120px;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: goldenrod;
+}
+
+.pMp3{
+  color: white;
 }
