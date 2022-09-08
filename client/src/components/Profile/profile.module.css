@@ -13,6 +13,7 @@
   font-family: "Cabin", sans-serif;
   position: relative;
   background-color: #eee;
+  height: 92vh;
 }
 
 .centerContainer {
@@ -20,11 +21,25 @@
   flex-direction: column;
   align-items: center;
   color: white;
-  max-width: 1200px;
+  width: 1200px;
   height: 100vh;
-  background: radial-gradient(100% 100% at 100% 0%,
-            #cf355c74 0%,
-            #0c11365d 100%);
+  background: radial-gradient(
+    100% 100% at 100% 0%,
+    #cf355c74 0%,
+    #0c113652 100%
+  );
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.centerContainerLight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 1200px;
+  height: 100vh;
+  background: radial-gradient(100% 100% at 100% 0%, #cf355c 0%, #0c1136 100%);
   border-radius: 10px;
   margin: 15px 0;
 }
@@ -48,8 +63,8 @@
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .circleImage:hover {
@@ -208,7 +223,7 @@
   border: 5px solid var(--mainColor);
 }
 
-.containerMp3{
+.containerMp3 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -414,24 +429,24 @@
   }
 
   .pDelete,
-  .pMp3{
+  .pMp3 {
     font-size: 8px;
   }
 
-  .navbarCenter{
+  .navbarCenter {
     margin-left: 60px;
   }
 }
 
 /* <------ MENOR A 455px ------> */
 @media screen and (max-width: 455px) {
-  .h2Perfil{
+  .h2Perfil {
     font-size: 10px;
   }
   .h1UserName {
     font-size: 12px;
   }
-  .underUsername{
+  .underUsername {
     font-size: 10px;
   }
 
@@ -474,7 +489,7 @@
   }
 
   .pDelete,
-  .pMp3{
+  .pMp3 {
     font-size: 8px;
   }
 }
@@ -576,14 +591,14 @@
   }
 }
 
-.buttonsDeleteMp3{
+.buttonsDeleteMp3 {
   position: relative;
   /* flex-direction: column; */
   height: 70px;
   width: 230px;
 }
 
-.btnDelete{
+.btnDelete {
   margin-left: 50px;
   border-radius: 3px;
   width: 120px;
@@ -592,11 +607,11 @@
   /* border: 1px solid yellow; */
 }
 
-.pDelete{
+.pDelete {
   color: white;
 }
 
-.btnMp3{
+.btnMp3 {
   margin-left: 50px;
   border-radius: 3px;
   width: 120px;
@@ -605,6 +620,6 @@
   background-color: goldenrod;
 }
 
-.pMp3{
+.pMp3 {
   color: white;
 }
