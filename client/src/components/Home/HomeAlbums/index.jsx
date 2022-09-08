@@ -84,7 +84,7 @@ function Card({ item }) {
           alt={item.name}
           onError={(e) => {
             e.target.src =
-              "https://pixabay.com/es/images/download/icon-1968245_640.png";
+              "https://i.pinimg.com/564x/e3/78/a9/e378a91cb251ea27c43b19e149888b3c.jpg";
           }}
         />
         <h3
@@ -93,7 +93,9 @@ function Card({ item }) {
           {item.name}
         </h3>
         <h3
-          className={theme === "light" ? stylesLight.h3Colors : styles.h3Colors}
+          className={
+            theme === "light" ? stylesLight.h3Colors2 : styles.h3Colors2
+          }
         >
           {item.artistName}
         </h3>
@@ -273,9 +275,11 @@ export default function HomeAlbum() {
           theme === "light" ? stylesLight.buttonsFilter : styles.buttonsFilter
         }
       >
-        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>
+        <button
+          style={theme === "light" ? { color: "#222" } : { color: "#fff" }}
+        >
           Tops by genre:{" "}
-        </span>
+        </button>
 
         <select
           name="genre"

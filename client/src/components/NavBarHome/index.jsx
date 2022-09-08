@@ -19,11 +19,11 @@ export default function NavBarHome() {
 
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: "top-end",
     showConfirmButton: false,
     timer: 1500,
     timerProgressBar: true,
-  })
+  });
 
   const showNavBar = () => {
     navRef.current.classList.toggle("responsiveNav");
@@ -35,14 +35,14 @@ export default function NavBarHome() {
 
   function handleLog() {
     Toast.fire({
-      icon: 'success',
-      title: 'Logout successfully'
-    }).then(()=> {
+      icon: "success",
+      title: "Logout successfully",
+    }).then(() => {
       setTimeout(() => {
-        dispatch(logoutUser()); 
-        navigate('/')
+        dispatch(logoutUser());
+        navigate("/");
       }, 1000);
-    })
+    });
   }
 
   function onClickHome(e) {
@@ -102,13 +102,13 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              <Link to="/library">
+              {/* <Link to="/library">
                 <span>Library</span>
-              </Link>
+              </Link> */}
               <Link to="/favorites">
-                <span>Favorites</span>
+                <span className={styles.btnFavorites}>Favorites</span>
               </Link>
-              <Link to="/profile">
+              {/* <Link to="/profile">
                 <span
                   className={
                     theme === "light" ? stylesLight.profile : styles.profile
@@ -119,7 +119,7 @@ export default function NavBarHome() {
               </Link>
               <Link to="/premium">
                 <span>Premium</span>
-              </Link>
+              </Link> */}
 
               <button
                 className={
