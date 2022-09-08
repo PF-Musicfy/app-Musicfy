@@ -1,4 +1,8 @@
-.swiperGlobal{
+.albumSuperiorContainer {
+  min-height: 85vh;
+}
+
+.swiperGlobal {
   width: 90%;
 }
 
@@ -21,7 +25,7 @@
   /* border: 1px solid blue; */
 }
 
-.cardImages{
+.cardImages {
   height: 260px;
   /* border: 1px solid white; */
 }
@@ -31,7 +35,6 @@
   justify-content: center;
   margin: 0px -22px 0px 14px;
   margin-bottom: 30px;
-  /* border: 1px solid yellow; */
 }
 
 .titleGenre {
@@ -75,7 +78,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.buttonsFilterSelect>span {
+.buttonsFilterSelect > span {
   border-bottom: 1px solid #ccc;
 }
 
@@ -119,7 +122,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 75%;
   }
   .containerSwiper {
@@ -137,7 +140,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -149,16 +152,15 @@
     /* border: 1px solid blue; */
   }
 
-  .cardImages{
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
-
 }
 
 @media screen and (max-width: 650px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 70%;
   }
   .containerSwiper {
@@ -176,7 +178,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -188,16 +190,27 @@
     /* border: 1px solid blue; */
   }
 
-  .cardImages{
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
 
+  .buttonsFilter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid yellow; */
+  }
+
+  .buttonStyles {
+    margin-top: 6px;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 70%;
   }
   .containerSwiper {
@@ -215,7 +228,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -227,10 +240,9 @@
     /* border: 1px solid blue; */
   }
 
-  .cardImages{
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
-
 }

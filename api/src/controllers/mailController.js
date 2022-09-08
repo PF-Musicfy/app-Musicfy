@@ -19,11 +19,12 @@ function mailSendMessage(email, subject, text) {
   from: "adminAPI",
   to: email,
   subject: subject,
-  text: text
+  html: text
   }
 }
 
 function mailRegistered(email) {
+  console.log('URL:', express.defaultURL)
   return {
   from: "adminAPI",
   to: email,

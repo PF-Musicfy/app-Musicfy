@@ -75,6 +75,7 @@ const loginUser = async (req, res) => {
 
     let user = await User.findOne({ email });
     if (!user) throw new Error("This user does not exist");
+    if (user.isblocked) return res.status(500).send("This user is blocked");
 
     const responsePassword = await user.comparePassword(password);
     if (!responsePassword) throw new Error("Incorrect password");
@@ -96,7 +97,7 @@ const infoUser = async (req, res) => {
   try {
     const user = await User.findById(req.uid, {
       password: 0,
-      _id: 0,
+      // _id: 0
     });
     if (user === null) throw new Error("aqui devuelve null y rompe el front");
     res.json(user);
@@ -141,12 +142,13 @@ const avatarUser = async (req, res) => {
 };
 
 const setmp3User = async (req, res) => {
-  const { avatar } = req.body;
-  const user = await User.findByIdAndUpdate(req.uid, {
-    avatar,
-  });
-  await user.save();
-  return res.json({ message: "Avatar cambiado" });
+  const { usermp3 } = req.body;
+  try {
+    await User.findByIdAndUpdate(req.uid, { $push: { usermp3 } });
+    res.json({ message: "Se guardo el MP3 subido" });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const favoritesUser = async (req, res) => {
@@ -166,6 +168,7 @@ const favoritesUser = async (req, res) => {
     console.log(error);
   }
 };
+
 //   const user = await User.findById(req.uid, { password: 0})
 //       const filterUser = user.favorites.map(e => e.id)
 //       if(!filterUser.length){

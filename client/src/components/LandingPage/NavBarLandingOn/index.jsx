@@ -1,18 +1,28 @@
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
 import stylesLight from "./NavBarLandingOnLight.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/slice/user";
 import { useState } from "react";
 import imagen from "../.././NavBarHome/img_avatar.png";
+import Swal from "sweetalert2";
 
 function NavBarLanding() {
   const [profile, setProfile] = useState(false);
   const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const theme = localStorage.getItem("theme");
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  })
 
   function handlefabars() {
     setDetails(!details);
@@ -23,7 +33,25 @@ function NavBarLanding() {
   }
 
   function handleLog() {
-    dispatch(logoutUser());
+    Toast.fire({
+      icon: 'success',
+      title: 'Logout successfully'
+    }).then(()=> {
+      setTimeout(() => {
+        dispatch(logoutUser()); 
+        navigate('/')
+      }, 1000);
+    })
+  }
+
+  function handleTheme() {
+    if (theme) {
+      localStorage.clear();
+      navigate(0);
+    } else {
+      localStorage.setItem("theme", "light");
+      navigate(0);
+    }
   }
 
   return (
@@ -67,6 +95,9 @@ function NavBarLanding() {
                 : styles.containerButtomNavbar
             }
           >
+            <Link to="/home">
+              <li className={styles.btnNavbar}>Home</li>
+            </Link>
             <Link to="/premium">
               <li
                 className={
@@ -94,6 +125,14 @@ function NavBarLanding() {
                 Profile
               </li>
             </Link>
+            <button
+              onClick={handleTheme}
+              className={
+                theme === "light" ? stylesLight.btnTheme : styles.btnTheme
+              }
+            >
+              {theme !== "light" ? <FaRegLightbulb /> : <FaLightbulb />}
+            </button>
 
             <li>
               <img
@@ -118,6 +157,19 @@ function NavBarLanding() {
                       : styles.selectPerfil
                   }
                 >
+                  {user.admin === true || user.master === true ? (
+                    <Link to="/dashboard">
+                      <span
+                        className={
+                          theme === "light" ? stylesLight.logOut : styles.logOut
+                        }
+                      >
+                        Dashboard
+                      </span>
+                    </Link>
+                  ) : (
+                    false
+                  )}
                   <span
                     onClick={handleLog}
                     className={

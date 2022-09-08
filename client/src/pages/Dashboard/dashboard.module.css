@@ -4,16 +4,15 @@
 }
 .container {
   background: #27293d;
-  min-width: 753px;
+  /*min-width: 753px;*/
 }
 
 .containerstatus {
-  display: flex;
-  justify-content: space-between;
 }
 .statusbar {
   z-index: 10;
   display: flex;
+  justify-content: space-evenly;
   gap: 30px;
   background: #1e1e1f;
   padding: 15px;
@@ -30,7 +29,13 @@
   padding-top: 10px;
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@media (max-width: 350px){
+  .content {
+    grid-template-columns: 1fr;
+  }
 }
 
 .preview {
@@ -48,7 +53,7 @@
 
 .submodule {
   align-self: center;
-  width: 35%;
+  width: 100%;
   background: #1e1e1f;
   padding: 12px;
   border-radius: 5px;
@@ -89,6 +94,7 @@
   padding: 3px 5px 3px 5px;
   border-radius: 5px;
   font-weight: 500;
+  text-align: center;
 }
 .rol:hover {
   background-color: white;

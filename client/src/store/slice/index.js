@@ -147,11 +147,20 @@ export function getMP3(mp3Selected) {
       formData.append("file", mp3Selected);
       formData.append("upload_preset", "musicfymp3");
       const infoMP3 = await axios.post("https://api.cloudinary.com/v1_1/dyj81r2fi/video/upload", formData);
-      // Ejecutar una funcion que modifique el avatar del usuario en DB
-      console.log(infoMP3.data.secure_url);
-      return dispatch(setUserMp3(infoMP3.data.secure_url));
+      dispatch(setUserMp3(infoMP3.data.secure_url));
+      return infoMP3.data.secure_url;
     } catch (error) {
       console.log(error);
     }
   };
+}
+
+export function clearObject(){
+  return async function (dispatch){
+    try{
+      return dispatch(setDetailTracks({}))
+    }catch(err){
+      console.log(err)
+    }
+  }
 }

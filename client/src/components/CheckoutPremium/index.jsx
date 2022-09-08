@@ -3,18 +3,30 @@ import { useEffect } from "react";
 import { userTokenPremium } from "../../store/slice/user";
 import { useNavigate } from "react-router-dom";
 import styles from '../CheckoutPremium/checkout.module.css'
+import axios from "axios";
 
 export default function CheckoutPremium() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const {user} = useSelector((state) => state.user);
   useEffect(() => {
-    //preguntar algo antes de validar
-    dispatch(userTokenPremium());
-
-    // navigate("http://localhost:3000");
-    // window.location.replace("http://localhost:3000/");
-  }, []);
+    console.log(user)
+    if (Object.keys(user).length === 0 || user.premium === true) return console.log('PREMIUM');
+    dispatch(userTokenPremium())
+    .then(()=> {
+      let email = user.email,
+      subject = 'MusicFy premium',
+      text = `<p> Congrats! You have become a premium user!!! Enjoy the benefits of your plan. Start making your own playlist and much more! <p>`
+      axios
+      .post(`${axios.defaults.baseURL}/send-message`, {
+        email,
+        subject,
+        text,
+      })
+      .then(()=> navigate(0))
+    })
+    .catch((e) => console.log(e));
+  }, [user]);
 
   const handleRedirect = () => {
     setTimeout(() => navigate("/"), 2000);

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { getUsers } from "store/slice/user";
 
 import s from "./dashboard.module.css";
-import CardsFeedbackCompact from "../.././components/Cards/CardsFeedback/CardsFeedbackCompact";
+import { CardsFeedbackCompact, CardTable } from "components/Cards";
 
 export default function DashboardHome() {
   const navigate = useNavigate();
@@ -24,10 +24,14 @@ export default function DashboardHome() {
   }, [dispatch]);
 
   return (
-    <div className={s.allhome}>
+    <>
+    {/*<div className={s.allhome}>*/}
       <div className={s.module}>
         <div className={s.preview}>
           <div className={s.containerstatus}>
+            <div className={s.rol}>
+              {currentRol}
+            </div>
             <div className={s.statusbar} onClick={() => navigate("list")}>
               <div>Free {Object.keys(users).length}</div>
               <div>
@@ -45,19 +49,15 @@ export default function DashboardHome() {
                 )}
               </div>
             </div>
-            <div className={s.containerrol}>
-              <div className={s.rol}>{currentRol}</div>
-            </div>
           </div>
-          <div className={s.submodule} onClick={() => navigate("list")}>
-            <span className={s.openuser}>Open User List</span>
-          </div>
+          <CardTable />
         </div>
       </div>
       <div className={s.module} onClick={() => navigate("feedback")}>
         <p>FeedbackCompact</p>
         <CardsFeedbackCompact />
       </div>
-    </div>
+    {/*</div>*/}
+    </>
   );
 }

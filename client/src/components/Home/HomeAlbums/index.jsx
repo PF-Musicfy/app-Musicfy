@@ -8,6 +8,7 @@ import styles from "./indexHome.module.css";
 import stylesLight from "./indexHomeLight.module.css";
 import { getTopMusic, topMusicClear, getTopsByGenre } from "store/slice/index";
 import "swiper/css";
+// import Loading from "components/Loading";
 
 function Listas({ arr, objKey }) {
   const { musicSearch } = useSelector((state) => state.music);
@@ -106,7 +107,6 @@ export default function HomeAlbum() {
   const { topMusic } = useSelector((state) => state.music);
   const { musicSearch } = useSelector((state) => state.music);
   const theme = localStorage.getItem("theme");
-
   useEffect(() => {
     if (topMusic.length === 0) dispatch(getTopMusic());
   }, []);
@@ -273,7 +273,10 @@ export default function HomeAlbum() {
           theme === "light" ? stylesLight.buttonsFilter : styles.buttonsFilter
         }
       >
-        <span style={{ color: "#000" }}>Tops by genre: </span>
+        <span style={theme === "light" ? { color: "#222" } : { color: "#fff" }}>
+          Tops by genre:{" "}
+        </span>
+
         <select
           name="genre"
           className={
@@ -315,7 +318,7 @@ export default function HomeAlbum() {
           <option>Playlists</option>
         </select>
         <button
-          style={{ color: "#000" }}
+          style={theme === "light" ? { color: "#222" } : { color: "#fff" }}
           onClick={() => dispatch(getTopsByGenre(combFilter))}
           disabled={
             combFilter.genre[0] === "Choose genre"
@@ -329,6 +332,13 @@ export default function HomeAlbum() {
         </button>
       </div>
 
+      {/* {!topMusic.apiTracks &&
+      !topMusic.apiAlbums &&
+      !topMusic.apiArtists &&
+      !topMusic.apiPlaylists ? (
+        <Loading />
+      ) : (
+        <> */}
       <div
         className={
           theme === "light"
@@ -349,13 +359,20 @@ export default function HomeAlbum() {
             Top Tracks
           </h1>
         ) : musicSearch.tracks ? (
-          <h1
-            className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-            }
-          >
-            Tracks
-          </h1>
+          <div>
+            <h1
+              className={
+                theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+              }
+            >
+              Tracks
+            </h1>
+            {musicSearch.tracks.length === 0 ? (
+              <span>No results found. We recommend the following:</span>
+            ) : (
+              false
+            )}
+          </div>
         ) : (
           false
         )}
@@ -382,13 +399,20 @@ export default function HomeAlbum() {
             Top Albums
           </h1>
         ) : musicSearch.albums ? (
-          <h1
-            className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-            }
-          >
-            Albums
-          </h1>
+          <div>
+            <h1
+              className={
+                theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+              }
+            >
+              Albums
+            </h1>
+            {musicSearch.albums.length === 0 ? (
+              <span>No results found. We recommend the following: </span>
+            ) : (
+              false
+            )}
+          </div>
         ) : (
           false
         )}
@@ -415,13 +439,20 @@ export default function HomeAlbum() {
             Top Artists
           </h1>
         ) : musicSearch.artists ? (
-          <h1
-            className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-            }
-          >
-            Artists
-          </h1>
+          <div>
+            <h1
+              className={
+                theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+              }
+            >
+              Artists
+            </h1>
+            {musicSearch.artists.length === 0 ? (
+              <span>No results found. We recommend the following:</span>
+            ) : (
+              false
+            )}
+          </div>
         ) : (
           false
         )}
@@ -448,18 +479,27 @@ export default function HomeAlbum() {
             Top Playlist
           </h1>
         ) : musicSearch.playlists ? (
-          <h1
-            className={
-              theme === "light" ? stylesLight.titleGenre : styles.titleGenre
-            }
-          >
-            Playlist
-          </h1>
+          <div>
+            <h1
+              className={
+                theme === "light" ? stylesLight.titleGenre : styles.titleGenre
+              }
+            >
+              Playlist
+            </h1>
+            {musicSearch.playlists.length === 0 ? (
+              <span>No results found. We recommend the following:</span>
+            ) : (
+              false
+            )}
+          </div>
         ) : (
           false
         )}
         <Listas arr={topMusic.apiPlaylists} objKey={"playlists"} />
       </div>
+      {/* </>
+    )} */}
     </div>
   );
 }

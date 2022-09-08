@@ -1,13 +1,14 @@
 .container {
-  background: #000;
-  color: #fff;
+  position: absolute;
+  background: #fff;
+  color: #000;
   font-size: 35px;
   width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  margin-top: 75px;
 }
 
 .spinner {

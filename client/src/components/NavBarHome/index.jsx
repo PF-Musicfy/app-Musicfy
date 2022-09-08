@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ export default function NavBarHome() {
   const [profile, setProfile] = useState(false);
   const navRef = useRef();
   const navigate = useNavigate();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  })
 
   const showNavBar = () => {
     navRef.current.classList.toggle("responsiveNav");
@@ -25,7 +34,15 @@ export default function NavBarHome() {
   }
 
   function handleLog() {
-    dispatch(logoutUser());
+    Toast.fire({
+      icon: 'success',
+      title: 'Logout successfully'
+    }).then(()=> {
+      setTimeout(() => {
+        dispatch(logoutUser()); 
+        navigate('/')
+      }, 1000);
+    })
   }
 
   function onClickHome(e) {
@@ -85,7 +102,6 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              <span>+Playlist</span>
               <Link to="/library">
                 <span>Library</span>
               </Link>
@@ -100,6 +116,9 @@ export default function NavBarHome() {
                 >
                   Profile
                 </span>
+              </Link>
+              <Link to="/premium">
+                <span>Premium</span>
               </Link>
 
               <button
@@ -141,6 +160,13 @@ export default function NavBarHome() {
                     : styles.selectPerfil
                 }
               >
+                {user.admin === true || user.master === true ? (
+                  <Link to="/dashboard">
+                    <span className={styles.logOut}>Dashboard</span>
+                  </Link>
+                ) : (
+                  false
+                )}
                 <Link to="/profile">
                   <span>Profile</span>
                 </Link>

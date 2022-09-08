@@ -10,7 +10,7 @@ import { useLoading } from "../../hooks/useLoading.js";
 import ModuleLogin from "../Login/ModuleLogin.jsx";
 import { CardAlert } from "components/Cards";
 
-import Navbar from "./Navbar";
+import Navbar from "components/Navbar";
 
 export default function Dashboard() {
   const { user } = useSelector((state) => state.user);

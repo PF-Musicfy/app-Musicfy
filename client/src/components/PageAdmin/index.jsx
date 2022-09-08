@@ -9,6 +9,7 @@ import { ImLock, ImUnlocked } from "react-icons/im";
 import { useState } from "react";
 import axios from "axios";
 import Modal from "./Modal";
+import Swal from "sweetalert2";
 
 function Fila({ userindex, openModal }) {
   const dispatch = useDispatch();
@@ -30,8 +31,8 @@ function Fila({ userindex, openModal }) {
   }, [currentModalUser]);
 
   function handleAdmin(e) {
+    e.preventDefault();
     if (currentRol === "Admin" && !userindex.master) {
-      e.preventDefault();
       let variable = e.target.id;
       variable = variable.slice(1);
       setAdmin(!admin);
@@ -45,13 +46,53 @@ function Fila({ userindex, openModal }) {
   }
   function handleBlock(e) {
     e.preventDefault();
-    setBlock(!block);
-    axios
-      .post(`${axios.defaults.baseURL}/user/changeblock`, {
-        id: userindex._id,
-      })
-      .then(dispatch(getUsers()))
-      .catch((e) => console.log(e));
+    if ((currentRol === "Admin" && !userindex.master) || !userindex.admin) {
+      let email = userindex.email;
+
+      let subject = "Account status";
+      Swal.fire({
+        title: "Do you want to block this user?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Block",
+        denyButtonText: `Unblock`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          setBlock(true);
+          let text = "Your account has been deleted";
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+            .then(
+              axios.post(`${axios.defaults.baseURL}/send-message`, {
+                email,
+                subject,
+                text,
+              })
+            );
+          Swal.fire("Blocked!", "", "success");
+        } else if (result.isDenied) {
+          setBlock(false);
+          let text = "Your account has been activated";
+          axios
+            .post(`${axios.defaults.baseURL}/user/changeblock`, {
+              id: userindex._id,
+            })
+            .then(dispatch(getUsers()))
+            .then(
+              axios.post(`${axios.defaults.baseURL}/send-message`, {
+                email,
+                subject,
+                text,
+              })
+            );
+          Swal.fire("Unblocked!", "", "success");
+        }
+      });
+    }
   }
 
   return (
@@ -106,8 +147,6 @@ export default function PageAdmin() {
     <div className={modal ? s.containerblur : s.containerbase}>
       <SearchBar />
       <Buttons />
-      {/* <FirstLine />
-      <Cards users={users} />  */}
       <table className={s.table}>
         <thead>
           <tr className={s.head}>

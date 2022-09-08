@@ -11,12 +11,16 @@ const {
   favoritesUser,
   favoritesDelete,
   playlistUser,
+  setmp3User,
   musicPlaylist
   // setmp3
 } = require("../controllers/auth.controller.js");
 const requireToken = require("../middlewares/requireToken.js");
 const requireRefreshToken = require("../middlewares/requireRefreshToken.js");
-const { bodyLoginValidator, bodyRegisterValidator } = require("../middlewares/validatorManager.js");
+const {
+  bodyLoginValidator,
+  bodyRegisterValidator,
+} = require("../middlewares/validatorManager.js");
 const app = express.Router();
 
 // Kosovomba
@@ -36,6 +40,6 @@ app.post("/favorites", requireToken, favoritesUser);
 app.post("/remove", requireToken, favoritesDelete);
 app.post("/playlist", requireToken, playlistUser);
 app.post("/musicplaylist", requireToken, musicPlaylist );
-// app.post("/setmp3", requireToken, setmp3);
+app.post("/setmp3", requireToken, setmp3User);
 
 module.exports = app;

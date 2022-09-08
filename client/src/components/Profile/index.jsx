@@ -3,13 +3,17 @@ import s from "./profile.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { getTopMusic } from "../../store/slice";
 import Avatar from "../Avatar";
 import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
+import Swal from "sweetalert2";
+import { logoutUser } from "store/slice/user";
+import axios from "axios";
+import UserMP3 from "../UserMP3";
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -17,10 +21,71 @@ function ProfileInfo() {
   const { user } = useSelector((state) => state.user); //aqui tienes la info del usuario
   const { avatar } = useSelector((state) => state.music);
   const [modal, setModal] = useState(false);
+  const [modalMp3, setModalMp3] = useState(false);
   const theme = localStorage.getItem("theme");
+  const navigate = useNavigate();
+
+  console.log(user.usermp3);
+
+  function deleteAccount() {
+    try {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+        },
+        // buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#666",
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              "Deleted!",
+              "Your account has been deleted.",
+              "success"
+            );
+            axios
+              .post(`${axios.defaults.baseURL}/user/changeblock`, {
+                id: user._id,
+              })
+              .then(() => {
+                dispatch(logoutUser());
+                navigate("/");
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelled",
+              "Your account is safe :)",
+              "error"
+            );
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const toggleMp3 = () => {
+    setModalMp3(!modalMp3);
   };
 
   useEffect(() => {
@@ -42,6 +107,7 @@ function ProfileInfo() {
       <div
         className={theme === "light" ? s.mainContainerLight : s.mainContainer}
       >
+        {/* MODAL AVATAR */}
         {modal && (
           <div className={s.mainContainerModal}>
             <CgCloseO
@@ -53,10 +119,28 @@ function ProfileInfo() {
             </div>
           </div>
         )}
+        {/* MODAL MP3 */}
+        {modalMp3 && (
+          <div>
+            <CgCloseO
+              className={s.buttonCloseModal}
+              onClick={() => setModalMp3(!modalMp3)}
+            />
+            <div className={s.containerModal}>
+              <UserMP3 />
+            </div>
+          </div>
+        )}
         {/* ------ START Center Information ------ */}
         <section
           className={
-            modal === false ? s.centerContainer : s.centerContainerDisplay
+            theme === "light"
+              ? modal === false && modalMp3 === false
+                ? s.centerContainerLight
+                : s.centerContainerDisplay
+              : modal === false && modalMp3 === false
+              ? s.centerContainer
+              : s.centerContainerDisplay
           }
         >
           <div className={s.navbarCenter}>
@@ -65,7 +149,7 @@ function ProfileInfo() {
               <img className={s.insideCircle} src={user.avatar} alt="avatar" />
             </div>
             <div className={s.infoNavbar}>
-              <h2 className={s.h2Perfil}>Perfil</h2>
+              <h2 className={s.h2Perfil}>Profile</h2>
               <span>
                 <h1 className={s.h1UserName}>{user.username}</h1>
               </span>
@@ -74,6 +158,14 @@ function ProfileInfo() {
               ) : (
                 <p className={s.underUsername}>Free</p>
               )}
+            </div>
+            <div className={s.buttonsDeleteMp3}>
+              <button onClick={() => deleteAccount()} className={s.btnDelete}>
+                <p className={s.pDelete}>Delete Account</p>
+              </button>
+              <button onClick={() => toggleMp3()} className={s.btnMp3}>
+                <p className={s.pMp3}>Upload Mp3</p>
+              </button>
             </div>
           </div>
 

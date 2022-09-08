@@ -34,7 +34,7 @@ code {
 .swiper-button-next,
 .swiper-button-prev {
   border-radius: 30px;
-  color: white !important;
+  color: #666 !important;
 }
 
 /*sweetalert*/
@@ -69,4 +69,7 @@ code {
 
 .colored-toast .swal2-html-container {
   color: white;
+}
+.custom {
+  background-color: #666 !important;
 }

@@ -1,15 +1,10 @@
-@media (max-width: 750px) {
+@media (max-width: 1050px) {
   .table tr td:nth-child(2), .table tr th:nth-child(2){
     display:none;
   }
 }
-@media (max-width: 550px) {
+@media (max-width: 350px) {
   .table tr td:nth-child(3), .table tr th:nth-child(3){
-    display:none;
-  }
-}
-@media (max-width: 450px) {
-  .table tr td:nth-child(4), .table tr th:nth-child(4){
     display:none;
   }
 }
@@ -28,7 +23,6 @@
 .table {
   table-layout: fixed;
   width: 100%;
-  margin-top: 15px;
 }
 .head {
   background: var(--mainColor);
@@ -36,6 +30,9 @@
 }
 .head th:nth-last-child(-n+2){
   width: 71px;
+}
+.head th:first-child {
+  width: 100px;
 }
 
 .modalito {

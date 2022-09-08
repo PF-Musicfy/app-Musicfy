@@ -22,7 +22,7 @@ export default function Feedback() {
       alert(`campos no pueden estar vacios`);
       return;
     }
-    axios.post("http://localhost:5000/feedback", {
+    axios.post(`${axios.defaults.baseURL}/feedback`, {
       description: e.target[0].value,
     })
     .then(() => {
