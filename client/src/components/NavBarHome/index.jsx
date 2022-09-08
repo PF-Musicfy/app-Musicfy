@@ -47,7 +47,7 @@ export default function NavBarHome() {
 
   function onClickHome(e) {
     e.preventDefault();
-    navigate(0);
+    navigate("/home");
   }
 
   return (
@@ -85,7 +85,6 @@ export default function NavBarHome() {
               <Link to="/favorites">
                 <span className={styles.btnFavorites}>Favorites</span>
               </Link>
-
               <button
                 className={
                   theme === "light"
