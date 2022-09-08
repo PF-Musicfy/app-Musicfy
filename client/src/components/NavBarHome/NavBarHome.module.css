@@ -194,10 +194,18 @@
 }
 
 .btnHomeLoco {
-  font-size: 20px;
+  position: absolute;
+  top: 18px;
+  right: 22%;
+  font-size: 23px;
   cursor: pointer;
 }
 
 .btnHomeLoco:hover {
   color: #cf355c;
+}
+.btnFavorites {
+  position: absolute;
+  top: 20px;
+  right: 10%;
 }

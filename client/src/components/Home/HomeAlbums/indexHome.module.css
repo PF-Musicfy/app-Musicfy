@@ -22,7 +22,22 @@
   width: 170px;
   color: white;
   margin-top: 3px;
+  font-family: var(--second-font);
+  font-size: 145%;
   /* border: 1px solid blue; */
+}
+.h3Colors2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 170px;
+  color: rgb(155, 155, 155);
+  margin-top: 3px;
+  font-family: var(--mainfont);
+  font-size: 110%;
+}
+.h3Colors2:hover {
+  color: var(--mainColor);
 }
 
 .cardImages {
@@ -41,11 +56,17 @@
   margin-left: 25px;
   margin-bottom: 5px;
   color: white;
-  font-size: 18px;
-  width: 120px;
+  /*  font-size: 23px; */
+  /*  width: 120px; */
+  font-size: 300%;
+  width: 40vw;
   margin-left: 125px;
+  font-family: var(--mainfont);
+  font-weight: 400;
 }
-
+.titleGenre:hover {
+  color: var(--mainColor);
+}
 .buttonsFilter {
   margin-bottom: 8px;
   display: flex;
@@ -206,6 +227,10 @@
 
   .buttonStyles {
     margin-top: 6px;
+  }
+  .titleGenre {
+    font-size: 35px;
+    width: 50vw;
   }
 }
 

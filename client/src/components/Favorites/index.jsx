@@ -10,7 +10,7 @@ import Player from "../Player";
 import { PopupPremium } from "../Popup";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import { ImHeart } from "react-icons/im";
+import { AiFillHeart } from "react-icons/ai";
 import { removeFavorites, userTokenInfo } from "store/slice/user";
 
 function Detail({ e }) {
@@ -26,7 +26,7 @@ function Detail({ e }) {
     <>
       <div className={s.front}>
         <p className={s.nameUser}>
-          Favorites of {user.username} <ImHeart />
+          Favorites of {user.username} <AiFillHeart className={s.favorites} />
         </p>
         <img src={user.avatar} alt={user.username} className={s.img} />
       </div>
@@ -45,19 +45,17 @@ function DetailTable({ e }) {
   return (
     <tr className={s.row}>
       <td>
-        <button
-          className={user.premium ? "" : s.invisible}
-          onClick={() => dispatch(setActual(e))}
-        >
-          <FaPlay />
+        <button className={user.premium ? "" : s.invisible} onClick={() => dispatch(setActual(e))}>
+          <FaPlay className={s.iconFlaplay} />
         </button>
       </td>
       <td className={s.text}>
-        <p>{e.name}</p>
-        <p>{e.artistName}</p>
+        <span className={s.titleSong}>{e.name}</span>
+        <br />
+        <span className={s.artistSong}>{e.artistName}</span>
       </td>
       <td>
-        <ImHeart className={s.favorites} onClick={() => getTracksFavorites()} />
+        <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
       </td>
       <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
@@ -81,25 +79,18 @@ export default function Favorites() {
   return (
     <>
       {Object.keys(user).length ? <NavBarLandingOn /> : <NavBarLandingOff />}
-      <div
-        className={
-          theme === "light" ? s.containerPrincipalLight : s.containerPrincipal
-        }
-      >
-        <Detail />
-        <PopupPremium
-          open={open}
-          onClose={() => setOpen(false)}
-          user={user}
-          imagen="https://i.imgur.com/GiyjGcI.png"
-        />
+      <div className={theme === "light" ? s.containerPrincipalLight : s.containerPrincipal}>
+        <div className={s.detailContainer}>
+          <img src={user.avatar} alt={user.username} className={s.avatar}></img>
+          <span className={s.nameInfo}>
+            Favorites:
+            <br /> {user.username}
+          </span>
+        </div>
+        <PopupPremium open={open} onClose={() => setOpen(false)} user={user} imagen="https://i.imgur.com/GiyjGcI.png" />
         <div className={theme === "light" ? s.scrollLight : s.scroll}>
           <table className={theme === "light" ? s.tableLight : s.table}>
-            <tbody>
-              {user === undefined
-                ? ""
-                : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}
-            </tbody>
+            <tbody>{user === undefined ? "" : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
           </table>
         </div>
         <Player open={() => setOpen(true)} />
