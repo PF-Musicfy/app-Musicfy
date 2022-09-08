@@ -154,3 +154,13 @@ export function getMP3(mp3Selected) {
     }
   };
 }
+
+export function clearObject(){
+  return async function (dispatch){
+    try{
+      return dispatch(setDetailTracks({}))
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
