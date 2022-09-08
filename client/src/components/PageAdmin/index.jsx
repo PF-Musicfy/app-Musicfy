@@ -47,33 +47,51 @@ function Fila({ userindex, openModal }) {
   function handleBlock(e) {
     e.preventDefault();
     if ((currentRol === "Admin" && !userindex.master) || !userindex.admin) {
+      let email = userindex.email;
 
+      let subject = "Account status";
       Swal.fire({
-        title: 'Do you want to block this user?',
+        title: "Do you want to block this user?",
         showDenyButton: true,
         showCancelButton: true,
-        confirmButtonText: 'Block',
+        confirmButtonText: "Block",
         denyButtonText: `Unblock`,
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           setBlock(true);
+          let text = "Your account has been deleted";
           axios
             .post(`${axios.defaults.baseURL}/user/changeblock`, {
               id: userindex._id,
             })
             .then(dispatch(getUsers()))
-          Swal.fire('Blocked!', '', 'success')
+            .then(
+              axios.post(`${axios.defaults.baseURL}/send-message`, {
+                email,
+                subject,
+                text,
+              })
+            );
+          Swal.fire("Blocked!", "", "success");
         } else if (result.isDenied) {
           setBlock(false);
+          let text = "Your account has been activated";
           axios
             .post(`${axios.defaults.baseURL}/user/changeblock`, {
               id: userindex._id,
             })
             .then(dispatch(getUsers()))
-          Swal.fire('Unblocked!', '', 'success')
+            .then(
+              axios.post(`${axios.defaults.baseURL}/send-message`, {
+                email,
+                subject,
+                text,
+              })
+            );
+          Swal.fire("Unblocked!", "", "success");
         }
-      })
+      });
     }
   }
 
