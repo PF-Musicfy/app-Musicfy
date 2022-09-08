@@ -18,8 +18,8 @@ export default function UserMP3() {
     e.preventDefault();
     dispatch(getMP3(mp3selected)).then((e) => {
       detailmp3.urlsong = e;
+      dispatch(uploadMp3User(detailmp3));
     });
-    dispatch(uploadMp3User(detailmp3));
   };
 
   return (
