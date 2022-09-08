@@ -47,7 +47,7 @@ export default function Player({ open }){
     progressBar.current.value = ct;
     progressBar.current.max = duration;
 
-    volumeBar.current.value = audioElem.current.volume * 10;
+    // volumeBar.current.value = audioElem.current.volume * 10;
   }
 
   return (

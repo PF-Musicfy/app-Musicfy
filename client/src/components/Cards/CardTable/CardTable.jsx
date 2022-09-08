@@ -22,7 +22,7 @@ export default function CardTable() {
           </tr>
         </thead>
         <tbody>
-          {users?.map((e) => (
+          {users.slice(0,12)?.map((e) => (
             <tr key={e._id} className={s.row}>
               <td>{e.username}</td>
               <td>{e.email}</td>

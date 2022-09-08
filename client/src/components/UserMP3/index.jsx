@@ -7,8 +7,8 @@ import { uploadMp3User } from "store/slice/user";
 export default function UserMP3() {
   const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
-  const { usermp3 } = useSelector((state) => state.music);
-  const [detailmp3, setDetailmp3] = useState({ titlesong: "", albumsong: "", urlsong: "" });
+  const [detailmp3, setDetailmp3] = useState({ name: "", artistName: "", previewURL: "" });
+  const theme = localStorage.getItem("theme");
 
   const handleChangeMp3 = (e) => {
     e.preventDefault();
@@ -17,26 +17,36 @@ export default function UserMP3() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getMP3(mp3selected)).then((e) => {
-      detailmp3.urlsong = e;
+      detailmp3.previewURL = e;
+      dispatch(uploadMp3User(detailmp3));
     });
-    dispatch(uploadMp3User(detailmp3));
   };
 
   return (
     <div className={styles.avatarContainer}>
-      <div className={styles.imgAvatarContainer}></div>
-      <audio src={usermp3} preload="none" controls></audio>
-      <p className={styles.titleAvatar}>Upload MP3</p>
+      <p
+        className={
+          theme === "light" ? styles.titleAvatarLight : styles.titleAvatar
+        }
+      >
+        Upload MP3
+      </p>
       <form
         className={styles.formContainer}
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <span className={styles.spanTitles}>Title song</span>
+        <span
+          className={
+            theme === "light" ? styles.spanTitlesLight : styles.spanTitles
+          }
+        >
+          Title song
+        </span>
         <input
-          name="titlesong"
-          value={detailmp3.titlesong}
+          name="name"
+          value={detailmp3.name}
           onChange={(e) => {
             handleChangeMp3(e);
           }}
@@ -44,15 +54,15 @@ export default function UserMP3() {
           placeholder="Enter title"
           className={styles.inputTitle}
         ></input>
-        <span className={styles.spanTitles}>Album song</span>
+        <span className={styles.spanTitles}>Artists</span>
         <input
-          name="albumsong"
-          value={detailmp3.albumsong}
+          name="artistName"
+          value={detailmp3.artistName}
           onChange={(e) => {
             handleChangeMp3(e);
           }}
           type="text"
-          placeholder="Enter album"
+          placeholder="Enter Artist"
           className={styles.inputTitle}
         ></input>
         <input

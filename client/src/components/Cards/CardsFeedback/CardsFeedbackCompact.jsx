@@ -14,7 +14,7 @@ export default function CardsFeedbackCompact() {
 
   return (
     <div className={s.feedbackComments}>
-      {feedback.slice(0,3).map((e) => (
+      {feedback.slice(0,4).map((e) => (
         <div key={e._id} className={s.feedbackComment}>
           <div className={s.feedbackAvatar}>
             <div>

@@ -3,14 +3,34 @@
   font-size: 30px;
   margin: 40px;
 }
-
+.detailContainer {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+}
 .invisible {
   display: none;
+}
+.avatar {
+  width: 400px;
+}
+
+.nameInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-family: var(--main-font);
+  width: 800px;
 }
 
 .row {
   background: #000;
-  border-top: 1px solid;
+  border-top: 1px solid rgb(45, 45, 45);
 }
 
 .row:first-child {
@@ -18,63 +38,53 @@
 }
 
 .row td {
-  padding: 0px 10px;
+  padding: 5px;
   text-align: start;
+  background-color: rgb(30, 30, 30);
 }
 
 .table {
-  width: 200px;
-  margin-bottom: 20px;
+  width: 1200px;
 }
 
-.text p {
-  width: 360px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
+.text {
+  max-width: 100px;
 }
 
 .detail {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 30px;
   gap: 30px;
   justify-content: center;
   align-items: center;
+  /* height: 60vh; */
 }
 
 .img {
-  width: 40vw;
-  height: 30vw;
-  margin: auto;
-  border-radius: 20px;
+  width: 600px;
+  /* height: 400px; */
 }
 
 .scroll {
   overflow-y: scroll;
-  height: 87vh;
+  height: 100%;
 }
 
 .favorites {
-  height: 60px;
-  width: 30px;
+  font-size: 20px;
   cursor: pointer;
-  /* color: red; */
 }
 
 .favorites1 {
-  color: red;
-  height: 60px;
-  width: 30px;
+  font-size: 20px;
   cursor: pointer;
-  /* color: red; */
+  color: var(--mainColor);
 }
 
 .favorites :hover {
-  color: red;
+  color: var(--mainColor);
 }
 
 .containerPrincipal {
@@ -83,7 +93,8 @@
   flex-direction: column;
   align-items: center;
   font-weight: 600;
-  height: 85vh;
+  /* height: 85vh; */
+  margin-bottom: 100px;
 }
 
 .nameUser {
@@ -111,5 +122,71 @@
 
 .tableLight {
   width: 200px;
+  background-color: rgb(183, 180, 180);
+  color: #222;
+}
+
+.iconFlaplay {
   color: #fff;
+  /* margin: 8px; */
+  margin-left: 20px;
+}
+.iconFlaplay:hover {
+  color: var(--btn);
+}
+.artistSong {
+  font-size: 14px;
+  font-family: var(--second-font);
+  color: rgb(109, 109, 109);
+}
+.titleSong {
+  font-size: 14px;
+  font-family: var(--second-font);
+  font-weight: 600;
+}
+.text {
+  max-width: 1400px;
+}
+
+@media only screen and (max-width: 1235px) {
+  .table {
+    width: 800px;
+  }
+  .img {
+    width: 400px;
+  }
+  .containerTapaTitulo {
+    width: 400px;
+  }
+  .nameInfo {
+    width: 500px;
+  }
+  .avatar {
+    width: 300px;
+  }
+  .detailContainer {
+    width: 800px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .table {
+    width: 100%;
+  }
+  .row td {
+    padding: 5px 10px 5px 10px;
+  }
+  .img {
+    width: 200px;
+  }
+  .nameInfo {
+    width: 200px;
+    font-size: 30px;
+  }
+  .avatar {
+    width: 165px;
+  }
+  .detailContainer {
+    width: 365px;
+  }
 }

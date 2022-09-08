@@ -51,8 +51,8 @@
   gap: 30px;
   justify-content: center;
   align-items: center;
+  min-height: 85vh;
   background-color: #eee;
-  height: 85vh;
   color: #222;
 }
 
@@ -76,7 +76,6 @@
 }
 
 .iconFlaplay {
-  color: #000;
   margin-left: 20px;
 }
 .iconFlaplay:hover {

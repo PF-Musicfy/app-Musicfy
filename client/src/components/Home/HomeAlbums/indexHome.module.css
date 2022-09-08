@@ -1,4 +1,8 @@
-.swiperGlobal{
+.albumSuperiorContainer {
+  min-height: 85vh;
+}
+
+.swiperGlobal {
   width: 90%;
 }
 
@@ -18,10 +22,30 @@
   width: 170px;
   color: white;
   margin-top: 3px;
+  font-family: var(--second-font);
+  font-size: 110%;
   /* border: 1px solid blue; */
 }
+.h3Colors2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 170px;
+  color: rgb(155, 155, 155);
+  margin-top: 3px;
+  font-family: var(--mainfont);
+  font-size: 110%;
+}
 
-.cardImages{
+.h3Colors2:hover {
+  color: var(--mainColor);
+}
+
+.topsGenretitle{
+  font-family: var(--second-font);
+}
+
+.cardImages {
   height: 260px;
   /* border: 1px solid white; */
 }
@@ -37,11 +61,17 @@
   margin-left: 25px;
   margin-bottom: 5px;
   color: white;
-  font-size: 18px;
-  width: 120px;
+  /*  font-size: 23px; */
+  /*  width: 120px; */
+  font-size: 160%;
+  width: 40vw;
   margin-left: 125px;
+  font-family: var(--mainfont);
+  font-weight: 400;
 }
-
+.titleGenre:hover {
+  color: var(--mainColor);
+}
 .buttonsFilter {
   margin-bottom: 8px;
   display: flex;
@@ -74,7 +104,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.buttonsFilterSelect>span {
+.buttonsFilterSelect > span {
   border-bottom: 1px solid #ccc;
 }
 
@@ -100,7 +130,6 @@
   transition: none;
 }
 
-
 .buttonOff {
   border: 2px solid gray;
   border-radius: 8px;
@@ -119,7 +148,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 75%;
   }
   .containerSwiper {
@@ -137,7 +166,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -148,17 +177,20 @@
     font-size: 14px;
     /* border: 1px solid blue; */
   }
+  
+  .h3Colors2{
+    width: 145px;
+  }
 
-  .cardImages{
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
-
 }
 
 @media screen and (max-width: 650px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 70%;
   }
   .containerSwiper {
@@ -176,7 +208,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -188,13 +220,17 @@
     /* border: 1px solid blue; */
   }
 
-  .cardImages{
+  .h3Colors2{
+    width: 105px;
+  }
+
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
 
-  .buttonsFilter{
+  .buttonsFilter {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -202,14 +238,17 @@
     /* border: 1px solid yellow; */
   }
 
-  .buttonStyles{
+  .buttonStyles {
     margin-top: 6px;
   }
-
+  
+  .topsGenretitle{
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .swiperGlobal{
+  .swiperGlobal {
     width: 70%;
   }
   .containerSwiper {
@@ -227,7 +266,7 @@
     object-fit: cover;
     /* border: 1px solid greenyellow; */
   }
-  
+
   .h3Colors {
     display: flex;
     justify-content: center;
@@ -239,10 +278,9 @@
     /* border: 1px solid blue; */
   }
 
-  .cardImages{
+  .cardImages {
     margin-bottom: 10px;
     height: 240px;
     /* border: 1px solid white; */
   }
-
 }

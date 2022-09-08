@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import s from "./favoritos.module.css";
+import s from "./playlist.module.css";
 import { setActual, setPlaylist } from "../../store/slice/player.js";
 import { FaPlay } from "react-icons/fa";
 import toMinutes from "../../utils/toMinutes.js";
@@ -55,26 +55,28 @@ function DetailTable({ e }) {
         <span className={s.artistSong}>{e.artistName}</span>
       </td>
       <td>
-        <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
-      </td>
-      <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
       </td>
     </tr>
   );
 }
 
-export default function Favorites() {
+export default function PlaylistSongs() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const theme = localStorage.getItem("theme");
+  console.log(user.playlists)
 
   useEffect(() => {
     if (user.favorites) {
       dispatch(setPlaylist(user.favorites));
     }
   }, [dispatch]);
+
+ const variablesita = user.playlists[0]
+ const newData = variablesita.playlist.map((item) => item)
+ console.log(newData)
 
   return (
     <>
@@ -83,14 +85,14 @@ export default function Favorites() {
         <div className={s.detailContainer}>
           <img src={user.avatar} alt={user.username} className={s.avatar}></img>
           <span className={s.nameInfo}>
-            Favorites:
-            <br /> {user.username}
+            Playlist:
+            <br /> {variablesita.name}
           </span>
         </div>
         <PopupPremium open={open} onClose={() => setOpen(false)} user={user} imagen="https://i.imgur.com/GiyjGcI.png" />
         <div className={theme === "light" ? s.scrollLight : s.scroll}>
           <table className={theme === "light" ? s.tableLight : s.table}>
-            <tbody>{user === undefined ? "" : user.favorites?.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
+            <tbody>{user === undefined ? "" : newData.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
           </table>
         </div>
         <Player open={() => setOpen(true)} />

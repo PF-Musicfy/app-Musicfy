@@ -7,6 +7,7 @@ import SearchBar from "../SearchBar/Index";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../store/slice/user";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
@@ -16,8 +17,16 @@ export default function NavBarHome() {
   const navRef = useRef();
   const navigate = useNavigate();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  });
+
   const showNavBar = () => {
-    navRef.current.classList.toggle("responsiveNav");
+    navRef.current.classList.toggle(styles.responsiveNav);
   };
 
   async function handleClick() {
@@ -25,7 +34,15 @@ export default function NavBarHome() {
   }
 
   function handleLog() {
-    dispatch(logoutUser());
+    Toast.fire({
+      icon: "success",
+      title: "Logout successfully",
+    }).then(() => {
+      setTimeout(() => {
+        dispatch(logoutUser());
+        navigate("/");
+      }, 1000);
+    });
   }
 
   function onClickHome(e) {
@@ -85,21 +102,26 @@ export default function NavBarHome() {
               >
                 Home
               </span>
-              <span> +Playlist</span>
-              <Link to="/favorites">
-                <span>Favorites</span>
-              </Link>
-              <Link to="/profile">
+              <Link to="/mp3uploaded">
                 <span
                   className={
                     theme === "light" ? stylesLight.profile : styles.profile
                   }
                 >
-                  Profile
+                  Mp3 Uploaded
                 </span>
               </Link>
-              <Link to="/premium">
-                <span>Premium</span>
+              <Link to="/playlistSongs">
+                <span
+                  className={
+                    theme === "light" ? stylesLight.profile : styles.profile
+                  }
+                >
+                  Playlist
+                </span>
+              </Link>
+              <Link to="/favorites">
+                <span className={styles.btnFavorites}>Favorites</span>
               </Link>
 
               <button

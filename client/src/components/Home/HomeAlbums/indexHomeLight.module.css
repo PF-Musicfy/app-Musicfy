@@ -1,3 +1,7 @@
+.albumSuperiorContainer {
+  min-height: 85vh;
+}
+
 .swiperGlobal {
   width: 90%;
   color: #000;

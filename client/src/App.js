@@ -25,6 +25,8 @@ import Favorites from "./components/Favorites";
 
 import Loading from "./components/Loading";
 import { CardCookie } from "components/Cards";
+import Mp3Show from "components/Mp3Uploaded/mp3";
+import PlaylistSongs from "components/Playlists/playlists";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +60,8 @@ function App() {
         <Route exact path="/mercadopago" element={<TestMP />} />
         <Route exact path="/favorites" element={<Favorites />} />
         <Route path="*" element={<Page404 />} />
+        <Route exact path="/mp3uploaded" element={<Mp3Show />} />
+        <Route exact path="/playlistSongs" element={<PlaylistSongs />} />
       </Routes>
       <CardCookie />
     </div>
