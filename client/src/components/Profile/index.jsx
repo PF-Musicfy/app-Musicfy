@@ -10,10 +10,9 @@ import Avatar from "../Avatar";
 import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { logoutUser } from "store/slice/user";
 import axios from "axios";
-
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -24,64 +23,64 @@ function ProfileInfo() {
   const theme = localStorage.getItem("theme");
   const navigate = useNavigate();
 
-  console.log(user)
+  console.log(user);
 
   function deleteAccount() {
     try {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
         },
         // buttonsStyling: false
-      })
+      });
 
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#666',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            'Deleted!',
-            'Your account has been deleted.',
-            'success'
-          )
-          axios
-            .post(`${axios.defaults.baseURL}/user/changeblock`, {
-              id: user._id,
-            }).then(() => {
-              dispatch(logoutUser())
-              navigate('/')
-            })
-            
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your account is safe :)',
-            'error'
-          )
-        }
-      })
-
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#666",
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              "Deleted!",
+              "Your account has been deleted.",
+              "success"
+            );
+            axios
+              .post(`${axios.defaults.baseURL}/user/changeblock`, {
+                id: user._id,
+              })
+              .then(() => {
+                dispatch(logoutUser());
+                navigate("/");
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelled",
+              "Your account is safe :)",
+              "error"
+            );
+          }
+        });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
   const toggleModal = () => {
     setModal(!modal);
   };
-
 
   useEffect(() => {
     if (avatar.length > 0) {
@@ -116,7 +115,13 @@ function ProfileInfo() {
         {/* ------ START Center Information ------ */}
         <section
           className={
-            modal === false ? s.centerContainer : s.centerContainerDisplay
+            theme === "light"
+              ? modal === false
+                ? s.centerContainerLight
+                : s.centerContainerDisplay
+              : modal === false
+              ? s.centerContainer
+              : s.centerContainerDisplay
           }
         >
           <div className={s.navbarCenter}>
