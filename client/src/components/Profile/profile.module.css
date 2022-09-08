@@ -13,7 +13,7 @@
   font-family: "Cabin", sans-serif;
   position: relative;
   background-color: #eee;
-  height: 92vh;
+  min-height: 100vh;
 }
 
 .centerContainer {
@@ -34,10 +34,10 @@
   align-items: center;
   color: white;
   width: 1100px;
-  height: 90vh;
+  height: 100vh;
   background: radial-gradient(100% 100% at 100% 0%, #cf355c 0%, #0c1136 100%);
   border-radius: 10px;
-  margin: 15px 0;
+  margin-top: 25px;
 }
 
 .navbarCenter {

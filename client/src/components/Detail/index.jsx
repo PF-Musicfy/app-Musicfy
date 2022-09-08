@@ -117,7 +117,7 @@ function DetailTable({ e }) {
                   theme === "light" ? sLight.containerModal : s.containerModal
                 }
               >
-                <MenuTresPuntos setModal={setModal} />
+                <MenuTresPuntos setModal={setModal} e={e} />
               </div>
             </div>
           )}
