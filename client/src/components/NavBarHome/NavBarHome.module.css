@@ -205,7 +205,7 @@
   z-index: 30;
 }
 
-.selectPerfil>span:hover {
+.selectPerfil > span:hover {
   color: #cf355c;
 }
 
@@ -239,4 +239,12 @@
 
 .btnHomeLoco:hover {
   color: #cf355c;
+}
+@media only screen and (max-width: 540px) {
+  .searchStyleNologged {
+    margin-top: 35px;
+  }
+  .btnhomenologged {
+    visibility: hidden;
+  }
 }
