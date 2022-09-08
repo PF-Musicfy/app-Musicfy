@@ -1,7 +1,6 @@
 .front {
   display: flex;
   flex-direction: row;
-  /* text-align: center; */
 }
 .containerTapaTitulo {
   display: flex;
@@ -26,7 +25,7 @@
 }
 
 .row td {
-  padding: 5px 0px 5px 0px;
+  padding: 5px;
   text-align: start;
   background-color: rgb(30, 30, 30);
 }
@@ -39,7 +38,7 @@
   max-width: 1400px;
 }
 
-.swal2-popup{
+.swal2-popup {
   width: 200px;
   height: 200px;
 }

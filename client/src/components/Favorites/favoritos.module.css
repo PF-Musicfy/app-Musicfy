@@ -111,5 +111,6 @@
 
 .tableLight {
   width: 200px;
-  color: #fff;
+  background-color: rgb(183, 180, 180);
+  color: #222;
 }
