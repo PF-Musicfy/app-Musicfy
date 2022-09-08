@@ -38,9 +38,9 @@ function DetailTable({ e }) {
 
   // ---- TOAST ALERT ----
 
-  useEffect(() => {
-    dispatch(userTokenInfo());
-  }, [dispatch]);
+  //useEffect(() => {
+  //  dispatch(userTokenInfo());
+  //}, [dispatch]);
 
   const getTracksFavorites = () => {
     dispatch(favoritesUser(e));
@@ -81,6 +81,7 @@ function DetailTable({ e }) {
           <p>{toMinutes(e.playbackSeconds)}</p>
         </td>
         <td>
+          <div className={user ? "" : s.invisible}>
           <span className={theme === "light" ? sLight.trespuntitos : s.trespuntitos}>
             <BsThreeDots onClick={() => toggleModal()} />
           </span>
@@ -91,6 +92,7 @@ function DetailTable({ e }) {
               </div>
             </div>
           )}
+          </div>
         </td>
       </tr>
     </>
