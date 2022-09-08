@@ -111,6 +111,15 @@ export default function NavBarHome() {
                   Mp3 Uploaded
                 </span>
               </Link>
+              <Link to="/playlistSongs">
+                <span
+                  className={
+                    theme === "light" ? stylesLight.profile : styles.profile
+                  }
+                >
+                  Playlist
+                </span>
+              </Link>
               <Link to="/favorites">
                 <span className={styles.btnFavorites}>Favorites</span>
               </Link>

@@ -55,9 +55,6 @@ function DetailTable({ e }) {
         <span className={s.artistSong}>{e.artistName}</span>
       </td>
       <td>
-        <AiFillHeart className={s.favorites} onClick={() => getTracksFavorites()} />
-      </td>
-      <td>
         <p>{toMinutes(e.playbackSeconds)}</p>
       </td>
     </tr>
