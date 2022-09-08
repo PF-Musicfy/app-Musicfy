@@ -1,4 +1,4 @@
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaRegLightbulb, FaLightbulb } from "react-icons/fa";
 import styles from "./NavBarLandingOn.module.css";
 import stylesLight from "./NavBarLandingOnLight.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,8 +13,8 @@ function NavBarLanding() {
   const [details, setDetails] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const theme = localStorage.getItem("theme");
   const navigate = useNavigate();
+  const theme = localStorage.getItem("theme");
 
   const Toast = Swal.mixin({
     toast: true,
@@ -42,6 +42,16 @@ function NavBarLanding() {
         navigate('/')
       }, 1000);
     })
+  }
+
+  function handleTheme() {
+    if (theme) {
+      localStorage.clear();
+      navigate(0);
+    } else {
+      localStorage.setItem("theme", "light");
+      navigate(0);
+    }
   }
 
   return (
@@ -115,6 +125,15 @@ function NavBarLanding() {
                 Profile
               </li>
             </Link>
+            <button
+              onClick={handleTheme}
+              className={
+                theme === "light" ? stylesLight.btnTheme : styles.btnTheme
+              }
+            >
+              {theme !== "light" ? <FaRegLightbulb /> : <FaLightbulb />}
+            </button>
+
             <li>
               <img
                 src={user.avatar || imagen}
@@ -138,9 +157,19 @@ function NavBarLanding() {
                       : styles.selectPerfil
                   }
                 >
-                  {user.admin === true || user.master === true ? <Link to="/dashboard">
-                    <span className={theme === "light" ? stylesLight.logOut : styles.logOut} >Dashboard</span>
-                  </Link> : false}
+                  {user.admin === true || user.master === true ? (
+                    <Link to="/dashboard">
+                      <span
+                        className={
+                          theme === "light" ? stylesLight.logOut : styles.logOut
+                        }
+                      >
+                        Dashboard
+                      </span>
+                    </Link>
+                  ) : (
+                    false
+                  )}
                   <span
                     onClick={handleLog}
                     className={

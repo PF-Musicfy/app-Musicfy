@@ -117,6 +117,9 @@ export default function NavBarHome() {
                   Profile
                 </span>
               </Link>
+              <Link to="/premium">
+                <span>Premium</span>
+              </Link>
 
               <button
                 className={
@@ -157,9 +160,13 @@ export default function NavBarHome() {
                     : styles.selectPerfil
                 }
               >
-                {user.admin === true || user.master === true ? <Link to="/dashboard">
-                  <span className={styles.logOut} >Dashboard</span>
-                </Link> : false}
+                {user.admin === true || user.master === true ? (
+                  <Link to="/dashboard">
+                    <span className={styles.logOut}>Dashboard</span>
+                  </Link>
+                ) : (
+                  false
+                )}
                 <Link to="/profile">
                   <span>Profile</span>
                 </Link>

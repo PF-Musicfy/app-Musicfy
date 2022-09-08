@@ -70,3 +70,6 @@ code {
 .colored-toast .swal2-html-container {
   color: white;
 }
+.custom {
+  background-color: #666 !important;
+}

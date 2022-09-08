@@ -12,6 +12,7 @@ export default function ModuleLogin({ success }) {
     pass: "",
   });
   const [errors, setErrors] = useState({});
+  const [hasSubmit, setHasSubmit] = useState(false);
   const inputPass = useRef();
   const theme = localStorage.getItem("theme");
 
@@ -24,6 +25,7 @@ export default function ModuleLogin({ success }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setHasSubmit(true);
     try {
       await login(
         {
@@ -36,6 +38,7 @@ export default function ModuleLogin({ success }) {
     } catch (e) {
       console.log("error login", e);
     }
+    setHasSubmit(false);
   };
 
   return (
@@ -98,7 +101,10 @@ export default function ModuleLogin({ success }) {
         <div
           className={theme === "light" ? sLight.containerSend : s.containerSend}
         >
-          <button className={theme === "light" ? sLight.btnSend : s.btnSend}>
+          <button
+            disabled={hasSubmit}
+            className={theme === "light" ? sLight.btnSend : s.btnSend}
+          >
             Login
           </button>
         </div>
