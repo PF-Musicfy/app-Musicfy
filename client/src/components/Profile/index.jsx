@@ -11,7 +11,7 @@ import { CgCloseO } from "react-icons/cg";
 import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import Swal from "sweetalert2";
-import { logoutUser } from "store/slice/user";
+import { logoutUser, userTokenInfo } from "store/slice/user";
 import axios from "axios";
 import UserMP3 from "../UserMP3";
 
@@ -25,7 +25,7 @@ function ProfileInfo() {
   const theme = localStorage.getItem("theme");
   const navigate = useNavigate();
 
-  console.log(user.usermp3);
+  console.log(user.playlists);
 
   function deleteAccount() {
     try {
@@ -94,6 +94,11 @@ function ProfileInfo() {
     }
     dispatch(getTopMusic());
   }, [dispatch, avatar]);
+
+  useEffect(() => {
+    dispatch(userTokenInfo())
+  }, [dispatch])
+  
 
   const onImgError = (e) => {
     e.target.src =
@@ -241,7 +246,7 @@ function ProfileInfo() {
             {/* Another carousel2 to put more info in perfil */}
 
             <div className={s.carousel2}>
-              <h1 className={s.titleGenre2}>Albums</h1>
+              <h1 className={s.titleGenre2}>{user.name}</h1>
               <Swiper
                 className={s.swiper}
                 // spaceBetween={-70}
@@ -289,18 +294,17 @@ function ProfileInfo() {
                 }}
               >
                 <div>
-                  {topMusic.apiAlbums?.map((item) => {
+                  {user.playlists?.map((item) => {
+                    
                     return (
                       <SwiperSlide className={s.containerSwiper2} key={item.id}>
                         <Link to={`/home/${item.id}`}>
                           <img
                             className={s.imgSwiper}
-                            src={item.images}
+                            src={'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}
                             alt={item.name}
-                            onError={onImgError}
                           />
-                          <h3 className={s.h3Colors2}>{item.name}</h3>
-                          <h3 className={s.h3artistName}>{item.artistName}</h3>
+                          <h3 className={s.h3artistName}>{item.name}</h3>
                         </Link>
                       </SwiperSlide>
                     );

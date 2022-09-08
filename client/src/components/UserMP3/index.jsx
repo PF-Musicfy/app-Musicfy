@@ -7,7 +7,6 @@ import { uploadMp3User } from "store/slice/user";
 export default function UserMP3() {
   const [mp3selected, setMp3Selected] = useState("");
   const dispatch = useDispatch();
-  // const { usermp3 } = useSelector((state) => state.music);
   const [detailmp3, setDetailmp3] = useState({ name: "", artistName: "", previewURL: "" });
   const theme = localStorage.getItem("theme");
 

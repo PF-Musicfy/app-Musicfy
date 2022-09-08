@@ -35,17 +35,20 @@
   opacity: 0;
   font-size: 1.8rem;
 }
+
 .logoDiv {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
+
 .logo {
   width: 50px;
   height: 50px;
   margin: 10px;
 }
+
 .logoTxt {
   font-size: 24px;
   font-weight: bold;
@@ -75,6 +78,7 @@
     visibility: visible;
     opacity: 1;
   }
+
   .header .nav {
     z-index: 30;
     position: fixed;
@@ -91,26 +95,32 @@
     transition: 1s;
     transform: translateY(-100vh);
   }
+
   .header .responsiveNav {
     transform: none;
   }
+
   .avatar {
     display: none;
   }
+
   .nav .perfil {
     position: absolute;
     visibility: visible;
     right: 43%;
   }
+
   .nav .logout {
     position: relative;
     visibility: visible;
     top: 60%;
     margin-top: 100%;
   }
+
   .container {
     display: none;
   }
+
   .nav .noLogged {
     display: flex;
     flex-direction: column;
@@ -120,6 +130,25 @@
     right: auto;
     left: auto;
   }
+
+  .btnHomeLoco {
+    position: absolute;
+    margin-top: 40%;
+    margin-right: 20%;
+  }
+
+  .btnFavorites {
+    position: absolute;
+    margin-top: 50%;
+    margin-right: 30.5%;
+  }
+
+  .navCloseBtn {
+    font-size: 20px;
+    position: absolute;
+    margin-top: 18%;
+    margin-right: 15%;
+  }
 }
 
 .nav .navCloseBtn {
@@ -127,30 +156,37 @@
   top: 2rem;
   right: 2rem;
 }
+
 .nav a {
   font-size: 1.3rem;
 }
+
 .perfil {
   position: absolute;
   visibility: hidden;
 }
+
 .logout {
   position: absolute;
   visibility: hidden;
 }
+
 .noLogged {
   position: absolute;
   top: 1.6rem;
   right: 2rem;
 }
+
 .container a {
   z-index: 30;
   text-decoration: none;
   color: white;
 }
+
 .container span:hover {
   color: #cf355c;
 }
+
 .selectPerfil {
   background-color: rgb(44, 44, 44);
   color: white;
@@ -169,7 +205,7 @@
   z-index: 30;
 }
 
-.selectPerfil > span:hover {
+.selectPerfil>span:hover {
   color: #cf355c;
 }
 
@@ -177,10 +213,12 @@
   position: absolute;
   left: 8%;
 }
+
 .searchStyleNologged {
   position: absolute;
   left: 8%;
 }
+
 @media only screen and (max-width: 1085px) {
   .searchStyle {
     position: absolute;
@@ -189,23 +227,16 @@
     top: 6%;
   }
 }
+
 .logOut {
   cursor: pointer;
 }
 
 .btnHomeLoco {
-  position: absolute;
-  top: 18px;
-  right: 22%;
   font-size: 23px;
   cursor: pointer;
 }
 
 .btnHomeLoco:hover {
   color: #cf355c;
-}
-.btnFavorites {
-  position: absolute;
-  top: 20px;
-  right: 10%;
 }

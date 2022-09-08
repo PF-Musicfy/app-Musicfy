@@ -278,7 +278,7 @@ export default function HomeAlbum() {
         <button
           style={theme === "light" ? { color: "#222" } : { color: "#fff" }}
         >
-          Tops by genre:{" "}
+          <p className={styles.topsGenretitle}>Tops by genre:</p>{" "}
         </button>
 
         <select
@@ -332,7 +332,7 @@ export default function HomeAlbum() {
               : false
           }
         >
-          Search
+          <p className={styles.topsGenretitle}> Search</p>
         </button>
       </div>
 

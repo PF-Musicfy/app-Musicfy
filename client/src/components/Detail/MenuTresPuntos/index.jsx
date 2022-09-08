@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./MenuTresPuntos.module.css";
 import { userTokenInfo, musicPlaylist, playlistUser} from "store/slice/user";
+import Swal from "sweetalert2";
 // import { userTokenInfo } from "store/slice/user";
 
 
@@ -24,9 +25,23 @@ export default function MenuTresPuntos({ setModal, e }) {
     dispatch(userTokenInfo());
   }, [dispatch]);
 
+    // ---- TOAST ALERT ----
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+    });
+  
+    // ---- TOAST ALERT ----
 
   const handleMusicPlaylist = (nameMusic) => {
     dispatch(musicPlaylist(e, nameMusic))
+    Toast.fire({
+      icon: "success",
+      title: `The song ${e.name} has added to ${nameMusic}`,
+    });
     setModal(false);
   }
 
