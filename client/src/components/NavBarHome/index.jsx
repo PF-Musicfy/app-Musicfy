@@ -149,6 +149,9 @@ export default function NavBarHome() {
           </div>
           <nav ref={navRef}>
             <div className={theme === "light" ? stylesLight.noLogged : styles.noLogged}>
+              <Link to="/home">
+                <span className={styles.btnhomenologged}>Home</span>
+              </Link>
               <Link to="/register">
                 <span>Register</span>
               </Link>
