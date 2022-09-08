@@ -298,7 +298,7 @@ function ProfileInfo() {
                     
                     return (
                       <SwiperSlide className={s.containerSwiper2} key={item.id}>
-                        <Link to={`/home/${item.id}`}>
+                        <Link to={"/playlistSongs"}>
                           <img
                             className={s.imgSwiper}
                             src={'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}

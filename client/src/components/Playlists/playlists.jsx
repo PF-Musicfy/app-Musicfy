@@ -67,6 +67,7 @@ export default function PlaylistSongs() {
   const [open, setOpen] = useState(false);
   const theme = localStorage.getItem("theme");
   console.log(user.playlists)
+ 
 
   useEffect(() => {
     if (user.favorites) {
@@ -75,7 +76,7 @@ export default function PlaylistSongs() {
   }, [dispatch]);
 
  const variablesita = user.playlists[0]
- const newData = variablesita.playlist.map((item) => item)
+ const newData = variablesita.playlist?.map((item) => item)
  console.log(newData)
 
   return (
@@ -92,7 +93,7 @@ export default function PlaylistSongs() {
         <PopupPremium open={open} onClose={() => setOpen(false)} user={user} imagen="https://i.imgur.com/GiyjGcI.png" />
         <div className={theme === "light" ? s.scrollLight : s.scroll}>
           <table className={theme === "light" ? s.tableLight : s.table}>
-            <tbody>{user === undefined ? "" : newData.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
+            <tbody>{user === undefined ? "" : newData?.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
           </table>
         </div>
         <Player open={() => setOpen(true)} />
