@@ -372,7 +372,7 @@ export default function HomeAlbum() {
               Tracks
             </h1>
             {musicSearch.tracks.length === 0 ? (
-              <span>No results found. We recommend the following:</span>
+              <span style={{marginLeft: '125px'}}>No results found.</span>
             ) : (
               false
             )}
@@ -412,7 +412,7 @@ export default function HomeAlbum() {
               Albums
             </h1>
             {musicSearch.albums.length === 0 ? (
-              <span>No results found. We recommend the following: </span>
+              <span style={{marginLeft: '125px'}}>No results found.</span>
             ) : (
               false
             )}
@@ -452,7 +452,7 @@ export default function HomeAlbum() {
               Artists
             </h1>
             {musicSearch.artists.length === 0 ? (
-              <span>No results found. We recommend the following:</span>
+              <span style={{marginLeft: '125px'}}>No results found.</span>
             ) : (
               false
             )}
@@ -492,7 +492,7 @@ export default function HomeAlbum() {
               Playlist
             </h1>
             {musicSearch.playlists.length === 0 ? (
-              <span>No results found. We recommend the following:</span>
+              <span style={{marginLeft: '125px'}}>No results found.</span>
             ) : (
               false
             )}
