@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import { logoutUser, userTokenInfo } from "store/slice/user";
 import axios from "axios";
 import UserMP3 from "../UserMP3";
+import imgDefault from "./utilsIMG/imgDefault.jpg"
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -300,7 +301,7 @@ function ProfileInfo() {
                         <Link to={`/playlistSongs/${item.name}`}>
                           <img
                             className={s.imgSwiper}
-                            src={item.img? item.img : 'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}
+                            src={item.img? item.img : imgDefault}
                             alt={item.name}
                           />
                           <h3 className={s.h3artistName}>{item.name}</h3>
