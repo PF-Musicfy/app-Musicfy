@@ -12,6 +12,7 @@ import NavBarLandingOn from "../LandingPage/NavBarLandingOn";
 import NavBarLandingOff from "../LandingPage/NavBarLandingOff";
 import { AiFillHeart } from "react-icons/ai";
 import { removeFavorites, userTokenInfo } from "store/slice/user";
+import { useParams } from "react-router-dom";
 
 function Detail({ e }) {
   const dispatch = useDispatch();
@@ -67,16 +68,23 @@ export default function PlaylistSongs() {
   const [open, setOpen] = useState(false);
   const theme = localStorage.getItem("theme");
   console.log(user.playlists)
+  const { name } = useParams()
 
-  useEffect(() => {
-    if (user.favorites) {
-      dispatch(setPlaylist(user.favorites));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (user.favorites) {
+  //     dispatch(setPlaylist(user.favorites));
+  //   }
+  // }, [dispatch]);
 
- const variablesita = user.playlists[0]
- const newData = variablesita.playlist.map((item) => item)
- console.log(newData)
+//  const variablesita = user.playlists[0]
+//  const newData = variablesita.playlist?.map((item) => item)
+//  console.log(newData)
+
+const variablesita = user.playlists.filter(e => e.name === name)
+console.log(variablesita)
+const newData = variablesita[0]
+const infoData = newData.playlist.map(e => e)
+console.log(infoData)
 
   return (
     <>
@@ -86,13 +94,13 @@ export default function PlaylistSongs() {
           <img src={user.avatar} alt={user.username} className={s.avatar}></img>
           <span className={s.nameInfo}>
             Playlist:
-            <br /> {variablesita.name}
+            <br /> {name}
           </span>
         </div>
         <PopupPremium open={open} onClose={() => setOpen(false)} user={user} imagen="https://i.imgur.com/GiyjGcI.png" />
         <div className={theme === "light" ? s.scrollLight : s.scroll}>
           <table className={theme === "light" ? s.tableLight : s.table}>
-            <tbody>{user === undefined ? "" : newData.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
+            <tbody>{user === undefined ? "" : infoData?.map((e, i) => <DetailTable key={i} e={e} />)}</tbody>
           </table>
         </div>
         <Player open={() => setOpen(true)} />

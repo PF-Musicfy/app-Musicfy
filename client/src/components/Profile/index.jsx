@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import { logoutUser, userTokenInfo } from "store/slice/user";
 import axios from "axios";
 import UserMP3 from "../UserMP3";
+import imgDefault from "./utilsIMG/imgDefault.jpg"
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -246,7 +247,7 @@ function ProfileInfo() {
             {/* Another carousel2 to put more info in perfil */}
 
             <div className={s.carousel2}>
-              <h1 className={s.titleGenre2}>{user.name}</h1>
+              <h1 className={s.titleGenre2}>Your Playlists</h1>
               <Swiper
                 className={s.swiper}
                 // spaceBetween={-70}
@@ -295,13 +296,12 @@ function ProfileInfo() {
               >
                 <div>
                   {user.playlists?.map((item) => {
-                    
                     return (
                       <SwiperSlide className={s.containerSwiper2} key={item.id}>
-                        <Link to={`/home/${item.id}`}>
+                        <Link to={`/playlistSongs/${item.name}`}>
                           <img
                             className={s.imgSwiper}
-                            src={'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}
+                            src={item.img? item.img : imgDefault}
                             alt={item.name}
                           />
                           <h3 className={s.h3artistName}>{item.name}</h3>
