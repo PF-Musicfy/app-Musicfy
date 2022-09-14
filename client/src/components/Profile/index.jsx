@@ -246,7 +246,7 @@ function ProfileInfo() {
             {/* Another carousel2 to put more info in perfil */}
 
             <div className={s.carousel2}>
-              <h1 className={s.titleGenre2}>{user.name}</h1>
+              <h1 className={s.titleGenre2}>Your Playlists</h1>
               <Swiper
                 className={s.swiper}
                 // spaceBetween={-70}
@@ -295,13 +295,12 @@ function ProfileInfo() {
               >
                 <div>
                   {user.playlists?.map((item) => {
-                    
                     return (
                       <SwiperSlide className={s.containerSwiper2} key={item.id}>
-                        <Link to={"/playlistSongs"}>
+                        <Link to={`/playlistSongs/${item.name}`}>
                           <img
                             className={s.imgSwiper}
-                            src={'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}
+                            src={item.img? item.img : 'https://lh3.googleusercontent.com/UxXleHxssOKF2hsbcKtJoyhNj-Jqfglp06yyoZ-pqRTTadJw0WJwQzQHH89fv7yinMvRqOOOMbZpCT2Btw=w544-h544-l90-rj'}
                             alt={item.name}
                           />
                           <h3 className={s.h3artistName}>{item.name}</h3>
