@@ -61,7 +61,7 @@ function App() {
         <Route exact path="/favorites" element={<Favorites />} />
         <Route path="*" element={<Page404 />} />
         <Route exact path="/mp3uploaded" element={<Mp3Show />} />
-        <Route exact path="/playlistSongs" element={<PlaylistSongs />} />
+        <Route exact path="/playlistSongs/:name" element={<PlaylistSongs />} />
       </Routes>
       <CardCookie />
     </div>
