@@ -49,7 +49,7 @@ function About() {
       title: "Full Stack Developer",
       location: "Caracas - Venezuela",
       images: "https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661142530/edu_mnvyew.jpg",
-      linkedin: "https://www.linkedin.com/in/eduardo-sequeira-4502bb244/",
+      linkedin: "https://www.linkedin.com/in/eduardo-sequeira/",
       github: "https://github.com/Eduardoasm"
     },
     {

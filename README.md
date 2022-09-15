@@ -30,7 +30,7 @@ You can access the site at the following link: [MusicFy](https://app-musicfy.ver
 - Payment gateway with Mercado Pago.
 - Stream random music as a free user.
 - Stream unlimited music as a premium user.
-- Possibility to upload music, change avatar, add music to favorites and create custom list.
+- Upload music, change avatar, add music to favorites and create custom list.
 - 100% responsive styles.
 - Admin panel to block users, sending messages, admin or moderator privilege.
 - Link to validate the registration by mail.
