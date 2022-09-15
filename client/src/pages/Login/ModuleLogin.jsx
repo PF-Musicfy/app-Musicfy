@@ -9,7 +9,7 @@ import login from "../../utils/login.js";
 export default function ModuleLogin({ success }) {
   const [input, setInput] = useState({
     user: "",
-    pass: "",
+    pass: ""
   });
   const [errors, setErrors] = useState({});
   const [hasSubmit, setHasSubmit] = useState(false);
@@ -24,13 +24,12 @@ export default function ModuleLogin({ success }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setHasSubmit(true);
     try {
       await login(
         {
           email: input.user,
-          password: input.pass,
+          password: input.pass
         },
         "/api/v1/auth/login",
         success
@@ -43,50 +42,37 @@ export default function ModuleLogin({ success }) {
 
   return (
     <div className={theme === "light" ? sLight.container : s.container}>
+      <span className={theme === "light" ? sLight.title : s.title}>Log in</span>
       <div className={theme === "light" ? sLight.options : s.options}>
         <LoginWithGoogle />
       </div>
-      <form
-        className={theme === "light" ? sLight.form : s.form}
-        onSubmit={handleSubmit}
-      >
-        <div className={theme === "light" ? sLight.inputs : s.inputs}>
-          <p className={theme === "light" ? sLight.emailTitle : s.emailTitle}>
-            Email
-          </p>
-          <input
-            type="email"
-            name="user"
-            placeholder="Email"
-            onChange={inputChange}
-            value={input.user}
-            className={errors.user ? s.inputError : ""}
-          />
-          <p className={theme === "light" ? sLight.msgError : s.msgError}>
-            {errors.user || ""}
-          </p>
-        </div>
+      <form className={theme === "light" ? sLight.form : s.formCon} onSubmit={handleSubmit}>
+        <label className={theme === "light" ? sLight.emailTitle : s.emailTitle}>Email</label>
+        <input
+          type="email"
+          name="user"
+          placeholder="Email"
+          onChange={inputChange}
+          value={input.user}
+          className={s.inputForm}
+        />
 
-        <div className={theme === "light" ? sLight.inputs : s.inputs}>
-          <p className={theme === "light" ? sLight.emailTitle : s.emailTitle}>
-            Password
-          </p>
-          <input
-            ref={inputPass}
-            type="password"
-            name="pass"
-            placeholder="Password"
-            onChange={inputChange}
-            value={input.pass}
-            className={errors.pass ? s.inputError : ""}
-          />
-          <p className={theme === "light" ? sLight.msgError : s.msgError}>
-            {errors.pass || ""}
-          </p>
-        </div>
-        <button
-          type="button"
-          className={theme === "light" ? sLight.button : s.button}
+        <span className={theme === "light" ? sLight.msgError : s.msgErrorEmail}>{errors.user || ""}</span>
+
+        <label className={theme === "light" ? sLight.emailTitle : s.emailTitle}>Password</label>
+        <input
+          ref={inputPass}
+          type="password"
+          name="pass"
+          placeholder="Password"
+          onChange={inputChange}
+          value={input.pass}
+          className={s.inputForm}
+        />
+        <p className={theme === "light" ? sLight.msgError : s.msgError}>{errors.pass || ""}</p>
+
+        <FaEye
+          className={theme === "light" ? sLight : s.eye}
           onClick={() => {
             if (inputPass.current.type === "password") {
               inputPass.current.type = "text";
@@ -94,17 +80,10 @@ export default function ModuleLogin({ success }) {
               inputPass.current.type = "password";
             }
           }}
-        >
-          <FaEye className={theme === "light" ? sLight : s.eye} />
-        </button>
+        />
 
-        <div
-          className={theme === "light" ? sLight.containerSend : s.containerSend}
-        >
-          <button
-            disabled={hasSubmit}
-            className={theme === "light" ? sLight.btnSend : s.btnSend}
-          >
+        <div className={s.prueba}>
+          <button disabled={hasSubmit} className={theme === "light" ? sLight.btnSend : s.buttonReg}>
             Login
           </button>
         </div>

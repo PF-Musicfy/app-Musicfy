@@ -1,178 +1,115 @@
 .login {
-  text-align: center;
-  color: #fff;
-  background: #000;
-  height: 100vh;
-}
-
-.login .navbar span {
-  margin-left: 10px;
-  font-size: 20px;
-  color: #cf355c;
-  cursor: pointer;
-  transition: 300ms;
-}
-
-.login .navbar span:hover {
-  color: #fff;
-}
-
-.form {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  padding: 30px;
-  text-align: center;
-  margin: 20px;
-}
-
-.inputError {
-  outline-color: rgb(186, 8, 8);
-  border: 1px solid red;
-}
-
-.navbar {
   display: flex;
-  height: 60px;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid;
+  font-family: var(--second-font);
+  font-size: 16px;
+  background-image: url(https://res.cloudinary.com/dyj81r2fi/image/upload/v1663170035/oxxxymiron-oksimiron-oxxxy_sy5fks.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 910px;
 }
 
-.navbar img {
-  height: 40px;
-  width: 40px;
-  display: inline;
-}
-
-.options {
-  padding: 10px;
-}
 .container {
-  margin: 30px auto;
-  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-.button {
-  padding: 0 10px;
+.options {
+  margin-bottom: 40px;
 }
-
-.inputs {
-  position: relative;
+.title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 40px;
 }
-
-.msgError {
-  position: absolute;
-  bottom: -20px;
-  left: 35%;
-  color: rgb(241, 54, 54);
-  font-weight: 500;
-  font-size: 14px;
+.emailTitle {
+  margin-bottom: 8px;
+  width: 466px;
+}
+.formCon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.inputForm {
+  color: #000;
+  border-radius: 6px;
+  width: 470px;
+  padding: 14px 16px;
+  margin-bottom: 40px;
 }
 
 .eye {
   font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  margin-top: 33px;
+  margin-left: 207px;
+  color: rgb(113, 113, 113);
 }
 .eye:hover {
   color: #cf355c;
   transition: 300ms;
 }
-.containerSend {
-  width: 117px;
-  height: 51px;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  margin: auto;
-  margin-top: 20px;
+
+.buttonReg {
+  background-color: var(--btn);
+  color: #fff;
+  width: 180px;
+  height: 40px;
+  margin-top: 10px;
+  transition: 0.2s;
+  border-radius: 4px;
+  border: 1px solid var(--mainColor);
+  transition: 0.3s;
+}
+.buttonReg:hover {
+  border: 1px solid #fff;
 }
 .btnRegister {
-  color: #cf355c;
-  font-weight: 500;
-  transition: 300ms;
-  margin-top: 10px;
-  border-bottom: 1px solid #fff;
+  color: var(--mainColor);
+  font-weight: 600;
 }
-
 .btnRegister:hover {
   color: #fff;
-  border-bottom: 1px solid #cf355c;
 }
-.btnSend {
-  padding: 8px 33px;
-  font-size: 15px;
-  font-weight: 600;
-  margin: 4px auto;
-  background-color: #cf355c;
-  border-radius: 15px;
-  transition: 300ms;
+.haveAccount {
+  margin-top: 40px;
+  font-size: 16px;
 }
-
-.btnSend:hover {
-  background-color: #fff;
-  color: #cf355c;
-  position: relative;
+.msgError {
+  position: absolute;
+  color: rgb(241, 54, 54);
+  font-size: 14px;
+  margin: 0 0 20px 312px;
 }
-
-.form input {
-  width: 95%;
-  height: 20px;
-  padding: 15px;
-  color: #000;
-  border-radius: 10px;
-  display: block;
-  margin: auto;
-  margin-bottom: 25px;
-  margin-top: 10px;
+.msgErrorEmail {
+  position: absolute;
+  color: rgb(241, 54, 54);
+  font-size: 14px;
+  margin: 0 0 278px 342px;
 }
 
-.emailTitle {
-  font-weight: 600;
-}
-
-.login .navbar button {
-  font-size: 25px;
-  color: #cf355c;
-  cursor: pointer;
-  transition: 300ms;
-}
-
-.login .navbar button:hover {
-  color: #fff;
-}
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 520px) {
+  .inputForm {
+    width: 340px;
+    /* max-width: 370px; */
+    margin-right: 10px;
+  }
+  .eye {
+    margin-left: 142px;
+  }
+  .emailTitle {
+    width: 344px;
+  }
   .msgError {
-    left: 30%;
+    margin: 0 0 20px 178px;
   }
-}
-
-@media screen and (max-width: 670px) {
-  .container {
-    width: 25%;
-  }
-
-  .msgError {
-    margin-left: 40px;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .container {
-    width: 85%;
-  }
-
-  .msgError {
-    margin-left: 10px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    width: 85%;
-  }
-
-  .msgError {
-    margin-left: 5px;
+  .msgErrorEmail {
+    margin: 0 0 278px 202px;
   }
 }
