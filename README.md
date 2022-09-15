@@ -1,6 +1,9 @@
 # MUSICFY APP
 ## Final Project - Musicfy APP music streaming
 
+![Musicfy](https://res.cloudinary.com/dyj81r2fi/image/upload/c_scale,w_700/v1663264947/Captura_desde_2022-09-15_15-00-20_u3rrff.png)
+
+
 This is an academic project done as a final project of Henry's fullstack bootcamp. It is a music streaming web application that allows the user to listen on demand. It has authentication and a functional payment gateway implemented.
 
 You can access the site at the following link: [MusicFy](https://app-musicfy.vercel.app/)
