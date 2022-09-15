@@ -14,15 +14,11 @@ export default function BodyLanding() {
           Listen your favorites songs for the best price
         </h4>
       </div>
-      <>
-     {topMusic.length === 0? <Loading/> :
       <Link to="/Home">
         <button className={styles.button}>
           <BiPlayCircle className={styles.musicIcon} /> OPEN PLAYER
         </button>
       </Link>
-      }
-      </>
     </div>
   );
 }
