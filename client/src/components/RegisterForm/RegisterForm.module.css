@@ -21,9 +21,10 @@
 }
 .textLink {
   font-weight: 600;
+  color: var(--mainColor);
 }
 .textLink:hover {
-  color: var(--mainColor);
+  color: #fff;
 }
 .register_logo span:hover {
   color: #fff;
