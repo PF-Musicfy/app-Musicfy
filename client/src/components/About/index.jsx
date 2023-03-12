@@ -22,7 +22,7 @@ function About() {
       title: 'Full Stack Developer',
       location: 'Buenos Aires - Argentina',
       images:
-        'https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661134228/IMG_20220105_110054726_HDR_qejxvm.jpg',
+        'https://res.cloudinary.com/hugok2k/image/upload/v1678639805/Varios/IMG_20220105_110054726_HDR_qejxvm_o9r9ut.jpg',
       linkedin: 'https://www.linkedin.com/in/devhugoavila/',
       github: 'https://github.com/hugok2k'
     },
@@ -31,7 +31,7 @@ function About() {
       title: 'Full Stack Developer',
       location: 'Santiago del Estero - Argentina',
       images:
-        'https://res.cloudinary.com/hugok2k/image/upload/c_scale,h_240/v1661134228/photo_2022-08-21_16-04-30_uearmu.jpg',
+        'https://res.cloudinary.com/hugok2k/image/upload/v1678639805/Varios/photo_2022-08-21_16-04-30_abjclr.jpg',
       linkedin: 'https://www.linkedin.com/in/santiago-levy-dev/',
       github: 'https://github.com/Kosovomba'
     },
